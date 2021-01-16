@@ -1,0 +1,124 @@
+<? xG_item_luaObj={}
+local slk = require 'slk'
+obj=slk.item.ratc:new('XL01') 
+	obj.abilList=''
+	obj.Name='|cFFFFFFD6紫|r|cFFFFFFCF晶|r|cFFFFFFC9坠|r|cFFFFFFC2子|r|cFFFFFFBB☆|r'
+	obj.Description='一阶饰品+\n佩戴者等级要求1+\n最多只能佩戴一件项链'
+	obj.Tip='|cFFFFFFD6紫|r|cFFFFFFCF晶|r|cFFFFFFC9坠|r|cFFFFFFC2子|r|cFFFFFFBB☆|r'
+	obj.Ubertip='紫晶雕琢的项链，华美绚烂，蕴含微弱的法力。'
+	obj.Art='war3mapImported\\BTNXL1.blp'
+	obj.Level='1'
+	obj.class='项链'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('XL02') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33千|r|cFFFFFF33花|r|cFFFFFF33结|r|cFFFFFF33★|r'
+	obj.Description='二阶饰品+\n佩戴者等级要求10+\n最多只能佩戴一件项链'
+	obj.Tip='|cFFFFFF33千|r|cFFFFFF33花|r|cFFFFFF33结|r|cFFFFFF33★|r'
+	obj.Ubertip='以彩色花瓣扎制而成的项链，佩带后让人感觉繁花盛开，散发出淡淡香味。'
+	obj.Art='war3mapImported\\BTNXL2.blp'
+	obj.Level='2'
+	obj.class='项链'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('XL03') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33太|r|cFFFFFF33极|r|cFFFFFF33链|r|cFFFFFF33★|r'
+	obj.Description='三阶饰品+\n佩戴者等级要求20+\n最多只能佩戴一件项链'
+	obj.Tip='|cFFFFFF33太|r|cFFFFFF33极|r|cFFFFFF33链|r|cFFFFFF33★|r'
+	obj.Ubertip='太极饰纹的符石制成的挂坠，佩带后能辟妖邪。'
+	obj.Art='war3mapImported\\BTNXL3.blp'
+	obj.Level='3'
+	obj.class='项链'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('XL04') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33琥|r|cFFFFFF33珀|r|cFFFFFF33链|r|cFFFFFF33★|r|cFFFFAA66★|r'
+	obj.Description='四阶饰品+\n佩戴者等级要求30+\n最多只能佩戴一件项链'
+	obj.Tip='|cFFFFFF33琥|r|cFFFFFF33珀|r|cFFFFFF33链|r|cFFFFFF33★|r|cFFFFAA66★|r'
+	obj.Ubertip='琥珀制成，蕴藏一种神奇的魔力，有很高的价值。'
+	obj.Art='war3mapImported\\BTNXL4.blp'
+	obj.Level='4'
+	obj.class='项链'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('XL05') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33云|r|cFFFF8080海|r|cFFFF00CC链|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF00CC☆|r'
+	obj.Description='五阶饰品+\n佩戴者等级要求40+\n最多只能佩戴一件项链'
+	obj.Tip='|cFFFFFF33云|r|cFFFF8080海|r|cFFFF00CC链|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF00CC☆|r'
+	obj.Ubertip='如白云朵朵，层层叠叠，苍苍茫茫，如沐云海。'
+	obj.Art='war3mapImported\\BTNXL5.blp'
+	obj.Level='5'
+	obj.class='项链'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('XL06') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC烈|r|cFFFF00CC日|r|cFFFF00CC★|r|cFFFF4C66★|r|cFFFF9900★|r|cFFFF4C00★|r|cFFFF0000☆|r'
+	obj.Description='六阶饰品+\n佩戴者等级要求50+\n最多只能佩戴一件项链'
+	obj.Tip='|cFFFF00CC烈|r|cFFFF00CC日|r|cFFFF00CC★|r|cFFFF4C66★|r|cFFFF9900★|r|cFFFF4C00★|r|cFFFF0000☆|r'
+	obj.Ubertip='七情六欲人间所不能免，于是佛结七情束，修炼心性，得之者有佛缘。'
+	obj.Art='war3mapImported\\BTNXL6.blp'
+	obj.Level='6'
+	obj.class='项链'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('XL07') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC勾|r|cFFFF00CC魂|r|cFFFF00CC铃|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF0066★|r|cFFFF0000☆|r'
+	obj.Description='七阶饰品+\n佩戴者等级要求60+\n最多只能佩戴一件项链'
+	obj.Tip='|cFFFF00CC勾|r|cFFFF00CC魂|r|cFFFF00CC铃|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF0066★|r|cFFFF0000☆|r'
+	obj.Ubertip='传说是冥界引领灵魂进入六道轮回的宝物，有极强的力量。'
+	obj.Art='war3mapImported\\BTNXL7.blp'
+	obj.Level='7'
+	obj.class='项链'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('XL08') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC月|r|cFFFF00CC光|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF0066★|r'
+	obj.Description='八阶饰品+\n佩戴者等级要求70+\n最多只能佩戴一件项链'
+	obj.Tip='|cFFFF00CC月|r|cFFFF00CC光|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF0066★|r'
+	obj.Ubertip='吸纳了月之灵气聚合而成的月光石制成的项链，仙气缠绕，人间极品。'
+	obj.Art='war3mapImported\\BTNXL8.blp'
+	obj.Level='8'
+	obj.class='项链'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('XL09') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC烈|r|cFFFF00CC日|r|cFFFF00CC★|r|cFFFF4C66★|r|cFFFF9900★|r|cFFFF4C00★|r|cFFFF0000☆|r'
+	obj.Description='九阶饰品+\n佩戴者等级要求80+\n最多只能佩戴一件项链'
+	obj.Tip='|cFFFF00CC烈|r|cFFFF00CC日|r|cFFFF00CC★|r|cFFFF4C66★|r|cFFFF9900★|r|cFFFF4C00★|r|cFFFF0000☆|r'
+	obj.Ubertip='由传说中的金阳宝石制成，炙热无比，据说佩带着周身会闪耀太阳的光芒。'
+	obj.Art='war3mapImported\\BTNXL9.blp'
+	obj.Level='9'
+	obj.class='项链'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('XL10') 
+	obj.abilList=''
+	obj.Name='|cFFFF0000蝶|r|cFF99801A仙|r|cFF33FF33★|r|cFF1AFF99★|r|cFF00FFFF★|r|cFF80FF80★|r|cFFFFFF00★|r'
+	obj.Description='神阶饰品+\n佩戴者等级要求90+\n最多只能佩戴一件项链'
+	obj.Tip='|cFFFF0000蝶|r|cFF99801A仙|r|cFF33FF33★|r|cFF1AFF99★|r|cFF00FFFF★|r|cFF80FF80★|r|cFFFFFF00★|r'
+	obj.Ubertip='翩翩起舞的蝶仙洒下仙粉融入大地，提炼后制成蝶仙项链，香气扑鼻，每每夜晚，仿似有万蝶起舞，非人间之物。'
+	obj.Art='war3mapImported\\BTNXL10.1.blp'
+	obj.Level='10'
+	obj.class='项链'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('XL11') 
+	obj.abilList=''
+	obj.Name='|cFFFF0000阴|r|cFF99801A阳|r|cFF33FF33链|r|cFF1AFF99★|r|cFF00FFFF★|r|cFF80FF80★|r|cFFFFFF00★|r|cFFCC9980★|r'
+	obj.Description='神阶饰品+\n佩戴者等级要求90+\n最多只能佩戴一件项链'
+	obj.Tip='|cFFFF0000阴|r|cFF99801A阳|r|cFF33FF33链|r|cFF1AFF99★|r|cFF00FFFF★|r|cFF80FF80★|r|cFFFFFF00★|r|cFFCC9980★|r'
+	obj.Ubertip='阴阳饰纹的符石制成的挂坠，佩带后能辟妖邪，据说乃太上老君遗失于人间之物，法力无边。'
+	obj.Art='war3mapImported\\BTNXL10.2.blp'
+	obj.Level='10'
+	obj.class='项链'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+?>
