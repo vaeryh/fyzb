@@ -2,6 +2,9 @@
     "folders": [
         {
             "path": "."
+        },
+        {
+            "path": "..\\..\\..\\..\\DzClient\\Game\\Warcraft III Frozen Throne\\风云争霸\\日志"
         }
     ],
     "settings": {
