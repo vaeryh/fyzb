@@ -1,0 +1,3 @@
+[FrameDef]
+COLON_ARMOR=防御：
+COLON_DAMAGE=外功：

@@ -1,0 +1,113 @@
+<? xG_item_luaObj={}
+local slk = require 'slk'
+obj=slk.item.ratc:new('YP01') 
+	obj.abilList=''
+	obj.Name='|cFFFFFFD2纹|r|cFFFFFFCA龙|r|cFFFFFFC3佩|r|cFFFFFFBB☆|r'
+	obj.Description='一阶饰品+\n佩戴者等级要求1+\n最多只能佩戴一件玉佩'
+	obj.Tip='购买纹龙佩'
+	obj.Ubertip='雕刻了龙形花纹的玉佩，寻常百姓家中常用来镇压魔物。'
+	obj.Art='war3mapImported\\BTNYP1.blp'
+	obj.Level='1'
+	obj.class='玉佩'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('YP02') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33碧|r|cFFFFFF33影|r|cFFFFFF33佩|r|cFFFFFF33★|r'
+	obj.Description='二阶饰品+\n佩戴者等级要求10+\n最多只能佩戴一件玉佩'
+	obj.Tip='购买碧影佩'
+	obj.Ubertip='晶莹的碧玉玉佩，玉质上好，佩戴后可保平安，深受权贵之人喜爱。'
+	obj.Art='war3mapImported\\BTNYP2.blp'
+	obj.Level='2'
+	obj.class='玉佩'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('YP03') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33水|r|cFFFFFF33轮|r|cFFFFFF33佩|r|cFFFFFF33★|r|cFFFFFF33☆|r'
+	obj.Description='三阶饰品+\n佩戴者等级要求20+\n最多只能佩戴一件玉佩'
+	obj.Tip='购买水轮佩'
+	obj.Ubertip='由水中倒映幻化而成，凝结了水之精华，寓意吉祥灵秀。。'
+	obj.Art='war3mapImported\\BTNYP3.blp'
+	obj.Level='3'
+	obj.class='玉佩'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('YP04') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33青|r|cFFFFFF33殊|r|cFFFFFF33佩|r|cFFFFFF33★|r|cFFFFAA66★|r'
+	obj.Description='四阶饰品+\n佩戴者等级要求30+\n最多只能佩戴一件玉佩'
+	obj.Tip='购买青殊佩'
+	obj.Ubertip='封印了咒术的玉佩，咒力在表面形成了纹理，预示其不凡。'
+	obj.Art='war3mapImported\\BTNYP4.blp'
+	obj.Level='4'
+	obj.class='玉佩'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('YP05') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33清|r|cFFFF8080狐|r|cFFFF00CC佩|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF00CC☆|r'
+	obj.Description='五阶饰品+\n佩戴者等级要求40+\n最多只能佩戴一件玉佩'
+	obj.Tip='购买清狐佩'
+	obj.Ubertip='以清狐咒封印的玉佩，虽已被封印，但力量仍泉涌不断，灵气满盈。'
+	obj.Art='war3mapImported\\BTNYP5.blp'
+	obj.Level='5'
+	obj.class='玉佩'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('YP06') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC如|r|cFFFF00CC蛟|r|cFFFF00CC佩|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF00CC★|r'
+	obj.Description='六阶饰品+\n佩戴者等级要求50+\n最多只能佩戴一件玉佩'
+	obj.Tip='购买如蛟佩'
+	obj.Ubertip='用蛟龙皮混合上等蚕丝制成的绳结，再配上其内丹雕刻成的玉佩，遇祸可逢凶化吉。'
+	obj.Art='war3mapImported\\BTNYP6.blp'
+	obj.Level='6'
+	obj.class='玉佩'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('YP07') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC寒|r|cFFFF00CC玉|r|cFFFF00CC龙|r|cFFFF00CC勾|r|cFFFF00CC★|r|cFFFF0066★|r|cFFFF0000★|r|cFFFF0000☆|r'
+	obj.Description='七阶饰品+\n佩戴者等级要求60+\n最多只能佩戴一件玉佩'
+	obj.Tip='购买寒玉龙勾'
+	obj.Ubertip='深海龙族汗白玉雕琢而成的玉佩，雕刻着五曜图腾，防御效果超强。'
+	obj.Art='war3mapImported\\BTNYP7.blp'
+	obj.Level='7'
+	obj.class='玉佩'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('YP08') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC八|r|cFFFF00CC宝|r|cFFFF00CC如|r|cFFFF00CC意|r|cFFFF00CC★|r|cFFFF0066★|r|cFFFF0000★|r|cFFFF0000★|r'
+	obj.Description='八阶饰品+\n佩戴者等级要求70+\n最多只能佩戴一件玉佩'
+	obj.Tip='购买八宝如意'
+	obj.Ubertip='上古时代流传下来的腰坠，不知何物所制，金石不能断，水火不能侵，妖邪不能近！'
+	obj.Art='war3mapImported\\BTNYP8.blp'
+	obj.Level='8'
+	obj.class='玉佩'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('YP09') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC清|r|cFFFF00CC寒|r|cFFFF00CC宝|r|cFFFF4C66玉|r|cFFFF9900★|r|cFFFF4C00★|r|cFFFF0000★|r|cFFFF0000★|r|cFFFF0000☆|r'
+	obj.Description='九阶饰品+\n佩戴者等级要求80+\n最多只能佩戴一件玉佩'
+	obj.Tip='购买清寒宝玉'
+	obj.Ubertip='流动的冰晶雪屑精华凝成的腰坠，蕴涵了巨大而神秘的力量，据说此物原本为天神所有！'
+	obj.Art='war3mapImported\\BTNYP9.blp'
+	obj.Level='9'
+	obj.class='玉佩'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('YP10') 
+	obj.abilList=''
+	obj.Name='|cFFFF0000游|r|cFF99801A火|r|cFF33FF33灵|r|cFF1AFF99焰|r|cFF00FFFF★|r|cFF80FF80★|r|cFFFFFF00★|r|cFFCC9980★|r|cFF9933FF★|r'
+	obj.Description='神阶饰品+\n佩戴者等级要求90+\n最多只能佩戴一件玉佩'
+	obj.Tip='购买游火灵焰'
+	obj.Ubertip='传说用盘古开天时期的天地精华制作而成的神物，孕育了无穷的神力。'
+	obj.Art='war3mapImported\\BTNYP10.blp'
+	obj.Level='10'
+	obj.class='玉佩'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+?>

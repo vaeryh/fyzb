@@ -1,0 +1,381 @@
+//******************************
+//*
+//* 风雨争霸-属性系统
+//*
+//******
+//Template
+Frame "BACKDROP" "ProBackdropTemplate" {
+	BackdropBlendAll,
+	BackdropBackground  "UI\Widgets\ToolTips\Human\human-tooltip-background.blp",
+	BackdropCornerFlags "UL|UR|BL|BR|T|L|B|R",
+	BackdropCornerSize  0.006,
+	BackdropBackgroundSize  0.016,
+	BackdropBackgroundInsets 0.003 0.003 0.003 0.003,
+	BackdropEdgeFile  "UI\Widgets\ToolTips\Human\human-tooltip-border.blp",
+}
+
+Frame "TEXT" "ProTextTemplate" {
+	Width 0.06,
+	Height 0.01,
+    DecorateFileNames,
+    FrameFont "MasterFont", 0.0120, "",
+    FontJustificationH JUSTIFYLEFT,
+    FontJustificationV JUSTIFYMIDDLE,
+    FontFlags "FIXEDSIZE",
+    FontHighlightColor 1.0 1.0 1.0 1.0,
+    FontDisabledColor 0.5 0.5 0.5 1.0,
+	FontShadowColor 0.0 0.0 0.0 0.9,	
+    FontShadowOffset 0.001 -0.001,
+}
+
+Frame "GLUETEXTBUTTON" "ProGlueTextButtonTemplate"
+{
+    Width 0.090,
+    Height 0.020,
+    //设置样式 悬停高亮  可获取鼠标焦点 HIGHLTGHTONFOCUS
+	ControlStyle "AUTOTRACK|HIGHLIGHTONMOUSEOVER",
+
+    //悬停鼠标高亮
+	ControlMouseOverHighlight "Demo_ButtonHig",
+	Frame "HIGHLIGHT" "Demo_ButtonHig" {
+        HighlightType "FILETEXTURE",
+        HighlightAlphaFile "war3mapImported\MainPanel_Button_Highlight.blp",
+        HighlightAlphaMode "ADD",
+    }
+}
+Frame "FRAME" "ProFrame" {
+//****************************************************************************************
+//基础属性
+//****************************************************************************************
+Frame "BACKDROP" "ProTipsBackdrop" INHERITS "ProBackdropTemplate" {
+	Width 0.230,
+	Height 0.390,
+	//BackdropBackground  "war3mapImported\BasePro_Backdrop.blp",
+	//标题栏关闭
+	Frame "GLUETEXTBUTTON" "ProButtonX" INHERITS WITHCHILDREN "ProGlueTextButtonTemplate" {
+		Width 0.025,
+		Height 0.025,
+		SetPoint TOPRIGHT, "ProTipsBackdrop", TOPRIGHT, -0.02, -0.025,
+			
+		ControlBackdrop "ProButtonBackdrop",
+		Frame "BACKDROP" "ProButtonBackdrop" INHERITS "ProBackdropTemplate" {
+			SetPoint CENTER, "ProButtonX", CENTER, 0.0, 0.0,
+			//BackdropBackground  "war3mapImported\MainPanel_ButtonX.blp",
+		}
+	}
+//文本范围
+Frame "TEXT" "ProTipsTextA0" INHERITS "ProTextTemplate" {
+	SetPoint TOPLEFT, "ProTipsBackdrop", TOPLEFT, 0.10, -0.01,
+	Text "基础属性[|cFF33FF00F3|r]",
+//AAAAAAAAAAAAAAA
+	Frame "TEXT" "ProTipsTextA1" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsBackdrop", TOPLEFT, 0.03, -0.080,
+		Text "攻击间隔：",
+
+		Frame "TEXT" "ProTipsTextA11" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextA1", RIGHT, 0.0, 0.0,
+			Text "2.0",
+		}
+		Frame "TEXT" "ProTipsTextA12" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextA11", RIGHT, 0.0, 0.0,
+			Text "|cFF33FF00-1.9|r",
+		}
+	}
+	//一行
+	Frame "TEXT" "ProTipsTextA2" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextA1", BOTTOMLEFT, 0.0, -0.005,
+		Text "攻击速度：",
+
+		Frame "TEXT" "ProTipsTextA21" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextA2", RIGHT, 0.0, 0.0,
+			Text "50%",
+		}
+		Frame "TEXT" "ProTipsTextA22" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextA21", RIGHT, 0.0, 0.0,
+			Text "|cFF33FF00+70%|r",
+		}
+	}
+	//一行
+	Frame "TEXT" "ProTipsTextA3" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextA2", BOTTOMLEFT, 0.0, -0.005,
+		Text "攻击距离：",
+
+		Frame "TEXT" "ProTipsTextA31" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextA3", RIGHT, 0.0, 0.0,
+			Text "100",
+		}
+		Frame "TEXT" "ProTipsTextA32" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextA31", RIGHT, 0.0, 0.0,
+			Text "|cFF33FF00+500|r",
+		}
+		Frame "TEXT" "ProTipsTextA33" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextA32", RIGHT, 0.0, 0.0,
+			Text "|cFF33FF00+500|r",
+		}
+	}
+	//一行
+	Frame "TEXT" "ProTipsTextA4" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextA3", BOTTOMLEFT, 0.0, -0.005,
+		Text "移动速度：",
+
+		Frame "TEXT" "ProTipsTextA41" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextA4", RIGHT, 0.0, 0.0,
+			Text "300",
+		}
+		Frame "TEXT" "ProTipsTextA42" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextA41", RIGHT, 0.0, 0.0,
+			Text "|cFF33FF00+90|r",
+		}
+		Frame "TEXT" "ProTipsTextA43" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextA42", RIGHT, 0.0, 0.0,
+			Text "|cFF33FF00[90%]|r",
+		}
+	}
+//BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+	Frame "TEXT" "ProTipsTextB1" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextA4", BOTTOMLEFT, 0.0, -0.015,
+		Text "暴击概率：",
+
+		Frame "TEXT" "ProTipsTextB11" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextB1", RIGHT, 0.00, 0.0,
+			Text "2.0",
+		}
+		Frame "TEXT" "ProTipsTextB12" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextB11", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00-1.9|r",
+		}
+	}
+	//一行
+	Frame "TEXT" "ProTipsTextB2" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextB1", BOTTOMLEFT, 0.0, -0.005,
+		Text "暴击伤害：",
+
+		Frame "TEXT" "ProTipsTextB21" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextB2", RIGHT, 0.00, 0.0,
+			Text "50%",
+		}
+		Frame "TEXT" "ProTipsTextB22" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextB21", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00+70%|r",
+		}
+		Frame "TEXT" "ProTipsTextB23" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextB22", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00+70%|r",
+		}
+	}
+	//一行
+	Frame "TEXT" "ProTipsTextB3" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextB2", BOTTOMLEFT, 0.0, -0.005,
+		Text "格挡概率：",
+
+		Frame "TEXT" "ProTipsTextB31" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextB3", RIGHT, 0.00, 0.0,
+			Text "100",
+		}
+		Frame "TEXT" "ProTipsTextB32" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextB31", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00+500|r",
+		}
+	}
+	//一行
+	Frame "TEXT" "ProTipsTextB4" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextB3", BOTTOMLEFT, 0.0, -0.005,
+		Text "格挡伤害：",
+
+		Frame "TEXT" "ProTipsTextB41" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextB4", RIGHT, 0.00, 0.0,
+			Text "300",
+		}
+		Frame "TEXT" "ProTipsTextB42" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextB41", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00+90|r",
+		}
+		Frame "TEXT" "ProTipsTextB43" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextB42", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00+90|r",
+		}
+	}
+//CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+	Frame "TEXT" "ProTipsTextC1" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextB4", BOTTOMLEFT, 0.0, -0.015,
+		Text "生命回复：",
+
+		Frame "TEXT" "ProTipsTextC11" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextC1", RIGHT, 0.00, 0.0,
+			Text "2.0",
+		}
+		Frame "TEXT" "ProTipsTextC12" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextC11", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF001.9|r",
+		}
+		Frame "TEXT" "ProTipsTextC13" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextC12", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF001.9|r",
+		}
+	}
+	//一行
+	Frame "TEXT" "ProTipsTextC2" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextC1", BOTTOMLEFT, 0.0, -0.005,
+		Text "魔法回复：",
+
+		Frame "TEXT" "ProTipsTextC21" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextC2", RIGHT, 0.00, 0.0,
+			Text "50%",
+		}
+		Frame "TEXT" "ProTipsTextC22" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextC21", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00+70%|r",
+		}
+		Frame "TEXT" "ProTipsTextC23" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextC22", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00+70%|r",
+		}
+	}
+	//一行
+	Frame "TEXT" "ProTipsTextC3" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextC2", BOTTOMLEFT, 0.0, -0.005,
+		Text "生命偷取：",
+
+		Frame "TEXT" "ProTipsTextC31" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextC3", RIGHT, 0.00, 0.0,
+			Text "100",
+		}
+		Frame "TEXT" "ProTipsTextC32" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextC31", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00+500|r",
+		}
+	}
+	//一行
+	Frame "TEXT" "ProTipsTextC4" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextC3", BOTTOMLEFT, 0.0, -0.005,
+		Text "魔法偷取：",
+
+		Frame "TEXT" "ProTipsTextC41" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextC4", RIGHT, 0.00, 0.0,
+			Text "300",
+		}
+		Frame "TEXT" "ProTipsTextC42" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextC41", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00+90|r",
+		}
+	}
+//DDDDDDDDDDDDDDDDDDDDDDDDD
+	Frame "TEXT" "ProTipsTextD1" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextC4", BOTTOMLEFT, 0.0, -0.015,
+		Text "伤害增加：",
+
+		Frame "TEXT" "ProTipsTextD11" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextD1", RIGHT, 0.00, 0.0,
+			Text "2.0",
+		}
+		Frame "TEXT" "ProTipsTextD12" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextD11", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00-1.9|r",
+		}
+	}
+	//一行
+	Frame "TEXT" "ProTipsTextD2" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextD1", BOTTOMLEFT, 0.0, -0.005,
+		Text "伤害减免：",
+
+		Frame "TEXT" "ProTipsTextD21" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextD2", RIGHT, 0.00, 0.0,
+			Text "50%",
+		}
+		Frame "TEXT" "ProTipsTextD22" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextD21", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00+70%|r",
+		}
+	}
+	//一行
+	Frame "TEXT" "ProTipsTextD3" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextD2", BOTTOMLEFT, 0.0, -0.005,
+		Text "元素穿透：",
+
+		Frame "TEXT" "ProTipsTextD31" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextD3", RIGHT, 0.00, 0.0,
+			Text "100",
+		}
+		Frame "TEXT" "ProTipsTextD32" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextD31", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00+500|r",
+		}
+		Frame "TEXT" "ProTipsTextD33" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextD32", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00+500|r",
+		}
+	}
+	//一行
+	Frame "TEXT" "ProTipsTextD4" INHERITS "ProTextTemplate" {
+		Width 0.05,
+		SetPoint TOPLEFT, "ProTipsTextD3", BOTTOMLEFT, 0.0, -0.005,
+		Text "元素穿透比：",
+
+		Frame "TEXT" "ProTipsTextD41" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextD4", RIGHT, 0.00, 0.0,
+			Text "300",
+		}
+		Frame "TEXT" "ProTipsTextD42" INHERITS "ProTextTemplate" {
+			Width 0.041,
+			SetPoint LEFT, "ProTipsTextD41", RIGHT, 0.00, 0.0,
+			Text "|cFF33FF00+90|r",
+		}
+	}
+}
+
+}
+
+}

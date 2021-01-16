@@ -1,0 +1,146 @@
+<? xG_item_luaObj={}
+local slk = require 'slk'
+obj=slk.item.ratc:new('CG01') 
+	obj.abilList=''
+	obj.Name='|cFFFFFFCC骨|r|cFFFFFFC4弓|r|cFFFFFFBB☆|r'
+	obj.Description='一阶武器\n佩戴者等级要求1+\n佩戴者要求擅长弓'
+	obj.Tip='购买骨弓'
+	obj.Ubertip='使用骨做的弓，其貌不扬，但很实用，用于练习用剑的基本技巧！'
+	obj.Art='war3mapImported\\BTNWQ-G-1.blp'
+	obj.Level='1'
+	obj.class='弓'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('CG02') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33兽|r|cFFFFFF33角|r|cFFFFFF33弓|r'
+	obj.Description='二阶武器\n佩戴者等级要求10+\n佩戴者要求擅长弓'
+	obj.Tip='购买兽角弓'
+	obj.Ubertip='使用兽角做的弓，再搭以兽筋为弓弦，具有很强的力量！'
+	obj.Art='war3mapImported\\BTNWQ-G-2.blp'
+	obj.Level='2'
+	obj.class='弓'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('CG03') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33铁|r|cFFFFFF33胎|r|cFFFFFF33弓|r|cFFFFFF33★|r|cFFFFFF33☆|r'
+	obj.Description='三阶武器\n佩戴者等级要求20+\n佩戴者要求擅长弓'
+	obj.Tip='购买铁胎弓'
+	obj.Ubertip='全名为是铜胎铁背弓，金属与竹木筋角混合的复合弓，即使是弓弦也混入了金属丝，即使没有箭也能杀敌！'
+	obj.Art='war3mapImported\\BTNWQ-G-3.blp'
+	obj.Level='3'
+	obj.class='弓'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('CG04') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33火|r|cFFFFFF33焰|r|cFFFFFF33弓|r|cFFFFFF33 |r|cFFFFAA66★|r|cFFFF5599★|r'
+	obj.Description='四阶武器\n佩戴者等级要求30+\n佩戴者要求擅长弓'
+	obj.Tip='购买火焰弓'
+	obj.Ubertip='使用炎木制作的长弓，火红的颜色加上火焰般的雕刻，让人看见便觉热感迎面而来！'
+	obj.Art='war3mapImported\\BTNWQ-G-4.blp'
+	obj.Level='4'
+	obj.class='弓'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('CG05') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33翡|r|cFFFFAA66翠|r|cFFFF5599弯|r|cFFFF00CC弓|r|cFFFF00CC |r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF00CC☆|r'
+	obj.Description='五阶武器\n佩戴者等级要求40+\n佩戴者要求擅长弓'
+	obj.Tip='购买翡翠弯弓 '
+	obj.Ubertip='弓臂上镶有名贵的翡翠，代表着持有者尊贵的，制作精巧华丽，让人爱不释手！'
+	obj.Art='war3mapImported\\BTNWQ-G-5.blp'
+	obj.Level='5'
+	obj.class='弓'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('CG06') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC无|r|cFFFF00CC声|r|cFFFF00CC无|r|cFFFF00CC影|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF00CC★|r'
+	obj.Description='六阶武器\n佩戴者等级要求50+\n佩戴者要求擅长弓'
+	obj.Tip='购买无声无影'
+	obj.Ubertip='弓如其名，射出的箭快得看不见影子，且破空声极小，偷袭刺杀必备武器！'
+	obj.Art='war3mapImported\\BTNWQ-G-6.blp'
+	obj.Level='6'
+	obj.class='弓'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('CG07') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC金|r|cFFFF00CC蛇|r|cFFFF00CC弯|r|cFFFF00CC弓|r|cFFFF00CC★|r|cFFFF0066★|r|cFFFF0000★|r|cFFFF0000☆|r'
+	obj.Description='七阶武器\n佩戴者等级要求60+\n佩戴者要求擅长弓'
+	obj.Tip='购买金蛇弯弓'
+	obj.Ubertip='弓体灿金，弓臂的末端雕刻着两颗蛇头，金贵之中带着杀气，让人让而生畏！'
+	obj.Art='war3mapImported\\BTNWQ-G-7.blp'
+	obj.Level='7'
+	obj.class='弓'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('CG08') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC三|r|cFFFF00CC秋|r|cFFFF00CC水|r|cFFFF0066 |r|cFFFF0000★|r|cFFFF0000★|r|cFFFF0000★|r|cFFFF0000★|r'
+	obj.Description='八阶武器\n佩戴者等级要求70+\n佩戴者要求擅长弓'
+	obj.Tip='购买三秋水'
+	obj.Ubertip='南海海底所出，传为南海龙女所用，精致无比，寒意隐生。'
+	obj.Art='war3mapImported\\BTNWQ-G-8.1.blp'
+	obj.Level='8'
+	obj.class='弓'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('CG09') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC流|r|cFFFF00CC星|r|cFFFF00CC赶|r|cFFFF0066月|r|cFFFF0000弓|r|cFFFF0000 |r|cFFFF0000★|r|cFFFF0000★|r|cFFFF0000★|r|cFFFF0000★|r'
+	obj.Description='八阶武器\n佩戴者等级要求70+\n佩戴者要求擅长弓'
+	obj.Tip='购买流星赶月弓'
+	obj.Ubertip='射出的箭如流星追赶残月一般，让人在那绚丽的光芒中便失去性命！'
+	obj.Art='war3mapImported\\BTNWQ-G-8.2.blp'
+	obj.Level='8'
+	obj.class='弓'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('CG10') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC摘|r|cFFFF00CC星|r|cFFFF00CC弓|r|cFFFF4C66★|r|cFFFF9900★|r|cFFFF4C00★|r|cFFFF0000★|r|cFFFF0000☆|r'
+	obj.Description='九阶武器\n佩戴者等级要求80+\n佩戴者要求擅长弓'
+	obj.Tip='购买摘星弓'
+	obj.Ubertip='此弓一出，精光贯天，日月争耀，星斗避彩，鬼神悲号。'
+	obj.Art='war3mapImported\\BTNWQ-G-9.1.blp'
+	obj.Level='9'
+	obj.class='弓'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('CG11') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC蛟|r|cFFFF00CC龙|r|cFFFF00CC玄|r|cFFFF4C66铁|r|cFFFF9900弓|r|cFFFF4C00★|r|cFFFF0000★|r|cFFFF0000★|r|cFFFF0000★|r|cFFFF0000☆|r'
+	obj.Description='十阶武器\n佩戴者等级要求90+\n佩戴者要求擅长弓'
+	obj.Tip='购买蛟龙玄铁弓'
+	obj.Ubertip='玄铁为弓，蛟筋为弦，蛟角为，蛟鳞为指，非心性坚定者不可使用！'
+	obj.Art='war3mapImported\\BTNWQ-G-9.2.blp'
+	obj.Level='9'
+	obj.class='弓'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('CG12') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC震|r|cFFFF00CC天|r|cFFFF00CC弓|r|cFFFF4C66★|r|cFFFF9900★|r|cFFFF4C00★|r|cFFFF0000★|r|cFFFF0000☆|r'
+	obj.Description='九阶武器\n佩戴者等级要求80+\n佩戴者要求擅长弓'
+	obj.Tip='购买震天弓'
+	obj.Ubertip='上古传承下来的神物，传说为后羿射日时用的神弓，只可惜其相生的神箭不知去向！'
+	obj.Art='war3mapImported\\BTNWQ-G-9.3.blp'
+	obj.Level='9'
+	obj.class='弓'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('CG13') 
+	obj.abilList=''
+	obj.Name='|cFFFF0000龙|r|cFF99801A舌|r|cFF33FF33断|r|cFF1AFF99魂|r|cFF00FFFF弓|r|cFF80FF80★|r|cFFFFFF00★|r|cFFCC9980★|r|cFF9933FF★|r|cFFCC1AB2★|r'
+	obj.Description='神阶武器\n佩戴者等级要求90+\n佩戴者要求擅长弓'
+	obj.Tip='购买龙舌断魂弓'
+	obj.Ubertip='用龙筋制作弓弦的传说中的名弓，速度和准确性极高，三国时吕布用龙舌弓辕门射戟，让所有人都知道了这把神物！'
+	obj.Art='war3mapImported\\BTNWQ-G-10.blp'
+	obj.Level='10'
+	obj.class='弓'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+?>
