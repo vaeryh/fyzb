@@ -5,7 +5,7 @@
 * [simliy]
 
 # 代码仓库
-* [url](https://github.com/vaeryh/fyzb.git)
+* [Git.url](https://github.com/vaeryh/fyzb.git)
 
 # 描述
 * [地图]
