@@ -50,7 +50,7 @@ function mt:getAgi()
     return jass.GetHeroAgi(self.handle, true)
 end
 
-function mt:getInt(self)
+function mt:getInt()
     return jass.GetHeroInt(self.handle, true)
 end
 
