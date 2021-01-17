@@ -54,27 +54,30 @@ function mt.BrushUp()
     local x, y = rect.getCenter(mt.atkRect)
     local id = string.format('at' .. "%02d", mt.bs)
     TimerStart(timer.create(), 3.00, true, function()
-        local u = unit.create(Player(11), id, x, y, 270)
+        local g = {}
+        local t = timer.create()
+        g[t] = {}
+        g[t][1] = unit.create(Player(11), id, x, y, 270)
         -- 发布进攻命令
-        IssuePointOrder(u, "attack", 0, 0)
+        IssuePointOrder(g[t][1], "attack", 0, 0)
         -- 单位绑定计时器
-        -- local t_temp = timer.new()
-        -- t_temp:loop(3.00,function()
-        --     t = GetExpiredTimer()
-        --     u1 = g.t.u
-        --     g.t.distance = yh.distanceXY(getX(u1), getY(u1), 0, 0)
-        --     -- 单位死亡，清除数据
-        --     if unit:is_alive(u1) then
-        --         DestroyTimer(GetExpiredTimer())
-        --     end
-        --     -- 单位远离基地，发布攻击命令
-        --     if g.t.distance <= yh.distanceXY(getX(u1), getY(u1), 0, 0) and g.t.distance ~= 0 then
-        --         IssuePointOrder(u1, "attack", 0, 0)
-        --     else
-        --         g.t.distance = yh.distanceXY(getX(u1), getY(u1), 0, 0)
-        --     end
-        -- end)
-
+        TimerStart(t, 3.00, true, function()
+            local t = GetExpiredTimer()
+            local u1 = g[t][1]
+            local distance = g[t][2] or 0
+            -- 单位死亡，清除数据
+            if unit:is_alive(u1) then
+                timer.remove()
+            end
+            -- 初次赋值
+            -- 单位远离基地，发布攻击命令
+            if distance <= yh.distanceXY(unit.getX(u1), unit.getX(u1), 0, 0) then
+                IssuePointOrder(u1, "attack", 0, 0)
+            else
+                g[t][2] = yh.distanceXY(unit.getX(u1), unit.getX(u1), 0, 0)
+            end
+        end)
+        -- 计算刷兵数量
         if mt.count >= mt.countMax then
             mt.bs = mt.bs + 1 -- 波数增加1
             mt.count = 0 -- 重置计数

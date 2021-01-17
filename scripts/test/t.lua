@@ -2,14 +2,20 @@ local jass = require 'jass.common'
 local debug = require 'jass.debug'
 local rect = require 'types.rect'
 local yh = require 'types.yh'
-printF("函数重载")
+local game = require 'types.game'
+local sound = require 'types.sound'
+-- printF("函数重载")
 
-for i = 1, 10 do
-    local id = string.format('at'.."%02d",i)
-    print(yh.s2id(id))
-    local u = unit.create(Player(11), id, x, y, 270)
-    local u = unit.create(Player(11), 'id', x, y, 270)
-end
+local p = require 'types.player'
+
+game.CustomVictory(Player(0), true, true)
+
+-- for i = 1, 10 do
+--     local id = string.format('at'.."%02d",i)
+--     print(yh.s2id(id))
+--     local u = unit.create(Player(11), id, x, y, 270)
+--     local u = unit.create(Player(11), 'id', x, y, 270)
+-- end
 -- for k, v in pairs(sound) do
 --     print(k,v)
 -- end

@@ -43,8 +43,11 @@ end
 
 -- 创建单位
 function mt.create(p, id, x, y, face)
-    log.info(id)
-    return CreateUnit(p, yh.s2id(id), x, y, face)
+    local u = CreateUnit(p, yh.s2id(id), x, y, face)
+    if u == nil then
+        log.error(id, yh.s2id(id) )
+    end
+    return u
 end
 
 -- 返回单位坐标
@@ -60,9 +63,15 @@ function mt.getY(u)
     return GetUnitY(u)
 end
 
--- 设置单位坐标
+-- 立即移动单位到坐标
+function mt.setUnitPosition(u, x, y)
+    SetUnitPosition(u, x, y)
+end
+
+-- 设置单位坐标（不打断单位当前动作）
 function mt.setUnitXY(u, x, y)
-    SetUnitPosition( u, x, y )
+    SetUnitX(u, x)
+    SetUnitY(u, y)
 end
 
 return mt

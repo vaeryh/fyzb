@@ -25,7 +25,7 @@ function reload()
     helper_reload(function()
         require 'test.help'
         require 'test.t'
-        require 'lua.yh.message'
+        require 'map.atk'
     end)
 
     log.info('---- Reloading end   ----')

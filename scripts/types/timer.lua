@@ -56,7 +56,7 @@ function mt.setDialogColor(dialog, red, green, bule, alpha)
     TimerDialogSetTimeColor(dialog, red, green, bule, alpha)
 end
 
---获取计时器，计时器窗口(标题，状态)
+--创建计时器，计时器窗口 并返回(参：标题、状态)
 function mt.new(title,state)
     local t =mt.create()
     local tw = mt.createDialog()
