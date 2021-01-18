@@ -27,11 +27,20 @@ mt.name = "山丘之王"
 -- 称谓
 mt.propernames = "波尔-碎石者,穆林-铁壁,"
 
--- 生命值
-mt.hp = 100
+-- 设置提升英雄等级
+function mt.setUpHeroLevel(hero, level, bol)
+    SetHeroLevel(hero, level, bol)
+end
 
--- 魔法值
-mt.mana = 100
+-- 设置降低英雄等级
+function mt.setDownHeroLevel(hero, level)
+    UnitStripHeroLevel(hero, level)
+end
+
+-- 获取英雄等级
+function mt.getHeroLevel(hero)
+    return GetHeroLevel(hero)
+end
 
 -- 获取单位
 function mt:get()

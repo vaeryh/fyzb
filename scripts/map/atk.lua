@@ -27,8 +27,10 @@ mt.delay = 10.00
 mt.ready = 10.00
 
 -- 1游戏开始0秒，开始游戏倒计时60秒（即游戏准备时间）
-trg.regTimeEvent(0.00, false, function()
+trg.CreateTrigger()
+trg.RegTimerEvent(0.00, false, function()
     local t, tw = timer.new("准备时间倒计时", true)
+
     TimerStart(t, mt.ready, false, function()
         mt.AtkDelay()
         timer.remove(t, tw)

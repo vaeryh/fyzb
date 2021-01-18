@@ -1,3 +1,4 @@
+--重载排除相关模块
 local function helper_reload(callback)
     local real_require = require
     function require(name, ...)
@@ -18,6 +19,7 @@ local function helper_reload(callback)
 
     require = real_require
 end
+
 -- 重载
 function reload()
     log.info('---- Reloading start ----')

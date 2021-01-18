@@ -4,6 +4,7 @@ local sound = require 'types.sound'
 local fog = require 'types.fogmodifier'
 local trg = require 'types.trigger'
 local jass = require 'jass.common'
+local timer = require 'types.timer'
 
 local mt = {}
 
@@ -25,7 +26,20 @@ function GetUnitsInRectMatching(r)
     return g
 end
 
-local function func1()
+-- 进入地图触发动作
+trg.CreateTrigger()
+trg.RegTimerEvent(0.00, false, function()
+    -- 创建可见度修正器
+    mt.initfog = fog.createFog(Player(0), mt['选择英雄矩形'])
+    fog.start(mt.initfog)
+    camera.setCameraBounds(mt["选择英雄矩形"])
+    sound.PlayMusic(mt['选择英雄音乐'])
+
+    mt.func1()
+    trg.remove()
+end)
+
+function mt.func1()
     -- 打开 玩家12 给予奖励
     SetPlayerState(Player(11), PLAYER_STATE_GIVES_BOUNTY, 1)
     -- 启用计时器
@@ -52,18 +66,6 @@ local function func1()
             camera.setCameraBounds(rect.getAbleArea)
         end
         -- 清除计时器
-        DestroyTimer(GetExpiredTimer())
+        timer.remove()
     end)
 end
-
--- 进入地图触发动作
-trg.regTimeEvent(0.00, false, function()
-    -- 创建可见度修正器
-    mt.initfog = fog.createFog(Player(0), mt['选择英雄矩形'])
-    fog.start(mt.initfog)
-    camera.setCameraBounds(mt["选择英雄矩形"])
-    sound.PlayMusic(mt['选择英雄音乐'])
-
-    func1()
-    trg.remove()
-end)

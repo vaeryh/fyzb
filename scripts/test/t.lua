@@ -4,11 +4,8 @@ local rect = require 'types.rect'
 local yh = require 'types.yh'
 local game = require 'types.game'
 local sound = require 'types.sound'
--- printF("函数重载")
-
 local p = require 'types.player'
 
-game.CustomVictory(Player(0), true, true)
 
 -- for i = 1, 10 do
 --     local id = string.format('at'.."%02d",i)

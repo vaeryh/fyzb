@@ -23,14 +23,17 @@ mt.id = "hfoo"
 -- 名称
 mt.name = "步兵"
 
--- 生命值
-mt.hp = 100
--- 生命恢复 每0.2s
-
--- 魔法值
-mt.mana = 100
--- 魔法恢复 每0.2s
-
+-- 单位状态
+mt.UNIT_STATE = {
+    -- 生命值
+    LIFE = UNIT_STATE_LIFE,
+    -- 最大生命值
+    MAX_LIFE = UNIT_STATE_MAX_LIFE,
+    -- 魔法值
+    MANA = UNIT_STATE_MANA,
+    -- 最大魔法值
+    MAX_MANA = UNIT_STATE_MAX_MANA
+}
 -- 删除单位
 function mt.remove(handle)
     return RemoveUnit(handle)
@@ -45,7 +48,7 @@ end
 function mt.create(p, id, x, y, face)
     local u = CreateUnit(p, yh.s2id(id), x, y, face)
     if u == nil then
-        log.error(id, yh.s2id(id) )
+        log.error(id, yh.s2id(id))
     end
     return u
 end
