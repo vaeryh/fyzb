@@ -29,7 +29,6 @@ trg.RegTimerEvent(0.00, fasle, function()
     -- 显示对话框
     dia.setDiaDisplay(Player(0), mt.dialog, true)
     -- 注册
-    trg.CreateTrigger()
     trg.RegDialogEvent(mt.dialog, mt.ChooseDiffculty)
 
     trg.remove()

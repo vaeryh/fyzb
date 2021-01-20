@@ -8,7 +8,6 @@ end
 -- 星期
 local weekday = {"日", "一", "二", "三", "四", "五", "六"}
 -- 创建左上角时间标记
-trg.CreateTrigger()
 trg.RegTimerEvent(0.00, false, function()
     local frame = dz.CreateFrameByTagName("TEXT")
     dz.FrameSetAbsolutePoint(frame, 0, 0.0487, 0.5633)

@@ -15,6 +15,10 @@ scope yh
 //     native DzTriggerRegisterMouseEventByCode takes trigger trig, integer btn, integer status, boolean sync, code funcHandle returns nothing
 //     native DzTriggerRegisterKeyEvent takes trigger trig, integer key, integer status, boolean sync, string func returns nothing
 //     native DzTriggerRegisterKeyEventByCode takes trigger trig, integer key, integer status, boolean sync, code funcHandle returns nothing
+// 注册键盘key事件
+public function TriggerRegisterKeyEventByCode takes nothing returns nothing
+	call DzTriggerRegisterKeyEventByCode(yh_trigger,yh_integer1,yh_integer2,yh_boolean1,yh_code)
+endfunction
 //     native DzTriggerRegisterMouseWheelEvent takes trigger trig, boolean sync, string func returns nothing
 //     native DzTriggerRegisterMouseWheelEventByCode takes trigger trig, boolean sync, code funcHandle returns nothing
 //     native DzTriggerRegisterMouseMoveEvent takes trigger trig, boolean sync, string func returns nothing
@@ -181,4 +185,3 @@ endfunction
 //     native DzFrameGetName takes integer frame returns string
 
 endscope
-

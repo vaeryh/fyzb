@@ -4,7 +4,6 @@ local trg = require 'types.trigger'
 local p = require 'types.player'
 local fog = require 'types.fogmodifier'
 local yh = require 'types.yh'
-local jass = require 'jass.common'
 local timer = require 'types.timer'
 
 -----------------------------------------------------------------------------
@@ -14,9 +13,9 @@ local mt = {}
 Hero = {}
 
 -- 选择矩形
-mt['选择英雄矩形'] = jass.gg_rct_FirstHeroSelection
-mt['主城矩形'] = jass.gg_rct_TheMainBase
-mt['回城矩形'] = jass.gg_rct_HG
+mt['选择英雄矩形'] = gg_rct_FirstHeroSelection
+mt['主城矩形'] = gg_rct_TheMainBase
+mt['回城矩形'] = gg_rct_HG
 
 -- 复活英雄
 function mt.ReHero()
@@ -29,7 +28,7 @@ function mt.ReHero()
     if Lev >= 10 then
         Lev = 10
     end
-    print(hero, player)
+
     TimerStart(tmr, Lev, false, function()
         ReviveHero(hero, x, y, true) -- revive hero
         -- 移动镜头
@@ -42,6 +41,14 @@ function mt.ReHero()
 end
 
 -----------------------------------------------------------------------------
+trg.RegTimerEvent(0.00, false, function()
+    for i = 0, 11 do
+        if p.isUserPlayer(i) then
+            trg.RegPlayerUnitEvent(Player(i), trg.EVENT_PLAYER_UNIT.SELECTED, mt.selectHero)
+        end
+    end
+    trg.remove()
+end)
 
 -- 双击选择英雄:每个玩家注册一个触发：用完就删除，保证1个选择英雄
 function mt.selectHero()
@@ -62,8 +69,7 @@ function mt.selectHero()
         -- 传送
         yh.MoveAndCamera(thisU, rect.getCenter(mt['回城矩形']))
         -- 添加 触发单位死亡 事件
-        trg.CreateTrigger()
-        trg.RegUnitEvent(thisU, trg.EVENT.UNIT.DEATH, mt.ReHero)
+        trg.RegUnitEvent(thisU, trg.EVENT_UNIT.DEATH, mt.ReHero)
         --  删除触发
         trg.remove()
     else
@@ -72,13 +78,6 @@ function mt.selectHero()
             SetUnitUserData(thisU, 0)
             timer.remove()
         end)
-    end
-end
-
-for i = 0, 11 do
-    if p.isUserPlayer(i) then
-        trg.CreateTrigger()
-        trg.RegPlayerUnitEvent(Player(0), trg.EVENT.PLAYER_UNIT.SELECTED, mt.selectHero)
     end
 end
 

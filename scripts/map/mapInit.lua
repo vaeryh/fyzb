@@ -27,7 +27,6 @@ function GetUnitsInRectMatching(r)
 end
 
 -- 进入地图触发动作
-trg.CreateTrigger()
 trg.RegTimerEvent(0.00, false, function()
     -- 创建可见度修正器
     mt.initfog = fog.createFog(Player(0), mt['选择英雄矩形'])

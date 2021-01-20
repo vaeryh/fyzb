@@ -21,7 +21,7 @@ mt.opcode = {
 mt.EVENT = {}
 
 -- 玩家单位事件
-mt.EVENT.PLAYER_UNIT = {
+mt.EVENT_PLAYER_UNIT = {
     -- 玩家单位死亡事件
     DEATH = EVENT_PLAYER_UNIT_DEATH,
     -- 玩家单位选择事件
@@ -53,7 +53,7 @@ mt.EVENT.PLAYER_UNIT = {
 }
 
 -- 单位事件
-mt.EVENT.UNIT = {
+mt.EVENT_UNIT = {
     -- 接受伤害
     DAMAGED = EVENT_UNIT_DAMAGED,
     -- 被攻击
@@ -86,21 +86,13 @@ function mt.remove(trg)
     DestroyTrigger(trg)
 end
 
--- 句柄
-mt.handle = 0
-
--- 创建触发器
-function mt.CreateTrigger()
-    mt.handle = CreateTrigger()
-    return mt.handle
-end
-
 --------------------------------------------------------------
 
 -- 时间事件
 function mt.RegTimerEvent(timeout, isloop, code)
-    TriggerRegisterTimerEvent(mt.handle, timeout, isloop)
-    TriggerAddAction(mt.handle, code)
+    local trg = CreateTrigger()
+    TriggerRegisterTimerEvent(trg, timeout, isloop)
+    TriggerAddAction(trg, code)
 end
 
 -- 对话框点击事件
@@ -108,8 +100,9 @@ function mt.RegDialogEvent(dialog, code)
     if dialog == nil then
         return log.error("注册对话框为空")
     end
-    TriggerRegisterDialogEvent(mt.handle, dialog)
-    TriggerAddAction(mt.handle, code)
+    local trg = CreateTrigger()
+    TriggerRegisterDialogEvent(trg, dialog)
+    TriggerAddAction(trg, code)
 end
 
 -- 对话框按钮点击事件
@@ -117,38 +110,53 @@ function mt.RegDialogButtonEvent(dialogButton, code)
     if dialogButton == nil then
         return log.error("注册对话框按钮为空")
     end
-    TriggerRegisterDialogButtonEvent(mt.handle, dialogButton)
-    TriggerAddAction(mt.handle, code)
+    local trg = CreateTrigger()
+    TriggerRegisterDialogButtonEvent(trg, dialogButton)
+    TriggerAddAction(trg, code)
 end
 
 -- 玩家输入聊天信息事件(true：完全匹配，false：部分匹配)
-function mt.RegPlayerChatEvent(p, bol, code)
-    TriggerRegisterPlayerChatEvent(mt.handle, p, bol)
-    TriggerAddAction(mt.handle, code)
+function mt.RegPlayerChatEvent(p, message, bol, code)
+    local trg = CreateTrigger()
+    TriggerRegisterPlayerChatEvent(trg, p, message, bol)
+    TriggerAddAction(trg, code)
 end
 
 -- 玩家单位事件
 function mt.RegPlayerUnitEvent(p, playerunitevent, code)
-    TriggerRegisterPlayerUnitEvent(mt.handle, p, playerunitevent, nil)
-    TriggerAddAction(mt.handle, code)
+    local trg = CreateTrigger()
+    TriggerRegisterPlayerUnitEvent(trg, p, playerunitevent, nil)
+    TriggerAddAction(trg, code)
 end
 
 -- 单位事件
 function mt.RegUnitEvent(u, unitevent, code)
-    TriggerRegisterUnitEvent(mt.handle, u, unitevent)
-    TriggerAddAction(mt.handle, code)
+    local trg = CreateTrigger()
+    TriggerRegisterUnitEvent(trg, u, unitevent)
+    TriggerAddAction(trg, code)
 end
 
 -- 玩家状态事件
 function mt.RegPlayerStateEvent(p, playerstate, opcode, limitval, code)
-    TriggerRegisterPlayerStateEvent(mt.handle, p, playerstate, opcode, limitval)
-    TriggerAddAction(mt.handle, code)
+    local trg = CreateTrigger()
+    TriggerRegisterPlayerStateEvent(trg, p, playerstate, opcode, limitval)
+    TriggerAddAction(trg, code)
 end
 
 -- 单位状态事件
 function mt.RegUnitStateEvent(u, unitstate, opcode, limitval, code)
-    TriggerRegisterUnitStateEvent(mt.handle, u, unitstate, opcode, limitval)
-    TriggerAddAction(mt.handle, code)
+    local trg = CreateTrigger()
+    TriggerRegisterUnitStateEvent(trg, u, unitstate, opcode, limitval)
+    TriggerAddAction(trg, code)
+end
+
+-- 注册键盘key事件
+function mt.RegKeyEventByCode(btn, status, act)
+    -- sync：运行触发器则true，不运行则false，与同步异步无关
+    -- 只能同步，异步不生效，可能是因为message已经本地注册过了
+    local trg = CreateTrigger()
+    gDz.TriggerRegisterKeyEventByCode(trg, btn, status, true, nil)
+    TriggerAddAction(trg, act)
 end
 
 --------------------------------------------------------------

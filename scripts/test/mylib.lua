@@ -24,6 +24,7 @@ end
 getX = function(ul)
     return isPlayerUnit(ul) and GetUnitX(ul) or GetLocationX(ul)
 end
+
 getY = function(ul)
     return isPlayerUnit(ul) and GetUnitY(ul) or GetLocationY(ul)
 end

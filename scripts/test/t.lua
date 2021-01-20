@@ -1,11 +1,8 @@
-local jass = require 'jass.common'
-local debug = require 'jass.debug'
-local rect = require 'types.rect'
-local yh = require 'types.yh'
-local game = require 'types.game'
-local sound = require 'types.sound'
-local p = require 'types.player'
+local message = require 'jass.message'
 
+hhh = function()
+    print('hello world!')
+end
 
 -- for i = 1, 10 do
 --     local id = string.format('at'.."%02d",i)

@@ -1,23 +1,23 @@
 local g = require 'jass.globals'
 
-dz = {}
+local mt = {}
 -----------------------------------------------------------------------------
 -- tag创建Frame,名称可重复
 -- set yh_frame1 = DzCreateFrameByTagName(yh_string1, "name", DzGetGameUI(), "template", 0)
-function dz.CreateFrameByTagName(type)
+function mt.CreateFrameByTagName(type)
     g.yh_string1 = type
     ExecuteFunc("yh_CreateFrameByTagName")
     return g.yh_frame1
 end
 -- 根据fdf文件创建Frame
 -- call DzCreateFrame(yh_string1, DzGetGameUI(), 0)
-function dz.CreateFrame(name)
+function mt.CreateFrame(name)
     g.yh_string1 = name
     ExecuteFunc("yh_CreateFrame")
 end
 -- Frame设置尺寸
 -- call DzFrameSetSize(yh_frame1, yh_real1, yh_real2)
-function dz.FrameSetSize(frame, with, hight)
+function mt.FrameSetSize(frame, with, hight)
     g.yh_frame1 = frame
     g.yh_real1 = with
     g.yh_real2 = hight
@@ -25,7 +25,7 @@ function dz.FrameSetSize(frame, with, hight)
 end
 -- Frame设置绝对位置锚点
 -- call DzFrameSetAbsolutePoint(yh_frame1, yh_integer1, yh_real1, yh_real2)
-function dz.FrameSetAbsolutePoint(frame, point, x, y)
+function mt.FrameSetAbsolutePoint(frame, point, x, y)
     g.yh_frame1 = frame
     g.yh_integer1 = point
     g.yh_real1 = x
@@ -34,7 +34,7 @@ function dz.FrameSetAbsolutePoint(frame, point, x, y)
 end
 -- Frame设置相对位置锚点
 -- call DzFrameSetPoint(yh_frame1, yh_integer1, yh_frame2, yh_integer2, yh_real1, yh_real2)
-function dz.FrameSetPoint(frame1, point1, frame2, point2, x, y)
+function mt.FrameSetPoint(frame1, point1, frame2, point2, x, y)
     g.yh_frame1 = frame1
     g.yh_integer1 = point1
     g.yh_frame2 = frame2
@@ -45,65 +45,75 @@ function dz.FrameSetPoint(frame1, point1, frame2, point2, x, y)
 end
 -- Frame设置文字内容
 -- call DzFrameSetText(yh_frame1, yh_string1)
-function dz.FrameSetText(frame, text)
+function mt.FrameSetText(frame, text)
     g.yh_frame1 = frame
     g.yh_string1 = text
     ExecuteFunc("yh_FrameSetText")
 end
 -- Frame显示隐藏
 -- call DzFrameShow(yh_frame1, yh_boolean1)
-function dz.FrameShow(frame, bol)
+function mt.FrameShow(frame, bol)
     g.yh_frame1 = frame
     g.yh_boolean1 = bol
     ExecuteFunc("yh_FrameShow")
 end
 -- 获取物品栏按钮
 -- set yh_frame1 = DzFrameGetItemBarButton(yh_integer1)
-function dz.FrameGetItemBarButton(buttonId)
+function mt.FrameGetItemBarButton(buttonId)
     g.yh_integer1 = buttonId
     ExecuteFunc("yh_FrameGetItemBarButton")
     return g.yh_frame1
 end
 -- 获取小地图按钮
 -- set yh_frame1 = DzFrameGetMinimapButton(yh_integer1)
-function dz.FrameGetMinimapButton(buttonId)
+function mt.FrameGetMinimapButton(buttonId)
     g.yh_integer1 = buttonId
     ExecuteFunc("yh_FrameGetMinimapButton")
     return g.yh_frame1
 end
 -- 获取小地图frame
 -- set yh_frame1 = DzFrameGetMinimap()
-function dz.FrameGetMinimap()
+function mt.FrameGetMinimap()
     ExecuteFunc("yh_FrameGetMinimap")
     return g.yh_frame1
 end
 -- 设置frame透明度
 -- call DzFrameSetAlpha(yh_frame1,yh_integer1)
-function dz.FrameSetAlpha(frame, alpha)
+function mt.FrameSetAlpha(frame, alpha)
     g.yh_frame1 = frame
     g.yh_integer1 = alpha
     ExecuteFunc("yh_FrameSetAlpha")
 end
 -- 根据名称寻找Frame
 -- call DzFrameFindByName(yh_string1, 0)
-function dz.FrameFindByName(name)
+function mt.FrameFindByName(name)
     g.yh_string1 = name
     ExecuteFunc("yh_FrameFindByName")
 end
 -- Frame设置按钮是否启用
 -- call DzFrameSetEnable(yh_frame1, yh_boolean1)
-function dz.FrameSetEnable(frame, bol)
+function mt.FrameSetEnable(frame, bol)
     g.yh_frame1 = frame
     g.yh_boolean1 = bol
     ExecuteFunc("yh_FrameSetEnable")
 end
 -- 设置frame放大倍数
 -- call DzFrameSetScale(yh_frame1, yh_real1)
-function dz.FrameSetScale(frame, real)
+function mt.FrameSetScale(frame, real)
     g.yh_frame1 = frame
     g.yh_real1 = real
     ExecuteFunc("yh_FrameSetScale")
 end
 
---debug('[dz] load sucess!')
-return dz
+-- 注册键盘key事件
+-- call DzTriggerRegisterKeyEventByCode(yh_trigger,yh_integer1,yh_integer2,yh_boolean1,yh_code)
+function mt.TriggerRegisterKeyEventByCode(trig, key, status, sync, action)
+    g.yh_trigger = trig
+    g.yh_integer1 = key
+    g.yh_integer2 = status
+    g.yh_boolean1 = sync
+    g.yh_code = action
+    ExecuteFunc("yh_TriggerRegisterKeyEventByCode")
+end
+
+return mt

@@ -27,7 +27,7 @@ function reload()
     helper_reload(function()
         require 'test.help'
         require 'test.t'
-        require 'map.atk'
+        --require 'main'
     end)
 
     log.info('---- Reloading end   ----')
