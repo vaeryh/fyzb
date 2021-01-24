@@ -1,4 +1,4 @@
---重载排除相关模块
+-- 重载排除相关模块
 local function helper_reload(callback)
     local real_require = require
     function require(name, ...)
@@ -24,8 +24,28 @@ end
 function reload()
     log.info('---- Reloading start ----')
 
+    -- 重载触发器
+    if gTrg.saveTrigger ~= nil then
+        for k, v in ipairs(gTrg.saveTrigger) do
+            log.debug("trg",k, v)
+            gTrg.setPause(v)
+        end
+    end
+    -- 重载计时器与窗口
+    if gT.saveTimer ~= nil then
+        for k, v in ipairs(gT.saveTimer) do
+            log.debug("timer",k, v)
+            gT.remove(v,nil)
+        end
+    end
+    if gT.saveTimerDia ~= nil then
+        for k, v in ipairs(gT.saveTimerDia) do
+            log.debug("tDia",k, v)
+            gT.remove(nil,v)
+        end
+    end
     helper_reload(function()
-        --require 'test.help'
+        -- require 'test.help'
         require 'main copy'
         require 'test.t'
     end)

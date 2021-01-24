@@ -51,7 +51,7 @@ mt.EVENT_PLAYER_UNIT = {
     -- 抵押物品
     PAWN_ITEM = EVENT_PLAYER_UNIT_PAWN_ITEM,
     -- 升级
-    HERO_LEVEL=EVENT_PLAYER_HERO_LEVEL,
+    HERO_LEVEL = EVENT_PLAYER_HERO_LEVEL
 }
 
 -- 单位事件
@@ -72,8 +72,8 @@ mt.EVENT_UNIT = {
     SPELL_EFFECT = EVENT_UNIT_SPELL_EFFECT,
     -- 施放技能结束
     SPELL_FINISH = EVENT_UNIT_SPELL_FINISH,
-    --升级
-    HERO_LEVEL=EVENT_UNIT_HERO_LEVEL,
+    -- 升级
+    HERO_LEVEL = EVENT_UNIT_HERO_LEVEL
 }
 
 -- 运行触发器（无视条件）
@@ -90,11 +90,24 @@ function mt.remove(trg)
     DestroyTrigger(trg)
 end
 
---------------------------------------------------------------
+--关闭触发器
+function mt.setPause(trg)
+    local trg = trg or GetTriggeringTrigger()
+    DisableTrigger(trg)
+end
 
+--开启触发器
+function mt.setStart(trg)
+    local trg = trg or GetTriggeringTrigger()
+    EnableTrigger(trg)
+end
+--------------------------------------------------------------
+-- 存储触发器
+mt.saveTrigger = {}
 -- 时间事件
 function mt.RegTimerEvent(timeout, isloop, code)
     local trg = CreateTrigger()
+    table.insert(mt.saveTrigger, trg)
     TriggerRegisterTimerEvent(trg, timeout, isloop)
     TriggerAddAction(trg, code)
 end
@@ -105,6 +118,7 @@ function mt.RegDialogEvent(dialog, code)
         return log.error("注册对话框为空")
     end
     local trg = CreateTrigger()
+    table.insert(mt.saveTrigger, trg)
     TriggerRegisterDialogEvent(trg, dialog)
     TriggerAddAction(trg, code)
 end
@@ -115,6 +129,7 @@ function mt.RegDialogButtonEvent(dialogButton, code)
         return log.error("注册对话框按钮为空")
     end
     local trg = CreateTrigger()
+    table.insert(mt.saveTrigger, trg)
     TriggerRegisterDialogButtonEvent(trg, dialogButton)
     TriggerAddAction(trg, code)
 end
@@ -122,6 +137,7 @@ end
 -- 玩家输入聊天信息事件(true：完全匹配，false：部分匹配)
 function mt.RegPlayerChatEvent(p, message, bol, code)
     local trg = CreateTrigger()
+    table.insert(mt.saveTrigger, trg)
     TriggerRegisterPlayerChatEvent(trg, p, message, bol)
     TriggerAddAction(trg, code)
 end
@@ -129,6 +145,7 @@ end
 -- 玩家单位事件
 function mt.RegPlayerUnitEvent(p, playerunitevent, code)
     local trg = CreateTrigger()
+    table.insert(mt.saveTrigger, trg)
     TriggerRegisterPlayerUnitEvent(trg, p, playerunitevent, nil)
     TriggerAddAction(trg, code)
 end
@@ -136,6 +153,7 @@ end
 -- 单位事件
 function mt.RegUnitEvent(u, unitevent, code)
     local trg = CreateTrigger()
+    table.insert(mt.saveTrigger, trg)
     TriggerRegisterUnitEvent(trg, u, unitevent)
     TriggerAddAction(trg, code)
 end
@@ -143,6 +161,7 @@ end
 -- 玩家状态事件
 function mt.RegPlayerStateEvent(p, playerstate, opcode, limitval, code)
     local trg = CreateTrigger()
+    table.insert(mt.saveTrigger, trg)
     TriggerRegisterPlayerStateEvent(trg, p, playerstate, opcode, limitval)
     TriggerAddAction(trg, code)
 end
@@ -150,6 +169,7 @@ end
 -- 单位状态事件
 function mt.RegUnitStateEvent(u, unitstate, opcode, limitval, code)
     local trg = CreateTrigger()
+    table.insert(mt.saveTrigger, trg)
     TriggerRegisterUnitStateEvent(trg, u, unitstate, opcode, limitval)
     TriggerAddAction(trg, code)
 end
@@ -165,6 +185,7 @@ function mt.RegKeyEventByCode(btnStr, status, act)
     -- sync：运行触发器则true，不运行则false，与同步异步无关
     -- 只能同步，异步不生效，可能是因为message已经本地注册过了
     local trg = CreateTrigger()
+    table.insert(mt.saveTrigger, trg)
     gDz.TriggerRegisterKeyEventByCode(trg, key, status, true, nil)
     TriggerAddAction(trg, act)
 end

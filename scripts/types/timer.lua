@@ -14,9 +14,14 @@ mt.dia_handle = 0
 -- 计时器窗口当前状态：显示 or 隐藏
 mt.state = true
 
+-- 存储计时器
+mt.saveTimer = {}
+-- 存储计时器窗口
+mt.saveTimerDia = {}
 -- 新建计时器
 function mt.create()
     mt.handle = CreateTimer()
+    table.insert(mt.saveTimer,mt.handle)
     return mt.handle
 end
 
@@ -24,6 +29,7 @@ end
 function mt.createDialog(timer)
     local timer = timer or mt.handle
     mt.dia_handle = CreateTimerDialog(timer)
+    table.insert(mt.saveTimerDia,mt.dia_handle)
     return mt.dia_handle
 end
 
