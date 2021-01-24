@@ -48,34 +48,38 @@ mt.PLAYER_STATE = {
 }
 
 -- 获取玩家状态
-function mt.getPlayerState(whichPlayer, whichPlayerState)
+function mt.getState(whichPlayer, whichPlayerState)
     return GetPlayerState(whichPlayer, whichPlayerState)
 end
 
 -- 设置玩家状态
-function mt.setPlayerState(whichPlayer, whichPlayerState, delta)
+function mt.setState(whichPlayer, whichPlayerState, delta)
     local oldState = GetPlayerState(whichPlayer, whichPlayerState)
     if oldState + delta < 0 then
         log.debug('异常：设置玩家状态：', oldState + delta)
     end
-
     SetPlayerState(whichPlayer, whichPlayerState, oldState + delta)
 end
 
 -- 调整玩家状态
-function mt.adjustPlayerState(delta, whichPlayer, whichPlayerState)
+function mt.adjustStateSimple(whichPlayer, whichPlayerState, delta)
+    local oldstate = GetPlayerState(whichPlayer, whichPlayerState)
+    SetPlayerState(whichPlayer, whichPlayerState, oldstate + delta)
+end
+-- 调整玩家状态
+function mt.adjustState(whichPlayer, whichPlayerState, delta)
     -- If the change was positive, apply the difference to the player's
     -- gathered resources property as well.
     -- 如果变化为正，则将差异应用于玩家收集的资源和财产。
     if delta > 0 then
         if whichPlayerState == PLAYER_STATE_RESOURCE_GOLD then
-            AdjustPlayerStateSimpleBJ(whichPlayer, PLAYER_STATE_GOLD_GATHERED, delta)
+            mt.adjustStateSimple(whichPlayer, PLAYER_STATE_GOLD_GATHERED, delta)
         elseif whichPlayerState == PLAYER_STATE_RESOURCE_LUMBER then
-            AdjustPlayerStateSimpleBJ(whichPlayer, PLAYER_STATE_LUMBER_GATHERED, delta)
+            mt.adjustStateSimple(whichPlayer, PLAYER_STATE_LUMBER_GATHERED, delta)
         end
     end
 
-    AdjustPlayerStateSimpleBJ(whichPlayer, whichPlayerState, delta)
+    mt.adjustStateSimple(whichPlayer, whichPlayerState, delta)
 end
 
 -- 是否用户玩家
@@ -98,6 +102,11 @@ end
 -- 获取单位所有者
 function mt.getOwning(unit)
     return GetOwningPlayer(unit)
+end
+
+-- 显示聊天信息计时
+function mt.disTimedText(p, timeout, str)
+    DisplayTimedTextToPlayer(p, 0, 0, timeout, str)
 end
 
 return mt

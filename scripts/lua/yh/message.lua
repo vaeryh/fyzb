@@ -1,5 +1,4 @@
 local message = require 'jass.message'
-local unit= require 'types.unit'
 
 if not message then
     return
@@ -21,16 +20,16 @@ end) ]]
 -- 本地消息
 function message.hook(msg)
     local selection = message.selection()
-    -- print(msg.type)
-    -- print(msg.code)
-    -- print(msg.state)
+    -- printF(msg.type)
+    -- printF(msg.code)
+    -- printF(msg.state)
     -- 键盘抬起消息
     if msg.type == 'key_up' then
         if msg.code == keyboard['F2'] then
-            yh.MoveAndCamera(selection, math.random(0, 2000), math.random(0, 2000))
+
             return true
         end
-        --重载ESC
+        -- 重载ESC
         if msg.code == 512 then
             reload()
             return true
@@ -43,7 +42,7 @@ function message.hook(msg)
             return true
         end
         if msg.code == keyboard['Z'] then
-            unit.setUnitXY(selection,message.mouse())
+            gU.setXY(selection, message.mouse())
             return true
         end
     end

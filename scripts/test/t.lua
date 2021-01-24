@@ -1,8 +1,10 @@
 local message = require 'jass.message'
+local map = require 'map.global'
 
-hhh = function()
-    print('hello world!')
-end
+-- gTrg.RegTimerEvent(1.00, true, function()
+--     --printF(BlzGetTriggerPlayerMouseX())
+--     --printF(BlzGetTriggerPlayerMouseY())
+-- end)
 
 -- for i = 1, 10 do
 --     local id = string.format('at'.."%02d",i)

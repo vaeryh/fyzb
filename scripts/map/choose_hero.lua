@@ -67,7 +67,7 @@ function mt.selectHero()
             camera.setCameraBounds(rect.getAbleArea)
         end
         -- 传送
-        yh.MoveAndCamera(thisU, rect.getCenter(mt['回城矩形']))
+        gYh.MoveAndCamera(thisU, rect.getCenter(mt['回城矩形']))
         -- 添加 触发单位死亡 事件
         trg.RegUnitEvent(thisU, trg.EVENT_UNIT.DEATH, mt.ReHero)
         --  删除触发

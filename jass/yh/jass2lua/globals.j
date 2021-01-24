@@ -22,4 +22,7 @@ globals
 	boolean yh_boolean2 = false
 	boolean yh_boolean3 = false
 	code yh_code = null
+	player yh_player = null
+	unit yh_unit = null
+	unitstate yh_unitstate = null
 endglobals

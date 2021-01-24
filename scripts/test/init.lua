@@ -1,5 +1,5 @@
-FogEnable(false)
-FogMaskEnable(false)
+--FogEnable(false)
+--FogMaskEnable(false)
 
 -- 打印文本
 printF = function(str, i)
@@ -17,4 +17,3 @@ require 'test.help'
 require 'lua.yh.time'
 -- jass.message
 require 'lua.yh.message'
-

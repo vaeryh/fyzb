@@ -5,9 +5,9 @@ local function helper_reload(callback)
         if name:sub(1, 5) == 'jass.' then
             return real_require(name, ...)
         end
-        if name:sub(1, 6) == 'types.' then
-            return real_require(name, ...)
-        end
+        -- if name:sub(1, 6) == 'types.' then
+        --     return real_require(name, ...)
+        -- end
         if not package.loaded[name] then
             return real_require(name, ...)
         end
@@ -25,9 +25,9 @@ function reload()
     log.info('---- Reloading start ----')
 
     helper_reload(function()
-        require 'test.help'
+        --require 'test.help'
+        require 'main copy'
         require 'test.t'
-        --require 'main'
     end)
 
     log.info('---- Reloading end   ----')

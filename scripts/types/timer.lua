@@ -27,8 +27,18 @@ function mt.createDialog(timer)
     return mt.dia_handle
 end
 
+-- 暂停计时器
+function mt.setPause(timer)
+    PauseTimer(timer)
+end
+
+-- 恢复计时器
+function mt.setResume(timer)
+    ResumeTimer(timer)
+end
+
 -- 摧毁计时器、窗口
-function mt.remove(timer,dialog)
+function mt.remove(timer, dialog)
     local timer = timer or GetExpiredTimer()
     DestroyTimerDialog(dialog)
     DestroyTimer(timer)
@@ -56,13 +66,13 @@ function mt.setDialogColor(dialog, red, green, bule, alpha)
     TimerDialogSetTimeColor(dialog, red, green, bule, alpha)
 end
 
---创建计时器，计时器窗口 并返回(参：标题、状态)
-function mt.new(title,state)
-    local t =mt.create()
+-- 创建计时器，计时器窗口 并返回(参：标题、状态)
+function mt.new(title, state)
+    local t = mt.create()
     local tw = mt.createDialog()
-    mt.setTitle(tw,title)
-    mt.setDisplay(tw,state)
-    return t,tw
+    mt.setTitle(tw, title)
+    mt.setDisplay(tw, state)
+    return t, tw
 end
 
 return mt

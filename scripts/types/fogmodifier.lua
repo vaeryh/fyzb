@@ -33,4 +33,14 @@ function mt.remove()
     DestroyFogModifier(fog)
 end
 
+-- 设置战争迷雾
+function mt.setWarDenseFog(state)
+    FogEnable(state)
+end
+
+-- 设置黑色阴影
+function mt.setBlackShadow()
+    FogMaskEnable(state)
+end
+
 return mt

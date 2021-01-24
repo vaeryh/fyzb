@@ -17,7 +17,7 @@ scope yh
 //     native DzTriggerRegisterKeyEventByCode takes trigger trig, integer key, integer status, boolean sync, code funcHandle returns nothing
 // 注册键盘key事件
 public function TriggerRegisterKeyEventByCode takes nothing returns nothing
-	call DzTriggerRegisterKeyEventByCode(yh_trigger,yh_integer1,yh_integer2,yh_boolean1,yh_code)
+	call DzTriggerRegisterKeyEventByCode(yh_trigger, yh_integer1, yh_integer2, yh_boolean1, yh_code)
 endfunction
 //     native DzTriggerRegisterMouseWheelEvent takes trigger trig, boolean sync, string func returns nothing
 //     native DzTriggerRegisterMouseWheelEventByCode takes trigger trig, boolean sync, code funcHandle returns nothing
@@ -27,6 +27,10 @@ endfunction
 //     native DzGetWheelDelta takes nothing returns integer
 //     native DzIsKeyDown takes integer iKey returns boolean
 //     native DzGetTriggerKeyPlayer takes nothing returns player
+//获取触发按键玩家
+public function GetTriggerKeyPlayer takes nothing returns nothing
+	set yh_player = DzGetTriggerKeyPlayer()
+endfunction
 //     native DzGetWindowWidth takes nothing returns integer
 //     native DzGetWindowHeight takes nothing returns integer
 //     native DzGetWindowX takes nothing returns integer
@@ -183,5 +187,15 @@ endfunction
 //     native DzFrameGetParent takes integer frame returns integer
 //     native DzFrameSetTextAlignment takes integer frame, integer align returns nothing
 //     native DzFrameGetName takes integer frame returns string
+
+//---------------------------------------------------------------
+//设置单位属性GetUnitState
+public function getUnitState takes nothing returns nothing
+	set yh_real1 = GetUnitState(yh_unit, yh_unitstate)
+endfunction
+//设置单位属性SetUnitState
+public function setUnitState takes nothing returns nothing
+	call SetUnitState(yh_unit, yh_unitstate, yh_real1)
+endfunction
 
 endscope

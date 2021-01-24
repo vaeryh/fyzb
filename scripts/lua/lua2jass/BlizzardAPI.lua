@@ -108,12 +108,34 @@ end
 -- 注册键盘key事件
 -- call DzTriggerRegisterKeyEventByCode(yh_trigger,yh_integer1,yh_integer2,yh_boolean1,yh_code)
 function mt.TriggerRegisterKeyEventByCode(trig, key, status, sync, action)
+    log.debug('注册key：', key)
     g.yh_trigger = trig
     g.yh_integer1 = key
     g.yh_integer2 = status
     g.yh_boolean1 = sync
     g.yh_code = action
     ExecuteFunc("yh_TriggerRegisterKeyEventByCode")
+end
+
+-- 获取触发按键玩家
+function mt.GetTriggerKeyPlayer(frame, real)
+    ExecuteFunc("yh_GetTriggerKeyPlayer")
+    return yh_player
+end
+-----------------------------单位属性-------------------------------------
+-- 获取单位属性
+function mt.GetUnitState(u, unitsate)
+    g.yh_unit = u
+    g.yh_unitstate = unitsate
+    ExecuteFunc("yh_getUnitState")
+    return g.yh_real1
+end
+-- 设置单位属性
+function mt.SetUnitState(u, unitsate, delta)
+    g.yh_unit = u
+    g.yh_unitstate = unitsate
+    g.yh_real1 = delta
+    ExecuteFunc("yh_setUnitState")
 end
 
 return mt

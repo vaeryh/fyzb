@@ -1,10 +1,4 @@
-local jass = require 'jass.common'
-
-local hero = {}
-setmetatable(hero, hero)
-
 local mt = {}
-hero.__index = mt
 
 -- 句柄
 mt.handle = 0
@@ -83,4 +77,10 @@ function mt:create(x, y)
     return self.handle
 end
 
-return hero
+-- 暂停经验获取
+function mt.SuspendHeroXP(hero, bol)
+    SuspendHeroXP(hero, bol)
+end
+
+
+return mt

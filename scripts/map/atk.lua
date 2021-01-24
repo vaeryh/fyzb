@@ -4,7 +4,6 @@ local rect = require 'types.rect'
 local trg = require 'types.trigger'
 local yh = require 'types.yh'
 
-
 local mt = {}
 
 -- 发兵矩形
@@ -91,6 +90,16 @@ function mt.BrushStart()
             timer.remove()
         end
         mt.count = mt.count + 1
+    end)
+end
+
+-- 暂停刷兵计时器
+function mt.Pause_Actions()
+    local t, tw = gT.new("停怪倒计时", true)
+    gT.setPause(mt.brushT)
+    TimerStart(t, 180.00, false, function()
+        gT.setResume(mt.brushT)
+        gT.remove(t, tw)
     end)
 end
 

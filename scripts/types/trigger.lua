@@ -49,7 +49,9 @@ mt.EVENT_PLAYER_UNIT = {
     -- 出售物品
     SELL_ITEM = EVENT_PLAYER_UNIT_SELL_ITEM,
     -- 抵押物品
-    PAWN_ITEM = EVENT_PLAYER_UNIT_PAWN_ITEM
+    PAWN_ITEM = EVENT_PLAYER_UNIT_PAWN_ITEM,
+    -- 升级
+    HERO_LEVEL=EVENT_PLAYER_HERO_LEVEL,
 }
 
 -- 单位事件
@@ -69,7 +71,9 @@ mt.EVENT_UNIT = {
     -- 发动技能效果
     SPELL_EFFECT = EVENT_UNIT_SPELL_EFFECT,
     -- 施放技能结束
-    SPELL_FINISH = EVENT_UNIT_SPELL_FINISH
+    SPELL_FINISH = EVENT_UNIT_SPELL_FINISH,
+    --升级
+    HERO_LEVEL=EVENT_UNIT_HERO_LEVEL,
 }
 
 -- 运行触发器（无视条件）
@@ -151,11 +155,17 @@ function mt.RegUnitStateEvent(u, unitstate, opcode, limitval, code)
 end
 
 -- 注册键盘key事件
-function mt.RegKeyEventByCode(btn, status, act)
+function mt.RegKeyEventByCode(btnStr, status, act)
+    local key
+    if type(btnStr) == 'string' then
+        key = require'jass.message'.keyboard[btnStr]
+    elseif type(btnStr) == 'number' then
+        key = btnStr
+    end
     -- sync：运行触发器则true，不运行则false，与同步异步无关
     -- 只能同步，异步不生效，可能是因为message已经本地注册过了
     local trg = CreateTrigger()
-    gDz.TriggerRegisterKeyEventByCode(trg, btn, status, true, nil)
+    gDz.TriggerRegisterKeyEventByCode(trg, key, status, true, nil)
     TriggerAddAction(trg, act)
 end
 
