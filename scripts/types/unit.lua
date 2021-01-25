@@ -42,15 +42,9 @@ mt.UNIT_STATE = {
     -- 骰子面数
     DICE_MNUM = ConvertUnitState(0x11)
 }
--- 删除单位
-function mt.remove(handle)
-    return RemoveUnit(handle)
-end
 
--- 单位是否存活
-function mt.is_alive(handle)
-    return GetUnitState(handle, UNIT_STATE_LIFE) > 0
-end
+-- 单位列表
+mt.listUnit = {}
 
 -- 创建单位
 function mt.create(p, id, x, y, face)
@@ -58,16 +52,27 @@ function mt.create(p, id, x, y, face)
     if u == nil then
         log.error(id, gYh.s2id(id))
     end
+    table.insert(mt.listUnit, u)
     return u
 end
 
--- 创建一定数量的单位
-function mt.create(p, id, x, y, face)
-    local u = CreateUnit(p, gYh.s2id(id), x, y, face)
-    if u == nil then
-        log.error(id, gYh.s2id(id))
+-- 创建N个单位
+function mt.createNum(num, p, id, x, y, face)
+    local face = face or 270
+    for i = 1, num do
+        mt.create(p, id, x, y, face)
     end
     return u
+end
+
+-- 删除单位
+function mt.remove(handle)
+    RemoveUnit(handle)
+end
+
+-- 单位是否存活
+function mt.is_alive(handle)
+    return GetUnitState(handle, UNIT_STATE_LIFE) > 0
 end
 
 -- 返回单位坐标
@@ -132,6 +137,11 @@ end
 -- 矩形是否包含单位
 function mt.RectContainsUnit(r, unit)
     return mt.RectContainsCoords(r, GetUnitX(whichUnit), GetUnitY(whichUnit))
+end
+
+-- 获取单位技能等级
+function mt.getAbiLev(unit, id)
+    return GetUnitAbilityLevel(unit, gYh.s2id(id))
 end
 
 return mt

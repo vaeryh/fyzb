@@ -54,17 +54,16 @@ end
 
 -- 设置玩家状态
 function mt.setState(whichPlayer, whichPlayerState, delta)
-    local oldState = GetPlayerState(whichPlayer, whichPlayerState)
-    if oldState + delta < 0 then
-        log.debug('异常：设置玩家状态：', oldState + delta)
-    end
-    SetPlayerState(whichPlayer, whichPlayerState, oldState + delta)
+    SetPlayerState(whichPlayer, whichPlayerState, delta)
 end
 
 -- 调整玩家状态
 function mt.adjustStateSimple(whichPlayer, whichPlayerState, delta)
-    local oldstate = GetPlayerState(whichPlayer, whichPlayerState)
-    SetPlayerState(whichPlayer, whichPlayerState, oldstate + delta)
+    local newstate = mt.getState(whichPlayer, whichPlayerState) + delta
+    if newstate < 0 then
+        log.debug('异常：设置玩家状态：', whichPlayerState, newstate)
+    end
+    mt.setState(whichPlayer, whichPlayerState, newstate)
 end
 -- 调整玩家状态
 function mt.adjustState(whichPlayer, whichPlayerState, delta)

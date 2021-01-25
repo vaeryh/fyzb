@@ -22,7 +22,8 @@ end
 
 -- 完整地图区域
 mt.getWorldBounds = GetWorldBounds()
--- 可用地图区域
+
+-- 可用地图区域(这样写矩形是唯一的)
 -- CAMERA_MARGIN_LEFT=0 CAMERA_MARGIN_RIGHT=1 CAMERA_MARGIN_TOP=2 CAMERA_MARGIN_BOTTOM=3
 mt.getAbleArea = Rect(GetCameraBoundMinX() - GetCameraMargin(0), GetCameraBoundMinY() - GetCameraMargin(3),
                                 GetCameraBoundMaxX() + GetCameraMargin(1), GetCameraBoundMaxY() + GetCameraMargin(2))

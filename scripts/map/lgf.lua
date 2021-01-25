@@ -14,7 +14,7 @@ gTrg.RegTimerEvent(5.00, false, function()
 end)
 --------------------------------------------------------------------------
 -- 英雄瓶颈(逢10)
-function mt.bottleneck()
+gTrg.RegUserPlayerUnitEvent(gTrg.EVENT_PLAYER_UNIT.HERO_LEVEL, function()
     local trgP = GetTriggerPlayer()
     local trgU = GetTriggerUnit()
     --
@@ -27,13 +27,7 @@ function mt.bottleneck()
             SuspendHeroXP(trgU, true) -- 暂停经验获取，是
         end
     end
-end
--- 用户玩家注册
-for i = 0, 11 do
-    if gP.isUserPlayer(i) then
-        gTrg.RegPlayerUnitEvent(Player(i), gTrg.EVENT_PLAYER_UNIT.HERO_LEVEL, mt.bottleneck)
-    end
-end
+end)
 --------------------------------------------------------------------------
 -- Next
 function Actions_C_1(whichHero)
@@ -79,8 +73,8 @@ function Actions_C_1(whichHero)
         end
     end)
 end
--- 动作
-function mt.Actions_C()
+-- 开始挑战
+gTrg.RegUserPlayerUnitEvent(gTrg.EVENT_PLAYER_UNIT.SPELL_EFFECT, function()
     local trgP = GetTriggerPlayer()
     local trgU = GetTriggerUnit()
     local yhgnum = gGroup.getCount(gGroup.getUnitInRect(mt.lgf2))
@@ -94,13 +88,7 @@ function mt.Actions_C()
             end
         end
     end
-end
--- 开始挑战
-for i = 0, 11 do
-    if gP.isUserPlayer(i) then
-        gTrg.RegPlayerUnitEvent(Player(i), gTrg.EVENT_PLAYER_UNIT.SPELL_EFFECT, mt.Actions_C)
-    end
-end
+end)
 --------------------------------------------------------------------------
 -- 练功房，F2
 gTrg.RegKeyEventByCode(113, 0, function()
@@ -119,15 +107,13 @@ gTrg.RegTimerEvent(0.50, true, function()
         if GetOwningPlayer(unit) == Player(11) and gU.is_alive(unit) then
             num = num + 1
         end
-        GroupRemoveUnit(group, unit)
+        gGroup.removeUnit(group, unit)
     end
-    DestroyGroup(group)
+    gGroup.remove(group)
     -- 区域敌对单位数量为零，则刷兵
     if num == 0 then
         local atk = require 'map.atk'
         local id = string.format('at' .. "%02d", atk.bs)
-        for i = 1, 4 do
-            gU.create(Player(11), id, x, y, 270)
-        end
+        gU.createNum(4, Player(11), id, x, y)
     end
 end)

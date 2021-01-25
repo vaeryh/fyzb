@@ -1,12 +1,3 @@
-local rect = require 'types.rect'
-local camera = require 'types.camera'
-local trg = require 'types.trigger'
-local p = require 'types.player'
-local fog = require 'types.fogmodifier'
-local yh = require 'types.yh'
-local timer = require 'types.timer'
-
------------------------------------------------------------------------------
 local mt = {}
 
 -- 英雄列表
@@ -22,8 +13,8 @@ function mt.ReHero()
     local hero = GetTriggerUnit()
     local player = GetOwningPlayer(hero)
     local Lev = GetHeroLevel(hero)
-    local tmr, twd = timer.new(GetUnitName(hero) .. "复活时间倒计时", true)
-    local x, y = rect.getCenter(mt['回城矩形'])
+    local tmr, twd = gT.new(GetUnitName(hero) .. "复活时间倒计时", true)
+    local x, y = gRect.getCenter(mt['回城矩形'])
 
     if Lev >= 10 then
         Lev = 10
@@ -36,20 +27,11 @@ function mt.ReHero()
             PanCameraToTimed(x, y, 0.33)
             SelectUnit(hero, true) -- 细节：移动镜头后玩家选择一下单位
         end
-        timer.remove(tmr, twd)
+        gT.remove(tmr, twd)
     end)
 end
 
 -----------------------------------------------------------------------------
-trg.RegTimerEvent(0.00, false, function()
-    for i = 0, 11 do
-        if p.isUserPlayer(i) then
-            trg.RegPlayerUnitEvent(Player(i), trg.EVENT_PLAYER_UNIT.SELECTED, mt.selectHero)
-        end
-    end
-    trg.remove()
-end)
-
 -- 双击选择英雄:每个玩家注册一个触发：用完就删除，保证1个选择英雄
 function mt.selectHero()
     local thisP, thisU = GetTriggerPlayer(), GetTriggerUnit()
@@ -61,23 +43,29 @@ function mt.selectHero()
         Hero[thisP] = thisU
         -- 设置可用区域
         -- 启用- 新建可见度修正器，盟友共享视野，不覆盖单位视野
-        fog.start(fog.createFog(thisP, mt['主城矩形']))
+        gFog.start(gFog.createFog(thisP, mt['主城矩形']))
         -- 设置玩家可用地图区域=默认可用地图区域
         if GetLocalPlayer() == thisP then
-            camera.setCameraBounds(rect.getAbleArea)
+            gCamera.setCameraBounds(gRect.getAbleArea)
         end
         -- 传送
-        gYh.MoveAndCamera(thisU, rect.getCenter(mt['回城矩形']))
+        gYh.MoveAndCamera(thisU, gRect.getCenter(mt['回城矩形']))
         -- 添加 触发单位死亡 事件
-        trg.RegUnitEvent(thisU, trg.EVENT_UNIT.DEATH, mt.ReHero)
+        gTrg.RegUnitEvent(thisU, gTrg.EVENT_UNIT.DEATH, mt.ReHero)
         --  删除触发
-        trg.remove()
+        gTrg.remove()
     else
         SetUnitUserData(thisU, GetPlayerId(thisP) + 1) -- 设置单位自定义值为触发玩家ID
         TimerStart(CreateTimer(), 0.33, false, function()
             SetUnitUserData(thisU, 0)
-            timer.remove()
+            gT.remove()
         end)
+    end
+end
+-- 限制一个玩家只能选择1个英雄
+for i = 0, 11 do
+    if gP.isUserPlayer(i) then
+        gTrg.RegPlayerUnitEvent(Player(i), gTrg.EVENT_PLAYER_UNIT.SELECTED, mt.selectHero)
     end
 end
 

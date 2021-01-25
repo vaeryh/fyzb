@@ -2,28 +2,42 @@ local mt = {}
 
 mt.type = "group"
 
---单位数量
-mt.count = 0
+-- 单位组列表
+mt.listGroup = {}
+
+-- 创建单位组
+function mt.create()
+    local g = CreateGroup()
+    table.insert(mt.listGroup, g)
+    return g
+end
 
 -- 选取矩形内所有单位
 function mt.getUnitInRect(r)
-    local g = CreateGroup()
+    local g = mt.create()
     GroupEnumUnitsInRect(g, r, nil)
     -- DestroyBoolExpr(filter)
     return g
 end
 
---
-function mt.CountEnum()
-    mt.count = mt.count + 1
-end
-
 -- 获取单位组单位数量
 function mt.getCount(g)
-    mt.count = 0
-    ForGroup(g, mt.CountEnum)
+    local count = 0
+    ForGroup(g, function()
+        count = count + 1
+    end)
 
-    return mt.count
+    return count
+end
+
+-- 单位组移除单位
+function mt.removeUnit(g, unit)
+    GroupRemoveUnit(g, unit)
+end
+
+-- 删除单位组
+function mt.remove(g)
+    DestroyGroup(g)
 end
 
 return mt

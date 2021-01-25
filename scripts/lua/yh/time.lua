@@ -1,5 +1,4 @@
 local dz = require 'lua.lua2jass.BlizzardAPI'
-local trg = require 'types.trigger'
 
 if not dz then
     return
@@ -8,7 +7,7 @@ end
 -- 星期
 local weekday = {"日", "一", "二", "三", "四", "五", "六"}
 -- 创建左上角时间标记
-trg.RegTimerEvent(0.00, false, function()
+gTrg.RegTimerEvent(0.00, false, function()
     local frame = dz.CreateFrameByTagName("TEXT")
     dz.FrameSetAbsolutePoint(frame, 0, 0.0487, 0.5633)
     dz.FrameSetSize(frame, 0.15, 0.01)
@@ -20,5 +19,5 @@ trg.RegTimerEvent(0.00, false, function()
         -- DestroyTimer(GetExpiredTimer())
     end)
 
-    trg.remove()
+    gTrg.remove()
 end)

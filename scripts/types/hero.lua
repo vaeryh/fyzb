@@ -36,51 +36,35 @@ function mt.getHeroLevel(hero)
     return GetHeroLevel(hero)
 end
 
--- 获取单位
-function mt:get()
-    return self.handle
+-- 获得属性力量
+function mt.getStr(hero)
+    return GetHeroStr(hero, true)
 end
--- 删除单位
-function mt:remove()
-    return jass.RemoveUnit(self.handle)
+-- 获得属性敏捷
+function mt.getAgi(hero)
+    return GetHeroAgi(hero, true)
 end
--- 获得属性
-function mt:getStr()
-    return jass.GetHeroStr(self.handle, true)
-end
-
-function mt:getAgi()
-    return jass.GetHeroAgi(self.handle, true)
+-- 获得属性智力
+function mt.getInt(hero)
+    return GetHeroInt(hero, true)
 end
 
-function mt:getInt()
-    return jass.GetHeroInt(self.handle, true)
+-- 设置属性力量
+function mt.setStr(hero, value)
+    SetHeroStr(hero, value, true)
 end
-
--- 设置属性
-function mt:setStr(n)
-    jass.SetHeroStr(self.handle, n, true)
+-- 设置属性敏捷
+function mt.setAgi(hero, value)
+    SetHeroAgi(hero, value, true)
 end
-
-function mt:setAgi(n)
-    jass.SetHeroAgi(self.handle, n, true)
-end
-
-function mt:setInt(n)
-    jass.SetHeroInt(self.handle, n, true)
-end
-
--- 创建英雄
-function mt:create(x, y)
-    local x, y = x, y or 0, 0
-    self.handle = CreateUnit(Player(15), yh.s2id(self.id), x, y, 270)
-    return self.handle
+-- 设置属性智力
+function mt.setInt(hero, value)
+    SetHeroInt(hero, value, true)
 end
 
 -- 暂停经验获取
 function mt.SuspendHeroXP(hero, bol)
     SuspendHeroXP(hero, bol)
 end
-
 
 return mt
