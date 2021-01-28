@@ -28,12 +28,14 @@ function reload()
     for k, v in ipairs(gTrg.listTrigger) do
         log.debug("trg", k, v)
         gTrg.listTrigger[k] = nil
+        gTrg.setPause(v)
         gTrg.remove(v)
     end
     -- 重载计时器与窗口
     for k, v in ipairs(gT.listTimer) do
         log.debug("timer", k, v)
         gT.listTimer[k] = nil
+        gT.setPause(v)
         gT.remove(v, nil)
     end
     for k, v in ipairs(gT.listDia) do

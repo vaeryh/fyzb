@@ -1,5 +1,6 @@
 -- 伤害事件
 local mt = {}
+
 -- 数量
 local Number = 0
 
@@ -50,6 +51,9 @@ function mt.SyStemRegistTrigger(trg)
 end
 
 local japi = require 'jass.japi'
+-- for k, v in pairs(japi) do
+--     print(k,v)
+-- end
 local EVENT_DAMAGE_DATA_VAILD = 0
 local EVENT_DAMAGE_DATA_IS_PHYSICAL = 1
 local EVENT_DAMAGE_DATA_IS_ATTACK = 2
@@ -60,15 +64,15 @@ local EVENT_DAMAGE_DATA_ATTACK_TYPE = 6
 
 -- native EXGetEventDamageData takes integer edd_type returns integer
 -- native EXSetEventDamage takes real amount returns boolean
--- 是物理伤害
+-- 是否物理伤害
 function IsEventPhysicalDamage()
     return 0 ~= japi.EXGetEventDamageData(EVENT_DAMAGE_DATA_IS_PHYSICAL)
 end
--- 时攻击伤害
+-- 是否攻击伤害
 function IsEventAttackDamage()
     return 0 ~= japi.EXGetEventDamageData(EVENT_DAMAGE_DATA_IS_ATTACK)
 end
--- 是远程伤害
+-- 是否远程伤害
 function IsEventRangedDamage()
     return 0 ~= japi.EXGetEventDamageData(EVENT_DAMAGE_DATA_IS_RANGED)
 end

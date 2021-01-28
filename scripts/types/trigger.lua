@@ -2,7 +2,7 @@
 local mt = {}
 
 -- 操作码 or 运算符
-mt.opcode = {
+OPCODE = {
     -- 小于
     LESS_THAN = LESS_THAN,
     -- 小于或等于
@@ -18,10 +18,10 @@ mt.opcode = {
 }
 
 -- 注册事件
-mt.EVENT = {}
+--mt.EVENT = {}
 
 -- 玩家单位事件
-mt.EVENT_PLAYER_UNIT = {
+EVENT_PLAYER_UNIT = {
     -- 死亡事件
     DEATH = EVENT_PLAYER_UNIT_DEATH,
     -------------------------------------------
@@ -37,6 +37,7 @@ mt.EVENT_PLAYER_UNIT = {
     -- 取消选择事件
     DESELECTED = EVENT_PLAYER_UNIT_DESELECTED,
     -------------------------------------------
+
     -- 学习技能
     HERO_SKILL = EVENT_PLAYER_HERO_SKILL,
     -- 准备施放技能
@@ -70,7 +71,7 @@ mt.EVENT_PLAYER_UNIT = {
 }
 
 -- 单位事件
-mt.EVENT_UNIT = {
+EVENT_UNIT = {
     -- 接受伤害
     DAMAGED = EVENT_UNIT_DAMAGED,
     -- 被攻击
@@ -84,6 +85,11 @@ mt.EVENT_UNIT = {
     ISSUED_POINT_ORDER = EVENT_UNIT_ISSUED_POINT_ORDER,
     -- 发布无目标指令
     ISSUED_ORDER = EVENT_UNIT_ISSUED_ORDER,
+    -------------------------------------------
+    -- 选择事件
+    SELECTED = EVENT_UNIT_SELECTED,
+    -- 取消选择事件
+    DESELECTED = EVENT_UNIT_DESELECTED,
     -------------------------------------------
     -- 学习技能
     HERO_SKILL = EVENT_UNIT_HERO_SKILL,
@@ -140,7 +146,7 @@ function mt.setStart(trg)
     local trg = trg or GetTriggeringTrigger()
     EnableTrigger(trg)
 end
---------------------------------------------------------------
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 注册触发事件 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 -- 时间事件
 function mt.RegTimerEvent(timeout, isloop, code)
@@ -212,10 +218,11 @@ function mt.RegKeyEventByCode(btnStr, status, code)
 end
 
 -- 注册任意单位伤害事件
-function mt.RegAnyUnitDamage(code)
-    local dam = require 'fun.AnyUnitDamagedEvent'
+function mt.RegAnyUnitDamageEvent(code)
+    local dam = require 'library.AnyUnitDamagedEvent'
     dam.SyStemRegistTrigger(mt.create(code))
 end
 --------------------------------------------------------------
+
 
 return mt

@@ -1,7 +1,7 @@
 local mt = {}
 
 -- 玩家状态
-mt.PLAYER_STATE = {
+PLAYER_STATE = {
     -- 游戏得分
     GAME_RESULT = PLAYER_STATE_GAME_RESULT,
 
@@ -81,6 +81,7 @@ function mt.adjustState(whichPlayer, whichPlayerState, delta)
     mt.adjustStateSimple(whichPlayer, whichPlayerState, delta)
 end
 
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 是否 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 -- 是否用户玩家
 function mt.isUserPlayer(i)
     local bolA = GetPlayerController(Player(i)) == MAP_CONTROL_USER
@@ -98,8 +99,10 @@ function mt.isLocalPlayer(key)
     return GetLocalPlayer() == GetOwningPlayer(key)
 end
 
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* ?? *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 -- 获取单位所有者
-function mt.getOwning(unit)
+function mt.getOwner(unit)
     return GetOwningPlayer(unit)
 end
 

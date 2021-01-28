@@ -22,15 +22,40 @@ function mt.id2s(a)
     return r
 end
 
+----------------------------------------------------------------------------------------
+
 -- 计算两坐标距离
 function mt.distanceXY(x0, y0, x1, y1)
     return math.sqrt((x0 - x1) ^ 2 + (y0 - y1) ^ 2)
 end
 
+-- 计算两单位距离
+function mt.distanceByUnit(ua, ub)
+    return mt.distanceXY(GetUnitX(ua), GetUnitY(ua), GetUnitX(ub), GetUnitY(ub))
+end
+
+----------------------------------------------------------------------------------------
+
 -- 计算两坐标角度
 function mt.angleXY(x0, y0, x1, y1)
     return math.deg(math.atan(y1 - y0, x1 - x0))
 end
+
+-- 计算两单位角度
+function mt.angleByUnit(ua, ub)
+    return mt.angleXY(GetUnitX(ua), GetUnitY(ua), GetUnitX(ub), GetUnitY(ub))
+end
+
+----------------------------------------------------------------------------------------
+
+-- 极坐标
+function mt.PolarProjection(source, dist, angle)
+    local x = GetUnitX(source) + dist * Cos(angle * math.pi / 180.0)
+    local y = GetUnitY(source) + dist * Sin(angle * math.pi / 180.0)
+    return x, y
+end
+
+----------------------------------------------------------------------------------------
 
 -- 平移镜头+移动单位（坐标，免排泄）
 function mt.MoveAndCamera(whichHero, x, y)
@@ -54,6 +79,16 @@ function mt.MoveAndCamera(whichHero, x, y)
         end
         DestroyTimer(GetExpiredTimer())
     end)
+end
+
+-- 查找表中是否存在某一个值
+function mt.IsInTable(tab, vaule)
+    for i, v in pairs(tab) do
+        if vaule == v then
+            return true
+        end
+    end
+    return false
 end
 
 return mt

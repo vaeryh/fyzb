@@ -1,5 +1,3 @@
--- local jass = require 'jass.common'
-local sound = require 'types.sound'
 
 local mt = {}
 
@@ -73,8 +71,8 @@ function mt.CustomVictoryDialog(whichPlayer)
     DialogDisplay(whichPlayer, d, true)
     -- 播放胜利声音
     if whichPlayer == GetLocalPlayer() then
-        sound.setVolumeGroupVolume(sound.VolumeGroup.UI,1.00)
-        sound.StartSound(bj_victoryDialogSound) -- 播放胜利对话框声音
+        gSound.setVolumeGroupVolume(SOUND_VOLUMEGROUP.UI, 1.00)
+        gSound.StartSound(bj_victoryDialogSound) -- 播放胜利对话框声音
     end
 end
 

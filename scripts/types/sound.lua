@@ -15,7 +15,7 @@ function mt.StartSound(name)
 end
 
 -- 声音通道 Sound Constants
-mt.VolumeGroup = {
+SOUND_VOLUMEGROUP = {
     -- 动画和技能音效
     SPELLS = SOUND_VOLUMEGROUP_SPELLS,
     -- 环境音效

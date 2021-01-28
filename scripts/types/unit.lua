@@ -16,7 +16,7 @@ mt.owner = nil
 mt.id = "hfoo"
 
 -- 单位状态
-mt.UNIT_STATE = {
+UNIT_STATE = {
     -- 生命值
     LIFE = UNIT_STATE_LIFE,
     -- 最大生命值
@@ -28,7 +28,7 @@ mt.UNIT_STATE = {
     -- 护甲
     ARMOR = ConvertUnitState(0x20),
     -- 攻击范围
-    ATK_Range = ConvertUnitState(0x16),
+    ATK_RANGE = ConvertUnitState(0x16),
     -- 攻击间隔
     ATK_INTERVAL = ConvertUnitState(0x25),
     -- 攻击速度
@@ -112,11 +112,11 @@ end
 
 -- 调整单位状态
 function mt.adjustState(u, unitState, delta)
-    local oldstate = mt.getState(u, unitState)
-    if oldstate + delta then
-
+    local newstate = mt.getState(u, unitState) + delta
+    if newstate <= 0 then
+        log.error('单位状态负值', unitState)
     end
-    mt.setState(u, unitState, oldstate + delta)
+    mt.setState(u, unitState, newstate)
 end
 
 -- 设置单位颜色
@@ -124,24 +124,43 @@ function mt.setUnitColor(u, red, green, blue, alpha)
     SetUnitVertexColor(u, red, green, blue, alpha)
 end
 
--- 矩形是否包含坐标
-function mt.RectContainsCoords(r, x, y)
-    return GetRectMinX(r) <= x and x <= GetRectMaxX(r) and GetRectMinY(r) <= y and y <= GetRectMaxY(r)
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 是否 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+-- 是否盟军(包括中立状态,单向判断玩家对单位是否为不侵犯状态)
+function mt.isAlly(u, p)
+    return IsUnitAlly(u, p)
+end
+-- 是否敌军(不包括中立状态,单向判断玩家对单位是否为敌对侵犯)
+function mt.isEnemy(u, p)
+    return IsUnitEnemy(u, p)
 end
 
--- 矩形是否包含点
-function mt.RectContainsLoc(r, loc)
-    return mt.RectContainsCoords(r, GetLocationX(loc), GetLocationY(loc))
+-- 是否单位类型与ID一致
+function mt.isTypeId(u, id)
+    return GetUnitTypeId(u) == gYh.s2id(id)
 end
 
--- 矩形是否包含单位
-function mt.RectContainsUnit(r, unit)
-    return mt.RectContainsCoords(r, GetUnitX(whichUnit), GetUnitY(whichUnit))
+-- 是否拥有技能
+function mt.isHaveAbi(unit, id)
+    return mt.getAbiLev(unit, id) > 0
+end
+
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 单位技能 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+-- 单位添加技能
+function mt.addAbi(u, id)
+    UnitAddAbility(u, gYh.s2id(id))
 end
 
 -- 获取单位技能等级
 function mt.getAbiLev(unit, id)
     return GetUnitAbilityLevel(unit, gYh.s2id(id))
+end
+
+-- 设置单位生命周期
+function mt.setLifeTime(unit, time, id)
+    local id = id or 'Bhwd' -- 水元素
+    UnitApplyTimedLife(unit, gYh.s2id(id), time)
 end
 
 return mt

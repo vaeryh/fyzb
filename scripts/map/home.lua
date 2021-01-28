@@ -10,7 +10,7 @@ mt.rect_hg = map.rect['回城矩形']
 -----------------------------------------------------------------------------
 -- 游戏失败条件：基地死亡
 function mt.game_fail()
-    gTrg.RegPlayerUnitEvent(Player(9), gTrg.EVENT_PLAYER_UNIT.DEATH, function()
+    gTrg.RegPlayerUnitEvent(Player(9), EVENT_PLAYER_UNIT.DEATH, function()
         -- 条件
         if GetUnitTypeId(trgU) == gYh.s2id(mt.id) then
             game.CustomVictory(Player(11), true, false) -- 设置游戏失败
@@ -65,9 +65,9 @@ function mt.upBase(trgP, trgU)
     if GetPlayerState(trgP, PLAYER_STATE_RESOURCE_GOLD) >= 5000 then
         gP.adjustState(trgP, PLAYER_STATE_RESOURCE_GOLD, -5000)
         -- 改变护甲生命值
-        gU.adjustState(trgU, gU.UNIT_STATE.ARMOR, 10.00)
-        gU.adjustState(trgU, gU.UNIT_STATE.MAX_LIFE, 10000.00)
-        gU.adjustState(trgU, gU.UNIT_STATE.LIFE, 200.00)
+        gU.adjustState(trgU, UNIT_STATE.ARMOR, 10.00)
+        gU.adjustState(trgU, UNIT_STATE.MAX_LIFE, 10000.00)
+        gU.adjustState(trgU, UNIT_STATE.LIFE, 200.00)
     else
         DisplayTextToPlayer(trgP, 0, 0, "银币不足，升级失败！")
     end
@@ -101,7 +101,7 @@ function mt.PauseBrushTimer(trgP, trgU)
 end
 
 -- 购买物品
-gTrg.RegPlayerUnitEvent(Player(9), gTrg.EVENT_PLAYER_UNIT.SELL_ITEM, function()
+gTrg.RegPlayerUnitEvent(Player(9), EVENT_PLAYER_UNIT.SELL_ITEM, function()
     if GetUnitTypeId(GetTriggerUnit()) ~= gYh.s2id(mt.id) then
         return
     end

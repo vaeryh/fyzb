@@ -14,7 +14,7 @@ gTrg.RegTimerEvent(5.00, false, function()
 end)
 --------------------------------------------------------------------------
 -- 英雄瓶颈(逢10)
-gTrg.RegUserPlayerUnitEvent(gTrg.EVENT_PLAYER_UNIT.HERO_LEVEL, function()
+gTrg.RegUserPlayerUnitEvent(EVENT_PLAYER_UNIT.HERO_LEVEL, function()
     local trgP = GetTriggerPlayer()
     local trgU = GetTriggerUnit()
     --
@@ -74,7 +74,7 @@ function Actions_C_1(whichHero)
     end)
 end
 -- 开始挑战
-gTrg.RegUserPlayerUnitEvent(gTrg.EVENT_PLAYER_UNIT.SPELL_EFFECT, function()
+gTrg.RegUserPlayerUnitEvent(EVENT_PLAYER_UNIT.SPELL_EFFECT, function()
     local trgP = GetTriggerPlayer()
     local trgU = GetTriggerUnit()
     local yhgnum = gGroup.getCount(gGroup.getUnitInRect(mt.lgf2))

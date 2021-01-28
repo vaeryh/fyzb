@@ -1,4 +1,5 @@
---神医
---坐标创建
+-- 载入英雄
+require 'hero.hero_load'
 
-require 'hero.凤舞.init'
+-- 选择英雄+复活英雄
+require 'hero.hero_choose'

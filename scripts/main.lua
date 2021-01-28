@@ -20,13 +20,14 @@ function require(...)
 end
 
 -----------------------------------------------------------------------------------------
--- 类型库
+-- types类型库
 do
     gYh = require 'types.yh'
     gTrg = require 'types.trigger'
     gP = require 'types.player'
     gU = require 'types.unit'
     gH = require 'types.hero'
+    gAbi = require 'types.ability'
     gT = require 'types.timer'
     gRect = require 'types.rect'
     gCamera = require 'types.camera'
@@ -35,6 +36,12 @@ do
     gDia = require 'types.dialog'
     gGame = require 'types.game'
     gGroup = require 'types.group'
+    gEff = require 'types.effect'
+    gTag = require 'types.texttag'
+end
+-- scope库
+do
+    --Is = require 'scripts.scope.Is'
 end
 -- 外置库
 do
@@ -58,4 +65,4 @@ end
 
 -- end
 
---main()
+-- main()

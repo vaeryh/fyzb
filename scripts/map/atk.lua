@@ -5,9 +5,6 @@ local mt = {}
 -- 发兵矩形
 mt.brushRect = map.rect['发兵矩形1']
 
--- 进攻矩形或者单位
-mt.atkTraget = 0
-
 -- 当前波数
 mt.bs = 1
 
