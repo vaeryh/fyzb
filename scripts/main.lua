@@ -8,21 +8,20 @@ end
 --     std_print(("debug"..'[%.3f]'):format(os.clock()), ...)
 -- end
 -- 调用
-local std_require = require
+-- local std_require = require
 
-function require(...)
-    if package.loaded[...] == nil then
-        print(..., 'load success!!')
-    end
-    local bol = std_require(...)
+-- function require(...)
+--     if package.loaded[...] == nil then
+--         --print(..., 'load success!!')
+--     end
+--     local bol = std_require(...)
 
-    return bol
-end
+--     return bol
+-- end
 
 -----------------------------------------------------------------------------------------
 -- types类型库
 do
-    gYh = require 'types.yh'
     gTrg = require 'types.trigger'
     gP = require 'types.player'
     gU = require 'types.unit'
@@ -41,6 +40,8 @@ do
 end
 -- scope库
 do
+    gYh = require 'scope.yh'
+    gUnitdata = require 'scope.unitdata'
     --Is = require 'scripts.scope.Is'
 end
 -- 外置库
@@ -66,3 +67,7 @@ end
 -- end
 
 -- main()
+-- local japi = require 'jass.japi'
+-- for k, v in pairs(japi) do
+--         print(k,v)
+-- end

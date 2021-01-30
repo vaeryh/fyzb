@@ -138,4 +138,11 @@ function mt.SetUnitState(u, unitsate, delta)
     ExecuteFunc("yh_setUnitState")
 end
 
+-- 设置单位模型
+function mt.SetUnitModel(u, path)
+    g.yh_unit = u
+    g.yh_string1 = path
+    ExecuteFunc("yh_SetUnitModel")
+end
+
 return mt

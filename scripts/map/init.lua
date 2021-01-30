@@ -12,6 +12,8 @@ local function map_main()
     require 'map.home'
     -- 开启练功房
     require 'map.lgf'
+    -- 伤害
+    require 'map.harmtag'
 end
 
 map_main()

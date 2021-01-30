@@ -24,15 +24,11 @@ function mt.game_victory()
 end
 -----------------------------------------------------------------------------
 -- 输入hg 回城
-function mt.ChatHg()
+gTrg.RegAnyPlayerChatEvent(GetEventPlayerChatString(), true, function()
     if string.upper(GetEventPlayerChatString()) == "HG" then
         gYh.MoveAndCamera(Hero[trgP], rect.getCenter(mt.rect_hg))
     end
-end
-
-for i = 0, 11 do
-    gTrg.RegPlayerChatEvent(Player(i), GetEventPlayerChatString(), true, mt.ChatHg)
-end
+end)
 -----------------------------------------------------------------------------
 -- 按键F3回城
 gTrg.RegKeyEventByCode(114, 0, function()

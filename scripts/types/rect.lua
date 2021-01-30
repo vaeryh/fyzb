@@ -53,6 +53,17 @@ function mt.create(minX, minY, maxX, maxY)
     return Rect(minX, minY, maxX, maxY)
 end
 
+local yd_MapMinX = GetCameraBoundMinX() - GetCameraMargin(CAMERA_MARGIN_LEFT)
+local yd_MapMinY = GetCameraBoundMinY() - GetCameraMargin(CAMERA_MARGIN_BOTTOM)
+local yd_MapMaxX = GetCameraBoundMaxX() + GetCameraMargin(CAMERA_MARGIN_RIGHT)
+local yd_MapMaxY = GetCameraBoundMaxY() + GetCameraMargin(CAMERA_MARGIN_TOP)
+
+-- 地图边界判断
+function mt.CoordinateXY(x, y)
+    local x = math.min(math.max(x, yd_MapMinX), yd_MapMaxX)
+    local y = math.min(math.max(y, yd_MapMinY), yd_MapMaxY)
+    return x, y
+end
 -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 是否 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 -- 矩形是否包含坐标
 function mt.isContainsCoords(r, x, y)

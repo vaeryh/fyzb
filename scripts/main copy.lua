@@ -6,3 +6,4 @@
 require 'map.init'
 -- 英雄
 require 'hero.init'
+

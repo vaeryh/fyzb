@@ -12,12 +12,30 @@ function mt.create()
     return g
 end
 
+-- 单位组转换表
+function mt.groupTab(g)
+    local tab = {}
+    ForGroup(g, function()
+        table.insert(tab, GetEnumUnit())
+    end)
+    mt.remove(g)
+    return tab
+end
+
 -- 选取矩形内所有单位
 function mt.getUnitInRect(r)
     local g = mt.create()
     GroupEnumUnitsInRect(g, r, nil)
     -- DestroyBoolExpr(filter)
-    return g
+    return mt.groupTab(g)
+end
+
+-- 选取圆圈内所有单位
+function mt.getUnitInRange(x, y, radius)
+    local g = mt.create()
+    GroupEnumUnitsInRange(g, x, y, radius, nil)
+    -- DestroyBoolExpr(filter)
+    return mt.groupTab(g)
 end
 
 -- 获取单位组单位数量

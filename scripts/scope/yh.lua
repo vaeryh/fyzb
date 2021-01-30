@@ -1,5 +1,3 @@
-local p = require 'types.player'
-
 local mt = {}
 
 -- 转换256进制整数
@@ -48,11 +46,16 @@ end
 
 ----------------------------------------------------------------------------------------
 
--- 极坐标
-function mt.PolarProjection(source, dist, angle)
-    local x = GetUnitX(source) + dist * Cos(angle * math.pi / 180.0)
-    local y = GetUnitY(source) + dist * Sin(angle * math.pi / 180.0)
+-- 获取极坐标
+function mt.getPolar(x, y, dist, angle)
+    local x = x + dist * Cos(angle * math.pi / 180.0)
+    local y = y + dist * Sin(angle * math.pi / 180.0)
     return x, y
+end
+
+-- 极坐标单位
+function mt.getPolarUnit(source, dist, angle)
+    return mt.getPolar(GetUnitX(source), GetUnitY(source), dist, angle)
 end
 
 ----------------------------------------------------------------------------------------
@@ -73,7 +76,7 @@ function mt.MoveAndCamera(whichHero, x, y)
         ---- 特殊效果
         DestroyEffect(AddSpellEffectTargetById(abi, EFFECT_TYPE_SPECIAL, whichHero, "origin"))
         -- 移动镜头
-        if p.isLocalPlayer(whichHero) then
+        if gP.isLocalPlayer(whichHero) then
             PanCameraToTimed(x, y, 0.33)
             SelectUnit(whichHero, true) -- 细节：移动镜头后玩家选择一下单位
         end

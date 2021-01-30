@@ -22,19 +22,21 @@ mt.name = "山丘之王"
 mt.propernames = "波尔-碎石者,穆林-铁壁,"
 
 -- 设置提升英雄等级
-function mt.setUpHeroLevel(hero, level, bol)
+function mt.setUpLevel(hero, level, bol)
     SetHeroLevel(hero, level, bol)
 end
 
 -- 设置降低英雄等级
-function mt.setDownHeroLevel(hero, level)
+function mt.setDownLevel(hero, level)
     UnitStripHeroLevel(hero, level)
 end
 
 -- 获取英雄等级
-function mt.getHeroLevel(hero)
+function mt.getLevel(hero)
     return GetHeroLevel(hero)
 end
+
+--=============================================================================================
 
 -- 获得属性力量
 function mt.getStr(hero)
@@ -62,8 +64,23 @@ function mt.setInt(hero, value)
     SetHeroInt(hero, value, true)
 end
 
--- 暂停经验获取
-function mt.SuspendHeroXP(hero, bol)
+-- 调整属性力量
+function mt.adjustStr(hero, value)
+    local old = mt.getStr(hero)
+    SetHeroStr(hero, value, true)
+end
+-- 调整属性敏捷
+function mt.adjustAgi(hero, value)
+    SetHeroAgi(hero, value, true)
+end
+-- 调整属性智力
+function mt.adjustInt(hero, value)
+    SetHeroInt(hero, value, true)
+end
+--=============================================================================================
+
+-- 设置经验获取(true,允许)
+function mt.SuspendXP(hero, bol)
     SuspendHeroXP(hero, bol)
 end
 

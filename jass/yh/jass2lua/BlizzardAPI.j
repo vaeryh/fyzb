@@ -48,6 +48,10 @@ endfunction
 //     native DzSetMemory takes integer address, real value returns nothing
 //     native DzSetUnitID takes unit whichUnit, integer id returns nothing
 //     native DzSetUnitModel takes unit whichUnit, string path returns nothing
+//设置单位模型
+public function SetUnitModel takes nothing returns nothing
+	call DzSetUnitModel(yh_unit, yh_string1)
+endfunction
 //     native DzSetWar3MapMap takes string map returns nothing
 //     native DzGetLocale takes nothing returns string
 //     native DzGetUnitNeededXP takes unit whichUnit, integer level returns integer

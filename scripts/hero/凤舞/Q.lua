@@ -21,36 +21,35 @@ mt.count = 0
 
 -- 动作一计数
 function mt.Actions(hero, enemy)
-    local Rlev = gU.getAbiLev(hero, 'FwR0')
-    local Qlev = gU.getAbiLev(hero, mt.id)
+    local Rlev = gAbi.getLevel(hero, 'FwR0')
+    local Qlev = gAbi.getLevel(hero, mt.id)
     -- 凤回闪计数+1
     mt.count = mt.count + 1
 
-    gTag.new("|cff0223df+" .. mt.count, 0.024, hero, 0.5)
+    gTag.newUnit("|cff0223df+" .. mt.count, 0.024, hero, 0.5)
     log.debug(mt.count)
     if mt.count >= 7 - Rlev then
         mt.count = 0 -- 凤回闪计数重置
 
-        gTag.new("|cffe40d0d" .. "凤回闪", 0.020, hero, 0.6)
-        gTag.setVelocity(70, 45)
+        gTag.newUnit("|cffe40d0d" .. "凤回闪", 0.020, hero, 0.6, 70, 45)
         -- print(GetUnitX(hero), GetUnitY(hero))
         -- print(gYh.angleByUnit(hero, enemy))
-        -- print(gYh.PolarProjection(hero, -100, gYh.angleByUnit(hero, enemy)))
+        -- print(gYh.getPolarUnit(hero, -100, gYh.angleByUnit(hero, enemy)))
         -- print(GetUnitState(hero, UNIT_STATE.ATK_Range))
-        local x, y = gYh.PolarProjection(hero, -100, gYh.angleByUnit(hero, enemy))
+        local x, y = gYh.getPolarUnit(hero, -100, gYh.angleByUnit(hero, enemy))
         local mj = gU.create(gP.getOwner(hero), 'yhmj', x, y, gYh.angleByUnit(hero, enemy))
 
-        SetUnitScale(mj, 1 + 0.1 * Qlev, 1 + 0.1 * Qlev, 1 + 0.1 * Qlev)
-        gU.addAbi(mj, 'FwQ1')
+        gU.setScale(mj, 1 + 0.1 * Qlev)
+        gAbi.add(mj, 'FwQ1')
         -- A伤害值
         local Harm = GetHeroAgi(hero, true) * Qlev
-        gAbi.setAbiDataReal(mj, 'FwQ1', 1, ABILITY_DATA.DATA_A, Harm)
+        gAbi.setDataReal(mj, 'FwQ1', 1, ABILITY_DATA.DATA_A, Harm)
         -- C距离
         local range = gU.getState(hero, UNIT_STATE.ATK_RANGE)
-        gAbi.setAbiDataReal(mj, 'FwQ1', 1, ABILITY_DATA.DATA_C, range)
+        gAbi.setDataReal(mj, 'FwQ1', 1, ABILITY_DATA.DATA_C, range)
         -- D最终范围
-        gAbi.setAbiDataReal(mj, 'FwQ1', 1, ABILITY_DATA.DATA_D, 50 * Qlev + 150)
-        IssuePointOrderLoc(mj, "shockwave", GetUnitLoc(hero))
+        gAbi.setDataReal(mj, 'FwQ1', 1, ABILITY_DATA.DATA_D, 50 * Qlev + 150)
+        gU.issueOrderXY(mj, "shockwave", gU.getXY(hero))
     end
 end
 
@@ -65,7 +64,7 @@ gTrg.RegAnyUnitDamageEvent(function()
 
     if IsEventAttackDamage() then -- 普攻
         -- 伤害来源拥有技能
-        if gU.isHaveAbi(source, mt.id) then
+        if gAbi.isHave(source, mt.id) then
             mt.Actions(source, trgU)
         end
         -- 马甲

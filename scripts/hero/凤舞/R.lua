@@ -13,7 +13,8 @@ mt.id = 'FwR0'
 mt.name = "凤舞九天"
 
 -- 技能介绍
-mt.tip = "凤回闪的触发次数减少1/2/3；凤魂的加成增加30%/60%/100%；轻舞成双的几率增加10%/20%/30%"
+mt.tip =
+    "凤回闪的触发次数减少1/2/3；凤魂的加成增加30%/60%/100%；轻舞成双的几率增加10%/20%/30%"
 
 -- R
 function mt.Actions(hero)
@@ -22,14 +23,14 @@ function mt.Actions(hero)
     -- 增加攻击力
     gU.adjustState(hero, UNIT_STATE.BASIC_DAMAGE, 50)
 
-    local RLev = gU.getAbiLev(hero, mt.id)
+    local RLev = gAbi.getLevel(hero, mt.id)
 
     if RLev == 1 then
-        gEff.addEffTar("Abilities\\Spells\\Items\\AIob\\AIobTarget.mdl", hero, "hand,right")
+        gEff.addTarget("Abilities\\Spells\\Items\\AIob\\AIobTarget.mdl", hero, "hand,right")
     elseif RLev == 2 then
-        gEff.addEffTar("Abilities\\Spells\\Items\\AIlb\\AIlbTarget.mdl", hero, "chest")
+        gEff.addTarget("Abilities\\Spells\\Items\\AIlb\\AIlbTarget.mdl", hero, "chest")
     elseif RLev == 3 then
-        gEff.addEffTar("Abilities\\Spells\\Items\\AIfb\\AIfbTarget.mdl", hero, "head")
+        gEff.addTarget("Abilities\\Spells\\Items\\AIfb\\AIfbTarget.mdl", hero, "head")
     end
 end
 

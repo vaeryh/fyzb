@@ -1,19 +1,9 @@
+local japi = require 'jass.japi'
+
 local mt = {}
 
 -- 类型
-mt.unit = "unit"
-
--- 单位类型
-mt.unit_type = 'unit'
-
--- 句柄
-mt.handle = 0
-
--- 所有者
-mt.owner = nil
-
--- 物编Id
-mt.id = "hfoo"
+mt.type = "unit"
 
 -- 单位状态
 UNIT_STATE = {
@@ -58,11 +48,9 @@ end
 
 -- 创建N个单位
 function mt.createNum(num, p, id, x, y, face)
-    local face = face or 270
     for i = 1, num do
         mt.create(p, id, x, y, face)
     end
-    return u
 end
 
 -- 删除单位
@@ -75,7 +63,7 @@ function mt.is_alive(handle)
     return GetUnitState(handle, UNIT_STATE_LIFE) > 0
 end
 
--- 返回单位坐标
+-- 获取单位坐标
 function mt.getXY(u)
     return GetUnitX(u), GetUnitY(u)
 end
@@ -89,7 +77,7 @@ function mt.getY(u)
 end
 
 -- 立即移动单位到坐标
-function mt.setUnitPosition(u, x, y)
+function mt.setPosition(u, x, y)
     SetUnitPosition(u, x, y)
 end
 
@@ -101,13 +89,12 @@ end
 
 -- 获取单位状态
 function mt.getState(u, unitState)
-    return gDz.GetUnitState(u, unitState)
+    return japi.GetUnitState(u, unitState, delta)
 end
 
 -- 设置单位状态
 function mt.setState(u, unitState, delta)
-    -- SetUnitState(u, unitState, delta)
-    gDz.SetUnitState(u, unitState, delta)
+    japi.SetUnitState(u, unitState, delta)
 end
 
 -- 调整单位状态
@@ -120,8 +107,15 @@ function mt.adjustState(u, unitState, delta)
 end
 
 -- 设置单位颜色
-function mt.setUnitColor(u, red, green, blue, alpha)
+function mt.setVertexColor(u, red, green, blue, alpha)
     SetUnitVertexColor(u, red, green, blue, alpha)
+end
+
+-- 设置单位尺寸(u,1.0,1.0,1.0)
+function mt.setScale(u, length, width, height)
+    local width = width or length
+    local height = height or length
+    SetUnitScale(u, length, width, height)
 end
 
 -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 是否 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -140,27 +134,110 @@ function mt.isTypeId(u, id)
     return GetUnitTypeId(u) == gYh.s2id(id)
 end
 
--- 是否拥有技能
-function mt.isHaveAbi(unit, id)
-    return mt.getAbiLev(unit, id) > 0
-end
-
--- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 单位技能 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
--- 单位添加技能
-function mt.addAbi(u, id)
-    UnitAddAbility(u, gYh.s2id(id))
-end
-
--- 获取单位技能等级
-function mt.getAbiLev(unit, id)
-    return GetUnitAbilityLevel(unit, gYh.s2id(id))
-end
-
 -- 设置单位生命周期
 function mt.setLifeTime(unit, time, id)
     local id = id or 'Bhwd' -- 水元素
     UnitApplyTimedLife(unit, gYh.s2id(id), time)
 end
+
+-- 设置碰撞开关(true:打开)
+function mt.setPathing(unit, bol)
+    SetUnitPathing(unit, bol)
+end
+
+-- 设置单位可以飞行(Amrf:乌鸦形态)
+function mt.setFlyEnable(unit)
+    gAbi.add(unit, 'Amrf')
+    gAbi.remove(unit, 'Amrf')
+end
+
+-- 设置单位飞行高度、改变速率
+function mt.setFlyHeight(unit, height, rate)
+    SetUnitFlyHeight(unit, height, rate)
+end
+
+-- 设置单位true:无敌;false:可攻击的
+function mt.setInvulnerable(unit, bol)
+    SetUnitInvulnerable(unit, bol)
+end
+
+-- 设置单位面向角度
+function mt.setFacing(unit, angle)
+    SetUnitFacing(unit, angle)
+end
+
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 发布命令 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+-- 发布无目标命令
+function mt.issueOrder(unit, str)
+    IssueImmediateOrder(unit, str)
+end
+
+-- 发布命令到坐标
+function mt.issueOrderXY(unit, str, x, y)
+    IssuePointOrder(unit, str, x, y)
+end
+
+-- 发布命令到目标(单位、物品、破坏物)
+function mt.issueOrderTar(unit, str, tar)
+    IssueTargetOrder(unit, str, tar)
+end
+
+-- 单位类型
+UNIT_TYPE = {
+    -- 英雄
+    HERO = UNIT_TYPE_HERO,
+    -- 死亡的
+    DEAD = UNIT_TYPE_DEAD,
+    -- 建筑
+    STRUCTURE = UNIT_TYPE_STRUCTURE,
+    -- 飞行单位
+    FLYING = UNIT_TYPE_FLYING,
+    -- 地面单位
+    GROUND = UNIT_TYPE_GROUND,
+    -- 可攻击飞行物的单位
+    ATTACKS_FLYING = UNIT_TYPE_ATTACKS_FLYING,
+    -- 可攻击地面的单位
+    ATTACKS_GROUND = UNIT_TYPE_ATTACKS_GROUND,
+    -- 近程单位
+    MELEE_ATTACKER = UNIT_TYPE_MELEE_ATTACKER,
+    -- 远程单位
+    RANGED_ATTACKER = UNIT_TYPE_RANGED_ATTACKER,
+    -- 泰坦族
+    GIANT = UNIT_TYPE_GIANT,
+    -- 召唤单位
+    SUMMONED = UNIT_TYPE_SUMMONED,
+    -- 被枷锁的
+    STUNNED = UNIT_TYPE_STUNNED,
+    -- 附带瘟疫的
+    PLAGUED = UNIT_TYPE_PLAGUED,
+    -- 被束缚的
+    SNARED = UNIT_TYPE_SNARED,
+    -- 不死族
+    UNDEAD = UNIT_TYPE_UNDEAD,
+    -- 机械
+    MECHANICAL = UNIT_TYPE_MECHANICAL,
+    -- 工人
+    PEON = UNIT_TYPE_PEON,
+    -- 自爆工兵
+    SAPPER = UNIT_TYPE_SAPPER,
+    -- 城镇大厅
+    TOWNHALL = UNIT_TYPE_TOWNHALL,
+    -- 古树
+    ANCIENT = UNIT_TYPE_ANCIENT,
+    -- 牛头人
+    TAUREN = UNIT_TYPE_TAUREN,
+    -- 中毒的
+    POISONED = UNIT_TYPE_POISONED,
+    -- 被变形的
+    POLYMORPHED = UNIT_TYPE_POLYMORPHED,
+    -- 被催眠的
+    SLEEPING = UNIT_TYPE_SLEEPING,
+    -- 有抗性皮肤的
+    RESISTANT = UNIT_TYPE_RESISTANT,
+    -- 处于虚无状态的
+    ETHEREAL = UNIT_TYPE_ETHEREAL,
+    -- 魔法免疫的
+    MAGIC_IMMUNE = UNIT_TYPE_MAGIC_IMMUNE
+}
 
 return mt

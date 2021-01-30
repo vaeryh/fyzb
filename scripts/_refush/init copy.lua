@@ -28,14 +28,14 @@ mt.hero = nil
 --         if IsEventAttackDamage() and gU.isEnemy(damS, trgP) then -- 普攻
 --             if damS == mt.hero then -- 判断伤害来源
 --                 mt.abiD.Actions(damS, trgU)
---                 if gU.getAbiLev(damS, 'FwQ0') >= 1 then
+--                 if gAbi.getLevel(damS, 'FwQ0') >= 1 then
 --                     mt.abiQ.Actions(damS, trgU)
 --                 end
 --                 mt.abiE.Actions(damS, trgU)
 --             end
 --             if GetUnitTypeId(damS) ~= gYh.s2id('Fw01') then
 --                 mt.abiD.Actions(damS, trgU)
---                 if gU.getAbiLev(damS, 'FwQ0') >= 1 then
+--                 if gAbi.getLevel(damS, 'FwQ0') >= 1 then
 --                     mt.abiQ.Actions(damS, trgU)
 --                 end
 --             end
@@ -67,7 +67,7 @@ end
 --         return
 --     end
 --     mt.hero = GetTriggerUnit()
---     gH.setUpHeroLevel(mt.hero, 100, true)
+--     gH.setUpLevel(mt.hero, 100, true)
 --     -- 伤害事件
 --     gTrg.RegAnyUnitDamageEvent(function()
 --         local trgU = GetTriggerUnit()
@@ -78,14 +78,14 @@ end
 --         if IsEventAttackDamage() and gU.isEnemy(damS, trgP) then -- 普攻
 --             if damS == mt.hero then -- 判断伤害来源
 --                 abiD.Actions(damS, trgU)
---                 if gU.getAbiLev(damS, 'FwQ0') >= 1 then
+--                 if gAbi.getLevel(damS, 'FwQ0') >= 1 then
 --                     abiQ.Actions(damS, trgU)
 --                 end
 --                 abiE.Actions(damS, trgU)
 --             end
 --             if GetUnitTypeId(damS) ~= gYh.s2id('Fw01') then
 --                 abiD.Actions(damS, trgU)
---                 if gU.getAbiLev(damS, 'FwQ0') >= 1 then
+--                 if gAbi.getLevel(damS, 'FwQ0') >= 1 then
 --                     abiQ.Actions(damS, trgU)
 --                 end
 --             end

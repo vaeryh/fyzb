@@ -1,9 +1,8 @@
 -- FogEnable(false)
 -- FogMaskEnable(false)
 -- 打印文本
-printF = function(str, i)
-    i = i or 0
-    DisplayTimedTextToPlayer(Player(i), 0, 0, 20, tostring(str))
+printF = function(str)
+    DisplayTimedTextToPlayer(GetLocalPlayer(), 0, 0, 20, tostring(str))
 end
 
 -- 学习库

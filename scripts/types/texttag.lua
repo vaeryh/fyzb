@@ -14,9 +14,14 @@ function mt.setText(tag, str, size)
     SetTextTagText(tag, str, size)
 end
 
--- 设置文字位置，Z轴高度
+-- 设置文字单位，Z轴高度
 function mt.setPosUnit(tag, u, zOffset)
     SetTextTagPosUnit(tag, u, zOffset)
+end
+
+-- 设置文字地点，Z轴高度
+function mt.setPos(tag, x, y, zOffset)
+    SetTextTagPos(tag, x, y, zOffset)
 end
 
 -- 设置文字颜色
@@ -49,13 +54,29 @@ function mt.setVelocity(speed, angle)
 end
 
 -- 新建漂浮文字
-function mt.new(str, size, unit, showt)
+function mt.newUnit(str, size, unit, showt, speed, angle)
     local tag = mt.create()
+    local speed = speed or 90
+    local angle = angle or 45
     mt.setText(tag, str, size)
     mt.setPosUnit(tag, unit, 0.00)
     mt.setPermanent(tag, false)
     mt.setLifespan(tag, showt)
     mt.setFadepoint(tag, showt * 0.66)
+    mt.setVelocity(speed, angle)
+end
+
+-- 新建漂浮文字
+function mt.newXY(str, size, x,y, showt, speed, angle)
+    local tag = mt.create()
+    local speed = speed or 90
+    local angle = angle or 45
+    mt.setText(tag, str, size)
+    mt.setPos(tag, x,y, 0.00)
+    mt.setPermanent(tag, false)
+    mt.setLifespan(tag, showt)
+    mt.setFadepoint(tag, showt * 0.66)
+    mt.setVelocity(speed, angle)
 end
 
 return mt

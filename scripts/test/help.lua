@@ -49,11 +49,20 @@ function reload()
         gU.listUnit[k] = nil
         gU.remove(v, nil)
     end
-
+    local hero_load = require 'hero.hero_load'
     helper_reload(function()
         -- require 'test.help'
         require 'main copy'
         require 'test.t'
+        -- 英雄技能重置
+
+        for i, name in ipairs(hero_load.name) do
+            require('hero.' .. name .. '.D')
+            require('hero.' .. name .. '.Q')
+            require('hero.' .. name .. '.W')
+            require('hero.' .. name .. '.E')
+            require('hero.' .. name .. '.R')
+        end
     end)
 
     log.info('---- Reloading end   ----')

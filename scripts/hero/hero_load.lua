@@ -3,7 +3,7 @@ local map = require 'map.global'
 -- 英雄载入
 local mt = {}
 
-mt.name = {'凤舞', '聂风'}
+mt.name = {'凤舞', '聂风', '断浪', '秦霜', '步惊云', '神医'}
 
 -- 英雄表
 mt.hero_Tab = {}
@@ -81,10 +81,10 @@ local function environment()
 end
 
 -- 初始化
-local function init()
+function mt.init()
     init_tab()
     environment()
     showHero()
 end
 
-init()
+return mt

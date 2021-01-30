@@ -16,17 +16,14 @@ mt.tip = "增加移动速度5-30%、攻击速度10-50%、闪避率8-40%"
 
 -- E
 function mt.Actions(hero)
-    local Elev = gU.getAbiLev(hero, mt.id)
+    local Elev = gAbi.getLevel(hero, mt.id)
     --
-    if GetUnitAbilityLevel(hero, 'NfE1') == 0 then
-        UnitAddAbility(hero, 'NfE1')
+    if gAbi.getLevel(hero, 'NfE1') == 0 then
+        gAbi.add(hero, 'NfE1')
+        gAbi.add(hero, 'NfE2')
     end
-    SetUnitAbilityLevel(hero, 'NfE1', Elev)
-    --
-    if GetUnitAbilityLevel(hero, 'NfE1') == 0 then
-        UnitAddAbility(hero, 'NfE2')
-    end
-    SetUnitAbilityLevel(hero, 'NfE2', Elev)
+    gAbi.setLevel(hero, 'NfE1', Elev)
+    gAbi.setLevel(hero, 'NfE2', Elev)
 end
 
 -- 触发+条件

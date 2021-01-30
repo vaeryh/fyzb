@@ -18,14 +18,13 @@ mt.tip = "凤舞的攻击有((凤舞与被攻击者距离/100)*5)%的几率无�
 -- D动作
 function mt.Actions(hero, enemy)
     if GetRandomReal(1, 100) <= gYh.distanceByUnit(hero, enemy) / 20 then
-        gEff.remove(gEff.addEffTar("Abilities\\Weapons\\Blood\\BloodImpact.mdl", enemy, "chest"))
+        gEff.remove(gEff.addTarget("Abilities\\Weapons\\Blood\\BloodImpact.mdl", enemy, "chest"))
 
         SetEventDamage(0.00)
         local harm = gU.getState(hero, UNIT_STATE.BASIC_DAMAGE)
         UnitDamageTarget(hero, enemy, harm, false, true, ATTACK_TYPE_HERO, DAMAGE_TYPE_DEFENSIVE, WEAPON_TYPE_WHOKNOWS)
 
-        gTag.new("|cffdd0de4" .. "凤舞箭", 0.020, hero, 0.70)
-        gTag.setVelocity(70, 135)
+        gTag.newUnit("|cffdd0de4" .. "凤舞箭", 0.020, hero, 0.70, 70, 135)
     end
 end
 
@@ -40,7 +39,7 @@ gTrg.RegAnyUnitDamageEvent(function()
 
     if IsEventAttackDamage() then -- 普攻
         -- 伤害来源拥有技能
-        if gU.isHaveAbi(source, mt.id) then
+        if gAbi.isHave(source, mt.id) then
             mt.Actions(source, trgU)
         end
         -- 马甲

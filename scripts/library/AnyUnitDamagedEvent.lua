@@ -1,3 +1,4 @@
+local japi = require 'jass.japi'
 -- 伤害事件
 local mt = {}
 
@@ -33,9 +34,7 @@ function mt.SyStemRegistTrigger(trg)
                 end
             end
         end)
-        local t = CreateTrigger()
-        local r = CreateRegion()
-        local g = CreateGroup()
+        local t,r,g = CreateTrigger(),CreateRegion(),CreateGroup()
         -- 把矩形添加进区域
         RegionAddRect(r, GetWorldBounds())
         -- 注册进入区域事件
@@ -50,10 +49,8 @@ function mt.SyStemRegistTrigger(trg)
     Number = Number + 1
 end
 
-local japi = require 'jass.japi'
--- for k, v in pairs(japi) do
---     print(k,v)
--- end
+--===============================================================================================
+
 local EVENT_DAMAGE_DATA_VAILD = 0
 local EVENT_DAMAGE_DATA_IS_PHYSICAL = 1
 local EVENT_DAMAGE_DATA_IS_ATTACK = 2

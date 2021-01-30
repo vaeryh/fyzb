@@ -18,7 +18,7 @@ OPCODE = {
 }
 
 -- 注册事件
---mt.EVENT = {}
+-- mt.EVENT = {}
 
 -- 玩家单位事件
 EVENT_PLAYER_UNIT = {
@@ -174,6 +174,13 @@ function mt.RegPlayerChatEvent(p, message, bol, code)
     TriggerRegisterPlayerChatEvent(mt.create(code), p, message, bol)
 end
 
+-- 所有玩家输入聊天信息事件
+function mt.RegAnyPlayerChatEvent(message, bol, code)
+    local trg = mt.create(code)
+    for i = 0, 15 do
+        TriggerRegisterPlayerChatEvent(trg, Player(i), message, bol)
+    end
+end
 -- 玩家单位事件
 function mt.RegPlayerUnitEvent(p, playerunitevent, code)
     TriggerRegisterPlayerUnitEvent(mt.create(code), p, playerunitevent, nil)
@@ -186,6 +193,14 @@ function mt.RegUserPlayerUnitEvent(playerunitevent, code)
         if gP.isUserPlayer(i) then
             TriggerRegisterPlayerUnitEvent(trg, Player(i), playerunitevent, nil)
         end
+    end
+end
+
+-- 所有：玩家单位事件
+function mt.RegAnyPlayerUnitEvent(playerunitevent, code)
+    local trg = mt.create(code)
+    for i = 0, 15 do
+        TriggerRegisterPlayerUnitEvent(trg, Player(i), playerunitevent, nil)
     end
 end
 
@@ -222,7 +237,17 @@ function mt.RegAnyUnitDamageEvent(code)
     local dam = require 'library.AnyUnitDamagedEvent'
     dam.SyStemRegistTrigger(mt.create(code))
 end
---------------------------------------------------------------
+----------------------------------------------------------------------------
 
+-- 是否匹配技能
+function mt.isMatchAbiId(id)
+    local abi
+    if GetSpellAbilityId() ~= 0 then
+        abi = GetSpellAbilityId()
+    elseif GetLearnedSkill() ~= 0 then
+        abi = GetLearnedSkill()
+    end
+    return abi == gYh.s2id(id)
+end
 
 return mt
