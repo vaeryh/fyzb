@@ -105,7 +105,15 @@ public function CreateFrame takes nothing returns nothing
 endfunction
 //     native DzCreateSimpleFrame takes string frame, integer parent, integer id returns integer
 //     native DzDestroyFrame takes integer frame returns nothing
+//删除farme
+public function DestroyFrame takes nothing returns nothing
+	call DzDestroyFrame(yh_frame1)
+endfunction
 //     native DzLoadToc takes string fileName returns nothing
+//载入Toc文件
+public function LoadToc takes nothing returns nothing
+	call DzLoadToc(yh_string1)
+endfunction
 //     native DzFrameSetPoint takes integer frame, integer point, integer relativeFrame, integer relativePoint, real x, real y returns nothing
 //Frame设置相对位置锚点
 public function FrameSetPoint takes nothing returns nothing
@@ -192,14 +200,5 @@ endfunction
 //     native DzFrameSetTextAlignment takes integer frame, integer align returns nothing
 //     native DzFrameGetName takes integer frame returns string
 
-//---------------------------------------------------------------
-//设置单位属性GetUnitState
-public function getUnitState takes nothing returns nothing
-	set yh_real1 = GetUnitState(yh_unit, yh_unitstate)
-endfunction
-//设置单位属性SetUnitState
-public function setUnitState takes nothing returns nothing
-	call SetUnitState(yh_unit, yh_unitstate, yh_real1)
-endfunction
 
 endscope

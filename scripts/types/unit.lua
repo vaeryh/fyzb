@@ -186,10 +186,12 @@ end
 function mt.issueOrder(unit, str)
     IssueImmediateOrder(unit, str)
 end
+
 -- 发布命令到坐标
 function mt.issueOrderXY(unit, str, x, y)
     IssuePointOrder(unit, str, x, y)
 end
+
 -- 发布命令到目标(单位、物品、破坏物)
 function mt.issueOrderTar(unit, str, tar)
     IssueTargetOrder(unit, str, tar)

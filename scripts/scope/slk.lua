@@ -51,9 +51,5 @@ function mt.getDataAbi(handle, pro)
     local pro = slk.ability[id][pro] or log.error('无效', handle, pro)
     return pro
 end
--- gTrg.RegAnyPlayerUnitEvent(EVENT_PLAYER_UNIT.SELECTED, function()
---     local unit = GetTriggerUnit()
---     print(mt.getData(SLK_TYPE.UNIT, unit, 'Tip'))
--- end)
 
 return mt

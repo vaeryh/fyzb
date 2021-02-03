@@ -117,7 +117,10 @@ function mt.new(rows, cols, title)
     mt.setetRowCount(b, rows)
     mt.setColumnCount(b, cols)
     mt.setTitleText(b, title)
-    mt.setDisplay(b, true)
+    gTrg.RegTimerEvent(0.00, false, function()
+        mt.setDisplay(b, true)
+        gTrg.remove()
+    end)
     return b
 end
 

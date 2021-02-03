@@ -88,7 +88,11 @@ ABILITY_DATA = {
 
 -- 获取单位技能code
 function mt.getUnitAbility(unit, id)
-    return japi.EXGetUnitAbility(unit, gYh.s2id(id))
+    if type(id) == "number" then
+        return japi.EXGetUnitAbility(unit, id)
+    elseif type(id) == "string" then
+        return japi.EXGetUnitAbility(unit, gYh.s2id(id))
+    end
 end
 
 -- ================================================================
@@ -96,21 +100,21 @@ end
 -- 设置单位技能属性 实数
 function mt.setDataReal(unit, id, abiLev, data_type, value)
     local abi = mt.getUnitAbility(unit, id)
-    local abiLev = abiLev or mt.getLevel(unit,id)
+    local abiLev = abiLev or mt.getLevel(unit, id)
     japi.EXSetAbilityDataReal(abi, abiLev, data_type, value)
 end
 
 -- 设置单位技能属性 整数
 function mt.setDataInteger(unit, id, abiLev, data_type, value)
     local abi = mt.getUnitAbility(unit, id)
-    local abiLev = abiLev or mt.getLevel(unit,id)
+    local abiLev = abiLev or mt.getLevel(unit, id)
     japi.EXSetAbilityDataInteger(abi, abiLev, data_type, value)
 end
 
 -- 设置单位技能属性 字符串
 function mt.setDataString(unit, id, abiLev, data_type, value)
     local abi = mt.getUnitAbility(unit, id)
-    local abiLev = abiLev or mt.getLevel(unit,id)
+    local abiLev = abiLev or mt.getLevel(unit, id)
     japi.EXSetAbilityDataString(abi, abiLev, data_type, value)
 end
 
@@ -125,21 +129,21 @@ end
 -- 获取单位技能属性 实数
 function mt.getDataReal(unit, id, abiLev, data_type)
     local abi = mt.getUnitAbility(unit, id)
-    local abiLev = abiLev or mt.getLevel(unit,id)
+    local abiLev = abiLev or mt.getLevel(unit, id)
     return japi.EXGetAbilityDataReal(abi, abiLev, data_type)
 end
 
 -- 获取单位技能属性 整数
 function mt.getDataInteger(unit, id, abiLev, data_type)
     local abi = mt.getUnitAbility(unit, id)
-    local abiLev = abiLev or mt.getLevel(unit,id)
+    local abiLev = abiLev or mt.getLevel(unit, id)
     return japi.EXGetAbilityDataInteger(abi, abiLev, data_type)
 end
 
 -- 获取单位技能属性 字符串
 function mt.getDataString(unit, id, abiLev, data_type)
     local abi = mt.getUnitAbility(unit, id)
-    local abiLev = abiLev or mt.getLevel(unit,id)
+    local abiLev = abiLev or mt.getLevel(unit, id)
     return japi.EXGetAbilityDataString(abi, abiLev, data_type)
 end
 
@@ -147,6 +151,13 @@ end
 function mt.getDataState(unit, id, data_type)
     local abi = mt.getUnitAbility(unit, id)
     return japi.EXGetAbilityState(abi, data_type)
+end
+
+-- ================================================================
+
+-- 设置玩家单位技能允许性
+function mt.setAvailable(p, id, bol)
+    SetPlayerAbilityAvailable(p, gYh.s2id(id), bol)
 end
 
 -- ================================================================

@@ -64,12 +64,18 @@ function mt.reload()
         gDmb.listBoard[k] = nil
         gDmb.remove(v)
     end
-
+    -- 重载多面板
+    for k, v in ipairs(gDz.listFrame) do
+        log.debug("Frame", k, v)
+        gDz.listFrame[k] = nil
+        gDz.DestroyFrame(v)
+    end
+    
     local hero_load = require 'hero.hero_load'
     helper_reload(function()
         require 'main'
-        --require 'main'
-        --require 'test.t'
+        -- require 'main'
+        -- require 'test.t'
         -- 英雄技能重置
         for i, name in ipairs(hero_load.name) do
             require('hero.' .. name .. '.D')

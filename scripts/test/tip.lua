@@ -11,6 +11,7 @@ gTrg.RegTimerEvent(1.00, true, function()
             width = #v
         end
     end
+    print(width)
     gDmb.setItemsWidth(dmb, width * 0.0025)
     gDmb.setMinimize(dmb, true)
     gDmb.setMinimize(dmb, false)
