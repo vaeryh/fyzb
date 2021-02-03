@@ -20,7 +20,10 @@ mt.tip = [[
 function mt.Actions(hero)
     local Elev = gAbi.getLevel(hero, mt.id)
     --
-
+    gAbi.add(hero, 'BjE0')
+    gAbi.setLevel(hero, 'BjE0',Elev)
+    gAbi.add(hero, 'BjE1')
+    gAbi.setLevel(hero, 'BjE1',Elev)
 end
 
 -- 触发+条件

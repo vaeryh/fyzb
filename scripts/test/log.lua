@@ -16,12 +16,14 @@ log.path = '风云争霸\\日志\\' .. split(log.path, '\\')[2]
 log.debug '日志系统装载完毕,向着星辰大海出发!'
 -- 重载函数 print
 local std_print = print
+
 function print(...)
     log.info(...)
     return std_print(...)
 end
 
 local log_error = log.error
+
 function log.error(...)
     local trc = debug.traceback()
     log_error(...)

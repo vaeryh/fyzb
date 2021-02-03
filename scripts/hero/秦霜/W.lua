@@ -25,7 +25,16 @@ function mt.Actions(hero)
     local x, y = gU.getXY(hero)
     local distance = gYh.distanceXY(x, y, spellX, spellY)
     local angle = gYh.angleXY(x, y, spellX, spellY)
-
+    local tmr = CreateTimer()
+    Qs_boolE = true
+    TimerStart(tmr, 1.00, true, function()
+        if Qs_boolE == true then
+            Abi_D_Actions()
+            Abi_E_Actions()
+        else
+            DestroyTimer(GetExpiredTimer())
+        end
+    end)
 end
 
 -- 触发+动作

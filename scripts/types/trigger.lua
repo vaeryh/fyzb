@@ -120,12 +120,15 @@ function mt.create(code)
     TriggerAddAction(trg, code)
     return trg
 end
+-- 获取状态(true:开启)
+function mt.getIsEnabled(trg)
+    local trg = trg or GetTriggeringTrigger()
+    return IsTriggerEnabled(trg)
+end
 
 -- 运行触发器（无视条件）
 function mt.call(trg)
-    if trg == nil then
-        log.error('触发器为空')
-    end
+    local trg = trg or log.error(trg, '触发器为空')
     TriggerExecute(trg)
 end
 
@@ -136,13 +139,13 @@ function mt.remove(trg)
 end
 
 -- 关闭触发器
-function mt.setPause(trg)
+function mt.setClose(trg)
     local trg = trg or GetTriggeringTrigger()
     DisableTrigger(trg)
 end
 
 -- 开启触发器
-function mt.setStart(trg)
+function mt.setOpen(trg)
     local trg = trg or GetTriggeringTrigger()
     EnableTrigger(trg)
 end
@@ -155,17 +158,13 @@ end
 
 -- 对话框点击事件
 function mt.RegDialogEvent(dialog, code)
-    if dialog == nil then
-        return log.error("注册对话框为空")
-    end
+    local dialog = dialog or orlog.error("注册对话框为空")
     TriggerRegisterDialogEvent(mt.create(code), dialog)
 end
 
 -- 对话框按钮点击事件
 function mt.RegDialogButtonEvent(dialogButton, code)
-    if dialogButton == nil then
-        return log.error("注册对话框按钮为空")
-    end
+    local dialogButton = dialogButton or log.error("注册对话框按钮为空")
     TriggerRegisterDialogButtonEvent(mt.create(code), dialogButton)
 end
 
@@ -196,12 +195,13 @@ function mt.RegUserPlayerUnitEvent(playerunitevent, code)
     end
 end
 
--- 所有：玩家单位事件
+-- 任意：玩家单位事件
 function mt.RegAnyPlayerUnitEvent(playerunitevent, code)
     local trg = mt.create(code)
     for i = 0, 15 do
         TriggerRegisterPlayerUnitEvent(trg, Player(i), playerunitevent, nil)
     end
+    return trg
 end
 
 -- 单位事件
@@ -233,8 +233,8 @@ function mt.RegKeyEventByCode(btnStr, status, code)
 end
 
 -- 注册任意单位伤害事件
+local dam = require 'library.AnyUnitDamagedEvent'
 function mt.RegAnyUnitDamageEvent(code)
-    local dam = require 'library.AnyUnitDamagedEvent'
     dam.SyStemRegistTrigger(mt.create(code))
 end
 ----------------------------------------------------------------------------

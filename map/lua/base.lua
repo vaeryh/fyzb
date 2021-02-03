@@ -49,5 +49,11 @@ if not base.release then
 	runtime.debugger = 4279
 end
 
+local std_print = print
+-- 打印输出时间
+function print(...)
+    std_print(('[%.3f]'):format(os.clock()), ...)
+end
+
 --初始化本地脚本
 require 'main'

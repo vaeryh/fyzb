@@ -19,9 +19,48 @@ mt.tip = [[
 ]]
 -- R
 function mt.Actions(hero)
+    local spellX, spellY = GetSpellTargetX(), GetSpellTargetY()
+    local x, y = gU.getXY(hero)
+    local distance = gYh.distanceXY(x, y, spellX, spellY)
+    local angle = gYh.angleXY(x, y, spellX, spellY)
     local agi, Rlev = gH.getAgi(hero), gAbi.getLevel(hero, mt.id)
     local heroDur = gAbi.getDataReal(hero, mt.id, Rlev, ABILITY_DATA.HERODUR)
+    local A = GetUnitLoc(GetSpellAbilityUnit())
+    local B
+    local T
+    local dwz
 
+    EXSetEffectSpeed(bj_lastCreatedEffect, 0.50)
+    for i = 1, 10 do
+        B = PolarProjectionBJ(A, 300.00, 36 * lopA)
+        T = AddSpecialEffectLoc("war3mapImported\\snowflake.mdx", B)
+        EXSetEffectSpeed(T, 0.50)
+        RemoveLocation(B)
+    end
+
+    dwz = GetUnitsInRangeOfLocMatching(800.00, A, nil)
+    ForGroup(dwz, function()
+        UnitDamageTarget(hero, GetEnumUnit(), int * 30, false, false, ATTACK_TYPE_MAGIC, DAMAGE_TYPE_COLD,
+            WEAPON_TYPE_WHOKNOWS)
+        CreateTextTagUnit("霜绝天下第一段", 0.025, GetEnumUnit(), 0, 1, 255, 0, 255, 255)
+        SetTextTagVelocityBJ(bj_lastCreatedTextTag, 64, 75)
+    end)
+    Abi_E_Actions()
+
+    TriggerSleepAction(3.00)
+
+    ForGroup(dwz, function()
+        local C = GetUnitLoc(GetEnumUnit())
+        local T2 = AddSpecialEffectLoc("Abilities\\Spells\\Undead\\FrostNova\\FrostNovaTarget.mdl", C)
+        EXSetEffectSpeed(T2, 0.50)
+        UnitDamageTarget(hero, GetEnumUnit(), int * 9, false, false, ATTACK_TYPE_MAGIC, DAMAGE_TYPE_COLD,
+            WEAPON_TYPE_WHOKNOWS)
+        CreateTextTagUnit("霜绝天下第二段", 0.025, GetEnumUnit(), 0, 1, 255, 0, 255, 255)
+        SetTextTagVelocityBJ(bj_lastCreatedTextTag, 64, 75)
+        RemoveLocation(C)
+    end)
+    Abi_E_Actions()
+    DestroyGroup(dwz)
 end
 
 -- 触发+动作

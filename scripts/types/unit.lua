@@ -38,10 +38,8 @@ mt.listUnit = {}
 
 -- 创建单位
 function mt.create(p, id, x, y, face)
-    local u = CreateUnit(p, gYh.s2id(id), x, y, face)
-    if u == nil then
-        log.error(id, gYh.s2id(id))
-    end
+    local x = x or log.error('坐标错误')
+    local u = CreateUnit(p, gYh.s2id(id), x, y, face) or log.error(gYh.s2id(id))
     table.insert(mt.listUnit, u)
     return u
 end
@@ -165,21 +163,49 @@ end
 function mt.setFacing(unit, angle)
     SetUnitFacing(unit, angle)
 end
+-- 获取单位面向角度
+function mt.getFacing(unit)
+    GetUnitFacing(unit)
+end
+
+-- 获取单位默认移动速度
+function mt.getDefaultMoveSpeed(unit)
+    GetUnitDefaultMoveSpeed(unit)
+end
+-- 获取单位移动速度
+function mt.getMoveSpeed(unit)
+    GetUnitMoveSpeed(unit)
+end
+-- 设置单位移动速度
+function mt.setMoveSpeed(unit, speed)
+    SetUnitMoveSpeed(unit, speed)
+end
 
 -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 发布命令 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 -- 发布无目标命令
 function mt.issueOrder(unit, str)
     IssueImmediateOrder(unit, str)
 end
-
 -- 发布命令到坐标
 function mt.issueOrderXY(unit, str, x, y)
     IssuePointOrder(unit, str, x, y)
 end
-
 -- 发布命令到目标(单位、物品、破坏物)
 function mt.issueOrderTar(unit, str, tar)
     IssueTargetOrder(unit, str, tar)
+end
+
+-- 发布中介无目标命令
+function mt.issueNeutralOrder(player,unit, str)
+    IssueNeutralImmediateOrder(player,unit, str)
+end
+-- 发布中介命令到坐标
+function mt.issueNeutralOrderXY(player,unit, str, x, y)
+    IssueNeutralPointOrder(player,unit, str, x, y)
+end
+-- 发布中介命令到目标(单位、物品、破坏物)
+function mt.issueNeutralOrderTar(player,unit, str, tar)
+    IssueNeutralTargetOrder(player,unit, str, tar)
 end
 
 -- 单位类型

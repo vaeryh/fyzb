@@ -11,6 +11,7 @@ mt.lgf2 = map.rect['练功房矩形4']
 gTrg.RegTimerEvent(5.00, false, function()
     gFog.start(gFog.createFog(Player(0), mt.lgf1))
     gFog.start(gFog.createFog(Player(0), mt.lgf2))
+    gTrg.remove()
 end)
 --------------------------------------------------------------------------
 -- 英雄瓶颈(逢10)
@@ -46,7 +47,7 @@ function Actions_C_1(whichHero)
     gH.setUpLevel(whichEnemy, Lev * 10, false)
     gU.setUnitColor(whichEnemy, 50, 50, 50, 255)
     -- 绑定挑战英雄
-    TimerStart(CreateTimer(), 2.00, true, function()
+    TimerStart(gT.create(), 2.00, true, function()
         -- 敌人死亡
         if not gU.is_alive(whichEnemy) then
             gP.disTimedText(trgP, 15.00, GetUnitName(whichHero) + "挑战成功!奖励提升等级1级。")

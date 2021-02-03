@@ -17,6 +17,7 @@ mt.hero = nil
 -- 触发入口
 gTrg.RegUserPlayerUnitEvent(EVENT_PLAYER_UNIT.CHANGE_OWNER, function()
     if gU.isTypeId(GetTriggerUnit(), mt.id) then
+        log.info(mt.name..'载入成功····')
         mt.hero = GetTriggerUnit()
         require 'hero.断浪.D'
         require 'hero.断浪.Q'

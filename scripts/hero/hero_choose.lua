@@ -44,15 +44,13 @@ function mt.selectHero()
 
     if GetUnitUserData(thisU) == GetPlayerId(thisP) + 1 then
         local str = GetPlayerName(thisP) .. "选择了" .. GetUnitName(thisU) .. '!'
-        gP.disTimedText(thisP, 20, str)
+        gP.disTimedText(thisP, 20.00, str)
         SetUnitOwner(thisU, thisP, true) -- 改变单位所属为触发玩家
         Hero[thisP] = thisU
         -- 启用- 新建可见度修正器，盟友共享视野，不覆盖单位视野
         gFog.start(gFog.createFog(thisP, mt.rect_home))
         -- 设置玩家可用地图区域=默认可用地图区域
-        if gP.isLocalPlayer(thisP) then
-            gCamera.setCameraBounds(gRect.getAbleArea)
-        end
+        gCamera.setCameraBounds(gRect.getAbleArea, thisP)
         -- 传送
         gYh.MoveAndCamera(thisU, gRect.getCenter(mt.rect_hg))
         -- 注册英雄复活
@@ -63,9 +61,8 @@ function mt.selectHero()
         gTrg.remove()
     else
         SetUnitUserData(thisU, GetPlayerId(thisP) + 1) -- 设置单位自定义值为触发玩家ID
-        TimerStart(CreateTimer(), 0.33, false, function()
+        gT.wait(0.33, function()
             SetUnitUserData(thisU, 0)
-            gT.remove()
         end)
     end
 end

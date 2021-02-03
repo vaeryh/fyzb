@@ -5,9 +5,6 @@ if not message then
 end
 local keyboard = message.keyboard
 
-function message.order_enable_debug(msg)
-    print(msg)
-end
 -- 本地选择单位
 --[[ TimerStart(CreateTimer(), 1.00, true, function()
     local selection = message.selection()
@@ -31,7 +28,8 @@ function message.hook(msg)
         end
         -- 重载ESC
         if msg.code == 512 then
-            reload()
+            local help = require 'test.help'
+            help.reload()
             return true
         end
     end

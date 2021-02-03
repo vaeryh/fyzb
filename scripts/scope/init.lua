@@ -1,0 +1,6 @@
+gSlk = require 'scope.slk'
+gYh = require 'scope.yh'
+gDz = require 'library.BlizzardAPI'
+gUnitdata = require 'scope.unitdata'
+require 'scope.message'
+require 'scope.time'

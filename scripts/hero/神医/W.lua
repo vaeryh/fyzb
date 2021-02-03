@@ -8,7 +8,7 @@ mt.Buttonpos = "W"
 mt.abiLevel = 5
 
 -- 技能id
-mt.id = 'QsW0'
+mt.id = 'SyW0'
 
 -- 技能名称
 mt.name = "药王神经-治疗"
@@ -20,11 +20,17 @@ mt.tip = [[
 
 -- W
 function mt.Actions(hero)
-    local spellX, spellY = GetSpellTargetX(), GetSpellTargetY()
-    local x, y = gU.getXY(hero)
-    local distance = gYh.distanceXY(x, y, spellX, spellY)
-    local angle = gYh.angleXY(x, y, spellX, spellY)
-
+    local int = gH.getInt(hero)
+    local target = GetSpellTargetUnit()
+    gAbi.setDataReal(hero, mt.id, nil, ABILITY_DATA.DATA_A, int * 5)
+    local count = 0
+    gT.loop(1.00, function()
+        gTag.newUnit('|cff4ffa00+' .. int, 0.024, target, 0.77, 25.00, 90.00)
+        count = count + 1
+        if count == 5 then
+            gT.remove()
+        end
+    end)
 end
 
 -- 触发+动作

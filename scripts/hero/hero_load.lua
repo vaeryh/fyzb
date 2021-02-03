@@ -25,7 +25,7 @@ mt.showT = 30
 
 -- 删除未选择英雄
 local function removeUnSelected(tab)
-    TimerStart(gT.create(), mt.showT, fasle, function()
+    gT.wait(mt.showT, function()
         for i, v in ipairs(tab) do
             if gP.getOwner(v) == Player(15) then
                 gU.remove(v)
@@ -33,7 +33,6 @@ local function removeUnSelected(tab)
         end
         -- 播放背景音乐
         gSound.PlayMusic(mt.sound_home)
-        gT.remove()
     end)
 end
 
@@ -46,7 +45,7 @@ local function showHero()
         if i <= 3 then
             x, y = minx + i * 200, maxy
         else
-            x, y = minx + (i - 3) * 200, maxy - 200
+            x, y = minx + (i - 3) * 200, maxy - 300
         end
         local u = gU.create(Player(15), id, x, y, 270)
         table.insert(tab, u)
@@ -86,5 +85,7 @@ function mt.init()
     environment()
     showHero()
 end
+
+mt.init()
 
 return mt

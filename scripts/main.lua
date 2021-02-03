@@ -1,61 +1,23 @@
-local std_print = print
--- 打印输出时间
-function print(...)
-    std_print(('[%.3f]'):format(os.clock()), ...)
-end
--- -- 测试打印
--- function debug(...)
---     std_print(("debug"..'[%.3f]'):format(os.clock()), ...)
--- end
 -- 调用
 -- local std_require = require
-
 -- function require(...)
 --     if package.loaded[...] == nil then
---         --print(..., 'load success!!')
+--         print(..., 'load success!!')
 --     end
 --     local bol = std_require(...)
-
 --     return bol
 -- end
-
 -----------------------------------------------------------------------------------------
 -- types类型库
-do
-    gTrg = require 'types.trigger'
-    gP = require 'types.player'
-    gU = require 'types.unit'
-    gH = require 'types.hero'
-    gAbi = require 'types.ability'
-    gT = require 'types.timer'
-    gRect = require 'types.rect'
-    gCamera = require 'types.camera'
-    gFog = require 'types.fogmodifier'
-    gSound = require 'types.sound'
-    gDia = require 'types.dialog'
-    gGame = require 'types.game'
-    gGroup = require 'types.group'
-    gEff = require 'types.effect'
-    gTag = require 'types.texttag'
-end
+require 'types.init'
 -- scope库
-do
-    gYh = require 'scope.yh'
-    gUnitdata = require 'scope.unitdata'
-    --Is = require 'scripts.scope.Is'
-end
--- 外置库
-do
-    gDz = require 'lua.lua2jass.BlizzardAPI'
-end
--- 测试库
-do
-    -- 测试
-    require 'test.init'
-    -- 日志
-    require 'util.log'
-    require 'util.error'
-end
+require 'scope.init'
+-- 测试
+require 'test.init'
+-- 本地图库
+require 'map.init'
+-- 英雄
+require 'hero.init'
 -- -----------------------------------------------------------------------------------------
 -- local function main()
 --     print 'YH:Hello Word!'

@@ -124,19 +124,19 @@ function mt.GetTriggerKeyPlayer(frame, real)
 end
 -----------------------------单位属性-------------------------------------
 -- 获取单位属性
-function mt.GetUnitState(u, unitsate)
-    g.yh_unit = u
-    g.yh_unitstate = unitsate
-    ExecuteFunc("yh_getUnitState")
-    return g.yh_real1
-end
--- 设置单位属性
-function mt.SetUnitState(u, unitsate, delta)
-    g.yh_unit = u
-    g.yh_unitstate = unitsate
-    g.yh_real1 = delta
-    ExecuteFunc("yh_setUnitState")
-end
+-- function mt.GetUnitState(u, unitsate)
+--     g.yh_unit = u
+--     g.yh_unitstate = unitsate
+--     ExecuteFunc("yh_getUnitState")
+--     return g.yh_real1
+-- end
+-- -- 设置单位属性
+-- function mt.SetUnitState(u, unitsate, delta)
+--     g.yh_unit = u
+--     g.yh_unitstate = unitsate
+--     g.yh_real1 = delta
+--     ExecuteFunc("yh_setUnitState")
+-- end
 
 -- 设置单位模型
 function mt.SetUnitModel(u, path)

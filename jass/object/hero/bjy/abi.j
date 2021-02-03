@@ -1,7 +1,7 @@
 //DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
 <? xG_ability_luaObj={}
 local slk = require 'slk'
-obj=slk.ability.Asth:new('BjyD') 
+obj=slk.ability.Asth:new('BjyD')
 	obj.EditorSuffix='D圣灵决'
 	obj.Name='步惊云'
 	obj.Requires=''
@@ -16,7 +16,7 @@ table.insert(xG_ability_luaObj,obj)
 //QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
 <? xG_ability_luaObj={}
 local slk = require 'slk'
-obj=slk.ability.Awar:new('BjyQ') 
+obj=slk.ability.Awar:new('BjyQ')
 	obj.EditorSuffix='Q排云掌'
 	obj.Name='步惊云'
 	obj.Requires=''
@@ -68,7 +68,7 @@ table.insert(xG_ability_luaObj,obj)
 //WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 <? xG_ability_luaObj={}
 local slk = require 'slk'
-obj=slk.ability.ANcl:new('BjyW') 
+obj=slk.ability.ANcl:new('BjyW')
 	obj.EditorSuffix='W霍家剑法'
 	obj.Name='步惊云'
 	obj.Requires=''
@@ -106,7 +106,7 @@ table.insert(xG_ability_luaObj,obj)
 //EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 <? xG_ability_luaObj={}
 local slk = require 'slk'
-obj=slk.ability.Asth:new('BjyE') 
+obj=slk.ability.Asth:new('BjyE')
 	obj.EditorSuffix='E不哭死神'
 	obj.Name='步惊云'
 	obj.Requires=''
@@ -141,11 +141,15 @@ obj=slk.ability.ACav:new('BjE0')
     obj.race='human'
     obj.Buttonpos1='0'
 	obj.Buttonpos2='-11'
+	obj.levels='5'
     obj.TargetArt='Abilities\\Spells\\Undead\\RegenerationAura\\ObsidianRegenAura.mdl'
-    obj.BuffID1='BjE2'
-    obj.DataA1='-0.3'
-    obj.DataB1='1'
-    obj.targs1='enemies,ground,vulnerable,air,neutral'
+	for i=1,5 do
+		obj['BuffID'..i]='BjE2'
+		obj['DataA'..i]=-0.1*i
+		obj['DataB'..i]='1'
+		obj['Area'..i]=100+i*100
+		obj['targs'..i]='enemies,ground,vulnerable,air,neutral'
+	end
 table.insert(xG_ability_luaObj,obj)
 obj=slk.ability.ACat:new('BjE1')
     obj.Name='步惊云'
@@ -153,17 +157,22 @@ obj=slk.ability.ACat:new('BjE1')
     obj.race='human'
     obj.Buttonpos1='0'
 	obj.Buttonpos2='-11'
-    obj.TargetArt='.mdl'
-    obj.BuffID1='BjE3'
-    obj.DataA1='-0.3'
-    obj.DataB1='1'
-    obj.targs1='enemies,ground,vulnerable,air,neutral'
+	obj.TargetArt='.mdl'
+	obj.levels='5'
+	for i=1,5 do
+		obj['BuffID'..i]='BjE3'
+		obj['DataA'..i]=-0.1*i
+		obj['DataB'..i]='1'
+		obj['DataC'..i]='1'
+		obj['Area'..i]=100+i*100
+		obj['targs'..i]='enemies,ground,vulnerable,air,neutral'
+	end
 table.insert(xG_ability_luaObj,obj)
 ?>
 //RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 <? xG_ability_luaObj={}
 local slk = require 'slk'
-obj=slk.ability.Asth:new('BjyR') 
+obj=slk.ability.Asth:new('BjyR')
 	obj.EditorSuffix='R麒麟臂'
 	obj.Name='步惊云'
 	obj.Requires=''

@@ -8,12 +8,12 @@ local msgs = {}
 -- 错误汇报
 function base.error_handle(msg)
     print("---------------------------------------")
-    -- if not msgs[msg] or ac.clock() - msgs[msg] >= 10000 then
-    --     -- msgs[msg] = ac.clock()
-    --     jass.DisplayTimedTextToPlayer(jass.GetLocalPlayer(), 0, 0, 60, msg)
+    if not msgs[msg] or ac.clock() - msgs[msg] >= 10000 then
+        -- msgs[msg] = ac.clock()
+        jass.DisplayTimedTextToPlayer(jass.GetLocalPlayer(), 0, 0, 60, msg)
 
-    -- end
-    DisplayTimedTextToPlayer(jass.GetLocalPlayer(), 0, 0, 60, msg)
+    end
+    DisplayTimedTextToPlayer(jass.GetLocalPlayer(), 0, 0, 20, msg)
     log.error(msg)
     print("---------------------------------------")
 end

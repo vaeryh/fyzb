@@ -36,7 +36,7 @@ function mt.getLevel(hero)
     return GetHeroLevel(hero)
 end
 
---=============================================================================================
+-- =============================================================================================
 
 -- 获得属性力量
 function mt.getStr(hero)
@@ -77,7 +77,19 @@ end
 function mt.adjustInt(hero, value)
     SetHeroInt(hero, value, true)
 end
---=============================================================================================
+
+-- 获取主属性
+function mt.getMain(hero)
+    local main = gSlk.getDataUnit(hero, 'Primary')
+    if main == "STR" then
+        return mt.getStr(hero)
+    elseif main == "AGI" then
+        return mt.getAgi(hero)
+    elseif main == "INT" then
+        return mt.getInt(hero)
+    end
+end
+-- =============================================================================================
 
 -- 设置经验获取(true,允许)
 function mt.SuspendXP(hero, bol)

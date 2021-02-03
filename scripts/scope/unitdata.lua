@@ -37,7 +37,6 @@ function mt.setDef(unit, vui)
     for i = 1, 24 do
         if math.floor(vui) % 2 == 1 and vui >= 1 then
             UnitAddAbility(unit, g.Armor_Id[i])
-            -- print(i, vui)
         else
             UnitRemoveAbility(unit, g.Armor_Id[i])
         end
@@ -49,7 +48,14 @@ end
 function mt.adjustDef(unit, value)
     local tab = mt:getDataBase(unit)
     tab.def = tab.def + value
-    mt.setDef(unit, tab.def)
+    if tab.def >= 0 then
+        mt.setDef(unit, tab.def)
+        UnitRemoveAbility(unit, g.Armor_Id[25])
+    elseif tab.def < 0 then
+        local int = 16777216 + tab.def
+        mt.setDef(unit, int)
+        UnitAddAbility(unit, g.Armor_Id[25])
+    end
 end
 
 -------------------------------------------------------------------
@@ -58,7 +64,6 @@ end
 function mt.setAtk(unit, value)
     value = math.max(0, value)
     value = math.min(16777215, value)
-    -- print(GetUnitName(unit), value)
     for i = 1, 24 do
         if math.floor(value) % 2 == 1 and value >= 1 then
             UnitAddAbility(unit, g.Attack_Id[i])
@@ -73,7 +78,14 @@ end
 function mt.adjustAtk(unit, value)
     local tab = mt:getDataBase(unit)
     tab.atk = tab.atk + value
-    mt.setAtk(unit, tab.atk)
+    if tab.atk >= 0 then
+        mt.setAtk(unit, tab.atk)
+        UnitRemoveAbility(unit, g.Attack_Id[25])
+    elseif tab.atk < 0 then
+        UnitAddAbility(unit, g.Attack_Id[25])
+        local int = 16777216 + tab.atk
+        mt.setAtk(unit, int)
+    end
 end
 
 -------------------------------------------------------------------
@@ -111,23 +123,75 @@ end
 function mt.adjustStr(unit, value)
     local tab = mt:getDataBase(unit)
     tab.str = tab.str + value
-    mt.setStr(unit, tab.str)
+    if tab.str >= 0 then
+        mt.setStr(unit, tab.str)
+        UnitRemoveAbility(unit, g.StrAgiInt_Id[91])
+    elseif tab.str < 0 then
+        local int = 1073741824 + tab.str
+        mt.setStr(unit, int)
+        UnitAddAbility(unit, g.StrAgiInt_Id[91])
+    end
 end
 
 -- 调整敏捷
 function mt.adjustAgi(unit, value)
     local tab = mt:getDataBase(unit)
     tab.agi = tab.agi + value
-    mt.setAgi(unit, tab.agi)
+    if tab.agi >= 0 then
+        mt.setAgi(unit, tab.agi)
+        UnitRemoveAbility(unit, g.StrAgiInt_Id[92])
+    elseif tab.agi < 0 then
+        local int = 1073741824 + tab.agi
+        mt.setAgi(unit, int)
+        UnitAddAbility(unit, g.StrAgiInt_Id[92])
+    end
 end
 
 -- 调整智力
 function mt.adjustInt(unit, value)
     local tab = mt:getDataBase(unit)
     tab.int = tab.int + value
-    mt.setInt(unit, tab.int)
+    if tab.int >= 0 then
+        mt.setInt(unit, tab.int)
+        UnitRemoveAbility(unit, g.StrAgiInt_Id[93])
+    elseif tab.int < 0 then
+        local int = 1073741824 + tab.int
+        mt.setInt(unit, int)
+        UnitAddAbility(unit, g.StrAgiInt_Id[93])
+    end
 end
 
 -------------------------------------------------------------------
+-- 绿色属性
+GREEN_DATA = {
+    -- 攻击
+    ATK = GREEN_DATA_ATK,
+    -- 防御
+    DEF = GREEN_DATA_DEF,
+    -- 力量
+    STR = GREEN_DATA_STR,
+    -- 敏捷
+    AGI = GREEN_DATA_AGI,
+    -- 智力
+    INT = GREEN_DATA_INT
+}
+-- --绑定计时器
+-- local function DataTimer()
+
+-- end
+-- -- 设置计时数据
+-- function mt.setTimerData(unit, data_type, vaule)
+--     if data_type == GREEN_DATA_ATK then
+--         mt.adjustAtk(unit, vaule)
+--     elseif data_type == GREEN_DATA_DEF then
+
+--     elseif data_type == GREEN_DATA_STR then
+
+--     elseif data_type == GREEN_DATA_AGI then
+
+--     elseif data_type == GREEN_DATA_INT then
+
+--     end
+-- end
 
 return mt

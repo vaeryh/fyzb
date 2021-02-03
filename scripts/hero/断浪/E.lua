@@ -23,23 +23,31 @@ function mt.Actions(hero)
     local Elev = gAbi.getLevel(hero, mt.id)
     local str, agi = gH.getStr(hero), gH.getAgi(hero)
     -- 伤害值
-    gAbi.getDataReal(hero, 'DlE0', Elev, ABILITY_DATA.DATA_A, str * Elev * 2)
+    gAbi.setDataReal(hero, mt.id, Elev, ABILITY_DATA.DATA_A, str * Elev)
+    local dur = gAbi.getDataReal(hero, mt.id, Elev, ABILITY_DATA.DUR)
 
     local dwz = gGroup.getUnitInRange(gU.getX(hero), gU.getY(hero), 800)
-    local ang = gYh.angleXY(GetUnitX(hero),GetUnitY(hero),spellX, spellY)
+    local ang = gYh.angleXY(GetUnitX(hero), GetUnitY(hero), spellX, spellY)
     for i, unit in ipairs(dwz) do
         if gU.isEnemy(unit, gP.getOwner(hero)) and gU.is_alive(unit) and not IsUnitType(unit, UNIT_TYPE.STRUCTURE) then
-            local angle = gYh.angleByUnit(hero,unit)
-            local abs = math.abs(ang)-math.abs(angle)
-
+            local angle = gYh.angleByUnit(hero, unit)
+            local abs = math.abs(ang) - math.abs(angle)
+            print(GetUnitName(unit), gAbi.getLevel(unit, 'B0E3'))
             if math.abs(abs) < 45 then
                 local def = agi / 50
-                gUnitdata.adjustDef(unit, -5) -- def
+                gUnitdata.adjustDef(unit, -def) -- def
+                local t = gT.create()
+                local g = {}
+                g[t] = unit
+                g[unit] = def
 
-                -- TimerStart(gT.create(), 5, false, function()
-                --     gUnitdata.adjustDef(unit, def) -- def
-                --     gT.remove()
-                -- end)
+                TimerStart(t, dur, false, function()
+                    local u = g[GetExpiredTimer()]
+                    local def = g[u]
+
+                    gUnitdata.adjustDef(u, def) -- def
+                    gT.remove()
+                end)
             end
         end
     end

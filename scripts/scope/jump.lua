@@ -21,8 +21,8 @@ function YDWEJumpTimer(hero, angle, distance, lasttime, timeout, heightMax)
         local lvJumpTimer = MoveMoreLevel_JumpTimer
         local lvUnitMove = 3
         if steeps < steepsMax and lvJumpTimer >= lvUnitMove then
-            x1 = x + steeps * dist * Cos(angle * 3.1415926 / 180.0)
-            y1 = y + steeps * dist * Sin(angle * 3.1415926 / 180.0)
+            x1 = x + steeps * dist * Cos(angle * math.pi / 180.0)
+            y1 = y + steeps * dist * Sin(angle * math.pi / 180.0)
             x1 = gRect.CoordinateXY(x1, y1)
             gU.setXY(hero,x1, y1)
             steeps = steeps + 1

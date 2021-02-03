@@ -27,15 +27,7 @@ local trig = yh.createTrigger(function()
 end)
 TriggerRegisterPlayerUnitEvent(trig, Player(0), EVENT_PLAYER_UNIT_SPELL_EFFECT, null)
 -----------------------------------------------------------------------------------------
-local trig = yh.createTrigger(function()
-    local minX = GetRectMinX(g.gg__rct_FirstHeroSelection)
-    local minY = GetRectMinY(g.gg__rct_FirstHeroSelection)
-    printF(minX, minY)
-    u = CreateUnit(Player(12), yh.s2id('hfoo'), minX, minY, 270)
-    heal(u, 3, -100)
-    -- DestroyTrigger(GetTriggeringTrigger())
-end)
-TriggerRegisterTimerEvent(trig, 1, true)
+
 -----------------------------------------------------------------------------------------
 heal = function(u, count, hp)
     local i = 0

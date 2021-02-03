@@ -23,7 +23,7 @@ mt.listDia = {}
 -- 新建计时器
 function mt.create()
     mt.handle = CreateTimer()
-    table.insert(mt.listTimer,mt.handle)
+    table.insert(mt.listTimer, mt.handle)
     return mt.handle
 end
 
@@ -31,7 +31,7 @@ end
 function mt.createDialog(timer)
     local timer = timer or mt.handle
     mt.dia_handle = CreateTimerDialog(timer)
-    table.insert(mt.listDia,mt.dia_handle)
+    table.insert(mt.listDia, mt.dia_handle)
     return mt.dia_handle
 end
 
@@ -52,9 +52,18 @@ function mt.remove(timer, dialog)
     DestroyTimer(timer)
 end
 
--- 运行计时器 默认:new、1.00、不循环
-function mt.start(timer, timeout, bol, code)
-    TimerStart(timer, timeout, bol, code)
+-- 一次性计时器
+function mt.wait(timeout, code)
+    local timer = mt.create()
+    TimerStart(timer, timeout, false, function()
+        code()
+        mt.remove()
+    end)
+end
+
+-- 循环计时器
+function mt.loop(timeout, code)
+    TimerStart(mt.create(), timeout, true, code)
 end
 
 -- 设置计时器窗口状态：显示 or 隐藏 ps:不可在地图初始化显示

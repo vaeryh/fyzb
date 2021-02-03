@@ -21,23 +21,18 @@ mt.tip = [[
 
 -- D动作
 function mt.Actions(hero, enemy)
-    local Rlev, agi = gAbi.getLevel(hero, mt.id), gH.getAgi(hero)
-
+    local int = gH.getInt(hero)
+    gAbi.setDataReal(hero, mt.id, nil, ABILITY_DATA.DATA_A, int * 0.1) -- D技能普攻附加毒性伤害
 end
 
 -- 触发+条件
 gTrg.RegAnyUnitDamageEvent(function()
-    if not gU.isEnemy(GetEventDamageSource(), GetTriggerPlayer()) then
-        return
-    end
-
-    local trgU, trgP = GetTriggerUnit(), GetTriggerPlayer()
-    local source = GetEventDamageSource()
-
-    if IsEventAttackDamage() then -- 普攻
-        -- 伤害来源拥有技能
-        if gAbi.isHave(source, mt.id) then
-            mt.Actions(source, trgU)
+    if gU.isEnemy(GetEventDamageSource(), GetTriggerPlayer()) then
+        if IsEventAttackDamage() then -- 普攻
+            -- 伤害来源拥有技能
+            if gAbi.isHave(GetEventDamageSource(), mt.id) then
+                mt.Actions(GetEventDamageSource(), GetTriggerUnit())
+            end
         end
     end
 end)

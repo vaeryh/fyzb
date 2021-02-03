@@ -23,7 +23,7 @@ mt.tip = [[
 ]]
 
 --血劫爪标记
-mt.mask = 1
+mt.mask = -1
 
 -- W
 function mt.Actions(hero)
@@ -69,7 +69,7 @@ end
 -- 触发+动作
 gTrg.RegUserPlayerUnitEvent(EVENT_PLAYER_UNIT.SPELL_CAST, function()
     if gTrg.isMatchAbiId(mt.id) then
-        mt.Actions(hero)
+        mt.Actions(GetTriggerUnit())
     end
 end)
 
