@@ -24,7 +24,7 @@ function mt.Actions(hero, enemy)
     local Rlev, agi = gAbi.getLevel(hero, 'NfR0'), gH.getAgi(hero)
 
     if GetRandomReal(1, 100) <= 15 + (gH.getLevel(hero) / 10) then -- 满足概率发动冰心诀
-        local mj = gU.create(gP.getOwner(hero), 'yhmj', GetUnitX(hero), GetUnitY(hero), 270) -- 创建新单位马甲
+        local mj = gU.create(gU.getOwner(hero), 'yhmj', GetUnitX(hero), GetUnitY(hero), 270) -- 创建新单位马甲
         -- 添加马甲霜冻新星技能
         gAbi.add(mj, 'NfD1')
         -- 设置 (马甲)的聂风 D冰心诀（真） 第1级的数据A为(harm)

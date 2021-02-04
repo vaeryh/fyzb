@@ -101,11 +101,6 @@ end
 
 -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* ?? *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
--- 获取单位所有者
-function mt.getOwner(unit)
-    return GetOwningPlayer(unit)
-end
-
 -- 显示聊天信息计时
 function mt.disTimedText(p, timeout, str)
     DisplayTimedTextToPlayer(p, 0, 0, timeout, str)

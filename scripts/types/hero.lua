@@ -36,7 +36,7 @@ function mt.getLevel(hero)
     return GetHeroLevel(hero)
 end
 
---=============================================================================================
+-- =============================================================================================
 
 -- 获得属性力量
 function mt.getStr(hero)
@@ -89,7 +89,12 @@ function mt.getMain(hero)
         return mt.getInt(hero)
     end
 end
---=============================================================================================
+
+-- 获取三属性
+function mt.getThree(hero)
+    return mt.getStr(hero) + mt.getAgi(hero) + mt.getInt(hero)
+end
+-- =============================================================================================
 
 -- 设置经验获取(true,允许)
 function mt.SuspendXP(hero, bol)

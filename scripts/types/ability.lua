@@ -172,6 +172,14 @@ function mt.add(u, id)
     UnitAddAbility(u, gYh.s2id(id))
 end
 
+-- 单位添加技能一定时间
+function mt.addTimer(u, id, time)
+    gAbi.add(u, id)
+    gT.wait(time, function()
+        gAbi.remove(u, id)
+    end)
+end
+
 -- 单位移除技能
 function mt.remove(u, id)
     UnitRemoveAbility(u, gYh.s2id(id))

@@ -111,16 +111,13 @@ function mt.setItemsWidth(mbi, width)
     MultiboardSetItemsWidth(mbi, width)
 end
 ----------------------------------------------------------------------
--- 创建多面板
+-- 创建多面板(地图初始化)
 function mt.new(rows, cols, title)
     local b = mt.create()
     mt.setetRowCount(b, rows)
     mt.setColumnCount(b, cols)
     mt.setTitleText(b, title)
-    gTrg.RegTimerEvent(0.00, false, function()
-        mt.setDisplay(b, true)
-        gTrg.remove()
-    end)
+    mt.setDisplay(b, true)
     return b
 end
 

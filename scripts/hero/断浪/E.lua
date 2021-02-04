@@ -29,7 +29,7 @@ function mt.Actions(hero)
     local dwz = gGroup.getUnitInRange(gU.getX(hero), gU.getY(hero), 800)
     local ang = gYh.angleXY(GetUnitX(hero), GetUnitY(hero), spellX, spellY)
     for i, unit in ipairs(dwz) do
-        if gU.isEnemy(unit, gP.getOwner(hero)) and gU.is_alive(unit) and not IsUnitType(unit, UNIT_TYPE.STRUCTURE) then
+        if gU.isEnemy(unit, gU.getOwner(hero)) and gU.is_alive(unit) and not IsUnitType(unit, UNIT_TYPE.STRUCTURE) then
             local angle = gYh.angleByUnit(hero, unit)
             local abs = math.abs(ang) - math.abs(angle)
             print(GetUnitName(unit), gAbi.getLevel(unit, 'B0E3'))

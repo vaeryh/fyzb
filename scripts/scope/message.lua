@@ -41,6 +41,7 @@ function message.hook(msg)
         end
         if msg.code == keyboard['Z'] then
             gU.setXY(selection, message.mouse())
+            log.trace(message.mouse())
             return true
         end
     end

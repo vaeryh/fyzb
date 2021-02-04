@@ -23,15 +23,15 @@ function mt.Actions(hero, enemy)
     local spellX, spellY = GetSpellTargetX(), GetSpellTargetY()
     local int, Qlev = gH.getInt(hero), gAbi.getLevel(hero, mt.id)
     for i = 1, 3 + Qlev do
-        local mj = gU.create(gP.getOwner(hero), 'syq1', spellX, spellY, 270)
+        local mj = gU.create(gU.getOwner(hero), 'syq1', spellX, spellY, 270)
 
         gU.setLifeTime(mj, 15 + Qlev * 3) -- 设置生命周期
-         gU.setScale(mj, 1 + Qlev * 0.1) -- 尺寸
+        gU.setScale(mj, 1 + Qlev * 0.1) -- 尺寸
         local rgb = 255 - Qlev * 10
-         gU.setVertexColor(mj, rgb, rgb, rgb, rgb) -- 颜色
+        gU.setVertexColor(mj, rgb, rgb, rgb, rgb) -- 颜色
 
-         gU.setState(mj, UNIT_STATE.MAX_LIFE, int * 10) -- life
-         gU.setState(mj, UNIT_STATE.LIFE, int * 10) -- life
+        gU.setState(mj, UNIT_STATE.MAX_LIFE, int * 10) -- life
+        gU.setState(mj, UNIT_STATE.LIFE, int * 10) -- life
         gUnitdata.adjustAtk(mj, int * 1) -- atk
         gUnitdata.adjustDef(mj, int / 20) -- def
 

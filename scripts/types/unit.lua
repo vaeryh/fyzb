@@ -56,6 +56,11 @@ function mt.remove(handle)
     RemoveUnit(handle)
 end
 
+-- 杀死单位
+function mt.kill(handle)
+    KillUnit(handle)
+end
+
 -- 单位是否存活
 function mt.is_alive(handle)
     return GetUnitState(handle, UNIT_STATE_LIFE) > 0
@@ -116,6 +121,25 @@ function mt.setScale(u, length, width, height)
     SetUnitScale(u, length, width, height)
 end
 
+-- 删除buff(正面,负面)
+function mt.removeBuffs(whichUnit, removePositive, removeNegative)
+    UnitRemoveBuffs(whichUnit, removePositive, removeNegative)
+end
+
+-- 删除buff(正面,负面,魔法,物理,生命周期,光环效果,不可驱散)
+function mt.removeBuffsEx(whichUnit, removePositive, removeNegative,magic,physical,timedLife,aura,autoDispel)
+    UnitRemoveBuffsEx(whichUnit, removePositive, removeNegative,magic,physical,timedLife,aura,autoDispel)
+end
+
+-- 是否拥有buff(正面,负面,魔法,物理,生命周期,光环效果,不可驱散)
+function mt.isHaveBuffsEx(whichUnit, removePositive, removeNegative,magic,physical,timedLife,aura,autoDispel)
+    return UnitHasBuffsEx(whichUnit, removePositive, removeNegative,magic,physical,timedLife,aura,autoDispel)
+end
+
+-- 获取buff数量(正面,负面,魔法,物理,生命周期,光环效果,不可驱散)
+function mt.getCountBuffsEx(whichUnit, removePositive, removeNegative,magic,physical,timedLife,aura,autoDispel)
+    return UnitCountBuffsEx(whichUnit, removePositive, removeNegative,magic,physical,timedLife,aura,autoDispel)
+end
 -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 是否 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 -- 是否盟军(包括中立状态,单向判断玩家对单位是否为不侵犯状态)
@@ -174,13 +198,21 @@ function mt.getDefaultMoveSpeed(unit)
 end
 -- 获取单位移动速度
 function mt.getMoveSpeed(unit)
-    GetUnitMoveSpeed(unit)
+    return GetUnitMoveSpeed(unit)
 end
 -- 设置单位移动速度
 function mt.setMoveSpeed(unit, speed)
     SetUnitMoveSpeed(unit, speed)
 end
 
+-- 设置单位所有者(true:改变颜色)
+function mt.setOwner(unit, p, bol)
+    SetUnitOwner(unit, p, bol)
+end
+-- 获取单位所有者
+function mt.getOwner(unit)
+    return GetOwningPlayer(unit)
+end
 -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 发布命令 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 -- 发布无目标命令
 function mt.issueOrder(unit, str)
@@ -198,16 +230,16 @@ function mt.issueOrderTar(unit, str, tar)
 end
 
 -- 发布中介无目标命令
-function mt.issueNeutralOrder(player,unit, str)
-    IssueNeutralImmediateOrder(player,unit, str)
+function mt.issueNeutralOrder(player, unit, str)
+    IssueNeutralImmediateOrder(player, unit, str)
 end
 -- 发布中介命令到坐标
-function mt.issueNeutralOrderXY(player,unit, str, x, y)
-    IssueNeutralPointOrder(player,unit, str, x, y)
+function mt.issueNeutralOrderXY(player, unit, str, x, y)
+    IssueNeutralPointOrder(player, unit, str, x, y)
 end
 -- 发布中介命令到目标(单位、物品、破坏物)
-function mt.issueNeutralOrderTar(player,unit, str, tar)
-    IssueNeutralTargetOrder(player,unit, str, tar)
+function mt.issueNeutralOrderTar(player, unit, str, tar)
+    IssueNeutralTargetOrder(player, unit, str, tar)
 end
 
 -- 单位类型
@@ -268,4 +300,8 @@ UNIT_TYPE = {
     MAGIC_IMMUNE = UNIT_TYPE_MAGIC_IMMUNE
 }
 
+-- 是否单位类型(英雄、建筑···)
+function mt.isType(u, unittype)
+    return IsUnitType(u, unittype)
+end
 return mt

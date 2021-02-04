@@ -28,7 +28,7 @@ function mt.Actions(hero)
     TimerStart(gT.create(), 0.02, true, function()
         local Wlev, agi = gAbi.getLevel(hero, 'NfW0'), gH.getAgi(hero, true)
         -- 创建马甲
-        local mj = gU.create(gP.getOwner(hero), 'yhmj', x, y, angle)
+        local mj = gU.create(gU.getOwner(hero), 'yhmj', x, y, angle)
         gDz.SetUnitModel(mj, "units\\orc\\HeroBladeMaster\\HeroBladeMaster.mdl")
         gU.setLifeTime(mj, 0.5)
         YDWEJumpTimer(mj, angle, distance, 0.30, 0.01, 210) -- 跳跃函数
@@ -41,7 +41,7 @@ function mt.Actions(hero)
             -- 战争践踏效果
             gEff.addXY("Abilities\\Spells\\Orc\\WarStomp\\WarStompCaster.mdl", spellX, spellY)
             -- 创建马甲
-            local mj = gU.create(gP.getOwner(hero), 'yhmj', spellX, spellY, angle)
+            local mj = gU.create(gU.getOwner(hero), 'yhmj', spellX, spellY, angle)
             gAbi.add(mj, 'NfW1')
             -- 减少护甲。数据A
             gAbi.setDataReal(mj, 'NfW1', 1, 108, agi * Wlev)

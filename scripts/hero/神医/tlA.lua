@@ -38,9 +38,8 @@ function mt.Actions(hero)
     else
         gP.disTimedText(p, 2.00, "关闭：" .. Tip1)
     end
-
     local tlb = require 'hero.神医.tlB'
-    tlb.TlB_Actions(p, hero, id, A)
+    tlb.TlB_Actions(hero, id, A)
 end
 
 -- 触发+动作

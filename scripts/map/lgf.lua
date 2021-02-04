@@ -102,7 +102,7 @@ gTrg.RegTimerEvent(0.50, true, function()
     local group = gGroup.getUnitInRect(mt.lgf1)
 
     for i, unit in ipairs(group) do
-        if gP.getOwner(unit) == Player(11) and gU.is_alive(unit) then
+        if gU.getOwner(unit) == Player(11) and gU.is_alive(unit) then
             num = num + 1
         end
     end

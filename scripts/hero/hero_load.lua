@@ -27,7 +27,7 @@ mt.showT = 30
 local function removeUnSelected(tab)
     gT.wait(mt.showT, function()
         for i, v in ipairs(tab) do
-            if gP.getOwner(v) == Player(15) then
+            if gU.getOwner(v) == Player(15) then
                 gU.remove(v)
             end
         end

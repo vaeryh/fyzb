@@ -37,7 +37,7 @@ function mt.Actions(hero, enemy)
         -- print(gYh.getPolarUnit(hero, -100, gYh.angleByUnit(hero, enemy)))
         -- print(GetUnitState(hero, UNIT_STATE.ATK_Range))
         local x, y = gYh.getPolarUnit(hero, -100, gYh.angleByUnit(hero, enemy))
-        local mj = gU.create(gP.getOwner(hero), 'yhmj', x, y, gYh.angleByUnit(hero, enemy))
+        local mj = gU.create(gU.getOwner(hero), 'yhmj', x, y, gYh.angleByUnit(hero, enemy))
 
         gU.setScale(mj, 1 + 0.1 * Qlev)
         gAbi.add(mj, 'FwQ1')

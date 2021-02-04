@@ -20,7 +20,7 @@ mt.tip = [[
 function mt.Actions(hero)
     local spellX, spellY = GetSpellTargetX(), GetSpellTargetY()
     local Elev = gAbi.getLevel(hero, mt.id)
-    local mj = gU.create(gP.getOwner(hero), 'ohwd', spellX, spellY, gU.getFacing(hero))
+    local mj = gU.create(gU.getOwner(hero), 'ohwd', spellX, spellY, gU.getFacing(hero))
     -- PlaySoundOnUnitBJ( gg_snd_PlaceAncestralGuardian, 100, mj )
     gU.setLifeTime(mj, 15 + Elev * 3)
     gAbi.add(mj, 'Aloc')

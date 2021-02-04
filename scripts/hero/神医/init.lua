@@ -20,9 +20,9 @@ gTrg.RegUserPlayerUnitEvent(EVENT_PLAYER_UNIT.CHANGE_OWNER, function()
         require 'hero.神医.W'
         require 'hero.神医.E'
         require 'hero.神医.R'
-        require 'hero.神医.tlA'
-        --require 'hero.神医.tlB'
-        --require 'hero.神医.tlC'
+        -- require 'hero.神医.tlA'
+        -- require 'hero.神医.tlB'
+        -- require 'hero.神医.tlC'
         gTrg.remove()
     end
 end)

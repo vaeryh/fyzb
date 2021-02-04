@@ -28,7 +28,7 @@ function mt.Actions(hero, enemy)
     local dwz = gGroup.getUnitInRange(gU.getX(enemy), gU.getY(enemy), 300)
 
     for i, unit in ipairs(dwz) do
-        if gU.isEnemy(unit, gP.getOwner(hero)) and gU.is_alive(unit) and not IsUnitType(unit, UNIT_TYPE_STRUCTURE) then
+        if gU.isEnemy(unit, gU.getOwner(hero)) and gU.is_alive(unit) and not IsUnitType(unit, UNIT_TYPE_STRUCTURE) then
             local harm = GetHeroStr(hero, true) * 3
             UnitDamageTarget(hero, unit, harm, false, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_DEMOLITION,
                 WEAPON_TYPE_WHOKNOWS)

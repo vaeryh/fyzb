@@ -70,7 +70,7 @@ function mt.reload()
         gDz.listFrame[k] = nil
         gDz.DestroyFrame(v)
     end
-    
+
     local hero_load = require 'hero.hero_load'
     helper_reload(function()
         require 'main'
@@ -84,6 +84,9 @@ function mt.reload()
             require('hero.' .. name .. '.E')
             require('hero.' .. name .. '.R')
         end
+        require 'hero.神医.tlA'
+        require 'hero.神医.tlB'
+        require 'hero.神医.tlC'
     end)
 
     log.info('---- Reloading end   ----')
