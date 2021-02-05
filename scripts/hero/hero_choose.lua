@@ -68,7 +68,7 @@ function mt.selectHero()
 end
 -- 限制一个玩家只能选择1个英雄
 for i = 0, 11 do
-    if gP.isUserPlayer(i) then
+    if gP.isUserPlayer(Player(i)) then
         gTrg.RegPlayerUnitEvent(Player(i), EVENT_PLAYER_UNIT.SELECTED, mt.selectHero)
     end
 end

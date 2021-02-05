@@ -110,6 +110,7 @@ end
 --     native DzGetColor takes integer r, integer g, integer b, integer a returns integer
 --     native DzFrameSetUpdateCallback takes string func returns nothing
 --     native DzFrameSetUpdateCallbackByCode takes code funcHandle returns nothing
+
 --     native DzFrameShow takes integer frame, boolean enable returns nothing
 -- Frame显示隐藏
 function mt.FrameShow(frame, bol)
@@ -117,12 +118,14 @@ function mt.FrameShow(frame, bol)
     g.yh_boolean1 = bol
     ExecuteFunc("yh_FrameShow")
 end
+
 --     native DzCreateFrame takes string frame, integer parent, integer id returns integer
 -- 根据fdf文件创建Frame
 function mt.CreateFrame(name)
     g.yh_string1 = name
     ExecuteFunc("yh_CreateFrame")
 end
+
 --     native DzCreateSimpleFrame takes string frame, integer parent, integer id returns integer
 --     native DzDestroyFrame takes integer frame returns nothing
 -- 删除farme
@@ -130,12 +133,14 @@ function mt.DestroyFrame(frame)
     g.yh_frame1 = frame
     ExecuteFunc("yh_DestroyFrame")
 end
+
 --     native DzLoadToc takes string fileName returns nothing
 -- 载入Toc文件
 function mt.LoadToc(str)
     g.yh_string1 = str
     ExecuteFunc("yh_LoadToc")
 end
+
 --     native DzFrameSetPoint takes integer frame, integer point, integer relativeFrame, integer relativePoint, real x, real y returns nothing
 -- Frame设置相对位置锚点
 function mt.FrameSetPoint(frame1, point1, frame2, point2, x, y)
@@ -147,6 +152,7 @@ function mt.FrameSetPoint(frame1, point1, frame2, point2, x, y)
     g.yh_real2 = y
     ExecuteFunc("yh_FrameSetPoint")
 end
+
 --     native DzFrameSetAbsolutePoint takes integer frame, integer point, real x, real y returns nothing
 -- Frame设置绝对位置锚点
 function mt.FrameSetAbsolutePoint(frame, point, x, y)
@@ -156,6 +162,7 @@ function mt.FrameSetAbsolutePoint(frame, point, x, y)
     g.yh_real2 = y
     ExecuteFunc("yh_FrameSetAbsolutePoint")
 end
+
 --     native DzFrameClearAllPoints takes integer frame returns nothing
 --     native DzFrameSetEnable takes integer name, boolean enable returns nothing
 -- Frame设置按钮是否启用
@@ -164,6 +171,7 @@ function mt.FrameSetEnable(frame, bol)
     g.yh_boolean1 = bol
     ExecuteFunc("yh_FrameSetEnable")
 end
+
 --     native DzFrameSetScript takes integer frame, integer eventId, string func, boolean sync returns nothing
 --     native DzFrameSetScriptByCode takes integer frame, integer eventId, code funcHandle, boolean sync returns nothing
 --     native DzGetTriggerUIEventPlayer takes nothing returns player
@@ -174,6 +182,7 @@ function mt.FrameFindByName(name)
     g.yh_string1 = name
     ExecuteFunc("yh_FrameFindByName")
 end
+
 --     native DzSimpleFrameFindByName takes string name, integer id returns integer
 --     native DzSimpleFontStringFindByName takes string name, integer id returns integer
 --     native DzSimpleTextureFindByName takes string name, integer id returns integer
@@ -188,6 +197,7 @@ function mt.FrameSetText(frame, text)
     g.yh_string1 = text
     ExecuteFunc("yh_FrameSetText")
 end
+
 --     native DzFrameGetText takes integer frame returns string
 --     native DzFrameSetTextSizeLimit takes integer frame, integer size returns nothing
 --     native DzFrameGetTextSizeLimit takes integer frame returns integer

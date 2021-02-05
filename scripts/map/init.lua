@@ -1,3 +1,4 @@
+map = require 'map.global'
 -- 地图初始化
 local function map_main()
     gP.setState(Player(0), PLAYER_STATE.RESOURCE_GOLD, 100000)

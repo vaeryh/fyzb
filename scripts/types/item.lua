@@ -111,4 +111,15 @@ function mt.isHave(unit, itemId)
     return mt.getHaveItemTypeCount(unit, itemId) > 0
 end
 
+--获取背包同类别的物品数量
+function mt.getSameClassNum(whichUnit,  class )
+	local  num = 0
+    for i = 0, 5 do
+        if gSlk.getItemString(UnitItemInSlot(whichUnit, i), "class") == class then
+			num = num + 1
+		end
+    end
+	return num
+end
+
 return mt

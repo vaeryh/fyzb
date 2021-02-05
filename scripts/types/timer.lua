@@ -1,5 +1,3 @@
-local jass = require 'jass.common'
-
 local mt = {}
 
 -- 类型

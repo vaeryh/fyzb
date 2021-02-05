@@ -33,23 +33,35 @@ local SLK_TYPE = {
     DESTRUCTABLE = 'destructable'
 }
 
--- 获取单位物编数据
-function mt.getDataUnit(handle, pro)
-    local id = gYh.id2s(handle)
-    local pro = slk.unit[id][pro] or log.error('无效',handle, pro)
+-- 获取单位string
+function mt.getUnitString(handle, pro)
+    local id = gYh.id2s(GetUnitTypeId(handle))
+    pro = slk.unit[id][pro] or log.warn('无效', id, handle, pro)
     return pro
 end
--- 获取物品物编数据
-function mt.getDataItem(handle, pro)
-    local id = gYh.id2s(handle)
-    local pro = slk.item[id][pro] or log.error('无效', handle, pro)
+-- 获取单位Int
+function mt.getUnitInt(handle, pro)
+    return tonumber(mt.getUnitString(handle, pro))
+end
+-- 获取物品string
+function mt.getItemString(handle, pro)
+    local id = gYh.id2s(GetItemTypeId(handle))
+    pro = slk.item[id][pro] or log.warn('无效', handle, pro)
     return pro
 end
--- 获取技能物编数据
-function mt.getDataAbi(handle, pro)
-    local id = gYh.id2s(handle)
-    local pro = slk.ability[id][pro] or log.error('无效', handle, pro)
+-- 获取物品Int
+function mt.getItemInt(handle, pro)
+    return tonumber(mt.getItemString(handle, pro))
+end
+-- 获取技能string
+function mt.getAbiString(handle, pro)
+    local id = gYh.id2s(gYh.switch(handle))
+    pro = slk.ability[id][pro] or log.warn('无效', handle, pro)
     return pro
+end
+-- 获取技能Int
+function mt.getAbiInt(handle, pro)
+    return tonumber(mt.getAbiString(handle, pro))
 end
 
 return mt

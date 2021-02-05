@@ -14,6 +14,7 @@ base.version = '4.18'
 --打开控制台
 if not base.release then
 	console.enable = true
+	--console.enable = false
 end
 
 --重载print,自动转换编码
@@ -27,6 +28,7 @@ runtime.sleep = false
 
 function base.error_handle(msg)
 	print("-----------------=·=------------------------")
+	DisplayTimedTextToPlayer(GetLocalPlayer(), 0, 0, 20, msg)
 	print(tostring(msg) .. "\n")
 	print(debug.traceback())
 	print("-----------------=·=------------------------")

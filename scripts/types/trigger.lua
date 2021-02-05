@@ -189,7 +189,7 @@ end
 function mt.RegUserPlayerUnitEvent(playerunitevent, code)
     local trg = mt.create(code)
     for i = 0, 11 do
-        if gP.isUserPlayer(i) then
+        if gP.isUserPlayer(Player(i)) then
             TriggerRegisterPlayerUnitEvent(trg, Player(i), playerunitevent, nil)
         end
     end

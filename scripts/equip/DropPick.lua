@@ -1,8 +1,8 @@
 local mt = {}
 
 -- 判断物品类别
-function IsItemClass(whichItem, name)
-    local class = GetObjItemStr(whichItem, "class")
+function mt.IsItemClass(whichItem, name)
+    local class = gSlk.getItemString(whichItem, "class")
     if name == "武器" then
         if class == "枪" or class == "扇" or class == "弓" or class == "刀" or class == "剑" or class == "机关" then
             return true
@@ -26,7 +26,7 @@ end
 
 -- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Function↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 -- 计算属性
-function StepThree_Actions(whichUnit, proName, numR)
+function mt.StepThree(whichUnit, proName, numR)
     local numReal
     -- 基础
     if proName == "外功" then
@@ -89,64 +89,50 @@ function StepThree_Actions(whichUnit, proName, numR)
 
 end
 -- 整合相同数据
-function StepTwo_Actions(sign, whichUnit, whichItem)
-    local A
-    local numR
-    local proName
+function mt.StepTwo(sign, whichUnit, whichItem)
+    local pro = require 'equip.pro'
+    local it = pro:getTab(whichItem)
     for i = 1, 50 do
-        if LoadBoolean(Equip_Hash, GetHandleId(whichItem), A) == true then
-            proName = LoadStr(Equip_Hash, GetHandleId(whichItem), A + 51)
-            numR = LoadReal(Equip_Hash, GetHandleId(whichItem), A) * sign
+        if it[i] then
+            local proName = it.name
+            local numR = it.vaule * sign
             print("DP：" + proName + R2S(numR))
-            -- 附加到单位身上
-            SaveReal(Equip_Hash, GetHandleId(whichUnit), StringHash(proName),
-                LoadReal(Equip_Hash, GetHandleId(whichUnit), StringHash(proName)) + numR)
-            StepThree_Actions(whichUnit, proName, numR)
+            mt.StepThree(whichUnit, proName, numR)
         end
     end
 end
 -- 装备类才有属性
-function StepOne_Actions(sign, whichUnit, whichItem)
-    if DP_IsItemClass(whichItem, "武器") then
-        StepTwo_Actions(sign, whichUnit, whichItem)
-    elseif DP_IsItemClass(whichItem, "防具") then
-        StepTwo_Actions(sign, whichUnit, whichItem)
-    elseif DP_IsItemClass(whichItem, "饰品") then
-        StepTwo_Actions(sign, whichUnit, whichItem)
-    elseif DP_IsItemClass(whichItem, "鞋子") then
-        StepTwo_Actions(sign, whichUnit, whichItem)
+function mt.StepOne(sign, whichUnit, whichItem)
+    if mt.IsItemClass(whichItem, "武器") then
+        mt.StepTwo(sign, whichUnit, whichItem)
+    elseif mt.IsItemClass(whichItem, "防具") then
+        mt.StepTwo(sign, whichUnit, whichItem)
+    elseif mt.IsItemClass(whichItem, "饰品") then
+        mt.StepTwo(sign, whichUnit, whichItem)
+    elseif mt.IsItemClass(whichItem, "鞋子") then
+        mt.StepTwo(sign, whichUnit, whichItem)
     end
 end
 -- 动作：用户单位拾取装备
-function Pick_Actions()
-    StepOne_Actions(1, GetTriggerUnit(), GetManipulatedItem())
-end
+gTrg.RegAnyPlayerUnitEvent(EVENT_PLAYER_UNIT.PICKUP_ITEM, function()
+    if gU.isType(GetTriggerUnit(), UNIT_TYPE.HERO) then
+        mt.StepOne(1, GetTriggerUnit(), GetManipulatedItem())
+    end
+end)
 -- 动作：用户单位丢弃装备
-function Drop_Actions()
-    StepOne_Actions(-1, GetTriggerUnit(), GetManipulatedItem())
-end
+gTrg.RegAnyPlayerUnitEvent(EVENT_PLAYER_UNIT.DROP_ITEM, function()
+    if gU.isType(GetTriggerUnit(), UNIT_TYPE.HERO) then
+        mt.StepOne(-1, GetTriggerUnit(), GetManipulatedItem())
+    end
+end)
 -- 动作：单位贩卖装备
--- 计时器函数
-function Sell_Timer()
-    local whichItem = LoadItemHandle(Hash_TY, GetHandleId(GetExpiredTimer()), 0)
-    print(GetItemName(whichItem) + "即将被清除Equip_Hash!")
-    FlushChildHashtable(Equip_Hash, GetHandleId(whichItem))
-    FlushChildHashtable(Hash_TY, GetHandleId(GetExpiredTimer()))
-    DestroyTimer(GetExpiredTimer())
-end
+gTrg.RegAnyPlayerUnitEvent(EVENT_PLAYER_UNIT.SELL_ITEM, function()
+    if gU.isType(GetTriggerUnit(), UNIT_TYPE.HERO) then
+        mt.StepOne(-1, GetSellingUnit(), GetSoldItem())
+    end
+    gT.wait(5.00, function()
+        print(GetItemName(GetSoldItem()) + "即将被清除Equip_Hash!")
+    end)
+end)
 
-function Sell_Actions()
-    StepOne_Actions(-1, GetSellingUnit(), GetSoldItem())
-    YhTimerStart(5.00, false, Sell_Timer)
-    SaveItemHandle(Hash_TY, GetHandleId(bj_lastStartedTimer), 0, GetSoldItem())
-end
--- 条件：触发单位类型=英雄
-function PickDrop_Conditions()
-    return IsUnitType(GetTriggerUnit(), UNIT_TYPE_HERO) == true
-end
--- 触发：用户玩家事件
-function Init_Actions_A()
-    RegUserPlayerUnitEvent(Condition(PickDrop_Conditions), Pick_Actions, EVENT_PLAYER_UNIT_PICKUP_ITEM)
-    RegUserPlayerUnitEvent(Condition(PickDrop_Conditions), Drop_Actions, EVENT_PLAYER_UNIT_DROP_ITEM)
-    RegAnyPlayerUnitEvent(Condition(PickDrop_Conditions), Sell_Actions, EVENT_PLAYER_UNIT_PAWN_ITEM) -- 贩卖物品
-end
+return mt

@@ -82,10 +82,11 @@ function mt.adjustState(whichPlayer, whichPlayerState, delta)
 end
 
 -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 是否 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 -- 是否用户玩家
-function mt.isUserPlayer(i)
-    local bolA = GetPlayerController(Player(i)) == MAP_CONTROL_USER
-    local bolB = GetPlayerSlotState(Player(i)) == PLAYER_SLOT_STATE_PLAYING
+function mt.isUserPlayer(p)
+    local bolA = GetPlayerController(p) == MAP_CONTROL_USER
+    local bolB = GetPlayerSlotState(p) == PLAYER_SLOT_STATE_PLAYING
     return bolA and bolB
 end
 

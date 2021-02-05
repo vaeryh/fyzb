@@ -18,6 +18,8 @@ require 'test.init'
 require 'map.init'
 -- 英雄
 require 'hero.init'
+-- 装备
+--require 'equip.init'
 -- -----------------------------------------------------------------------------------------
 -- local function main()
 --     print 'YH:Hello Word!'

@@ -23,7 +23,9 @@ mt.rect = {
 -- 声音
 mt.sound = {
     ['选择英雄音乐'] = gg_snd_Zandy01,
-    ['基地附近音乐'] = gg_snd_FezdYezf01
+    ['基地附近音乐'] = gg_snd_FezdYezf01,
+    --治疗守卫音效
+    HealingWard = "Units\\Orc\\HealingWard\\PlaceAncestralGuardian.wav",
 }
 
 return mt

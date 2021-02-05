@@ -11,9 +11,10 @@ local function split(str, p)
     return rt
 end
 -- 更改默认路径：log\log-2021-01-10-16-13-57.log
-log.path = '风云争霸\\日志\\' .. split(log.path, '\\')[2]
---log.path = '风云争霸\\日志\\' .. "loging.log"
+-- log.path = '风云争霸\\日志\\' .. split(log.path, '\\')[2]
+log.path = '风云争霸\\日志\\' .. "loging.log"
 log.debug '日志系统装载完毕,向着星辰大海出发!'
+-- trace'、'debug'、'info'、'warn'、'error'、'fatal'
 -- 重载函数 print
 local std_print = print
 

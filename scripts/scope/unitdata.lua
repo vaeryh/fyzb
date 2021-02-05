@@ -57,7 +57,13 @@ function mt.adjustDef(unit, value)
         UnitAddAbility(unit, g.Armor_Id[25])
     end
 end
-
+-- 计时护甲
+function mt.addTimerDef(unit, value, time)
+    mt.adjustDef(unit, value)
+    gT.wait(time-0.001, function()
+        mt.adjustDef(unit, -value)
+    end)
+end
 -------------------------------------------------------------------
 
 -- 设置攻击力
@@ -87,7 +93,13 @@ function mt.adjustAtk(unit, value)
         mt.setAtk(unit, int)
     end
 end
-
+-- 计时攻击力
+function mt.addTimerAtk(unit, value, time)
+    mt.adjustAtk(unit, value)
+    gT.wait(time-0.001, function()
+        mt.adjustAtk(unit, -value)
+    end)
+end
 -------------------------------------------------------------------
 
 -- 力量、敏捷、智力sai

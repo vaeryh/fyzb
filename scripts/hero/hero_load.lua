@@ -86,6 +86,5 @@ function mt.init()
     showHero()
 end
 
-mt.init()
 
 return mt

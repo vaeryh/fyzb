@@ -19,7 +19,16 @@ function mt.id2s(a)
     local r = string.char(s1, s2, s3, s4)
     return r
 end
-
+-- 自动转换为id(id直接返回,字符串返回id)
+function mt.switch(value)
+    if type(value) == 'number' then
+        return value
+    elseif type(value) == 'string' then
+        return mt.s2id(value)
+    else
+        log.warn(value,'值不正常')
+    end
+end
 ----------------------------------------------------------------------------------------
 
 -- 计算两坐标距离

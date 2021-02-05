@@ -36,45 +36,46 @@ function mt.reload()
     -- 重载触发器
     for k, v in ipairs(gTrg.listTrigger) do
         log.debug("trg", k, v)
-        gTrg.listTrigger[k] = nil
+        --gTrg.listTrigger[k] = nil
         gTrg.setClose(v)
         gTrg.remove(v)
     end
     -- 重载计时器与窗口
     for k, v in ipairs(gT.listTimer) do
         log.debug("timer", k, v)
-        gT.listTimer[k] = nil
+        --gT.listTimer[k] = nil
         gT.setPause(v)
         gT.remove(v, nil)
     end
     for k, v in ipairs(gT.listDia) do
         log.debug("tDia", k, v)
-        gT.listDia[k] = nil
+        --gT.listDia[k] = nil
         gT.remove(nil, v)
     end
     -- 重载单位
     for k, v in ipairs(gU.listUnit) do
         log.debug("unit", k, v)
-        gU.listUnit[k] = nil
+        --gU.listUnit[k] = nil
         gU.remove(v, nil)
     end
     -- 重载多面板
     for k, v in ipairs(gDmb.listBoard) do
         log.debug("Dmb", k, v)
-        gDmb.listBoard[k] = nil
+        --gDmb.listBoard[k] = nil
         gDmb.remove(v)
     end
-    -- 重载多面板
+    -- 重载Frame
+    log.info('---- Reload Frame ----')
     for k, v in ipairs(gDz.listFrame) do
         log.debug("Frame", k, v)
-        gDz.listFrame[k] = nil
+        --gDz.listFrame[k] = nil
+        --gDz.FrameShow(v, false)
         gDz.DestroyFrame(v)
     end
 
     local hero_load = require 'hero.hero_load'
     helper_reload(function()
         require 'main'
-        -- require 'main'
         -- require 'test.t'
         -- 英雄技能重置
         for i, name in ipairs(hero_load.name) do
@@ -85,7 +86,6 @@ function mt.reload()
             require('hero.' .. name .. '.R')
         end
         require 'hero.神医.tlA'
-        require 'hero.神医.tlB'
         require 'hero.神医.tlC'
     end)
 

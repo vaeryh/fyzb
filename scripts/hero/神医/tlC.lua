@@ -1,7 +1,5 @@
 local mt = {}
 
-local tla = require 'hero.神医.tlA'
-
 -- 玉蜂1
 mt.Abi_1 = "T001"
 -- 闪电貂2
@@ -113,166 +111,189 @@ function mt.TL_4_Actions(hero, enemy)
 end
 -- 人面魔珠50	人面魔珠（攻击附带主属性*0.5额外物理技能伤害）	普攻
 function mt.TL_50_Actions(hero, enemy)
-    local main = gH.getMain(hero)
-    gDam.target(hero, enemy, main * 0.5, false, false, ATTACK_TYPE.HERO, DAMAGE_TYPE.FORCE)
+    local harm = gH.getMain(hero) * 0.5
+    gDam.target(hero, enemy, harm)
+    gTag.newUnit("|cff68c003+" .. harm, 0.021, enemy, 0.70, 120, 90)
 end
 -- 彼岸花51
-function mt.TL_51_Actions(p, hero, enemy)
+function mt.TL_51_Actions(hero, enemy)
     if GetRandomReal(0, 100) <= 5 and not gU.isType(enemy, UNIT_TYPE.HERO) then
-        gU.setOwner(enemy, p, true)
+        gU.setOwner(enemy, gU.getOwner(hero), true)
         gU.setLifeTime(enemy, 15 + gH.getLevel(hero) * 0.1)
         gEff.remove(gEff.addTarget("Abilities\\Spells\\Other\\Charm\\CharmTarget.mdl", enemy, "origin"))
     end
 end
 -- 金鳞幻蝶60
 function mt.TL_60_Actions(hero, enemy)
-    if GetRandomReal(0, 100) <= 30 then
-        gTag.newUnit("|cff0de4e4" .. "闪避", 0.023, hero, 1.50, 64, 100)
+    if GetRandomReal(0, 100) <= 130 then
+        gTag.newUnit("|cff0de4e4" .. "闪避-" .. GetEventDamage(), 0.023, hero, 1.50, 64, 100)
         SetEventDamage(0)
     end
 end
+
 -- 白鹤灵芝草61
-function mt.TL_61_Actions(hero)
+function mt.TL_61_Actions(hero, enemy)
     local value = gH.getMain(hero)
-    if R2I(value * 0.1) ~= 0 and gU.getState(hero, UNIT_STATE.LIFE) < gU.getState(hero, UNIT_STATE.MAX_LIFE) then
-        gU.adjustState(hero, UNIT_STATE.LIFE, value * 0.1)
-        gTag.newUnit("|cff68c003+" .. I2S(R2I(value * 0.1)), 0.023, hero, 0.70, 64, 75)
+    value = string.format('%0.f', value * 0.1)
+    if value ~= 0 and gU.getState(hero, UNIT_STATE.LIFE) < gU.getState(hero, UNIT_STATE.MAX_LIFE) then
+        gU.adjustState(hero, UNIT_STATE.LIFE, value)
+        gTag.newUnit("|cff68c003+" .. value, 0.021, hero, 0.70, 20, 90)
     end
 end
+
 -- 杖头双蛇70
-function mt.TL_70_Actions(enemy)
+function mt.TL_70_Actions(hero, enemy)
     local value = gH.getMain(hero)
-    if R2I(value * 0.2) ~= 0 then
-        gU.adjustState(enemy, UNIT_STATE.LIFE, -value * 0.2)
-        gTag.newUnit("|cff68c003-" .. I2S(R2I(value * 0.2)), 0.023, enemy, 0.35, 64, 315)
+    value = string.format('%0.f', value * 0.2)
 
-        if gU.getState(enemy, UNIT_STATE.MANA) > 0 then
-            gU.adjustState(enemy, UNIT_STATE.MANA, -value * 0.2)
-            gTag.newUnit("|cff0326c0-" .. I2S(R2I(value * 0.2)), 0.023, enemy, 0.35, 64, 225)
+    if value ~= 0 then
+        if gU.getState(enemy, UNIT_STATE.LIFE) - value > 0 then
+            gU.adjustState(enemy, UNIT_STATE.LIFE, -value)
+            gTag.newUnit("|cff68c003-" .. value, 0.023, enemy, 0.55, 20, 315)
+        end
+        if gU.getState(enemy, UNIT_STATE.MANA) - value >= 0 then
+            gU.adjustState(enemy, UNIT_STATE.MANA, -value)
+            gTag.newUnit("|cff0326c0-" .. value, 0.023, enemy, 0.55, 20, 225)
         end
     end
 end
+
 -- 九死还魂草71
-function mt.TL_71_Actions(enemy)
-    if GetEventDamage() >= gU.getState(enemy, UNIT_STATE.LIFE) then
-        if enemy ~= hero then
-            gAbi.remove(enemy, 'Y071')
-        end
-
-        gAbi.add(enemy, 'Y071')
+function mt.TL_71_Actions(hero, enemy)
+    local cool = gSlk.getAbiInt('Y071','cool1')
+    if GetEventDamage() >= gU.getState(hero, UNIT_STATE.LIFE) then
+        gAbi.add(hero, 'Y071')
+        --gTag.newUnit("|cffafbaec-" .. '英雄过一会儿复活', 0.023, hero, 0.55, 50, -90)
     end
 end
+
 -- 赤焰金龟80
-function mt.TL_80_Actions()
-    SetEventDamage(GetEventDamage() * 1.3)
+function mt.TL_80_Actions(hero, enemy)
+    local harm = GetEventDamage() * 0.3
+    gDam.target(hero, enemy, harm, true, true)
+    gTag.newUnit("|cffafbaec普攻伤害+" .. harm, 0.023, enemy, 0.55, 50, -90)
 end
+
 -- 血菩提81
-function mt.TL_81_Actions()
+function mt.TL_81_Actions(hero, enemy)
+    local harm = GetEventDamage() * 0.3
     SetEventDamage(GetEventDamage() * 0.7)
+    gTag.newUnit("|cffafbaec普攻伤害-" .. harm, 0.023, hero, 0.55, 50, -90)
 end
--- 朱睛冰蟾90
-function mt.TL_90_Actions(enemy)
-    local TL = mt.getTL(enemy)
-    print(TL.atkCount_90)
-    if TL.atkCount_90 <= 0 then
-        gT.loop(5.00, function()
-            TL.atkCount_90 = TL.atkCount_90 - 5
 
-            gEff.remove(gEff.addTarget("Abilities\\Spells\\NightElf\\FaerieenemyagonInvis\\Faerieenemyagon_Invis.mdl",
-                            enemy, "origin"))
-            UnitRemoveBuffs(enemy, false, true)
+-- 朱睛冰蟾90:开启之时起生效
+function mt.TL_90_Actions(hero)
+    gT.loop(5.00, function()
+        local tla = require 'hero.神医.tlA'
+        if tla.TL[90] == 1 then
+            local path = "Abilities\\Spells\\Undead\\ReplenishMana\\ReplenishManaCasterOverhead.mdl"
+            gEff.remove(gEff.addTarget(path, hero, "overhead"))
+            gU.removeBuffs(hero, false, true)
+            gTag.newUnit("|cfff0cf17" .. '清除负面状态', 0.023, hero, 0.30, 20, 45)
+        elseif tla.TL[90] == -1 then
+            gT.remove()
+        end
+    end)
+end
 
-            if TL.atkCount_90 <= 0 then
-                gT.remove()
+-- 天羽灵香91:开启之时起生效
+function mt.TL_91_Actions(hero)
+    local tla = require 'hero.神医.tlA'
+    if tla.TL[91] == 1 then
+        gAbi.add(hero, 'Y091')
+    else
+        gAbi.remove(hero, 'Y091')
+    end
+end
+
+-- 莽牯朱蛤100	莽牯朱蛤（降低敌方单位30%攻击力、30%护甲值
+function mt.TL_100_Actions(hero)
+    gT.loop(1.00, function()
+        local tla = require 'hero.神医.tlA'
+        if tla.TL[100] == 1 then
+            local dwz = gGroup.getUnitInRange(gU.getX(hero), gU.getY(hero), 900)
+            for i, unit in ipairs(dwz) do
+                if gU.isEnemy(hero, gU.getOwner(unit)) then
+                    local atk = gU.getState(unit, UNIT_STATE.BASIC_DAMAGE) * 0.3
+                    gUnitdata.addTimerAtk(unit, -atk, 1.00)
+                    local def = gU.getState(unit, UNIT_STATE.ARMOR) * 0.3
+                    gUnitdata.addTimerDef(unit, -def, 1.00)
+                end
             end
-        end)
-    end
-    -- 保持攻击状态
-    TL.atkCount_90 = 10
-end
--- 天羽灵香91：其他地方实现
--- 莽牯朱蛤100
-function mt.TL_100_Actions(abiID)
-    gT.loop(4.00, function()
-        local mj = gU.create(gU.getOwner(hero), 'yhmj', gU.getX(hero), gU.getY(hero), 270)
-        gAbi.add(mj, 'Y100')
-        gU.issueNeutralOrder(gU.getOwner(hero), mj, "roar")
-
-        if tla.TL[100] == -1 then
-            gT.remove()
-        end
-    end)
-end
--- 七星海棠101
-function mt.TL_101_Actions(abiID)
-    gT.loop(4.00, function()
-        local mj = gU.create(gU.getOwner(hero), 'yhmj', gU.getX(hero), gU.getY(hero), 270)
-        gAbi.add(mj, 'Y101')
-        gU.issueNeutralOrder(gU.getOwner(hero), mj, "roar")
-
-        if tla.TL[101] == -1 then
+        else
             gT.remove()
         end
     end)
 end
 
--- 单体    --群体
-function mt.TL1_Actions(trgP, hero, enemy)
-    print(2312)
-    if tla.TL[1] == 1 then
-        mt.TL_1_Actions(hero, enemy)
-    end
-    if tla.TL[2] == 1 then
-        mt.TL_2_Actions(hero, enemy)
-    end
-    if tla.TL[3] == 1 then
-        mt.TL_3_Actions(hero, enemy)
-    end
-    if tla.TL[4] == 1 then
-        mt.TL_4_Actions(hero, enemy)
-    end
-    if tla.TL[50] == 1 then
-        mt.TL_50_Actions(hero, enemy)
-    end
-    if tla.TL[51] == 1 then
-        mt.TL_51_Actions(trgP, hero, enemy)
-    end
-    if tla.TL[61] == 1 then
-        mt.TL_61_Actions(hero)
-    end
-    if tla.TL[70] == 1 then
-        mt.TL_70_Actions(enemy)
-    end
-    if tla.TL[80] == 1 then
-        mt.TL_80_Actions(hero, enemy)
-    end
-end
---
-function mt.TL2_Actions(trgp, hero, enemy)
-    if tla.TL[60] == 1 then
-        mt.TL_60_Actions(enemy)
-    end
-    if tla.TL[71] == 1 then
-        mt.TL_71_Actions(enemy)
-    end
-    if tla.TL[81] == 1 then
-        mt.TL_81_Actions()
-    end
-    if tla.TL[90] == 1 then
-        mt.TL_90_Actions(enemy)
-    end
+-- 七星海棠101	七星海棠（增加己方单位30%攻击力、30%护甲值）
+function mt.TL_101_Actions(hero)
+    gT.loop(1.00, function()
+        local tla = require 'hero.神医.tlA'
+        if tla.TL[101] == 1 then
+            local dwz = gGroup.getUnitInRange(gU.getX(hero), gU.getY(hero), 900)
+            for i, unit in ipairs(dwz) do
+                if gU.isAlly(hero, gU.getOwner(unit)) then
+                    local atk = gU.getState(unit, UNIT_STATE.BASIC_DAMAGE) * 0.3
+                    gUnitdata.addTimerAtk(unit, atk, 1.00)
+                    local def = gU.getState(unit, UNIT_STATE.ARMOR) * 0.3
+                    gUnitdata.addTimerDef(unit, def, 1.00)
+                end
+            end
+        else
+            gT.remove()
+        end
+    end)
 end
 
--- gTrg.RegAnyUnitDamageEvent(function()
---     if gU.isEnemy(GetEventDamageSource(), GetTriggerPlayer()) then
---         if IsEventAttackDamage() then -- 普攻
---             local hero, enemy = GetEventDamageSource(), GetTriggerUnit()
---             -- 伤害来源拥有技能
---             if gAbi.isHave(GetEventDamageSource(), mt.Abi_2) then
---                 mt.TL1_Actions(GetTriggerPlayer(), hero, enemy)
---             end
---         end
---     end
--- end)
+-- 普攻触发;对敌人
+function mt.TL1_Actions(hero, enemy)
+    local tla = require 'hero.神医.tlA'
+    local index = {1, 2, 3, 4, 50, 51, 61, 70, 80}
+    for k, v in pairs(index) do
+        if tla.TL[v] == 1 then
+            print(v)
+            mt['TL_' .. v .. '_Actions'](hero, enemy)
+        end
+    end
+end
+-- 普攻触发;对友军
+function mt.TL2_Actions(hero, enemy)
+    local tla = require 'hero.神医.tlA'
+    local index = {60, 71, 81}
+    for k, v in pairs(index) do
+        if tla.TL[v] == 1 then
+            print(v)
+            mt['TL_' .. v .. '_Actions'](hero, enemy)
+        end
+    end
+end
+-- 任意伤害触发;对友军
+function mt.TL3_Actions(hero, enemy)
+    local tla = require 'hero.神医.tlA'
+    local index = {60, 71, 81}
+    for k, v in pairs(index) do
+        if tla.TL[v] == 1 then
+            print(v)
+            mt['TL_' .. v .. '_Actions'](hero, enemy)
+        end
+    end
+end
+gTrg.RegAnyUnitDamageEvent(function()
+    if not gU.isAlly(GetEventDamageSource(), GetTriggerPlayer()) then
+        local source, trgu = GetEventDamageSource(), GetTriggerUnit()
+        if IsEventAttackDamage() then -- 普攻
+            if gP.isUserPlayer(GetTriggerPlayer()) then
+                if gAbi.isHave(source, 'SyEb') or gU.isTypeId(source, 'Sy00') then
+                    mt.TL2_Actions(trgu, source)
+                end
+            else
+                if gAbi.isHave(source, 'SyEb') or gU.isTypeId(source, 'Sy00') then
+                    mt.TL1_Actions(source, trgu)
+                end
+            end
+        end
+    end
+end)
 
 return mt

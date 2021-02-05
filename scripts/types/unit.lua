@@ -97,6 +97,9 @@ end
 
 -- 设置单位状态
 function mt.setState(u, unitState, delta)
+    if delta < 0 then
+        log.error('单位生命值低于0,会导致直接死亡')
+    end
     japi.SetUnitState(u, unitState, delta)
 end
 
@@ -127,18 +130,18 @@ function mt.removeBuffs(whichUnit, removePositive, removeNegative)
 end
 
 -- 删除buff(正面,负面,魔法,物理,生命周期,光环效果,不可驱散)
-function mt.removeBuffsEx(whichUnit, removePositive, removeNegative,magic,physical,timedLife,aura,autoDispel)
-    UnitRemoveBuffsEx(whichUnit, removePositive, removeNegative,magic,physical,timedLife,aura,autoDispel)
+function mt.removeBuffsEx(whichUnit, removePositive, removeNegative, magic, physical, timedLife, aura, autoDispel)
+    UnitRemoveBuffsEx(whichUnit, removePositive, removeNegative, magic, physical, timedLife, aura, autoDispel)
 end
 
 -- 是否拥有buff(正面,负面,魔法,物理,生命周期,光环效果,不可驱散)
-function mt.isHaveBuffsEx(whichUnit, removePositive, removeNegative,magic,physical,timedLife,aura,autoDispel)
-    return UnitHasBuffsEx(whichUnit, removePositive, removeNegative,magic,physical,timedLife,aura,autoDispel)
+function mt.isHaveBuffsEx(whichUnit, removePositive, removeNegative, magic, physical, timedLife, aura, autoDispel)
+    return UnitHasBuffsEx(whichUnit, removePositive, removeNegative, magic, physical, timedLife, aura, autoDispel)
 end
 
 -- 获取buff数量(正面,负面,魔法,物理,生命周期,光环效果,不可驱散)
-function mt.getCountBuffsEx(whichUnit, removePositive, removeNegative,magic,physical,timedLife,aura,autoDispel)
-    return UnitCountBuffsEx(whichUnit, removePositive, removeNegative,magic,physical,timedLife,aura,autoDispel)
+function mt.getCountBuffsEx(whichUnit, removePositive, removeNegative, magic, physical, timedLife, aura, autoDispel)
+    return UnitCountBuffsEx(whichUnit, removePositive, removeNegative, magic, physical, timedLife, aura, autoDispel)
 end
 -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 是否 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -158,7 +161,7 @@ end
 
 -- 设置单位生命周期
 function mt.setLifeTime(unit, time, id)
-    local id = id or 'Bhwd' -- 水元素
+    local id = id or 'BTLF' -- 类
     UnitApplyTimedLife(unit, gYh.s2id(id), time)
 end
 

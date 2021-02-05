@@ -4,7 +4,7 @@ mt.Sq_Jian = 0
 
 -- 单位施放技能->动作
 gTrg.RegAnyPlayerUnitEvent(EVENT_PLAYER_UNIT.SPELL_CAST, function()
-    if gTrg.isMatchAbiId('SQ02') 'SQ02' then -- 龙威挑战
+    if gTrg.isMatchAbiId('SQ02') then -- 龙威挑战
         WqSpell_Abi_2_Actions()
     elseif gTrg.isMatchAbiId('SQ03') then -- 焰天火雨
         WqSpell_Abi_3_Actions()
@@ -86,6 +86,7 @@ gTrg.RegAnyUnitDamageEvent(function()
 end)
 -- 单位获得物品
 gTrg.RegAnyPlayerUnitEvent(EVENT_PLAYER_UNIT.PICKUP_ITEM, function()
+    local trgItem, trgU = GetManipulatedItem(), GetManipulatingUnit()
     if gIt.isMatchTypeId(trgItem, 'sq08') then
         mt.Sq_Jian = mt.Sq_Jian + 1 -- 记录剑类神器数量
         gP.disTimedText(Player(0), 10, "剑类神器持有数量：" + I2S(mt.Sq_Jian))
