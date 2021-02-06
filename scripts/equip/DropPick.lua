@@ -126,13 +126,10 @@ gTrg.RegAnyPlayerUnitEvent(EVENT_PLAYER_UNIT.DROP_ITEM, function()
     end
 end)
 -- 动作：单位贩卖装备
-gTrg.RegAnyPlayerUnitEvent(EVENT_PLAYER_UNIT.SELL_ITEM, function()
+gTrg.RegAnyPlayerUnitEvent(EVENT_PLAYER_UNIT.PAWN_ITEM, function()
     if gU.isType(GetTriggerUnit(), UNIT_TYPE.HERO) then
         mt.StepOne(-1, GetSellingUnit(), GetSoldItem())
     end
-    gT.wait(5.00, function()
-        print(GetItemName(GetSoldItem()) + "即将被清除Equip_Hash!")
-    end)
 end)
 
 return mt

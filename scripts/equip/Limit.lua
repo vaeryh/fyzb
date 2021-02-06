@@ -81,7 +81,7 @@ function mt.Hero_Actions(whichHero, whichItem, class)
     mt.isGood(whichHero, whichItem, class, "机关", "Nf00")
 
     if class == "剑" then
-        if GetUnitTypeId(whichHero) == 'Bjy0' or GetUnitTypeId(whichHero) == 'Dl00' then
+        if gU.isTypeId(whichHero,'Bjy0')  or gU.isTypeId(whichHero,'Dl00') then
             return mt.Level_Actions(whichHero, whichItem, class)
         else
             gP.disTimedText(GetLocalPlayer(), 15, "你不擅长剑类武器，不能穿戴！")

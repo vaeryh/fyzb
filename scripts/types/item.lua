@@ -93,7 +93,9 @@ function mt.isMatchTypeId(item, id)
 end
 -- 获取槽位号物品
 function mt.getUnitInSlot(unit, index)
-    return UnitItemInSlot(unit, index)
+    local item = UnitItemInSlot(unit, index)
+    printF('A',item)
+    return item
 end
 -- 获取槽位号
 function mt.getHaveItemTypeCount(unit, itemId)
@@ -111,15 +113,16 @@ function mt.isHave(unit, itemId)
     return mt.getHaveItemTypeCount(unit, itemId) > 0
 end
 
---获取背包同类别的物品数量
-function mt.getSameClassNum(whichUnit,  class )
-	local  num = 0
+-- 获取背包同类别的物品数量
+function mt.getSameClassNum(whichUnit, class)
+    local num = 0
     for i = 0, 5 do
-        if gSlk.getItemString(UnitItemInSlot(whichUnit, i), "class") == class then
-			num = num + 1
-		end
+        local item = mt.getUnitInSlot(whichUnit, i)
+        if item ~= 0 and gSlk.getItemString(item, "class") == class then
+            num = num + 1
+        end
     end
-	return num
+    return num
 end
 
 return mt

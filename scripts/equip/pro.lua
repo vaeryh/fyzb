@@ -268,12 +268,13 @@ function mt.Sp_SetPropertyValue(it, white, yellow, pink, red)
             local numI = GetRandomInt(5, 5 + Lev)
             -- 存储数值
             it.value = numR
-            it.value1 =numI
+            it.value1 = numI
             -- 存储最大值
             it.max = 50 + 10 * Lev
             it.max1 = 5 + Lev
             -- 存储描述
-            it.tip = "|cFFF1A4E0邪恶光环：提升周围友军" .. numR .. "%的气血恢复和" .. numI ..            "%的移动速度"
+            it.tip = "|cFFF1A4E0邪恶光环：提升周围友军" .. numR .. "%的气血恢复和" .. numI ..
+                         "%的移动速度"
             -- 存储属性名
             it.name = "邪恶光环"
         end
@@ -364,7 +365,7 @@ end
 -- 装备来源：后期修改做准备
 function mt.Source(source, whichItem)
     local Lev = gSlk.getItemInt(whichItem, "Level")
-    print(source .. ":" .. GetItemName(whichItem) .. I2S(Lev) .. "阶")
+    printF(source, GetItemName(whichItem), Lev .. "阶")
     -- 商店，后期删除
     if source == "商店" then
         mt.Classify(whichItem, true, true, true, true)
@@ -387,7 +388,7 @@ end
 gTrg.RegPlayerUnitEvent(Player(15), EVENT_PLAYER_UNIT.SELL_ITEM, function()
     local trgP = GetTriggerPlayer()
     local unitTypeId = GetUnitTypeId(GetTriggerUnit())
-    gP.disTimedText(trgP, GetPlayerName(trgP) + "购买了" + GetItemName(GetSoldItem()))
+    gP.disTimedText(trgP, GetPlayerName(trgP) .. "购买了" .. GetItemName(GetSoldItem()))
     if unitTypeId >= gYh.s2id('wq01') and unitTypeId <= gYh.s2id('wq05') then -- 武器
         mt.Source("商店", GetSoldItem())
     elseif unitTypeId == gYh.s2id('fj01') or unitTypeId == gYh.s2id('fj02') then -- 防具

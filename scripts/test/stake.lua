@@ -60,7 +60,7 @@ list.vw1 = {
     id = 'hsor',
     num = 3,
     player = Player(0),
-    life = 1000,
+    life = 20000,
     xy = {122.3068847656, -10621.6953125},
     atk = 100
 }
