@@ -144,7 +144,7 @@ gTrg.RegTimerEvent(0.00, false, function()
         frame = DzFrameFindByName("ProTextButtonPlayer" + I2S(lopA), 0)
         if GetPlayerController(Player(lopA)) == MAP_CONTROL_USER and GetPlayerSlotState(Player(lopA)) ==
             PLAYER_SLOT_STATE_PLAYING then
-            DzFrameSetScriptByCode(frame, 1, Cut_HeroPro, false)
+            --DzFrameSetScriptByCode(frame, 1, Cut_HeroPro, false)
         else
             DzFrameShow(frame, false)
         end
@@ -177,6 +177,6 @@ gTrg.RegTimerEvent(0.00, false, function()
     DzFrameSetAbsolutePoint(DzFrameFindByName("ProTipsBackdrop", 0), 0, 0.1, 0.55)
     DzFrameSetEnable(DzFrameFindByName("ProButtonX", 0), false)
     -- X按钮；关闭
-    DzFrameSetScriptByCode(DzFrameFindByName("ProButtonX", 0), 1, OnOff_Keyboard_Actions, false)
+    --DzFrameSetScriptByCode(DzFrameFindByName("ProButtonX", 0), 1, OnOff_Keyboard_Actions, false)
     TriggerAddAction(Trig_KeyBoard_F5, OnOff_Keyboard_Actions)
 end)

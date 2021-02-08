@@ -1,4 +1,9 @@
 map = require 'map.global'
+
+-- 时间
+require 'scope.time'
+-- 鼠标提示
+--require 'map.tip.init'
 -- 地图初始化
 local function map_main()
     gP.setState(Player(0), PLAYER_STATE.RESOURCE_GOLD, 100000)

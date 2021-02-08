@@ -1,0 +1,5 @@
+require 'library.bags.frameInit'
+--require 'library.bags.Bag22'
+require 'library.bags.BagBar'
+-- require 'library.bags.ItemBara'
+-- require 'library.bags.AbiBar'

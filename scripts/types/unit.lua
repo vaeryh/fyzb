@@ -43,6 +43,10 @@ function mt.create(p, id, x, y, face)
     table.insert(mt.listUnit, u)
     return u
 end
+-- 获取指定等级的单位类型
+function mt.getRandom(level)
+    return ChooseRandomCreep(level)
+end
 
 -- 创建N个单位
 function mt.createNum(num, p, id, x, y, face)

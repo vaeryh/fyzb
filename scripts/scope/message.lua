@@ -17,9 +17,7 @@ end) ]]
 -- 本地消息
 function message.hook(msg)
     local selection = message.selection()
-    -- printF(msg.type)
-    -- printF(msg.code)
-    -- printF(msg.state)
+    --printF(msg.type, msg.code, msg.state)
     -- 键盘抬起消息
     if msg.type == 'key_up' then
         if msg.code == keyboard['F2'] then

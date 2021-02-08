@@ -35,43 +35,47 @@ function mt.reload()
 
     -- 重载触发器
     for k, v in ipairs(gTrg.listTrigger) do
-        log.debug("trg", k, v)
-        --gTrg.listTrigger[k] = nil
+        -- log.debug("trg", k, v)
+        -- gTrg.listTrigger[k] = nil
         gTrg.setClose(v)
         gTrg.remove(v)
     end
+    log.debug("trg", #gTrg.listTrigger)
     -- 重载计时器与窗口
     for k, v in ipairs(gT.listTimer) do
-        log.debug("timer", k, v)
-        --gT.listTimer[k] = nil
+        -- log.debug("timer", k, v)
+        -- gT.listTimer[k] = nil
         gT.setPause(v)
         gT.remove(v, nil)
     end
+    log.debug("timer", #gT.listTimer)
     for k, v in ipairs(gT.listDia) do
         log.debug("tDia", k, v)
-        --gT.listDia[k] = nil
+        -- gT.listDia[k] = nil
         gT.remove(nil, v)
     end
     -- 重载单位
     for k, v in ipairs(gU.listUnit) do
-        log.debug("unit", k, v)
-        --gU.listUnit[k] = nil
+        -- log.debug("unit", k, v)
+        -- gU.listUnit[k] = nil
         gU.remove(v, nil)
     end
+    log.debug("unit", #gU.listUnit)
     -- 重载多面板
     for k, v in ipairs(gDmb.listBoard) do
         log.debug("Dmb", k, v)
-        --gDmb.listBoard[k] = nil
+        -- gDmb.listBoard[k] = nil
         gDmb.remove(v)
     end
     -- 重载Frame
     log.info('---- Reload Frame ----')
     for k, v in ipairs(gDz.listFrame) do
-        log.debug("Frame", k, v)
-        --gDz.listFrame[k] = nil
+        -- log.debug("Frame", k, v)
+        -- gDz.listFrame[k] = nil
         --gDz.FrameShow(v, false)
         gDz.DestroyFrame(v)
     end
+    log.debug("Frame", #gDz.listFrame)
 
     local hero_load = require 'hero.hero_load'
     helper_reload(function()

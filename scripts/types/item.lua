@@ -18,10 +18,19 @@ end
 function mt.getDataString(itemcode, data_type)
     return japi.EXGetItemDataString(itemcode, data_type)
 end
+-- 物品类型
+ITEM_TYPE = {
+    -- 任意类型
+    ANY = ITEM_TYPE_ANY
+}
 
 -- 创建物品
 function mt.create(id, x, y)
-    return CreateItem(gYh.s2id(id), x, y)
+    return CreateItem(gYh.switch(id), x, y)
+end
+-- 获取指定分类的随机物品(新版等级参考)
+function mt.getRandom(itemtype, lev)
+    return ChooseRandomItemEx(itemtype, lev)
 end
 -- 删除物品
 function mt.remove(item)
@@ -40,7 +49,7 @@ function mt.getTypeId(item)
     return GetItemTypeId(item)
 end
 -- 设置可见度(true:可见)
-function mt.remove(item, bol)
+function mt.setVisible(item, bol)
     SetItemVisible(item, bol)
 end
 -- 设置物品坐标
@@ -94,7 +103,9 @@ end
 -- 获取槽位号物品
 function mt.getUnitInSlot(unit, index)
     local item = UnitItemInSlot(unit, index)
-    printF('A',item)
+    if item == 0 then
+        return nil
+    end
     return item
 end
 -- 获取槽位号
@@ -118,7 +129,19 @@ function mt.getSameClassNum(whichUnit, class)
     local num = 0
     for i = 0, 5 do
         local item = mt.getUnitInSlot(whichUnit, i)
-        if item ~= 0 and gSlk.getItemString(item, "class") == class then
+        if item and gSlk.getItemString(item, "class") == class then
+            num = num + 1
+        end
+    end
+    return num
+end
+
+-- 获取物品栏物品数量
+function mt.getBarNum(whichUnit)
+    local num = 0
+    for i = 0, 5 do
+        local item = mt.getUnitInSlot(whichUnit, i)
+        if item then
             num = num + 1
         end
     end

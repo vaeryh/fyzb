@@ -90,7 +90,7 @@ gTrg.RegUserPlayerUnitEvent(EVENT_PLAYER_UNIT.SPELL_EFFECT, function()
 end)
 --------------------------------------------------------------------------
 -- 练功房，F2
-gTrg.RegKeyEventByCode(113, 0, function()
+gDz.TriggerRegisterKeyEvent(113, 0, true, function()
     local p = gDz.GetTriggerKeyPlayer()
     gYh.MoveAndCamera(Hero[p], gRect.getCenter(mt.lgf1))
 end)

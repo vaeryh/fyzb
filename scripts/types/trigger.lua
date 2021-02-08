@@ -231,19 +231,6 @@ function mt.RegUnitStateEvent(u, unitstate, opcode, limitval, code)
     TriggerRegisterUnitStateEvent(mt.create(code), u, unitstate, opcode, limitval)
 end
 
--- 注册键盘key事件
-function mt.RegKeyEventByCode(btnStr, status, code)
-    local key
-    if type(btnStr) == 'string' then
-        key = require'jass.message'.keyboard[btnStr]
-    elseif type(btnStr) == 'number' then
-        key = btnStr
-    end
-    -- sync：运行触发器则true，不运行则false，与同步异步无关
-    -- 只能同步，异步不生效，可能是因为message已经本地注册过了
-    gDz.TriggerRegisterKeyEventByCode(mt.create(code), key, status, true, nil)
-end
-
 -- 注册任意单位伤害事件
 local dam = require 'library.AnyUnitDamagedEvent'
 function mt.RegAnyUnitDamageEvent(code)

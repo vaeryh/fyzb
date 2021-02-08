@@ -388,7 +388,7 @@ end
 gTrg.RegPlayerUnitEvent(Player(15), EVENT_PLAYER_UNIT.SELL_ITEM, function()
     local trgP = GetTriggerPlayer()
     local unitTypeId = GetUnitTypeId(GetTriggerUnit())
-    gP.disTimedText(trgP, GetPlayerName(trgP) .. "购买了" .. GetItemName(GetSoldItem()))
+    gP.disTimedText(trgP, 10.00,GetPlayerName(trgP) .. "购买了" .. GetItemName(GetSoldItem()))
     if unitTypeId >= gYh.s2id('wq01') and unitTypeId <= gYh.s2id('wq05') then -- 武器
         mt.Source("商店", GetSoldItem())
     elseif unitTypeId == gYh.s2id('fj01') or unitTypeId == gYh.s2id('fj02') then -- 防具

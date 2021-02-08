@@ -13,6 +13,6 @@ require 'test.log'
 
 --require 'test.error'
 
-require 'test.stake'
-
+require 'test.testItem'
+require 'test.teststake'
 require 'test.check'

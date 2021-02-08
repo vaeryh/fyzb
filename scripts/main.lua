@@ -10,6 +10,8 @@
 -----------------------------------------------------------------------------------------
 -- types类型库
 require 'types.init'
+-- library
+require 'library.init'
 -- scope库
 require 'scope.init'
 -- 测试

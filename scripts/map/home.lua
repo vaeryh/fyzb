@@ -31,7 +31,7 @@ gTrg.RegAnyPlayerChatEvent(GetEventPlayerChatString(), true, function()
 end)
 -----------------------------------------------------------------------------
 -- 按键F3回城
-gTrg.RegKeyEventByCode(114, 0, function()
+gDz.TriggerRegisterKeyEvent(114, 0, true, function()
     local p = gDz.GetTriggerKeyPlayer()
     gYh.MoveAndCamera(Hero[p], gRect.getCenter(map.rect['回城矩形']))
 end)

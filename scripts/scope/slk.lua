@@ -33,35 +33,48 @@ local SLK_TYPE = {
     DESTRUCTABLE = 'destructable'
 }
 
+-----------------------------------------------------------------------------
 -- 获取单位string
 function mt.getUnitString(handle, pro)
+    if handle == 0 then
+        return log.warn('无效', handle, pro)
+    end
     local id = gYh.id2s(GetUnitTypeId(handle))
-    pro = slk.unit[id][pro] or log.warn('无效', id, handle, pro)
+    pro = slk.unit[id][pro]
     return pro
 end
 -- 获取单位Int
 function mt.getUnitInt(handle, pro)
     return tonumber(mt.getUnitString(handle, pro))
 end
+-----------------------------------------------------------------------------
 -- 获取物品string
 function mt.getItemString(handle, pro)
+    if handle == 0 then
+        return log.warn('无效', handle, pro)
+    end
     local id = gYh.id2s(GetItemTypeId(handle))
-    pro = slk.item[id][pro] or log.warn('无效', handle, pro)
+    pro = slk.item[id][pro]
     return pro
 end
 -- 获取物品Int
 function mt.getItemInt(handle, pro)
     return tonumber(mt.getItemString(handle, pro))
 end
+-----------------------------------------------------------------------------
 -- 获取技能string
 function mt.getAbiString(handle, pro)
+    if handle == 0 then
+        return log.warn('无效', handle, pro)
+    end
     local id = gYh.id2s(gYh.switch(handle))
-    pro = slk.ability[id][pro] or log.warn('无效', handle, pro)
+    pro = slk.ability[id][pro]
     return pro
 end
 -- 获取技能Int
 function mt.getAbiInt(handle, pro)
     return tonumber(mt.getAbiString(handle, pro))
 end
+-----------------------------------------------------------------------------
 
 return mt

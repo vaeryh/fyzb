@@ -20,6 +20,11 @@ function mt.getCenter(rect)
     return GetRectCenterX(rect), GetRectCenterY(rect)
 end
 
+-- 获取矩形随机坐标
+function mt.getRandom(rect)
+    return GetRandomReal(GetRectMinX(rect), GetRectMaxX(rect)), GetRandomReal(GetRectMinY(rect), GetRectMaxY(rect))
+end
+
 -- 获取矩形MaxX
 function mt.getMaxX(rect)
     return GetRectMaxX(rect)
