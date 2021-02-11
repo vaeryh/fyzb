@@ -2,6 +2,13 @@ local mt = {}
 
 mt.listBoard = {}
 
+--重载
+function mt:reload()
+    for k, v in ipairs(self.listBoard) do
+        log.debug("Dmb", k, v)
+        self.remove(v)
+    end
+end
 -- 创建多面板
 function mt.create()
     local b = CreateMultiboard()
@@ -69,24 +76,28 @@ function mt.removeItem(b, rows, cols)
 end
 ----------------------------------------------------------------------
 -- 设置指定项目风格(文字，图标)
-function mt.setItemStyle(mbi, bolA, bolB)
+function mt.setItemStyle(dmb, rows, cols, bolA, bolB)
+    local mbi = mt.getItem(dmb, rows, cols)
     MultiboardSetItemStyle(mbi, bolA, bolB)
 end
 -- 设置指定项目文本
-function mt.setItemValue(mbi, text)
-    local text = text or "nil"
+function mt.setItemValue(dmb, rows, cols, text)
+    local mbi = mt.getItem(dmb, rows, cols)
     MultiboardSetItemValue(mbi, text)
 end
 -- 设置指定项目图标
-function mt.setItemIcon(mbi, path)
+function mt.setItemIcon(dmb, rows, cols, path)
+    local mbi = mt.getItem(dmb, rows, cols)
     MultiboardSetItemIcon(mbi, path)
 end
 -- 设置指定项目颜色
-function mt.setItemValueColor(mbi, red, green, bule, alpha)
+function mt.setItemValueColor(dmb, rows, cols, red, green, bule, alpha)
+    local mbi = mt.getItem(dmb, rows, cols)
     MultiboardSetItemValueColor(mbi, red, green, bule, alpha)
 end
 -- 设置指定项目宽度
-function mt.setItemWidth(mbi, width)
+function mt.setItemWidth(dmb, rows, cols, width)
+    local mbi = mt.getItem(dmb, rows, cols)
     MultiboardSetItemWidth(mbi, width)
 end
 ----------------------------------------------------------------------
@@ -112,19 +123,14 @@ function mt.setItemsWidth(mbi, width)
 end
 ----------------------------------------------------------------------
 -- 创建多面板(地图初始化)
-function mt.new(rows, cols, title)
+function mt.new(rows, cols, width, title)
     local b = mt.create()
     mt.setetRowCount(b, rows)
     mt.setColumnCount(b, cols)
     mt.setTitleText(b, title)
+    mt.setItemsWidth(b, width)
     mt.setDisplay(b, true)
     return b
-end
-
--- 设置动态文本
-function mt.setItemDynamic(mbi, rows, cols, text)
-    local item = mt.getItem(mbi, rows, cols)
-    mt.setItemValue(item, text)
 end
 
 return mt

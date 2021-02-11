@@ -17,7 +17,7 @@ mt.tip = "凤舞的攻击有((凤舞与被攻击者距离/100)*5)%的几率无�
 
 -- D动作
 function mt.Actions(hero, enemy)
-    if GetRandomReal(1, 100) <= gYh.distanceByUnit(hero, enemy) / 20 then
+    if GetRandomReal(1, 100) <= gYh.distanceUnitToUnit(hero, enemy) / 20 then
         gEff.remove(gEff.addTarget("Abilities\\Weapons\\Blood\\BloodImpact.mdl", enemy, "chest"))
 
         SetEventDamage(0.00)

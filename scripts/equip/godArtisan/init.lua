@@ -1,0 +1,2 @@
+
+require 'equip.godArtisan.shop'

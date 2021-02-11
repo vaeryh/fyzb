@@ -5,19 +5,10 @@ if not message then
 end
 local keyboard = message.keyboard
 
--- 本地选择单位
---[[ TimerStart(CreateTimer(), 1.00, true, function()
-    local selection = message.selection()
-    print(selection)
-    printF(GetUnitName(selection))
-    print(keyboard['A'])
-    -- DestroyTimer(GetExpiredTimer())
-end) ]]
-
 -- 本地消息
 function message.hook(msg)
     local selection = message.selection()
-    --printF(msg.type, msg.code, msg.state)
+    -- printF(msg.type, msg.code, msg.state)
     -- 键盘抬起消息
     if msg.type == 'key_up' then
         if msg.code == keyboard['F2'] then
@@ -39,7 +30,8 @@ function message.hook(msg)
         end
         if msg.code == keyboard['Z'] then
             gU.setXY(selection, message.mouse())
-            log.trace(message.mouse())
+            local xy = string.format("%.f,%.f", message.mouse())
+            log.trace(xy)
             return true
         end
     end

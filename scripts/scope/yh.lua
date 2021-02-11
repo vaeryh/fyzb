@@ -1,26 +1,22 @@
 local mt = {}
 
--- 转换256进制整数
-function mt.s2id(a) -- 转为id
-    local n1 = string.byte(a, 1) or 0
-    local n2 = string.byte(a, 2) or 0
-    local n3 = string.byte(a, 3) or 0
-    local n4 = string.byte(a, 4) or 0
-    local r = n1 * 256 * 256 * 256 + n2 * 256 * 256 + n3 * 256 + n4
-    return r
+----------------------------------------------------------------------------------------
+-- 当数量级达1000000时，才会有0.01毫秒的效率差距
+--转换256进制整数
+
+-- id 转 字符串
+function mt.id2s(a)
+	local r = ('>I4'):pack(a)
+	return r
+end
+-- 字符串 转 id
+function mt.s2id(a)
+	local r = ('>I4'):unpack(a)
+	return r
 end
 
--- 转为string
-function mt.id2s(a)
-    local s1 = math.floor(a / 256 / 256 / 256) % 256
-    local s2 = math.floor(a / 256 / 256) % 256
-    local s3 = math.floor(a / 256) % 256
-    local s4 = a % 256
-    local r = string.char(s1, s2, s3, s4)
-    return r
-end
 -- 自动转换为id(id直接返回,字符串返回id)
-function mt.switch(value)
+function mt.switchId(value)
     if type(value) == 'number' then
         return value
     elseif type(value) == 'string' then
@@ -29,6 +25,7 @@ function mt.switch(value)
         log.warn(value,'值不正常')
     end
 end
+
 ----------------------------------------------------------------------------------------
 
 -- 计算两坐标距离
@@ -37,10 +34,14 @@ function mt.distanceXY(x0, y0, x1, y1)
 end
 
 -- 计算两单位距离
-function mt.distanceByUnit(ua, ub)
+function mt.distanceUnitToUnit(ua, ub)
     return mt.distanceXY(GetUnitX(ua), GetUnitY(ua), GetUnitX(ub), GetUnitY(ub))
 end
 
+-- 计算单位和物品距离
+function mt.distanceUnitToItem(unit, item)
+    return mt.distanceXY(GetUnitX(unit), GetUnitY(unit), GetItemX(item), GetItemY(item))
+end
 ----------------------------------------------------------------------------------------
 
 -- 计算两坐标角度

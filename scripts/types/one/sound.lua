@@ -158,7 +158,8 @@ end
 
 -- 获取技能声音
 function mt.getAbi(abiid, soundType)
-    return GetAbilitySoundById(gYh.switch(abiid), soundType)
+return GetAbilitySoundById(gYh.switchId(abiid), soundType)
+
 end
 
 -- 创建音效

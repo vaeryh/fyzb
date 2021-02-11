@@ -103,7 +103,8 @@ end
 
 -- 获取技能效果(序号0开始)
 function mt.getAbi(id, effecttype, index)
-    return GetAbilityEffectById(gYh.switch(id), effecttype, index)
+return GetAbilityEffectById(gYh.switchId(id), effecttype, index)
+
 end
 ---------------------------------------------------------------
 -- 设置特效X轴缩放[ 1.00 ]，Y轴缩放[ 1.00 ]，Z轴缩放[ 1.00 ]

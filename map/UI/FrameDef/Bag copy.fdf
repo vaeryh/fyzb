@@ -41,7 +41,7 @@ Frame "TEXT" "BagTextTemplate" {
     FontFlags "FIXEDSIZE",
     FontHighlightColor 1.0 1.0 1.0 1.0,
     FontDisabledColor 0.5 0.5 0.5 1.0,
-	FontShadowColor 0.0 0.0 0.0 0.9,	
+	FontShadowColor 0.0 0.0 0.0 0.9,
     FontShadowOffset 0.001 -0.001,
 }
 //物品使用次数文本
@@ -55,7 +55,7 @@ Frame "TEXT" "BagMinGridTextTemplate" {
     FontFlags "FIXEDSIZE",
     FontHighlightColor 1.0 1.0 1.0 1.0,
     FontDisabledColor 0.5 0.5 0.5 1.0,
-	FontShadowColor 0.0 0.0 0.0 0.9,	
+	FontShadowColor 0.0 0.0 0.0 0.9,
     FontShadowOffset 0.001 -0.001,
 }
 //一键分解：品质文字
@@ -69,7 +69,7 @@ Frame "TEXT" "BagText1Template" {
     FontFlags "FIXEDSIZE",
     FontHighlightColor 1.0 1.0 1.0 1.0,
     FontDisabledColor 0.5 0.5 0.5 1.0,
-	FontShadowColor 0.0 0.0 0.0 0.9,	
+	FontShadowColor 0.0 0.0 0.0 0.9,
     FontShadowOffset 0.001 -0.001,
 }
 //创建按钮 带有悬停高亮,按下,禁用
@@ -102,10 +102,10 @@ Frame "BUTTON" "BagButtonTemplate"{
 
 Frame "TEXTBUTTON" "BagTextButtonTemplate" {
     Width 0.04,
-    Height 0.02,  
+    Height 0.02,
     //设置样式 悬停高亮  可获取鼠标焦点 HIGHLTGHTONFOCUS
     ControlStyle "AUTOTRACK|HIGHLIGHTONMOUSEOVER",
-    ButtonPushedTextOffset 0.001f -0.002f, 
+    ButtonPushedTextOffset 0.001f -0.002f,
     //设置正常状态背景
     ControlBackdrop "Demo_TextButtonBack",
     Frame "BACKDROP" "Demo_TextButtonBack" {
@@ -147,14 +147,14 @@ Frame "CHECKBOX" "BagCheckBoxTemplate" {
     CheckBoxCheckHighlight "DemoCheckHighlightTemplate",
     Frame "HIGHLIGHT" "DemoCheckHighlightTemplate" {
         HighlightType "FILETEXTURE",
-        HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Checkbox-Check.blp",    
+        HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Checkbox-Check.blp",
         HighlightAlphaMode "BLEND",
     }
 
     CheckBoxDisabledCheckHighlight "DemoDisabledCheckHighlightTemplate",
     Frame "HIGHLIGHT" "DemoDisabledCheckHighlightTemplate" {
         HighlightType "FILETEXTURE",
-        HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Checkbox-CheckDisabled.blp",    
+        HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Checkbox-CheckDisabled.blp",
         HighlightAlphaMode "BLEND",
     }
 }
@@ -175,7 +175,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
         Width 0.015,
         Height 0.020,
         SetPoint BOTTOMRIGHT, "BagBackdrop", TOPRIGHT, 0.0, 0.0,
-                
+
         ControlBackdrop "BagButtonBackdropX",
         Frame "BACKDROP" "BagButtonBackdropX" INHERITS "BagBackdropTemplate" {
             //BackdropBackground  "war3mapImported\MainPanel_ButtonX.blp",
@@ -193,7 +193,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
     Frame "TEXTBUTTON" "BagButtonB" INHERITS WITHCHILDREN "BagTextButtonTemplate" {
         SetPoint  BOTTOMRIGHT, "BagBackdrop", BOTTOMRIGHT, -0.028, 0.005,
-        
+
         ButtonText "BagButtonTextB",
         Frame "TEXT" "BagButtonTextB" INHERITS "BagTextTemplate" {
             Text "|cff2489fd整理背包|r",
@@ -205,15 +205,15 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓========↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
     //第1行
     //第1格
-    Frame "BUTTON" "BagButtonNum11" INHERITS WITHCHILDREN "BagButtonTemplate" {        
+    Frame "BUTTON" "BagButtonNum11" INHERITS WITHCHILDREN "BagButtonTemplate" {
         SetPoint TOPLEFT, "BagBackdrop", TOPLEFT, 0.003, -0.020,
-           
+
         Frame "BACKDROP" "BagGridNum11" INHERITS "BagBackdropTemplate" {//格子背景
             SetPoint CENTER, "BagButtonNum11", CENTER, 0.0, 0.0,
-            
+
             Frame "BACKDROP" "BagMinGridNum11" INHERITS "BagMinGridBackdropTemplate" {//使用次数背景
                 SetPoint BOTTOMRIGHT, "BagGridNum11", BOTTOMRIGHT, -0.004, 0.004,
-            
+
                 Frame "TEXT" "BagMinGridTextNum11" INHERITS "BagMinGridTextTemplate" {//使用次数文本
                     SetPoint CENTER, "BagMinGridNum11", CENTER, 0.0, 0.0,
                 }
@@ -234,7 +234,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
                     SetPoint CENTER, "BagMinGridNum12", CENTER, 0.0, 0.0,
                 }
             }
-        }     
+        }
     }
     //第3格
     Frame "BUTTON" "BagButtonNum13" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -245,12 +245,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum13" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum13", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum13" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum13", CENTER, 0.0, 0.0,
                 }
             }
-        }  
+        }
     }
     //第4格
     Frame "BUTTON" "BagButtonNum14" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -258,15 +258,15 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
         Frame "BACKDROP" "BagGridNum14" INHERITS "BagBackdropTemplate" {
             SetPoint CENTER, "BagButtonNum14", CENTER, 0.0, 0.0,
-           
+
             Frame "BACKDROP" "BagMinGridNum14" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum14", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum14" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum14", CENTER, 0.0, 0.0,
                 }
             }
-        }    
+        }
     }
     //第5格
     Frame "BUTTON" "BagButtonNum15" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -277,7 +277,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum15" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum15", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum15" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum15", CENTER, 0.0, 0.0,
                 }
@@ -293,7 +293,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum16" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum16", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum16" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum16", CENTER, 0.0, 0.0,
                 }
@@ -307,18 +307,18 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
     //第1格
     Frame "BUTTON" "BagButtonNum21" INHERITS WITHCHILDREN "BagButtonTemplate" {
         SetPoint TOPLEFT, "BagButtonNum11", BOTTOMLEFT, 0.00, 0.00,
-           
+
         Frame "BACKDROP" "BagGridNum21" INHERITS "BagBackdropTemplate" {
             SetPoint CENTER, "BagButtonNum21", CENTER, 0.0, 0.0,
 
             Frame "BACKDROP" "BagMinGridNum21" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum21", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum21" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum21", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第2格
     Frame "BUTTON" "BagButtonNum22" INHERITS WITHCHILDREN "BagButtonTemplate"{
@@ -329,12 +329,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum22" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum22", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum22" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum22", CENTER, 0.0, 0.0,
                 }
             }
-        }    
+        }
     }
     //第3格
     Frame "BUTTON" "BagButtonNum23" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -345,12 +345,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum23" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum23", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum23" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum23", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第4格
     Frame "BUTTON" "BagButtonNum24" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -361,12 +361,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum24" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum24", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum24" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum24", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第5格
     Frame "BUTTON" "BagButtonNum25" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -377,7 +377,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum25" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum25", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum25" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum25", CENTER, 0.0, 0.0,
                 }
@@ -393,7 +393,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum26" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum26", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum26" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum26", CENTER, 0.0, 0.0,
                 }
@@ -407,18 +407,18 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
     //第1格
     Frame "BUTTON" "BagButtonNum31" INHERITS WITHCHILDREN "BagButtonTemplate" {
         SetPoint TOPLEFT, "BagButtonNum21", BOTTOMLEFT, 0.00, 0.00,
-        
+
         Frame "BACKDROP" "BagGridNum31" INHERITS "BagBackdropTemplate" {
             SetPoint CENTER, "BagButtonNum31", CENTER, 0.0, 0.0,
 
             Frame "BACKDROP" "BagMinGridNum31" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum31", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum31" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum31", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第2格
     Frame "BUTTON" "BagButtonNum32" INHERITS WITHCHILDREN "BagButtonTemplate"{
@@ -428,12 +428,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum32" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum32", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum32" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum32", CENTER, 0.0, 0.0,
                 }
             }
-        }    
+        }
     }
     //第3格
     Frame "BUTTON" "BagButtonNum33" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -443,12 +443,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum33" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum33", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum33" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum33", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第4格
     Frame "BUTTON" "BagButtonNum34" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -458,12 +458,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum34" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum34", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum34" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum34", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第5格
     Frame "BUTTON" "BagButtonNum35" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -473,7 +473,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum35" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum35", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum35" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum35", CENTER, 0.0, 0.0,
                 }
@@ -488,7 +488,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum36" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum36", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum36" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum36", CENTER, 0.0, 0.0,
                 }
@@ -502,18 +502,18 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
     //第1格
     Frame "BUTTON" "BagButtonNum41" INHERITS WITHCHILDREN "BagButtonTemplate" {
         SetPoint TOPLEFT, "BagButtonNum31", BOTTOMLEFT, 0.00, 0.00,
-        
+
         Frame "BACKDROP" "BagGridNum41" INHERITS "BagBackdropTemplate" {
             SetPoint CENTER, "BagButtonNum41", CENTER, 0.0, 0.0,
 
             Frame "BACKDROP" "BagMinGridNum41" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum41", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum41" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum41", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第2格
     Frame "BUTTON" "BagButtonNum42" INHERITS WITHCHILDREN "BagButtonTemplate"{
@@ -523,12 +523,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum42" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum42", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum42" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum42", CENTER, 0.0, 0.0,
                 }
             }
-        }    
+        }
     }
     //第3格
     Frame "BUTTON" "BagButtonNum43" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -538,12 +538,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum43" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum43", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum43" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum43", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第4格
     Frame "BUTTON" "BagButtonNum44" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -553,12 +553,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum44" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum44", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum44" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum44", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第5格
     Frame "BUTTON" "BagButtonNum45" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -568,7 +568,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum45" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum45", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum45" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum45", CENTER, 0.0, 0.0,
                 }
@@ -583,7 +583,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum46" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum46", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum46" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum46", CENTER, 0.0, 0.0,
                 }
@@ -597,18 +597,18 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
     //第1格
     Frame "BUTTON" "BagButtonNum51" INHERITS WITHCHILDREN "BagButtonTemplate" {
         SetPoint TOPLEFT, "BagButtonNum41", BOTTOMLEFT, 0.00, 0.00,
-        
+
         Frame "BACKDROP" "BagGridNum51" INHERITS "BagBackdropTemplate" {
             SetPoint CENTER, "BagButtonNum51", CENTER, 0.0, 0.0,
 
             Frame "BACKDROP" "BagMinGridNum51" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum51", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum51" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum51", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第2格
     Frame "BUTTON" "BagButtonNum52" INHERITS WITHCHILDREN "BagButtonTemplate"{
@@ -618,12 +618,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum52" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum52", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum52" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum52", CENTER, 0.0, 0.0,
                 }
             }
-        }    
+        }
     }
     //第3格
     Frame "BUTTON" "BagButtonNum53" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -633,12 +633,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum53" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum53", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum53" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum53", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第4格
     Frame "BUTTON" "BagButtonNum54" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -648,12 +648,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum54" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum54", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum54" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum54", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第5格
     Frame "BUTTON" "BagButtonNum55" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -663,7 +663,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum55" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum55", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum55" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum55", CENTER, 0.0, 0.0,
                 }
@@ -678,7 +678,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum56" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum56", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum56" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum56", CENTER, 0.0, 0.0,
                 }
@@ -692,18 +692,18 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
     //第1格
     Frame "BUTTON" "BagButtonNum61" INHERITS WITHCHILDREN "BagButtonTemplate" {
         SetPoint TOPLEFT, "BagButtonNum51", BOTTOMLEFT, 0.00, 0.00,
-        
+
         Frame "BACKDROP" "BagGridNum61" INHERITS "BagBackdropTemplate" {
             SetPoint CENTER, "BagButtonNum61", CENTER, 0.0, 0.0,
 
             Frame "BACKDROP" "BagMinGridNum61" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum61", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum61" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum61", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第2格
     Frame "BUTTON" "BagButtonNum62" INHERITS WITHCHILDREN "BagButtonTemplate"{
@@ -713,12 +713,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum62" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum62", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum62" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum62", CENTER, 0.0, 0.0,
                 }
             }
-        }    
+        }
     }
     //第3格
     Frame "BUTTON" "BagButtonNum63" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -728,12 +728,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum63" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum63", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum63" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum63", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第4格
     Frame "BUTTON" "BagButtonNum64" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -743,12 +743,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum64" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum64", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum64" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum64", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第5格
     Frame "BUTTON" "BagButtonNum65" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -758,7 +758,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum65" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum65", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum65" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum65", CENTER, 0.0, 0.0,
                 }
@@ -773,7 +773,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum66" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum66", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum66" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum66", CENTER, 0.0, 0.0,
                 }
@@ -787,18 +787,18 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
     //第1格
     Frame "BUTTON" "BagButtonNum71" INHERITS WITHCHILDREN "BagButtonTemplate" {
         SetPoint TOPLEFT, "BagButtonNum61", BOTTOMLEFT, 0.00, 0.00,
-        
+
         Frame "BACKDROP" "BagGridNum71" INHERITS "BagBackdropTemplate" {
             SetPoint CENTER, "BagButtonNum71", CENTER, 0.0, 0.0,
 
             Frame "BACKDROP" "BagMinGridNum71" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum71", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum71" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum71", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第2格
     Frame "BUTTON" "BagButtonNum72" INHERITS WITHCHILDREN "BagButtonTemplate"{
@@ -808,12 +808,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum72" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum72", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum72" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum72", CENTER, 0.0, 0.0,
                 }
             }
-        }    
+        }
     }
     //第3格
     Frame "BUTTON" "BagButtonNum73" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -823,12 +823,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum73" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum73", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum73" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum73", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第4格
     Frame "BUTTON" "BagButtonNum74" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -838,12 +838,12 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum74" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum74", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum74" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum74", CENTER, 0.0, 0.0,
                 }
             }
-        }        
+        }
     }
     //第5格
     Frame "BUTTON" "BagButtonNum75" INHERITS WITHCHILDREN "BagButtonTemplate" {
@@ -853,7 +853,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum75" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum75", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum75" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum75", CENTER, 0.0, 0.0,
                 }
@@ -868,7 +868,7 @@ Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
 
             Frame "BACKDROP" "BagMinGridNum76" INHERITS "BagMinGridBackdropTemplate" {
                 SetPoint BOTTOMRIGHT, "BagGridNum76", BOTTOMRIGHT, -0.004, 0.004,
-                
+
                 Frame "TEXT" "BagMinGridTextNum76" INHERITS "BagMinGridTextTemplate" {
                     SetPoint CENTER, "BagMinGridNum76", CENTER, 0.0, 0.0,
                 }

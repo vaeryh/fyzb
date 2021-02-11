@@ -125,6 +125,13 @@ EVENT_UNIT = {
 -- 触发器列表
 mt.listTrigger = {}
 
+-- 重载
+function mt:reload()
+    for k, v in ipairs(self.listTrigger) do
+        self.remove(v)
+    end
+    log.debug("trg", #self.listTrigger)
+end
 -- 创建触发器
 function mt.create(code)
     local trg = CreateTrigger()
@@ -136,6 +143,12 @@ end
 function mt.getIsEnabled(trg)
     local trg = trg or GetTriggeringTrigger()
     return IsTriggerEnabled(trg)
+end
+
+-- 获取触发器运行次数
+function mt.getExecCount(trg)
+    local trg = trg or GetTriggeringTrigger()
+    return GetTriggerExecCount(trg)
 end
 
 -- 运行触发器（无视条件）

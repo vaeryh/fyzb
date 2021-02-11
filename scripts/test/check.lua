@@ -1,40 +1,38 @@
 local mt = {}
+
 gTrg.RegAnyPlayerUnitEvent(EVENT_PLAYER_UNIT.SELECTED, function()
     local trgU = GetTriggerUnit()
-    -- local mj = gU.create(Player(0), 'yhmj', gU.getXY(trgU))
-    -- local abiId = 'AUfa'
-    -- gAbi.add(mj, abiId)
-    -- gAbi.setDataReal(mj, abiId, 1, ABILITY_DATA.DATA_B, 10.00)
-    -- gAbi.setDataReal(mj, abiId, 1, ABILITY_DATA.DATA_A, 5.00)
-    -- gU.issueOrderTar(mj, 'frostarmor', trgU)
-    -- printF(gU.getMoveSpeed(trgU),gU.getDefaultMoveSpeed(trgU))
+    -- printF(gTrg.getExecCount(), gTrg.getExecCount() % 2)
+    -- str = UnitId2String(GetUnitTypeId(trgU))
+    -- printF(str, UnitId('Fw00'),UnitId(str))
+    -- UnitId2String()
 end)
 
--- gTrg.RegUserPlayerUnitEvent(EVENT_PLAYER_UNIT.ISSUED_TARGET_ORDER, function()
---     local trgu, tarit = GetTriggerUnit(), GetOrderTargetItem()
---     -- 物品不为 状态-捡取时自动使用powerup
---     local pow = gSlk.getItemString(tarit, "class")
---     printF(pow, GetUnitName(trgu), GetItemName(tarit))
---     printF(tarit, GetItemTypeId(tarit))
-
--- end)
--- function mt.a()
---     printF(1)
--- end
-
+-- -- 创建按钮
+-- frame1 = oUI:createByTag("BUTTON", nil, "BagButton")
+-- oUI:setAbsolute(0,0.3,0.4):setShow(true)
+-- -- 创建按钮背景
+-- frame2 = oUI:createByTag("BACKDROP", frame1, "BagButtonBackdrop")
+-- oUI:setRelative(4, frame1, 4, 0.0, 0.0)
+-- -- -- 创建物品使用次数背景
+-- frame3 = oUI:createByTag("BACKDROP", frame2, "BagChargesBackdrop")
+-- oUI:setRelative(8, frame2, 8, -0.004, 0.004)
+-- -- -- 创建物品使用次数文本
+-- frame4 = oUI:createByTag("TEXT", frame3, "BagChargesText")
+-- oUI:setRelative(4, frame3, 4, 0.0, 0.0)
+-- printF(1)
 -- local but = gDz.CreateFrameByTagName("BUTTON")
 -- -- gDz.CreateFrameByTagName("BUTTON", nil, mt.back_main, "BagButtonTemplate")
 -- gDz.FrameSetAbsolutePoint(but, 0, 0.3, 0.4)
 -- gDz.FrameSetSize(but, 0.03, 0.04)
 -- local back = gDz.CreateFrameByTagName("BACKDROP")
--- gDz.FrameSetAllPoints(back, but)
 -- gDz.FrameSetTexture(back, 'ReplaceableTextures\\CommandButtons\\BTNHelmOfValor.blp')
+-- gDz.FrameSetAllPoints(back, but)
 
--- local back = gDz.CreateFrameByTagName("BACKDROP")
--- gDz.FrameSetAbsolutePoint(back, 0, 0.35, 0.4)
--- gDz.FrameSetSize(back, 0.03, 0.04)
--- gDz.FrameShow(back, true)
--- gDz.FrameSetTexture(back, 'ReplaceableTextures\\CommandButtons\\BTNClawsOfAttack.blp')
+-- -- gDz.FrameSetAbsolutePoint(back, 0, 0.35, 0.4)
+-- -- gDz.FrameSetSize(back, 0.03, 0.04)
+-- -- gDz.FrameShow(back, true)
+-- -- gDz.FrameSetTexture(back, 'ReplaceableTextures\\CommandButtons\\BTNClawsOfAttack.blp')
 
 -- local text = gDz.CreateFrameByTagName("TEXT")
 -- gDz.FrameSetAbsolutePoint(text, 0, 0.35, 0.3)
@@ -44,9 +42,17 @@ end)
 
 -- gDz.FrameSetTooltip(but, text)
 
-
--- local but = gDz.FrameGetItemBarButton(0)
--- gDz.FrameSetTooltip(but, text)
+-- local back = gDz.FrameFindByName("BackdropTemplate")
+-- local back = gDz.CreateFrameByTagName("BACKDROP", nil, nil, "BagChargesBackdrop")
+-- gDz.FrameSetAbsolutePoint(back, 0, 0.35, 0.4)
+-- local back = gDz.CreateFrameByTagName("BUTTON", nil, nil, "BagButton")
+-- gDz.FrameSetAbsolutePoint(back, 0, 0.35, 0.35)
+-- local back = gDz.CreateFrameByTagName("TEXT", nil, nil, "BagChargesText")
+-- gDz.FrameSetText(back, "123dsasadsadsadsadsadsadasdas")
+-- gDz.FrameSetAbsolutePoint(back, 0, 0.35, 0.30)
+-- gDz.FrameSetSize(back, 0.03, 0.04)
+-- gDz.FrameShow(back, true)
+-- gDz.FrameSetTexture(back, 'ReplaceableTextures\\CommandButtons\\BTNClawsOfAttack.blp')
 
 -- local trg1 = gTrg.create(function()
 --     printF(1,gDz.GetMouseFocus(), gDz.GetTriggerKeyPlayer())

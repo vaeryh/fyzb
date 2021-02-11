@@ -1,15 +1,27 @@
-//******************************
-//*
-//* 风云争霸-背包系统
-//*
-//******
-//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑========↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+// -- INCLUDE FILES ---------------------------------------------
 
-//↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓========↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-//Template
-Frame "BACKDROP" "BagBackdropTemplate" {
-    Width 0.033,
-    Height 0.040,
+IncludeFile "UI\FrameDef\Templates.fdf",
+
+// 模拟原生物品栏 物品使用次数 文本
+Frame "TEXT" "BagChargesText" INHERITS "TextTemplate" {
+	Width 0.01,
+	Height 0.005,
+    FrameFont "EscMenuTextFont", 0.0060, "",
+    Text "999",
+}
+// 模拟原生物品栏 物品使用次数 背景
+Frame "BACKDROP" "BagChargesBackdrop" INHERITS "BackdropTemplate" {
+    Width 0.009,
+    Height 0.012,
+    BackdropBackground  "UI\Widgets\BattleNet\bnet-dialoguebox-background.blp",
+    BackdropCornerSize  0.003,
+    BackdropBackgroundSize  0.006,
+    BackdropBackgroundInsets 0.0005 0.0005 0.0005 0.0005,
+}
+// 模拟原生背包按钮 背景
+Frame "BACKDROP" "BagButtonBackdrop" {
+    Width 0.035,
+    Height 0.044,
     BackdropBlendAll,
     BackdropBackground  "UI\Widgets\ToolTips\Human\human-tooltip-background.blp",
 	BackdropCornerFlags "UL|UR|BL|BR|T|L|B|R",
@@ -18,62 +30,9 @@ Frame "BACKDROP" "BagBackdropTemplate" {
 	BackdropBackgroundInsets 0.003 0.003 0.003 0.003,
 	BackdropEdgeFile  "UI\Widgets\ToolTips\Human\human-tooltip-border.blp",
 }
-//物品使用次数背景
-Frame "BACKDROP" "BagMinGridBackdropTemplate" {
-    Width 0.009,
-    Height 0.012,
-    BackdropBlendAll,
-    BackdropBackground  "UI\Widgets\BattleNet\bnet-dialoguebox-background.blp",
-	BackdropCornerFlags "UL|UR|BL|BR|T|L|B|R",
-	BackdropCornerSize  0.003,
-	BackdropBackgroundSize  0.006,
-	BackdropBackgroundInsets 0.0005 0.0005 0.0005 0.0005,
-	BackdropEdgeFile  "UI\Widgets\ToolTips\Human\human-tooltip-border.blp",
-}
-//基本模板
-Frame "TEXT" "BagTextTemplate" {
-	Width 0.02,
-	Height 0.01,
-    DecorateFileNames,
-    FrameFont "MasterFont", 0.0125, "",
-    FontJustificationH JUSTIFYCENTER,
-    FontJustificationV JUSTIFYMIDDLE,
-    FontFlags "FIXEDSIZE",
-    FontHighlightColor 1.0 1.0 1.0 1.0,
-    FontDisabledColor 0.5 0.5 0.5 1.0,
-	FontShadowColor 0.0 0.0 0.0 0.9,
-    FontShadowOffset 0.001 -0.001,
-}
-//物品使用次数文本
-Frame "TEXT" "BagMinGridTextTemplate" {
-	Width 0.01,
-	Height 0.005,
-    DecorateFileNames,
-    FrameFont "EscMenuTextFont", 0.0060, "",
-    FontJustificationH JUSTIFYCENTER,
-    FontJustificationV JUSTIFYMIDDLE,
-    FontFlags "FIXEDSIZE",
-    FontHighlightColor 1.0 1.0 1.0 1.0,
-    FontDisabledColor 0.5 0.5 0.5 1.0,
-	FontShadowColor 0.0 0.0 0.0 0.9,
-    FontShadowOffset 0.001 -0.001,
-}
-//一键分解：品质文字
-Frame "TEXT" "BagText1Template" {
-	Width 0.03,
-	Height 0.01,
-    DecorateFileNames,
-    FrameFont "MasterFont", 0.0128, "",
-    FontJustificationH JUSTIFYCENTER,
-    FontJustificationV JUSTIFYMIDDLE,
-    FontFlags "FIXEDSIZE",
-    FontHighlightColor 1.0 1.0 1.0 1.0,
-    FontDisabledColor 0.5 0.5 0.5 1.0,
-	FontShadowColor 0.0 0.0 0.0 0.9,
-    FontShadowOffset 0.001 -0.001,
-}
-//创建按钮 带有悬停高亮,按下,禁用
-Frame "BUTTON" "BagButtonTemplate"{
+
+// 模拟原生背包按钮 带有悬停高亮,按下,禁用
+Frame "BUTTON" "BagButton"{
     Width 0.03,
     Height 0.04,
     //设置样式 悬停高亮  可获取鼠标焦点 HIGHLTGHTONFOCUS
@@ -99,106 +58,3 @@ Frame "BUTTON" "BagButtonTemplate"{
         HighlightAlphaMode "ADD",
     }
 }
-
-Frame "TEXTBUTTON" "BagTextButtonTemplate" {
-    Width 0.04,
-    Height 0.02,
-    //设置样式 悬停高亮  可获取鼠标焦点 HIGHLTGHTONFOCUS
-    ControlStyle "AUTOTRACK|HIGHLIGHTONMOUSEOVER",
-    ButtonPushedTextOffset 0.001f -0.002f,
-    //设置正常状态背景
-    ControlBackdrop "Demo_TextButtonBack",
-    Frame "BACKDROP" "Demo_TextButtonBack" {
-        //BackdropBackground  "war3mapImported\Bag_Backdrop.blp",
-        BackdropBlendAll,
-    }
-    //悬停鼠标高亮
-    ControlMouseOverHighlight "Demo_TextButtonHig",
-    Frame "HIGHLIGHT" "Demo_TextButtonHig" {
-        HighlightType "FILETEXTURE",
-        HighlightAlphaFile "UI\Widgets\EscMenu\Human\quest-button-highlight.blp",
-        HighlightAlphaMode "ADD",
-    }
-}
-
-//复选框模板
-Frame "CHECKBOX" "BagCheckBoxTemplate" {
-    Width 0.015,
-    Height 0.020,
-
-    ControlBackdrop "DemoCheckBoxBackdrop",
-    Frame "BACKDROP" "DemoCheckBoxBackdrop" {
-        BackdropBlendAll,
-        BackdropBackground  "UI\Widgets\Glues\GlueScreen-Checkbox-Background.blp",
-    }
-
-    ControlPushedBackdrop "DemoCheckBoxPushedBackdrop",
-    Frame "BACKDROP" "DemoCheckBoxPushedBackdrop" {
-        BackdropBlendAll,
-        BackdropBackground  "UI\Widgets\Glues\GlueScreen-Checkbox-BackgroundPressed.blp",
-    }
-
-    ControlDisabledBackdrop "DemoCheckBoxDisabledBackdrop",
-    Frame "BACKDROP" "DemoCheckBoxDisabledBackdrop" {
-        BackdropBlendAll,
-        BackdropBackground  "UI\Widgets\Glues\GlueScreen-Checkbox-BackgroundDisabled.blp",
-    }
-
-    CheckBoxCheckHighlight "DemoCheckHighlightTemplate",
-    Frame "HIGHLIGHT" "DemoCheckHighlightTemplate" {
-        HighlightType "FILETEXTURE",
-        HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Checkbox-Check.blp",
-        HighlightAlphaMode "BLEND",
-    }
-
-    CheckBoxDisabledCheckHighlight "DemoDisabledCheckHighlightTemplate",
-    Frame "HIGHLIGHT" "DemoDisabledCheckHighlightTemplate" {
-        HighlightType "FILETEXTURE",
-        HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Checkbox-CheckDisabled.blp",
-        HighlightAlphaMode "BLEND",
-    }
-}
-//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑========↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-//鼠标吸附背景，不可删除
-Frame "BACKDROP" "BagAdsorbBackdrop" {
-    Width 0.024,
-    Height 0.028,
-}
-//↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓========↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-Frame "FRAME" "BagFrame" {
-
-Frame "BACKDROP" "BagBackdrop" INHERITS "BagBackdropTemplate" {
-    Width 0.186,
-    Height 0.326,
-
-    Frame "GLUETEXTBUTTON" "BagButtonX" {
-        Width 0.015,
-        Height 0.020,
-        SetPoint BOTTOMRIGHT, "BagBackdrop", TOPRIGHT, 0.0, 0.0,
-
-        ControlBackdrop "BagButtonBackdropX",
-        Frame "BACKDROP" "BagButtonBackdropX" INHERITS "BagBackdropTemplate" {
-            //BackdropBackground  "war3mapImported\MainPanel_ButtonX.blp",
-        }
-    }
-
-    Frame "TEXTBUTTON" "BagButtonA" INHERITS WITHCHILDREN "BagTextButtonTemplate" {
-        SetPoint BOTTOMLEFT, "BagBackdrop", BOTTOMLEFT, 0.028, 0.005,
-
-        ButtonText "BagButtonTextA",
-        Frame "TEXT" "BagButtonTextA" INHERITS "BagTextTemplate" {
-            Text "|cff2489fd未定|r",
-        }
-    }
-
-    Frame "TEXTBUTTON" "BagButtonB" INHERITS WITHCHILDREN "BagTextButtonTemplate" {
-        SetPoint  BOTTOMRIGHT, "BagBackdrop", BOTTOMRIGHT, -0.028, 0.005,
-
-        ButtonText "BagButtonTextB",
-        Frame "TEXT" "BagButtonTextB" INHERITS "BagTextTemplate" {
-            Text "|cff2489fd整理背包|r",
-        }
-    }
-}//背景
-
-}//框架

@@ -24,9 +24,20 @@ ITEM_TYPE = {
     ANY = ITEM_TYPE_ANY
 }
 
+-- 列表
+mt.listItem = {}
+
+function mt:reload()
+    for k, v in ipairs(self.listItem) do
+        mt.remove(v)
+    end
+    log.debug("item", #self.listItem)
+end
 -- 创建物品
 function mt.create(id, x, y)
-    return CreateItem(gYh.switch(id), x, y)
+    local item = CreateItem(gYh.switchId(id), x, y)
+    table.insert(mt.listItem, item)
+    return item
 end
 -- 获取指定分类的随机物品(新版等级参考)
 function mt.getRandom(itemtype, lev)
@@ -48,10 +59,57 @@ end
 function mt.getTypeId(item)
     return GetItemTypeId(item)
 end
+-- 获取物品坐标
+function mt.getXY(item)
+    return GetItemX(item), GetItemY(item)
+end
+
 -- 设置可见度(true:可见)
 function mt.setVisible(item, bol)
     SetItemVisible(item, bol)
 end
+-- 获取可见度(true:可见)
+function mt.isVisible(item, bol)
+    return IsItemVisible(item)
+end
+-- 物品所有者
+-- native IsItemOwned takes item whichItem returns boolean
+function mt.isOwned(item)
+    return IsItemOwned(item)
+end
+
+-- 物品是拾取时自动使用的 [R]
+-- native IsItemPowerup takes item whichItem returns boolean
+function mt.isPowerup(item)
+    return IsItemPowerup(item)
+end
+-- 物品可被市场随机出售 [R]
+-- native IsItemSellable takes item whichItem returns boolean
+function mt.isSellable(item)
+    return IsItemSellable(item)
+end
+-- 物品可被抵押 [R]
+-- native IsItemPawnable takes item whichItem returns boolean
+function mt.isPawnable(item)
+    return IsItemPawnable(item)
+end
+
+-- 物品类型是拾取时自动使用的 [R]
+-- native IsItemIdPowerup takes integer itemId returns boolean
+function mt.IsItemIdPowerup(itemId)
+    return IsItemIdPowerup(itemId)
+end
+-- 物品类型可被市场随机出售 [R]
+-- native IsItemIdSellable takes integer itemId returns boolean
+function mt.isIdSellable(itemId)
+    return IsItemIdSellable(itemId)
+end
+-- 物品类型可被抵押 [R]
+-- native IsItemIdPawnable takes integer itemId returns boolean
+function mt.isIdPawnable(itemId)
+    return IsItemIdPawnable(itemId)
+end
+
 -- 设置物品坐标
 function mt.setPosition(item, x, y)
     SetItemPosition(item, x, y)

@@ -36,10 +36,18 @@ UNIT_STATE = {
 -- 单位列表
 mt.listUnit = {}
 
+-- 重载
+function mt:reload()
+    for k, v in ipairs(self.listUnit) do
+        gU.remove(v)
+    end
+    log.debug("unit", #self.listUnit)
+end
+
 -- 创建单位
 function mt.create(p, id, x, y, face)
     local x = x or log.error('坐标错误')
-    local u = CreateUnit(p, gYh.s2id(id), x, y, face) or log.error(gYh.s2id(id))
+    local u = CreateUnit(p, gYh.s2id(id), x, y, face or 270) or log.error(gYh.s2id(id))
     table.insert(mt.listUnit, u)
     return u
 end
@@ -311,4 +319,55 @@ UNIT_TYPE = {
 function mt.isType(u, unittype)
     return IsUnitType(u, unittype)
 end
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 市场操作 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+-- 添加物品 到 指定市场 (只影响"出售物品"技能的单位)
+function mt.addItemToStock(u, unittype)
+    AddItemToStock('texp', GetTriggerUnit(), 0, 1)
+end
+-- 添加物品 到 所有市场 (只影响"出售物品"技能的单位)
+function mt.addItemToAllStock(u, unittype)
+    AddItemToAllStock('texp', 0, 1)
+end
+-- 删除物品 到 指定市场 (只影响"出售物品"技能的单位)
+function mt.removeItemFromStock(u, unittype)
+    RemoveItemFromStock('texp', GetTriggerUnit())
+end
+-- 删除物品 到 所有市场 (只影响"出售物品"技能的单位)
+function mt.removeItemFromAllStock(u, unittype)
+    RemoveItemFromAllStock('texp')
+end
+-- 限制出售物品种类数量 到 指定市场 (只影响"出售物品"技能的单位)
+function mt.setItemTypeSlots(u, unittype)
+    SetItemTypeSlots(GetTriggerUnit(), 6)
+end
+-- 限制出售物品种类数量 到 所有市场 (只影响"出售物品"技能的单位)
+function mt.setAllItemTypeSlots(u, unittype)
+    SetAllItemTypeSlots(6)
+end
+
+-- 添加物品 到 指定市场 (只影响"出售单位"技能的单位)
+function mt.addUnitToStock(u, unittype)
+    AddUnitToStock('hfoo', GetTriggerUnit(), 0, 1)
+end
+-- 添加物品 到 所有市场 (只影响"出售单位"技能的单位)
+function mt.addUnitToAllStock(u, unittype)
+    AddUnitToAllStock('hfoo', 0, 1)
+end
+-- 删除物品 到 指定市场 (只影响"出售单位"技能的单位)
+function mt.removeUnitFromStock(u, unittype)
+    RemoveUnitFromStock('hfoo', GetTriggerUnit())
+end
+-- 删除物品 到 所有市场 (只影响"出售单位"技能的单位)
+function mt.removeUnitFromAllStock(u, unittype)
+    RemoveUnitFromAllStock('hfoo')
+end
+-- 限制出售单位种类数量 到 指定市场 (只影响"出售单位"技能的单位)
+function mt.setUnitTypeSlots(u, unittype)
+    SetUnitTypeSlots(GetTriggerUnit(), 6)
+end
+-- 限制出售单位种类数量 到 所有市场 (只影响"出售单位"技能的单位)
+function mt.setAllUnitTypeSlots(u, unittype)
+    SetAllUnitTypeSlots(6)
+end
+
 return mt

@@ -1,0 +1,142 @@
+//******************************
+//*
+//* UI 模板
+//*
+//******
+
+// ===========================================单体完整模板======================================
+// 背景普通模板 方式：完全
+Frame "BACKDROP" "BackdropTemplate" {
+    Width 0.030,
+    Height 0.040,
+    BackdropBlendAll,
+    BackdropBackground  "UI\Widgets\ToolTips\Human\human-tooltip-background.blp",
+	BackdropCornerFlags "UL|UR|BL|BR|T|L|B|R",
+	BackdropCornerSize  0.000,
+	BackdropBackgroundSize  0.016,
+	BackdropBackgroundInsets 0.003 0.003 0.003 0.003,
+	BackdropEdgeFile  "UI\Widgets\ToolTips\Human\human-tooltip-border.blp",
+}
+
+// 文本基本模板 方式：完全
+Frame "TEXT" "TextTemplate" {
+	Width 0.02,
+	Height 0.01,
+    DecorateFileNames,
+    FrameFont "MasterFont", 0.0125, "",
+    FontJustificationH JUSTIFYCENTER,
+    FontJustificationV JUSTIFYMIDDLE,
+    FontFlags "FIXEDSIZE",
+    FontHighlightColor 1.0 1.0 1.0 1.0,
+    FontDisabledColor 0.5 0.5 0.5 1.0,
+	FontShadowColor 0.0 0.0 0.0 0.9,
+    FontShadowOffset 0.001 -0.001,
+}
+// 高亮模板
+Frame "HIGHLIGHT" "HighlightTemplate" {
+    //高亮类型：FILETEXTURE纹理文件、SHADE阴影
+    HighlightType "FILETEXTURE",
+    HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Button-KeyboardHighlight.blp",
+    // BLEND混合 ADD
+    //ADD 将上面的那个显示对象的颜色添加到下面的对象中，混合成新图像
+    HighlightAlphaMode "ADD",
+}
+// ===========================================组合完整模板======================================
+
+//创建按钮 带有悬停高亮,按下,禁用
+Frame "BUTTON" "ButtonTemplate"{
+    Width 0.03,
+    Height 0.04,
+    //设置样式:AUTOTRACK自动跟踪、HIGHLIGHTONFOCUS高亮聚焦、HIGHLIGHTONMOUSEOVER鼠标上方突出显示
+	ControlStyle "AUTOTRACK|HIGHLIGHTONFOCUS|HIGHLIGHTONMOUSEOVER",
+    //设置正常状态背景
+    ControlBackdrop "ButtonBack",
+    Frame "BACKDROP" "ButtonBack"
+    {
+        BackdropBackground  "ReplaceableTextures\CommandButtonsDisabled\DISBTNDust.blp",
+        BackdropBlendAll,
+    }
+    //设置按下的背景
+    ControlPushedBackdrop "ButtonPushedBack",
+    Frame "Backdrop" "ButtonPushedBack" {
+        BackdropBackground  "ReplaceableTextures\CommandButtons\BTNDustOfAppearance.blp",
+        BackdropBlendAll,
+    }
+    //设置按下禁用的背景
+    ControlDisabledPushedBackdrop "ButtonDisabledPushedBack",
+    Frame "Backdrop" "ButtonDisabledPushedBack" {
+        BackdropBackground  "ReplaceableTextures\CommandButtons\BTNPeriapt.blp",
+        BackdropBlendAll,
+    }
+    //设置被选中后的高亮控件
+    ControlFocusHighlight "ButtonFocusHighlight",
+    Frame "HIGHLIGHT" "ButtonFocusHighlight" INHERITS "BattleNetButtonFocusHighlightTemplate" {
+    }
+    //悬停鼠标高亮
+	ControlMouseOverHighlight "ButtonHighlight",
+	Frame "HIGHLIGHT" "ButtonHighlight" {
+        HighlightType "FILETEXTURE",
+        HighlightAlphaFile "UI\Widgets\EscMenu\Human\quest-button-highlight.blp",
+        HighlightAlphaMode "ADD",
+    }
+}
+
+// 文办按钮
+Frame "TEXTBUTTON" "TextButtonTemplate" {
+    Width 0.04,
+    Height 0.02,
+    //设置样式 悬停高亮  可获取鼠标焦点 HIGHLTGHTONFOCUS
+    ControlStyle "AUTOTRACK|HIGHLIGHTONMOUSEOVER",
+    ButtonPushedTextOffset 0.001f -0.002f,
+    //设置正常状态背景
+    ControlBackdrop "Demo_TextButtonBack",
+    Frame "BACKDROP" "Demo_TextButtonBack" {
+        //BackdropBackground  "war3mapImported\Bag_Backdrop.blp",
+        BackdropBlendAll,
+    }
+    //悬停鼠标高亮
+    ControlMouseOverHighlight "Demo_TextButtonHig",
+    Frame "HIGHLIGHT" "Demo_TextButtonHig" {
+        HighlightType "FILETEXTURE",
+        HighlightAlphaFile "UI\Widgets\EscMenu\Human\quest-button-highlight.blp",
+        HighlightAlphaMode "ADD",
+    }
+}
+
+// 复选框模板
+Frame "CHECKBOX" "BagCheckBoxTemplate" {
+    Width 0.015,
+    Height 0.020,
+
+    ControlBackdrop "DemoCheckBoxBackdrop",
+    Frame "BACKDROP" "DemoCheckBoxBackdrop" {
+        BackdropBlendAll,
+        BackdropBackground  "UI\Widgets\Glues\GlueScreen-Checkbox-Background.blp",
+    }
+
+    ControlPushedBackdrop "DemoCheckBoxPushedBackdrop",
+    Frame "BACKDROP" "DemoCheckBoxPushedBackdrop" {
+        BackdropBlendAll,
+        BackdropBackground  "UI\Widgets\Glues\GlueScreen-Checkbox-BackgroundPressed.blp",
+    }
+
+    ControlDisabledBackdrop "DemoCheckBoxDisabledBackdrop",
+    Frame "BACKDROP" "DemoCheckBoxDisabledBackdrop" {
+        BackdropBlendAll,
+        BackdropBackground  "UI\Widgets\Glues\GlueScreen-Checkbox-BackgroundDisabled.blp",
+    }
+
+    CheckBoxCheckHighlight "DemoCheckHighlightTemplate",
+    Frame "HIGHLIGHT" "DemoCheckHighlightTemplate" {
+        HighlightType "FILETEXTURE",
+        HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Checkbox-Check.blp",
+        HighlightAlphaMode "BLEND",
+    }
+
+    CheckBoxDisabledCheckHighlight "DemoDisabledCheckHighlightTemplate",
+    Frame "HIGHLIGHT" "DemoDisabledCheckHighlightTemplate" {
+        HighlightType "FILETEXTURE",
+        HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Checkbox-CheckDisabled.blp",
+        HighlightAlphaMode "BLEND",
+    }
+}

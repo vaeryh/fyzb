@@ -7,15 +7,23 @@
         {
             "label": "运行",
             "command": "echo false chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/bin/w3x2lni-lua.exe\"",
+            "presentation": {
+                "reveal": "silent",
+            },
             "args": [
                 ".\\tools\\运行.lua",
                 "${workspaceRoot}"
             ]
         },
+
         {
             "label": "启动",
             "command": "echo false chcp 65001 && W:/YDWE/War3Map/WorldEditv1.2.9a/WorldEdit.exe ",
+            "presentation": {
+                "reveal": "silent",
+            },
         },
+
         {
             "label": "配置",
             "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/bin/w3x2lni-lua.exe\"",
@@ -24,6 +32,7 @@
                 "${workspaceRoot}"
             ]
         },
+
         {
             "label": "语法检查",
             "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/bin/w3x2lni-lua.exe\"",
@@ -44,13 +53,14 @@
                 }
             }
         },
+
         {
             "label": "Obj",
             "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/w2l.exe\"",
             "presentation": {
                 "echo": false,
-                "reveal": "always",
-                "focus": true,
+                //"reveal": "silent",
+                "focus": false,
                 "panel": "dedicated"
             },
             "args": [
@@ -59,13 +69,14 @@
                 "${workspaceRoot}/FYZB.w3x"
             ]
         },
+
         {
             "label": "Lni",
             "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/w2l.exe\"",
             "presentation": {
                 "echo": false,
                 "reveal": "always",
-                "focus": true,
+                "focus": false,
                 "panel": "dedicated"
             },
             "args": [
@@ -74,6 +85,7 @@
                 "${workspaceRoot}"
             ]
         },
+
         {
             "label": "Slk",
             "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/w2l.exe\"",
@@ -89,6 +101,7 @@
                 "${workspaceRoot}/FYZB.w3x"
             ]
         },
+
         {
             "label": "🔍",
             "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/bin/w3x2lni-lua.exe\" -e \"package.cpath=package.cpath..';'..[[${workspaceRoot}/tools/?.dll]]\"",

@@ -67,7 +67,8 @@ function mt.getAbiString(handle, pro)
     if handle == 0 then
         return log.warn('无效', handle, pro)
     end
-    local id = gYh.id2s(gYh.switch(handle))
+local id = gYh.id2s(gYh.switchId(handle))
+
     pro = slk.ability[id][pro]
     return pro
 end

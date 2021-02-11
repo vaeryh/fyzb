@@ -18,6 +18,19 @@ mt.listTimer = {}
 -- 计时器窗口列表
 mt.listDia = {}
 
+function mt:reload()
+    for k, v in ipairs(self.listTimer) do
+        -- log.debug("timer", k, v)
+        self.setPause(v)
+        self.remove(v, nil)
+    end
+    log.debug("timer", #self.listTimer)
+    for k, v in ipairs(self.listDia) do
+        log.debug("tDia", k, v)
+        self.remove(nil, v)
+    end
+end
+
 -- 新建计时器
 function mt.create()
     mt.handle = CreateTimer()
@@ -57,11 +70,14 @@ function mt.wait(timeout, code)
         code()
         mt.remove()
     end)
+    return timer
 end
 
 -- 循环计时器
 function mt.loop(timeout, code)
-    TimerStart(mt.create(), timeout, true, code)
+    local timer = mt.create()
+    TimerStart(timer, timeout, true, code)
+    return timer
 end
 
 -- 设置计时器窗口状态：显示 or 隐藏 ps:不可在地图初始化显示

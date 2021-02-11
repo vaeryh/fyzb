@@ -182,17 +182,20 @@ end
 
 -- 单位移除技能
 function mt.remove(u, id)
-    UnitRemoveAbility(u, gYh.switch(id))
+UnitRemoveAbility(u, gYh.switchId(id))
+
 end
 
 -- 设置单位技能等级
 function mt.setLevel(unit, id, lev)
-    SetUnitAbilityLevel(unit, gYh.switch(id), lev)
+SetUnitAbilityLevel(unit, gYh.switchId(id), lev)
+
 end
 
 -- 获取单位技能等级
 function mt.getLevel(unit, id)
-    return GetUnitAbilityLevel(unit, gYh.switch(id))
+return GetUnitAbilityLevel(unit, gYh.switchId(id))
+
 end
 
 return mt

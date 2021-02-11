@@ -382,12 +382,40 @@ public function CreateFrameByTagName takes nothing returns nothing
 endfunction
 //     native DzFrameSetVertexColor takes integer frame, integer color returns nothing
 //     native DzOriginalUIAutoResetPoint takes boolean enable returns nothing
+//自动复位UI初始位置
+public function OriginalUIAutoResetPoint takes nothing returns nothing
+	call DzOriginalUIAutoResetPoint(yh_boolean1)
+endfunction
 //     native DzFrameSetPriority takes integer frame, integer priority returns nothing
+//设置优先级 [NEW]
+public function FrameSetPriority takes nothing returns nothing
+	call DzFrameSetPriority(yh_frame1, yh_integer1)
+endfunction
 //     native DzFrameSetParent takes integer frame, integer parent returns nothing
+//设置父窗口 [NEW]
+public function FrameSetParent takes nothing returns nothing
+	call DzFrameSetParent(yh_frame1, yh_integer1)
+endfunction
 //     native DzFrameGetHeight takes integer frame returns real
+//获取 ${frame} 的高度
+public function FrameGetHeight takes nothing returns nothing
+	set yh_real1 = DzFrameGetHeight(yh_frame1)
+endfunction
 //     native DzFrameSetFont takes integer frame, string fileName, real height, integer flag returns nothing
+//设置 ${frame} 的字体为 ${font}, 大小 ${height}, flag ${flag}
+public function FrameSetFont takes nothing returns nothing
+	call DzFrameSetFont(yh_frame1, yh_string1, yh_real1, yh_integer1)
+endfunction
 //     native DzFrameGetParent takes integer frame returns integer
+//获取父窗口 [NEW]
+public function FrameGetParent takes nothing returns nothing
+	set yh_frame2 = DzFrameGetParent(yh_frame1)
+endfunction
 //     native DzFrameSetTextAlignment takes integer frame, integer align returns nothing
+//设置 ${frame} 的对齐方式为 ${align}
+public function FrameSetTextAlignment takes nothing returns nothing
+	call DzFrameSetTextAlignment(yh_frame1, yh_integer1)
+endfunction
 //     native DzFrameGetName takes integer frame returns string
 //获取 Frame 的 名称 [NEW]
 public function FrameGetName takes nothing returns nothing

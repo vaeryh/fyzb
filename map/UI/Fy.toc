@@ -1,3 +1,4 @@
+UI\FrameDef\Templates.fdf
 UI\FrameDef\MouseTips.fdf
 UI\FrameDef\Bag.fdf
 UI\FrameDef\Pro.fdf
