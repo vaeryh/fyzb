@@ -579,4 +579,23 @@ function mt.FrameGetName(frame)
     return g.yh_string1
 end
 
+------------------------------------自定义-----------------------
+
+-- 获取鼠标 物品栏 玩家序号
+function mt.getItemBarIndex(player)
+    player = player or GetLocalPlayer()
+    return g.Mouse_ItemBarIndex[GetPlayerId(player)]
+end
+
+-- 注册鼠标 进入、离开 物品触发
+function mt.RegMouseItemBarAction(state, code)
+    if state == '进入' then
+        TriggerAddAction(g.Mouse_ItemBarEnter, code)
+    elseif state == '离开' then
+        TriggerAddAction(g.Mouse_ItemBarLeave, code)
+    else
+        log.warn("鼠标进入离开事件注册错误", state)
+    end
+end
+
 return mt

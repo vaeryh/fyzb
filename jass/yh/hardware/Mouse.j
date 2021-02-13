@@ -1,102 +1,57 @@
 //***************************************************************************************************************************
-//* 鼠标点击触发：本地化
+//*
 //******************************************************************
 scope Mouse initializer Init
 
 globals
-	public boolean State_Right
-	public boolean State_Left
-	trigger Trig_MouseRightClick = CreateTrigger()//右键点击
-	trigger Trig_MouseRightDisClick = CreateTrigger()//右键释放
-	trigger Trig_MouseLeftClick = CreateTrigger()//左键点击
-	trigger Trig_MouseLeftDisClick = CreateTrigger()//左键释放
+	private hashtable Hash = InitHashtable()
+	public integer array ItemBarIndex //物品栏序号
+	public trigger ItemBarLeave = CreateTrigger()//物品栏离开
+	public trigger ItemBarEnter = CreateTrigger()//物品栏进入
 endglobals
 //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑Function↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
-//↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Function↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 
-//鼠标左键释放：动作
-private function LeftDisClick_Actions takes nothing returns nothing
-	set State_Left = false
-endfunction
-//鼠标左键释放：条件
-private function LeftDisClick_Conditions takes nothing returns nothing
-	if DzGetTriggerKeyPlayer() == GetLocalPlayer() then
-		call LeftDisClick_Actions()
-	endif
-endfunction
-//鼠标左键释放
-private function Init_D_Actions takes nothing returns nothing
-	call DzTriggerRegisterMouseEventTrg( Trig_MouseLeftDisClick, 0, 1 )
-	call TriggerAddAction(Trig_MouseLeftDisClick, function LeftDisClick_Conditions)
-endfunction
-//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑Function↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-
 //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Function↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-//鼠标左键点击：动作
-private function LeftClick_Actions takes nothing returns nothing
-	set State_Left = true
+//离开
+private function Leave_Actions takes nothing returns nothing
+	local player p = DzGetTriggerUIEventPlayer()
+	local integer id = GetPlayerId(p)
+	set ItemBarIndex[id] = -1
+	//运行触发器
+	call TriggerExecute(ItemBarLeave)
 endfunction
-//鼠标左键点击：条件
-private function LeftClick_Conditions takes nothing returns nothing
-	if DzGetTriggerKeyPlayer() == GetLocalPlayer() then
-		call LeftClick_Actions()
-	endif
+//进入
+private function Enter_Actions takes nothing returns nothing
+	local player p = DzGetTriggerUIEventPlayer()
+	local integer id = GetPlayerId(p)
+	set ItemBarIndex[id] = LoadInteger(Hash, DzGetTriggerUIEventFrame(), 0)
+	//运行触发器
+	call TriggerExecute(ItemBarEnter)
 endfunction
-//鼠标左键点击
-private function Init_C_Actions takes nothing returns nothing
-	call DzTriggerRegisterMouseEventTrg( Trig_MouseLeftClick, 1, 1 )
-	call TriggerAddAction(Trig_MouseLeftClick, function LeftClick_Conditions)
-endfunction
-//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑Function↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-
-//↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Function↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-//鼠标右键释放：动作
-private function RightDisClick_Actions takes nothing returns nothing
-	set State_Right = false
-endfunction
-//鼠标右键释放：条件
-private function RightDisClick_Conditions takes nothing returns nothing
-	if DzGetTriggerKeyPlayer() == GetLocalPlayer() then
-		call RightDisClick_Actions()
-	endif
-endfunction
-//鼠标右键释放
-private function Init_B_Actions takes nothing returns nothing
-	call DzTriggerRegisterMouseEventTrg( Trig_MouseRightDisClick, 0, 2 )
-	call TriggerAddAction(Trig_MouseRightDisClick, function RightDisClick_Conditions)
-endfunction
-//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑Function↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-
-//↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Function↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-//鼠标右键点击：动作
-private function RightClick_Actions takes nothing returns nothing
-	set State_Right = true
-endfunction
-//鼠标右键点击：条件
-private function RightClick_Conditions takes nothing returns nothing
-	if DzGetTriggerKeyPlayer() == GetLocalPlayer() then
-		call RightClick_Actions()
-	endif
-endfunction
-//鼠标右键点击
+//鼠标进入、离开物品栏
 private function Init_A_Actions takes nothing returns nothing
-	call DzTriggerRegisterMouseEventTrg( Trig_MouseRightClick, 1, 2 )
-	call TriggerAddAction(Trig_MouseRightClick, function RightClick_Conditions)
+	local integer lopA
+	local integer frame
+
+	set lopA = 0
+	loop
+	exitwhen lopA > 5
+		set frame = DzFrameGetItemBarButton(lopA)
+		call SaveInteger(Hash, frame, 0, lopA)//关联序号
+
+		//call DzFrameSetScriptByCode(frame, 1, function Click_Actions, false) // 鼠标点击
+		call DzFrameSetScriptByCode(frame, 2, function Enter_Actions, true) // 鼠标进入
+		call DzFrameSetScriptByCode(frame, 3, function Leave_Actions, true) // 鼠标离开
+		//call DzFrameSetScriptByCode(frame, 12, function DoubleClick_Actions, false)//鼠标双击
+
+		set lopA = lopA + 1
+	endloop
 endfunction
 //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑Function↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Function↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-private function Init_Actions takes nothing returns nothing
-	call Init_A_Actions( )//鼠标右键点击
-	call Init_B_Actions( )//鼠标右键释放
-	call Init_C_Actions( )//鼠标左键点击
-	call Init_D_Actions( )//鼠标左键释放
-	
-	call DestroyTrigger( GetTriggeringTrigger() )//删除一次性触发
-endfunction
-
-private function Init takes nothing returns nothing 
-	call Init_Actions(  )
+private function Init takes nothing returns nothing
+	call Init_A_Actions( )//鼠标进入物品栏
 endfunction
 
 endscope

@@ -4,12 +4,13 @@ local mt = {}
 mt.item = nil
 -- 判断限制的单位
 mt.hero = nil
+
 -- 判断物品类别
 function mt:IsItemClass(item, name)
     local class = gSlk.getItemString(item, "class")
     if name == "武器" then
         local wq = {"枪", "扇", "弓", "刀", "剑", "机关"}
-        for k, v in pairs(wq) do
+        for k, v in ipairs(wq) do
             if v == class then
                 return true
             end
@@ -25,6 +26,13 @@ function mt:IsItemClass(item, name)
     elseif name == "饰品" then
         if class == "手镯" or class == "项链" or class == "玉佩" then
             return true
+        end
+    elseif name == "装备" then
+        local equip = {"枪", "扇", "弓", "刀", "剑", "机关", "防具", "鞋子", "手镯", "项链", "玉佩"}
+        for k, v in pairs(equip) do
+            if v == class then
+                return true
+            end
         end
     end
     return false
@@ -75,8 +83,11 @@ function mt:Limit_PickNum(hero, item)
 end
 -- 等级限制
 function mt:Limit_HeroLevel(hero, item)
+    if not self:IsItemClass(item, "装备") then
+        return false
+    end
     local ItemLevel = gSlk.getItemInt(item, "Level")
-    print(ItemLevel)
+
     if ItemLevel ~= 1 then
         if gH.getLevel(hero) >= (ItemLevel - 1) * 10 then
             return true
@@ -107,6 +118,7 @@ function mt:Limit_HeroGood(hero, item)
 end
 -- 接口:物品是否可以被单位携带
 function mt:Interface(hero, item)
+    -- local bola, bolb, bolc, bold
     -- 是否不擅长武器
     local bola = self:Limit_HeroGood(hero, item)
     -- 是否不满足等级
@@ -115,7 +127,7 @@ function mt:Interface(hero, item)
     local bolc = self:Limit_PickNum(hero, item)
     -- 是否性别不满足
     local bold = self:Limit_Sex(hero, item)
-    printF(bola, bolb, bolc, bold)
+    --printF(bola, bolb, bolc, bold)
     if bola or bolb or bolc or bold then
         gIt.drop(hero, item)
     end
@@ -136,6 +148,6 @@ function mt:init()
 
 end
 
-mt:init()
+--mt:init()
 
 return mt

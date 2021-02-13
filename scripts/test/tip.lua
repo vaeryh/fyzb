@@ -1,6 +1,6 @@
 local mt = {}
 
---宽度
+-- 宽度
 mt.width = 0.20
 -- 创建1个多面板
 function mt:act_A()
@@ -74,12 +74,32 @@ function mt:act_D()
     end)
 end
 
+function mt:act_F()
+    local str = {}
+    gDz.TriggerRegisterMouseMoveEvent(true, function()
+        if gDz.GetMouseFocus() ~= 0 then
+            str[1] = gDz.GetMouseFocus()
+            self:act_E(3, 0, str)
+        end
+    end)
+    gDz.RegMouseItemBarAction("进入", function()
+        local p = gDz.GetTriggerUIEventPlayer()
+        str[2] = "进入"..gDz.getItemBarIndex(p)
+    end)
+
+    gDz.RegMouseItemBarAction("离开", function()
+        local p = gDz.GetTriggerUIEventPlayer()
+        str[3] = "离开"..gDz.getItemBarIndex(p)
+    end)
+end
+
 -- 初始化
 function mt:init()
     self:act_A()
     self:act_B()
     self:act_C()
     self:act_D()
+    self:act_F()
 end
 
 mt:init()

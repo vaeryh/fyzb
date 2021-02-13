@@ -52,11 +52,13 @@ function mt.selectHero()
         -- 设置玩家可用地图区域=默认可用地图区域
         gCamera.setCameraBounds(gRect.getAbleArea, thisP)
         -- 传送
-        gYh.MoveAndCamera(thisU, gRect.getCenter(mt.rect_hg))
+        -- gYh.MoveAndCamera(thisU, gRect.getCenter(mt.rect_hg))
+
+        gYh.MoveAndCamera(thisU, -3807, -9189)
         -- 注册英雄复活
         mt.ReHero(thisU)
         --
-        gH.setUpLevel(thisU, 100, true)
+        gH.setUpLevel(thisU, 50, true)
         --  删除触发
         gTrg.remove()
     else

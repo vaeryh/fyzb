@@ -237,13 +237,17 @@ end
 
 -- 初始化背包系统
 function mt:init()
+    for i = 0, 11 do
+        if gP.isUserPlayer(Player(i)) then
+            self[Player(i)] = {}
+        end
+    end
     self:Bag_FrameInit() -- 初始化
     self:Bag_OpenClose()
     self:Bag_Adsort() -- 吸附动作
     self:Bag_FullPick()
     self:Bag_DownEffect()
     self:Bag_Change()
-    print 'zairu'
 end
 
 return mt

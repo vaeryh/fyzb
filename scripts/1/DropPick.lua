@@ -1,30 +1,5 @@
 local mt = {}
 
--- 判断物品类别
-function mt.IsItemClass(whichItem, name)
-    local class = gSlk.getItemString(whichItem, "class")
-    if name == "武器" then
-        if class == "枪" or class == "扇" or class == "弓" or class == "刀" or class == "剑" or class == "机关" then
-            return true
-        end
-    elseif name == "防具" then
-        if class == "防具" then
-            return true
-        end
-    elseif name == "鞋子" then
-        if class == "鞋子" then
-            return true
-        end
-    elseif name == "饰品" then
-        if class == "手镯" or class == "项链" or class == "玉佩" then
-            return true
-        end
-    end
-    return false
-end
--- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑Function↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-
--- ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Function↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 -- 计算属性
 function mt.StepThree(whichUnit, proName, numR)
     local numReal
