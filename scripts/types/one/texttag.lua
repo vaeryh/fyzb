@@ -67,12 +67,12 @@ function mt.newUnit(str, size, unit, showt, speed, angle)
 end
 
 -- 新建漂浮文字
-function mt.newXY(str, size, x,y, showt, speed, angle)
+function mt.newXY(str, size, x, y, showt, speed, angle)
     local tag = mt.create()
     local speed = speed or 90
     local angle = angle or 45
     mt.setText(tag, str, size)
-    mt.setPos(tag, x,y, 0.00)
+    mt.setPos(tag, x, y, 0.00)
     mt.setPermanent(tag, false)
     mt.setLifespan(tag, showt)
     mt.setFadepoint(tag, showt * 0.66)

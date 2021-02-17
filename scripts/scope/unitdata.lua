@@ -1,5 +1,4 @@
 local g = require 'jass.globals'
-local message = require 'jass.message'
 
 local mt = {}
 
@@ -8,6 +7,12 @@ mt.atk = 0
 
 -- 护甲
 mt.def = 0
+
+-- 生命再生
+mt.lifeRegn = 0
+
+-- 魔法再生
+mt.manaRegn = 0
 
 -- 力量
 mt.str = 0
@@ -60,7 +65,7 @@ end
 -- 计时护甲
 function mt.addTimerDef(unit, value, time)
     mt.adjustDef(unit, value)
-    gT.wait(time-0.001, function()
+    gT.wait(time - 0.001, function()
         mt.adjustDef(unit, -value)
     end)
 end
@@ -96,7 +101,7 @@ end
 -- 计时攻击力
 function mt.addTimerAtk(unit, value, time)
     mt.adjustAtk(unit, value)
-    gT.wait(time-0.001, function()
+    gT.wait(time - 0.001, function()
         mt.adjustAtk(unit, -value)
     end)
 end
@@ -187,23 +192,82 @@ GREEN_DATA = {
     -- 智力
     INT = GREEN_DATA_INT
 }
--- --绑定计时器
--- local function DataTimer()
+-- 再生单位寄存保存
+local Regen = {}
+local function isHaveRegen(unit)
+    if Regen[unit] then
+        return false
+    else
+        Regen[unit] = unit
+        return true
+    end
+end
+-- 计时器 再生类
+local function TimerRegen(proName, unit, value)
+    local tab = mt:getDataBase(unit)
+    -- 保存
+    if proName == "生命值再生" then
+        tab.lifeRegn = tab.lifeRegn + value
+    elseif proName == "魔法值再生" then
+        tab.manaRegn = tab.manaRegn + value
+    end
+    --
+    if isHaveRegen(unit) then
+        gT.loop(0.50, function()
+            gU.adjustState(unit, UNIT_STATE.LIFE, tab.lifeRegn)
+            gU.adjustState(unit, UNIT_STATE.MANA, tab.manaRegn)
+            local x, y = gYh.getPolarUnit(unit, 100, 0)
+            local str1 = "|cff51e40d" .. string.format("%+d", tab.lifeRegn)
+            local str2 = "|cff0d22e4" .. string.format("%+d", tab.manaRegn)
+            gTag.newXY(str1 .. str2, 0.020, x, y, 0.50, 20, 90)
+        end)
+    end
+end
 
--- end
--- -- 设置计时数据
--- function mt.setTimerData(unit, data_type, vaule)
---     if data_type == GREEN_DATA_ATK then
---         mt.adjustAtk(unit, vaule)
---     elseif data_type == GREEN_DATA_DEF then
+-- 自定义调整各种常用属性
+function mt.adjustPro(proName, unit, value)
+    print(gU.getName(unit), proName, value)
+    -- 基础属性
+    if proName == "攻击值" then
+        mt.adjustAtk(unit, value)
+    elseif proName == "护甲值" then
+        mt.adjustDef(unit, value)
+    end
+    -- 速度类
+    if proName == "攻击速度" then
+        gU.adjustState(unit, UNIT_STATE.ATK_SPEED, value)
+    elseif proName == "攻击间隔" then
+        gU.adjustState(unit, UNIT_STATE.ATK_INTERVAL, value)
+    elseif proName == "移动速度" then
+        gU.setMoveSpeed(unit, gU.getMoveSpeed(unit) + value)
+    end
+    -- 恢复类
 
---     elseif data_type == GREEN_DATA_STR then
+    if proName == "生命值" then
+        gU.adjustState(unit, UNIT_STATE.MAX_LIFE, value)
+        gU.adjustState(unit, UNIT_STATE.LIFE, value)
+    elseif proName == "生命值再生" then
+        TimerRegen("生命值再生", unit, value)
+    end
 
---     elseif data_type == GREEN_DATA_AGI then
-
---     elseif data_type == GREEN_DATA_INT then
-
---     end
--- end
+    if proName == "魔法值" then
+        gU.adjustState(unit, UNIT_STATE.MAX_MANA, value)
+        gU.adjustState(unit, UNIT_STATE.MANA, value)
+    elseif proName == "魔法值再生" then
+        TimerRegen("魔法值再生", unit, value)
+    end
+    -- 英雄属性-绿色
+    if proName == "力量" then
+        mt.adjustStr(unit, value)
+    elseif proName == "敏捷" then
+        mt.adjustAgi(unit, value)
+    elseif proName == "智力" then
+        mt.adjustInt(unit, value)
+    elseif proName == "全属性" then
+        mt.adjustStr(unit, value)
+        mt.adjustAgi(unit, value)
+        mt.adjustInt(unit, value)
+    end
+end
 
 return mt

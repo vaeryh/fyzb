@@ -8,6 +8,7 @@ mt.listFrame = {}
 -- 重载
 function mt:reload()
     for k, v in ipairs(self.listFrame) do
+        self.FrameShow(v)
         self.DestroyFrame(v)
     end
     log.debug("Frame", #self.listFrame)
@@ -422,6 +423,7 @@ end
 -- native DzClickFrame takes integer frame returns nothing
 -- native DzSetCustomFovFix takes real value returns nothing
 -- native DzEnableWideScreen takes boolean enable returns nothing
+
 -- native DzFrameSetText takes integer frame, string text returns nothing
 -- Frame设置文字内容
 function mt.FrameSetText(frame, text)
@@ -481,6 +483,7 @@ function mt.FrameSetTexture(frame, texture, flag)
     g.yh_integer1 = flag or 0
     ExecuteFunc("yh_FrameSetTexture")
 end
+
 -- native DzFrameSetScale takes integer frame, real scale returns nothing
 -- 设置frame放大倍数
 function mt.FrameSetScale(frame, real)
@@ -488,6 +491,7 @@ function mt.FrameSetScale(frame, real)
     g.yh_real1 = real
     ExecuteFunc("yh_FrameSetScale")
 end
+
 -- native DzFrameSetTooltip takes integer frame, integer tooltip returns nothing
 -- 设置frame提示
 function mt.FrameSetTooltip(frame, tooltip)
@@ -495,11 +499,13 @@ function mt.FrameSetTooltip(frame, tooltip)
     g.yh_integer1 = tooltip
     ExecuteFunc("yh_FrameSetTooltip")
 end
+
 -- native DzFrameCageMouse takes integer frame, boolean enable returns nothing
 -- native DzFrameGetValue takes integer frame returns real
 -- native DzFrameSetMinMaxValue takes integer frame, real minValue, real maxValue returns nothing
 -- native DzFrameSetStepValue takes integer frame, real step returns nothing
 -- native DzFrameSetValue takes integer frame, real value returns nothing
+
 -- native DzFrameSetSize takes integer frame, real w, real h returns nothing
 -- Frame设置尺寸
 function mt.FrameSetSize(frame, with, hight)
@@ -508,6 +514,7 @@ function mt.FrameSetSize(frame, with, hight)
     g.yh_real2 = hight
     ExecuteFunc("yh_FrameSetSize")
 end
+
 -- native DzCreateFrameByTagName takes string frameType, string name, integer parent, string template, integer id returns integer
 -- tag创建Frame,名称可重复
 function mt.CreateFrameByTagName(frameType, name, parent, template)
@@ -582,9 +589,8 @@ end
 ------------------------------------自定义-----------------------
 
 -- 获取鼠标 物品栏 玩家序号
-function mt.getItemBarIndex(player)
-    player = player or GetLocalPlayer()
-    return g.Mouse_ItemBarIndex[GetPlayerId(player)]
+function mt.getItemBarIndex()
+    return g.Mouse_ItemBarIndex
 end
 
 -- 注册鼠标 进入、离开 物品触发

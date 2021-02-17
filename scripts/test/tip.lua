@@ -84,12 +84,12 @@ function mt:act_F()
     end)
     gDz.RegMouseItemBarAction("进入", function()
         local p = gDz.GetTriggerUIEventPlayer()
-        str[2] = "进入"..gDz.getItemBarIndex(p)
+        str[2] = gP.getName(p) .. "进入" .. gDz.getItemBarIndex()
     end)
 
     gDz.RegMouseItemBarAction("离开", function()
         local p = gDz.GetTriggerUIEventPlayer()
-        str[3] = "离开"..gDz.getItemBarIndex(p)
+        str[3] = gP.getName(p) .. "离开" .. gDz.getItemBarIndex()
     end)
 end
 

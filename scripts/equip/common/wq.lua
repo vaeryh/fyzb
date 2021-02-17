@@ -18,55 +18,85 @@ mt.pink = {'会心率', '吸血率', '眩晕率', '减速率', '沉默率'}
 mt.red = {'风相性', '云相性', '火相性', '地相性', '雷相性', '全属性', '多重数', '固定破甲',
           '增伤率', '分裂比例'}
 
--- 存属性
-function mt:setProValue(it, index, name, min, max)
-
-    if it[index] == true then
-
-        local numR = GetRandomReal(min, max)
-        -- 存储数值
-        it.value = numR
-        -- 存储最大值
-        it.max = max
-        -- 存储描述
-        it.tip = self:GetColor(index) + self:GetName(name, numR)
-        -- 存储属性名
-        it.name = name
-    end
+-- 设置属性方法
+function mt.setPro(item, proTab, color)
+    local itTab = oIt:inherit(item)
+    itTab[proTab[1]] = {
+        color = color,
+        value = GetRandomReal(proTab[2], proTab[3])
+    }
 end
--- 设置武器属性值
-function mt:Wq_SetWhiteValue(it)
+
+-- 设置属性值-红
+function mt:setProValue_Red(it)
     local lev = GetItemLevel(it)
-    local white = {}
-    white[1] = {'外功', lev * 100, lev * 300}
-    white[2] = {'内功', lev * 100, lev * 300}
-    white[3] = {'出招速度', 10, lev * 10}
-    white[4] = {'会心加成', 10, lev * 10}
-    white[5] = {'招式', lev * 25, lev * 100}
-    white[6] = {'身法', lev * 25, lev * 100}
-    white[7] = {'心法', lev * 25, lev * 100}
+    local pro = {}
+    pro[1] = {'风相性', 1, lev}
+    pro[2] = {'云相性', 1, lev}
+    pro[3] = {'火相性', 1, lev}
+    pro[4] = {'地相性', 1, lev}
+    pro[5] = {'雷相性', 1, lev}
+    pro[6] = {'全属性', 25 * lev, 100 * lev}
+    pro[7] = {'多重数', 25 * lev, 100 * lev}
+    pro[8] = {'固定破甲', 25 * lev, 100 * lev}
+    pro[9] = {'增伤率', 25 * lev, 100 * lev}
+    pro[10] = {'分裂比例', 25 * lev, 100 * lev}
     --
-    local tab = self:inherit(it)
-
-    local v = white[GetRandomInt(1, 2)]
-    tab[v[1]] = GetRandomInt(v[2], v[3])
-
-    local v = white[GetRandomInt(3, 7)]
-    tab[v[1]] = GetRandomInt(v[2], v[3])
-
-    for k, v in pairs(tab) do
-        print(k, v)
-    end
+    mt.setPro(it, pro[GetRandomInt(1, 10)], "白色")
+end
+-- 设置属性值-紫
+function mt:setProValue_Pink(it)
+    local lev = GetItemLevel(it)
+    local pro = {}
+    pro[1] = {'会心率', 2, 2 * lev}
+    pro[2] = {'吸血率', 2, 2 * lev}
+    pro[3] = {'眩晕率', 2, 2 * lev}
+    pro[4] = {'减速率', 2, 2 * lev}
+    pro[5] = {'沉默率', 2, 2 * lev}
+    --
+    mt.setPro(it, pro[GetRandomInt(1, 5)], "紫色")
+end
+-- 设置属性值-黄
+function mt:setProValue_Yellow(it)
+    local lev = GetItemLevel(it)
+    local pro = {}
+    pro[1] = {'外功', 100 * lev, 300 * lev}
+    pro[2] = {'内功', 100 * lev, 300 * lev}
+    pro[3] = {'出招速度', 10, 10 * lev}
+    pro[4] = {'会心加成', 10, 10 * lev}
+    pro[5] = {'招式', 25 * lev, 100 * lev}
+    pro[6] = {'身法', 25 * lev, 100 * lev}
+    pro[7] = {'心法', 25 * lev, 100 * lev}
+    --
+    mt.setPro(it, pro[GetRandomInt(1, 7)], "黄色")
+end
+-- 设置属性值-白
+function mt:setProValue_White(it)
+    local lev = GetItemLevel(it)
+    local pro = {}
+    pro[1] = {'外功', 100 * lev, 300 * lev}
+    pro[2] = {'内功', 100 * lev, 300 * lev}
+    pro[3] = {'出招速度', 10, 10 * lev}
+    pro[4] = {'会心加成', 10, 10 * lev}
+    pro[5] = {'招式', 25 * lev, 100 * lev}
+    pro[6] = {'身法', 25 * lev, 100 * lev}
+    pro[7] = {'心法', 25 * lev, 100 * lev}
+    --
+    mt.setPro(it, pro[GetRandomInt(1, 2)], "白色")
+    mt.setPro(it, pro[GetRandomInt(3, 7)], "白色")
 end
 
 -- 商店购买，有白属性
 function mt:Shop()
     gTrg.RegPlayerUnitEvent(Player(15), EVENT_PLAYER_UNIT.SELL_ITEM, function()
         local hero, item = GetBuyingUnit(), GetSoldItem()
-        local class = gSlk.getItemString(item, "class")
-        if mt:isItemClass(item, mt.class) then
+        -- local class = gSlk.getItemString(item, "class")
+        if zb:isItemClass(item, mt.class) then
             gP.disTimedText(gU.getOwner(hero), 10.00, GetUnitName(hero) .. "购买了" .. GetItemName(item))
-            self:Wq_SetWhiteValue(item)
+            mt:setProValue_White(item)
+            mt:setProValue_Yellow(item)
+            mt:setProValue_Pink(item)
+            mt:setProValue_Red(item)
         end
     end)
 end
@@ -100,13 +130,13 @@ function mt:classInit()
     self:printParentClass()
     --
     self:holdlimit_HeroGood()
-    --
-    self:Shop()
 end
 
 -- 自身初始化
 function mt.selfInit()
     mt:printParentClass()
+    --
+    mt:Shop()
 end
 
 return mt

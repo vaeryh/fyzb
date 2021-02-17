@@ -1,4 +1,5 @@
 local map = require 'map.global'
+local heroPro= require 'hero.hero_pro'
 
 local mt = {}
 
@@ -53,8 +54,9 @@ function mt.selectHero()
         gCamera.setCameraBounds(gRect.getAbleArea, thisP)
         -- 传送
         -- gYh.MoveAndCamera(thisU, gRect.getCenter(mt.rect_hg))
-
         gYh.MoveAndCamera(thisU, -3807, -9189)
+        --注册属性表
+        heroPro.getHeroProTable(thisU)
         -- 注册英雄复活
         mt.ReHero(thisU)
         --

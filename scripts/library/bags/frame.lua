@@ -42,7 +42,6 @@ function mt:Bag_FrameInit()
             gDz.FrameSetPoint(self.but[i + 1], 3, self.but[i], 5, 0.0, 0.0)
         end
     end
-    print 'zairu1'
 end
 
 -- F4 打开 刷新

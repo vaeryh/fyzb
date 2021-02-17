@@ -107,4 +107,8 @@ function mt.disTimedText(p, timeout, str)
     DisplayTimedTextToPlayer(p, 0, 0, timeout, str)
 end
 
+-- 获取玩家名字
+function mt.getName(p)
+    return GetPlayerName(p)
+end
 return mt

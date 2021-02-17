@@ -5,7 +5,7 @@ scope Mouse initializer Init
 
 globals
 	private hashtable Hash = InitHashtable()
-	public integer array ItemBarIndex //物品栏序号
+	public integer ItemBarIndex //物品栏序号
 	public trigger ItemBarLeave = CreateTrigger()//物品栏离开
 	public trigger ItemBarEnter = CreateTrigger()//物品栏进入
 endglobals
@@ -14,17 +14,13 @@ endglobals
 //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Function↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 //离开
 private function Leave_Actions takes nothing returns nothing
-	local player p = DzGetTriggerUIEventPlayer()
-	local integer id = GetPlayerId(p)
-	set ItemBarIndex[id] = -1
+	set ItemBarIndex = -1
 	//运行触发器
 	call TriggerExecute(ItemBarLeave)
 endfunction
 //进入
 private function Enter_Actions takes nothing returns nothing
-	local player p = DzGetTriggerUIEventPlayer()
-	local integer id = GetPlayerId(p)
-	set ItemBarIndex[id] = LoadInteger(Hash, DzGetTriggerUIEventFrame(), 0)
+	set ItemBarIndex = LoadInteger(Hash, DzGetTriggerUIEventFrame(), 0)
 	//运行触发器
 	call TriggerExecute(ItemBarEnter)
 endfunction
@@ -40,8 +36,8 @@ private function Init_A_Actions takes nothing returns nothing
 		call SaveInteger(Hash, frame, 0, lopA)//关联序号
 
 		//call DzFrameSetScriptByCode(frame, 1, function Click_Actions, false) // 鼠标点击
-		call DzFrameSetScriptByCode(frame, 2, function Enter_Actions, true) // 鼠标进入
-		call DzFrameSetScriptByCode(frame, 3, function Leave_Actions, true) // 鼠标离开
+		call DzFrameSetScriptByCode(frame, 2, function Enter_Actions, false) // 鼠标进入
+		call DzFrameSetScriptByCode(frame, 3, function Leave_Actions, false) // 鼠标离开
 		//call DzFrameSetScriptByCode(frame, 12, function DoubleClick_Actions, false)//鼠标双击
 
 		set lopA = lopA + 1

@@ -2,17 +2,17 @@ local mt = {}
 
 ----------------------------------------------------------------------------------------
 -- 当数量级达1000000时，才会有0.01毫秒的效率差距
---转换256进制整数
+-- 转换256进制整数
 
 -- id 转 字符串
 function mt.id2s(a)
-	local r = ('>I4'):pack(a)
-	return r
+    local r = ('>I4'):pack(a)
+    return r
 end
 -- 字符串 转 id
 function mt.s2id(a)
-	local r = ('>I4'):unpack(a)
-	return r
+    local r = ('>I4'):unpack(a)
+    return r
 end
 
 -- 自动转换为id(id直接返回,字符串返回id)
@@ -22,7 +22,7 @@ function mt.switchId(value)
     elseif type(value) == 'string' then
         return mt.s2id(value)
     else
-        log.warn(value,'值不正常')
+        log.warn(value, '值不正常')
     end
 end
 
@@ -102,6 +102,16 @@ function mt.IsInTable(tab, vaule)
         end
     end
     return false
+end
+
+-- 遍历表
+function mt.pairs(tab)
+    for k, v in pairs(tab) do
+        print(k, v)
+        if type(v) == 'table' then
+            mt.pairs(v)
+        end
+    end
 end
 
 return mt

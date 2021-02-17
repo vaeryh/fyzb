@@ -61,7 +61,7 @@
                 "echo": false,
                 //"reveal": "silent",
                 "focus": false,
-                "panel": "dedicated"
+                "panel": "shared"
             },
             "args": [
                 "obj",
@@ -74,10 +74,10 @@
             "label": "Lni",
             "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/w2l.exe\"",
             "presentation": {
-                "echo": false,
+                "echo": true,
                 "reveal": "always",
-                "focus": false,
-                "panel": "dedicated"
+                "focus": true,
+                "panel": "shared"
             },
             "args": [
                 "lni",

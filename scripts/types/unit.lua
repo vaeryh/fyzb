@@ -78,6 +78,11 @@ function mt.is_alive(handle)
     return GetUnitState(handle, UNIT_STATE_LIFE) > 0
 end
 
+-- 获取单位名称
+function mt.getName(u)
+    return GetUnitName(u)
+end
+
 -- 获取单位坐标
 function mt.getXY(u)
     return GetUnitX(u), GetUnitY(u)
@@ -110,7 +115,7 @@ end
 -- 设置单位状态
 function mt.setState(u, unitState, delta)
     if delta < 0 then
-        log.error('单位生命值低于0,会导致直接死亡')
+        return log.error('单位生命值低于0,会导致直接死亡')
     end
     japi.SetUnitState(u, unitState, delta)
 end
