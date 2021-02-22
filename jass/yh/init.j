@@ -9,5 +9,4 @@
 #include "jass\yh\import\DzAPI.j"
 
 //jass 2 lua
-#include "jass\yh\jass2lua\globals.j"
 #include "jass\yh\jass2lua\BlizzardAPI.j"

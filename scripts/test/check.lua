@@ -2,9 +2,15 @@ local mt = {}
 
 gTrg.RegAnyPlayerUnitEvent(EVENT_PLAYER_UNIT.SELECTED, function()
     local unit = GetTriggerUnit()
-    -- gUnitdata.adjustPro("攻击值", unit, 10)
-    -- gUnitdata.adjustPro("护甲值", unit, 10)
-    -- gUnitdata.adjustPro("生命值再生", unit, 1)
-    -- gUnitdata.adjustPro("魔法值再生", unit, 1)
-    -- gUnitdata.adjustPro("全属性", unit, 10)
+
 end)
+
+-- local frame = gDz.CreateFrameByTagName("BUTTON", nil, nil, "BagButton")
+-- gDz.FrameSetAbsolutePoint(frame, 0, 0.2, 0.4)
+-- -- local back = gDz.CreateFrameByTagName("BACKDROP")
+-- -- gDz.FrameSetAllPoints(back, frame)
+-- gDz.TriggerRegisterUIEvent(frame, 2, mt.act())
+
+-- function mt.act()
+--     printF("进入", gDz.GetTriggerUIEventFrame())
+-- end

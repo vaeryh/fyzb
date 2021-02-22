@@ -29,7 +29,6 @@ function message.hook(msg)
             return true
         end
         if msg.code == keyboard['Z'] then
-            gU.setXY(selection, message.mouse())
             local xy = string.format("%.f,%.f", message.mouse())
             log.trace(xy)
             return true

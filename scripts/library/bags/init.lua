@@ -1,6 +1,6 @@
 local bag = require 'library.bags.frame'
-bag:init()
+--bag.init()
 --require 'library.bags.operation'
 --require 'library.bags.fullpick'
--- require 'library.bags.ItemBara'
+require 'library.bags.ItemBar'
 -- require 'library.bags.AbiBar'

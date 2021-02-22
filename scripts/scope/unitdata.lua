@@ -192,18 +192,14 @@ GREEN_DATA = {
     -- 智力
     INT = GREEN_DATA_INT
 }
+
+-- 再生类
+
 -- 再生单位寄存保存
 local Regen = {}
-local function isHaveRegen(unit)
-    if Regen[unit] then
-        return false
-    else
-        Regen[unit] = unit
-        return true
-    end
-end
+
 -- 计时器 再生类
-local function TimerRegen(proName, unit, value)
+function mt.TimerRegen(proName, unit, value)
     local tab = mt:getDataBase(unit)
     -- 保存
     if proName == "生命值再生" then
@@ -212,14 +208,17 @@ local function TimerRegen(proName, unit, value)
         tab.manaRegn = tab.manaRegn + value
     end
     --
-    if isHaveRegen(unit) then
+    if not Regen[unit] then
+        Regen[unit] = unit
         gT.loop(0.50, function()
-            gU.adjustState(unit, UNIT_STATE.LIFE, tab.lifeRegn)
-            gU.adjustState(unit, UNIT_STATE.MANA, tab.manaRegn)
-            local x, y = gYh.getPolarUnit(unit, 100, 0)
-            local str1 = "|cff51e40d" .. string.format("%+d", tab.lifeRegn)
-            local str2 = "|cff0d22e4" .. string.format("%+d", tab.manaRegn)
-            gTag.newXY(str1 .. str2, 0.020, x, y, 0.50, 20, 90)
+            if gU.is_alive(unit) then
+                gU.adjustState(unit, UNIT_STATE.LIFE, tab.lifeRegn)
+                gU.adjustState(unit, UNIT_STATE.MANA, tab.manaRegn)
+                local x, y = gYh.getPolarUnit(unit, 100, 0)
+                local str1 = "|cff51e40d" .. string.format("%+d", tab.lifeRegn)
+                local str2 = "|cff0d22e4" .. string.format("%+d", tab.manaRegn)
+                gTag.newXY(str1 .. str2, 0.020, x, y, 0.50, 20, 90)
+            end
         end)
     end
 end
@@ -247,14 +246,14 @@ function mt.adjustPro(proName, unit, value)
         gU.adjustState(unit, UNIT_STATE.MAX_LIFE, value)
         gU.adjustState(unit, UNIT_STATE.LIFE, value)
     elseif proName == "生命值再生" then
-        TimerRegen("生命值再生", unit, value)
+        mt.TimerRegen("生命值再生", unit, value)
     end
 
     if proName == "魔法值" then
         gU.adjustState(unit, UNIT_STATE.MAX_MANA, value)
         gU.adjustState(unit, UNIT_STATE.MANA, value)
     elseif proName == "魔法值再生" then
-        TimerRegen("魔法值再生", unit, value)
+        mt.TimerRegen("魔法值再生", unit, value)
     end
     -- 英雄属性-绿色
     if proName == "力量" then

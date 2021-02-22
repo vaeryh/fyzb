@@ -1,5 +1,4 @@
 {
     "editor.formatOnSave": true,
-    "editor.minimap.enabled": false,
     "scm.alwaysShowActions": false,
 }

@@ -5,7 +5,7 @@ scope Mouse initializer Init
 
 globals
 	private hashtable Hash = InitHashtable()
-	public integer ItemBarIndex //物品栏序号
+	public integer ItemBarSolt //物品栏序号
 	public trigger ItemBarLeave = CreateTrigger()//物品栏离开
 	public trigger ItemBarEnter = CreateTrigger()//物品栏进入
 endglobals
@@ -14,13 +14,13 @@ endglobals
 //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓Function↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 //离开
 private function Leave_Actions takes nothing returns nothing
-	set ItemBarIndex = -1
+	set ItemBarSolt = -1
 	//运行触发器
 	call TriggerExecute(ItemBarLeave)
 endfunction
 //进入
 private function Enter_Actions takes nothing returns nothing
-	set ItemBarIndex = LoadInteger(Hash, DzGetTriggerUIEventFrame(), 0)
+	set ItemBarSolt = LoadInteger(Hash, DzGetTriggerUIEventFrame(), 0)
 	//运行触发器
 	call TriggerExecute(ItemBarEnter)
 endfunction

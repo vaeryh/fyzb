@@ -12,14 +12,12 @@ local function map_main()
     gP.setState(Player(11), PLAYER_STATE.GIVES_BOUNTY, 1)
     -- 选择难度
     require 'map.select_difficulty'
-    -- 准备倒计时
-    require 'map.atk'
-    -- 开启home事件
-    require 'map.home'
-    -- 开启练功房
-    require 'map.lgf'
-    -- 伤害
-    require 'map.harmtag'
+    -- 载入地图功能
+    require 'map.function.init'
+    --载入英雄
+    require 'map.hero.init'
+    --载入装备
+    require 'map.equip.init'
 end
 
 map_main()

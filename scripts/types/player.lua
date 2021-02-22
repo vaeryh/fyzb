@@ -1,5 +1,17 @@
 local mt = {}
 
+-- 中立玩家
+PLAYER_NEUTRAL = {
+    -- 中立敌对
+    AGGRESSIVE = Player(12),
+    -- 中立受害
+    VICTIM = Player(13),
+    -- 中立特殊
+    EXTRA = Player(14),
+    -- 中立被动
+    PASSIVE = Player(15)
+}
+
 -- 玩家状态
 PLAYER_STATE = {
     -- 游戏得分

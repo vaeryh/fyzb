@@ -1,3 +1,4 @@
+local g = require 'jass.globals'
 -- 触发器相关
 local mt = {}
 
@@ -119,7 +120,8 @@ EVENT_UNIT = {
 -- [GetSellingUnit]"贩卖者"  "响应'出售单位','出售物品'或'抵押物品'单位事件."
 --                                  item
 -- [GetSoldItem] "被售出物品"  "响应'出售物品'或'抵押物品'单位事件."
--- [GetManipulatedItem]" "响应'使用/得到/丢弃物品'单位事件."
+-- [GetManipulatedItem]"被操作的物品" "响应'使用/得到/丢弃物品'单位事件."
+-- [GetOrderTargetItem]"命令发布目标" "响应'发布指定物体目标命令'单位事件并以物品为目标时."
 -----------------------------------------------------------------------------------------
 
 -- 触发器列表
@@ -128,15 +130,20 @@ mt.listTrigger = {}
 -- 重载
 function mt:reload()
     for k, v in ipairs(self.listTrigger) do
+        mt.listTrigger[k] = nil
         self.remove(v)
     end
+    g.yh_Enter = nil
+    g.yh_Leave = nil
     log.debug("trg", #self.listTrigger)
 end
 -- 创建触发器
 function mt.create(code)
     local trg = CreateTrigger()
     table.insert(mt.listTrigger, trg)
-    TriggerAddAction(trg, code)
+    if code then
+        TriggerAddAction(trg, code)
+    end
     return trg
 end
 -- 获取状态(true:开启)
@@ -242,6 +249,25 @@ end
 -- 单位状态事件
 function mt.RegUnitStateEvent(u, unitstate, opcode, limitval, code)
     TriggerRegisterUnitStateEvent(mt.create(code), u, unitstate, opcode, limitval)
+end
+
+-- 注册任意单位进入/离开矩形区域
+function mt.RegUnitLeaveOrEnterRegion(string, rect, code)
+    local region = CreateRegion()
+    -- 添加区域，地区可以看成无数个点和区域的集合体
+    gRect.regionAddRect(region, rect)
+
+    if string == "离开区域" then
+        TriggerRegisterLeaveRegion(mt.create(code), region, nil)
+    end
+    if string == "进入区域" then
+        TriggerRegisterEnterRegion(mt.create(code), region, nil)
+    end
+end
+
+-- 进入指定单位范围内
+function mt.RegUnitEnterUnitRange(unit, range, code)
+    TriggerRegisterUnitInRange(mt.create(code), unit, range, nil)
 end
 
 -- 注册任意单位伤害事件

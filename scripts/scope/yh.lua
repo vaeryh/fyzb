@@ -71,24 +71,28 @@ end
 ----------------------------------------------------------------------------------------
 
 -- 平移镜头+移动单位（坐标，免排泄）
-function mt.MoveAndCamera(whichHero, x, y)
+function mt.MoveAndCamera(hero, x, y)
+    if not hero then
+        log.warn("移动单位为空", hero)
+        return
+    end
     local abi = mt.s2id('AHmt')
     -- 开始特效
     --- 施法者
-    DestroyEffect(AddSpellEffectTargetById(abi, EFFECT_TYPE_CASTER, whichHero, "origin"))
+    DestroyEffect(AddSpellEffectTargetById(abi, EFFECT_TYPE_CASTER, hero, "origin"))
     --- 区域
-    DestroyEffect(AddSpellEffectTargetById(abi, EFFECT_TYPE_AREA_EFFECT, whichHero, "origin"))
+    DestroyEffect(AddSpellEffectTargetById(abi, EFFECT_TYPE_AREA_EFFECT, hero, "origin"))
     -- 开启计时器
     TimerStart(CreateTimer(), 0.77, false, function()
         -- 设置单位坐标
-        SetUnitPosition(whichHero, x, y)
+        SetUnitPosition(hero, x, y)
         -- 结束特效
         ---- 特殊效果
-        DestroyEffect(AddSpellEffectTargetById(abi, EFFECT_TYPE_SPECIAL, whichHero, "origin"))
+        DestroyEffect(AddSpellEffectTargetById(abi, EFFECT_TYPE_SPECIAL, hero, "origin"))
         -- 移动镜头
-        if gP.isLocalPlayer(whichHero) then
+        if gP.isLocalPlayer(hero) then
             PanCameraToTimed(x, y, 0.33)
-            SelectUnit(whichHero, true) -- 细节：移动镜头后玩家选择一下单位
+            SelectUnit(hero, true) -- 细节：移动镜头后玩家选择一下单位
         end
         DestroyTimer(GetExpiredTimer())
     end)

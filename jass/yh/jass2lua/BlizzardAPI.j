@@ -23,10 +23,10 @@ globals
 	boolean yh_boolean1 = false
 	boolean yh_boolean2 = false
 	boolean yh_boolean3 = false
-	code yh_code = null
 	player yh_player = null
 	unit yh_unit = null
-	unitstate yh_unitstate = null
+	trigger yh_Enter = null//进入
+	trigger yh_Leave = null//离开
 endglobals
 //-------------------------------------------------------------------------------------------------
 //hardware
@@ -83,7 +83,7 @@ endfunction
 //     native DzTriggerRegisterMouseEventByCode takes trigger trig, integer btn, integer status, boolean sync, code funcHandle returns nothing
 //注册鼠标事件(code无法与lua交互)
 public function TriggerRegisterMouseEventByCode takes nothing returns nothing
-	call DzTriggerRegisterMouseEventByCode(yh_trigger, yh_integer1, yh_integer2, yh_boolean1, yh_code)
+	call DzTriggerRegisterMouseEventByCode(yh_trigger, yh_integer1, yh_integer2, yh_boolean1, null)
 endfunction
 //     native DzTriggerRegisterKeyEvent takes trigger trig, integer key, integer status, boolean sync, string func returns nothing
 //注册键盘key事件
@@ -93,7 +93,7 @@ endfunction
 //     native DzTriggerRegisterKeyEventByCode takes trigger trig, integer key, integer status, boolean sync, code funcHandle returns nothing
 // 注册键盘key事件
 public function TriggerRegisterKeyEventByCode takes nothing returns nothing
-	call DzTriggerRegisterKeyEventByCode(yh_trigger, yh_integer1, yh_integer2, yh_boolean1, yh_code)
+	call DzTriggerRegisterKeyEventByCode(yh_trigger, yh_integer1, yh_integer2, yh_boolean1, null)
 endfunction
 //     native DzTriggerRegisterMouseWheelEvent takes trigger trig, boolean sync, string func returns nothing
 //     native DzTriggerRegisterMouseWheelEventByCode takes trigger trig, boolean sync, code funcHandle returns nothing
@@ -105,7 +105,7 @@ endfunction
 //     native DzTriggerRegisterMouseMoveEventByCode takes trigger trig, boolean sync, code funcHandle returns nothing
 //任意玩家移动鼠标
 public function TriggerRegisterMouseMoveEventByCode takes nothing returns nothing
-	call DzTriggerRegisterMouseMoveEventByCode(yh_trigger, yh_boolean1, yh_code)
+	call DzTriggerRegisterMouseMoveEventByCode(yh_trigger, yh_boolean1, null)
 endfunction
 //     native DzGetTriggerKey takes nothing returns integer
 //事件响应 - 获取触发的按键
@@ -285,16 +285,32 @@ endfunction
 public function FrameSetScript takes nothing returns nothing
 	call DzFrameSetScript(yh_frame1, yh_integer1, yh_string1, yh_boolean1)
 endfunction
+
+//------------------------------------------------------------------------
 //     native DzFrameSetScriptByCode takes integer frame, integer eventId, code funcHandle, boolean sync returns nothing
+//离开
+private function Leave_Actions takes nothing returns nothing
+	call TriggerExecute(yh_Leave)
+endfunction
+//进入
+private function Enter_Actions takes nothing returns nothing
+	call TriggerExecute(yh_Enter)
+endfunction
 //注册Frame UI事件回调
 public function FrameSetScriptByCode takes nothing returns nothing
-	call DzFrameSetScriptByCode(yh_frame1, yh_integer1, yh_code, yh_boolean1)
+	if yh_integer1 == 2 then	// 鼠标进入
+		call DzFrameSetScriptByCode(yh_frame1, 2, function Enter_Actions, false)
+	elseif yh_integer1 == 3 then	// 鼠标离开
+		call DzFrameSetScriptByCode(yh_frame1, 3, function Leave_Actions, false)
+	else
+		call DisplayTimedTextToPlayer(GetLocalPlayer(), 0, 0, 60.00, I2S(yh_integer1)+ "注册无效")
+	endif
 endfunction
+//------------------------------------------------------------------------
 //     native DzGetTriggerUIEventPlayer takes nothing returns player
 public function GetTriggerUIEventPlayer takes nothing returns nothing
 	set yh_player = DzGetTriggerUIEventPlayer()
 endfunction
-
 //     native DzGetTriggerUIEventFrame takes nothing returns integer
 //事件响应 - 触发的Frame
 public function GetTriggerUIEventFrame takes nothing returns nothing

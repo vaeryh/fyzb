@@ -12,15 +12,33 @@ ITEM_DATA = {
 }
 -- 设置属性
 function mt.setDataString(itemcode, data_type, value)
-    return japi.EXSetItemDataString(itemcode, data_type, value)
+    itemcode = GetItemTypeId(itemcode)
+    japi.EXSetItemDataString(itemcode, data_type, value)
 end
 -- 获取属性
 function mt.getDataString(itemcode, data_type)
+    itemcode = GetItemTypeId(itemcode)
     return japi.EXGetItemDataString(itemcode, data_type)
 end
 -- 物品类型
 ITEM_TYPE = {
-    -- 任意类型
+    -- 永久
+    PERMANENT = ITEM_TYPE_PERMANENT,
+    -- 可充的
+    CHARGED = ITEM_TYPE_CHARGED,
+    -- 能量提升
+    POWERUP = ITEM_TYPE_POWERUP,
+    -- 人造
+    ARTIFACT = ITEM_TYPE_ARTIFACT,
+    -- 可购买
+    PURCHASABLE = ITEM_TYPE_PURCHASABLE,
+    -- 战役
+    CAMPAIGN = ITEM_TYPE_CAMPAIGN,
+    -- 混杂
+    MISCELLANEOUS = ITEM_TYPE_MISCELLANEOUS,
+    -- 未知
+    UNKNOWN = ITEM_TYPE_UNKNOWN,
+    -- 任何
     ANY = ITEM_TYPE_ANY
 }
 
@@ -33,16 +51,19 @@ function mt:reload()
     end
     log.debug("item", #self.listItem)
 end
+
 -- 创建物品
 function mt.create(id, x, y)
     local item = CreateItem(gYh.switchId(id), x, y)
     table.insert(mt.listItem, item)
     return item
 end
+
 -- 获取指定分类的随机物品(新版等级参考)
 function mt.getRandom(itemtype, lev)
     return ChooseRandomItemEx(itemtype, lev)
 end
+
 -- 删除物品
 function mt.remove(item)
     RemoveItem(item)
@@ -50,6 +71,14 @@ end
 -- 丢弃物品
 function mt.drop(unit, item)
     UnitRemoveItem(unit, item)
+end
+-- 给与物品
+function mt.addUnit(unit, item)
+    UnitAddItem(unit, item)
+end
+-- 移动物品到槽位号
+function mt.moveUnitSlot(unit, item, solt)
+    UnitDropItemSlot(unit, item, solt)
 end
 -- 获取等级
 function mt.getLevel(item)

@@ -4,16 +4,26 @@ local mt = {}
 -- 类型
 mt.type = 'rect'
 
--- 4个数值
-mt.minX = 0
-mt.minY = 0
-mt.maxX = 0
-mt.maxY = 0
+--------------------------------------------------------------------------------------------------
 
--- 获取4个值
-function mt:get()
-    return self.minX, self.minY, self.maxX, self.maxY
+-- 新建区域 [R]
+function mt.regionCreate()
+    return CreateRegion()
 end
+-- 删除不规则区域 [R]
+function mt.regionRemove(region)
+    RemoveRegion(RemoveRegion)
+end
+-- 添加区域 [R]
+function mt.regionAddRect(region, rect)
+    RegionAddRect(region, rect)
+end
+-- 移除区域 [R]
+function mt.regionClearRect(region, rect)
+    RegionClearRect(region, rect)
+end
+
+--------------------------------------------------------------------------------------------------
 
 -- 获取矩形中心坐标
 function mt.getCenter(rect)

@@ -16,19 +16,15 @@ require 'library.init'
 require 'scope.init'
 -- 测试
 require 'test.init'
--- 本地图库
+-- 地图初始化
 require 'map.init'
--- 英雄
-require 'hero.init'
--- 装备
-require 'equip.init'
 -- -----------------------------------------------------------------------------------------
 -- local function main()
 --     print 'YH:Hello Word!'
 --     -- 本地图库
 --     require 'map.init'
 --     -- 英雄
---     require 'hero.init'
+--     require 'map.hero.init'
 
 -- end
 

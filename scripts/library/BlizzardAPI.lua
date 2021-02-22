@@ -15,48 +15,56 @@ function mt:reload()
 end
 ---------------------------------------------------------------------------------------------------
 -- hardware
+
 -- native DzGetMouseTerrainX takes nothing returns real
 -- 获取鼠标在游戏内的坐标X
 function mt.GetMouseTerrainX()
     ExecuteFunc("yh_GetMouseTerrainX")
     return g.yh_real1
 end
+
 -- native DzGetMouseTerrainY takes nothing returns real
 -- 获取鼠标在游戏内的坐标Y
 function mt.GetMouseTerrainY()
     ExecuteFunc("yh_GetMouseTerrainY")
     return g.yh_real1
 end
+
 -- native DzGetMouseTerrainZ takes nothing returns real
 -- 获取鼠标在游戏内的坐标Z
 function mt.GetMouseTerrainZ()
     ExecuteFunc("yh_GetMouseTerrainZ")
     return g.yh_real1
 end
+
 -- native DzIsMouseOverUI takes nothing returns boolean
 -- 鼠标是否在游戏内
 function mt.IsMouseOverUI()
     ExecuteFunc("yh_IsMouseOverUI")
     return g.yh_boolean1
 end
+
 -- native DzGetMouseX takes nothing returns integer
 -- 获取鼠标在屏幕的坐标X
 function mt.GetMouseX()
     ExecuteFunc("yh_GetMouseX")
     return g.yh_integer1
 end
+
 -- native DzGetMouseY takes nothing returns integer
 -- 获取鼠标在屏幕的坐标Y
 function mt.GetMouseY()
     ExecuteFunc("yh_GetMouseY")
     return g.yh_integer1
 end
+
 -- native DzGetMouseXRelative takes nothing returns integer
 -- 获取鼠标游戏窗口坐标X
 function mt.GetMouseXRelative()
     ExecuteFunc("yh_GetMouseXRelative")
     return g.yh_integer1
 end
+
 -- native DzGetMouseYRelative takes nothing returns integer
 -- 获取鼠标游戏窗口坐标Y
 function mt.GetMouseYRelative()
@@ -95,8 +103,9 @@ end
 --     ExecuteFunc("yh_TriggerRegisterMouseEventByCode")
 -- end
 
+local key = {"90Z", '88X', '67C', '86V', '9Tab', '113F2', '114F3', '115F4', '116F5', '117F6'}
 -- native DzTriggerRegisterKeyEvent takes trigger trig, integer key, integer status, boolean sync, string func returns nothing
--- 注册键盘key事件
+-- 注册键盘key事件(1.点击 0.释放)
 function mt.TriggerRegisterKeyEvent(key, status, sync, func)
     g.yh_trigger = trg.create(func)
     g.yh_integer1 = key
@@ -372,22 +381,32 @@ end
 
 -- native DzFrameSetScript takes integer frame, integer eventId, string func, boolean sync returns nothing
 -- 注册Frame UI事件回调
-function mt.FrameSetScript(frame, eventid, func, bol)
-    g.yh_frame1 = frame
-    g.yh_integer1 = eventid
-    g.yh_string1 = func
-    g.yh_boolean1 = bol
-    ExecuteFunc("yh_FrameSetScript")
-end
+-- function mt.FrameSetScript(frame, eventid, func, bol)
+--     g.yh_frame1 = frame
+--     g.yh_integer1 = eventid
+--     g.yh_string1 = func
+--     g.yh_boolean1 = bol
+--     ExecuteFunc("yh_FrameSetScript")
+-- end
+
 -- native DzFrameSetScriptByCode takes integer frame, integer eventId, code funcHandle, boolean sync returns nothing
--- 注册Frame UI事件回调
-function mt.FrameSetScriptByCode(frame, eventid, funcHandle, bol)
+-- 注册Frame UI事件回调(2-进入、3-离开)
+function mt.TriggerRegisterUIEvent(frame, eventid, code)
+    if eventid == 2 then -- 鼠标进入
+        if g.yh_Enter == 0 then
+            g.yh_Enter = gTrg.create()
+        end
+        TriggerAddAction(g.yh_Enter, code)
+    elseif eventid == 3 then -- 鼠标离开
+        if g.yh_Leave == 0 then
+            g.yh_Leave = gTrg.create()
+        end
+        TriggerAddAction(g.yh_Leave, code)
+    else
+        log.info(eventid .. "注册无效")
+    end
     g.yh_frame1 = frame
     g.yh_integer1 = eventid
-    g.yh_code = funcHandle
-    print(g.yh_code, type(g.yh_code))
-    print(funcHandle, type(funcHandle))
-    g.yh_boolean1 = bol
     ExecuteFunc("yh_FrameSetScriptByCode")
 end
 
@@ -397,6 +416,7 @@ function mt.GetTriggerUIEventPlayer()
     ExecuteFunc("yh_GetTriggerUIEventPlayer")
     return g.yh_player
 end
+
 -- native DzGetTriggerUIEventFrame takes nothing returns integer
 -- 事件响应 - 触发的Frame
 function mt.GetTriggerUIEventFrame()
@@ -589,8 +609,8 @@ end
 ------------------------------------自定义-----------------------
 
 -- 获取鼠标 物品栏 玩家序号
-function mt.getItemBarIndex()
-    return g.Mouse_ItemBarIndex
+function mt.getItemBarSolt()
+    return g.Mouse_ItemBarSolt
 end
 
 -- 注册鼠标 进入、离开 物品触发

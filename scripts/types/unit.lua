@@ -109,7 +109,7 @@ end
 
 -- 获取单位状态
 function mt.getState(u, unitState)
-    return japi.GetUnitState(u, unitState, delta)
+    return japi.GetUnitState(u, unitState)
 end
 
 -- 设置单位状态
@@ -123,10 +123,15 @@ end
 -- 调整单位状态
 function mt.adjustState(u, unitState, delta)
     local newstate = mt.getState(u, unitState) + delta
-    if newstate <= 0 then
-        log.error('单位状态负值', unitState)
+    if newstate < 0 then
+        log.warn('单位状态负值', tostring(unitState), mt.getState(u, unitState), delta)
     end
     mt.setState(u, unitState, newstate)
+end
+
+-- 设置单位显示隐藏
+function mt.setShow(unit, bol)
+    ShowUnit(unit, bol)
 end
 
 -- 设置单位颜色

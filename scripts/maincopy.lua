@@ -2,5 +2,3 @@
 require 'scope.slk'
 -- 本地图库
 require 'map.init'
--- 英雄
-require 'hero.init'

@@ -8,12 +8,11 @@ end
 -- 函数重载
 require 'test.help'
 --
-require 'test.tip'
 -- 日志
 require 'test.log'
 
 --require 'test.error'
 
-require 'test.testItem'
-require 'test.teststake'
 require 'test.check'
+
+require 'test.mapTest.init'

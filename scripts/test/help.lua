@@ -44,20 +44,20 @@ function mt.reload()
     -- 重载Frame
     gDz:reload()
 
-    local hero_load = require 'hero.hero_load'
+    local hero_load = require 'map.hero.hero_load'
     helper_reload(function()
         require 'main'
         -- require 'test.t'
         -- 英雄技能重置
         for i, name in ipairs(hero_load.name) do
-            require('hero.' .. name .. '.D')
-            require('hero.' .. name .. '.Q')
-            require('hero.' .. name .. '.W')
-            require('hero.' .. name .. '.E')
-            require('hero.' .. name .. '.R')
+            require('map.hero.' .. name .. '.D')
+            require('map.hero.' .. name .. '.Q')
+            require('map.hero.' .. name .. '.W')
+            require('map.hero.' .. name .. '.E')
+            require('map.hero.' .. name .. '.R')
         end
-        require 'hero.神医.tlA'
-        require 'hero.神医.tlC'
+        require 'map.hero.神医.tlA'
+        require 'map.hero.神医.tlC'
     end)
 
     log.fatal('---- Reloading end   ----')
