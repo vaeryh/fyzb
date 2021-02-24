@@ -73,7 +73,7 @@ function mt.Init_C()
             mt.solt = solt[gDz.GetTriggerUIEventFrame()]
             mt.pos = "背包栏"
             --
-            local op = require 'library.bags.operation'
+            local op = require 'map.bag.operation'
             local p = gDz.GetTriggerUIEventPlayer()
             mt.item = op[p][mt.solt]
             mt.Init_E(mt.item)
@@ -118,15 +118,15 @@ end
 -- 设置背包物品提示
 function mt.Init_E(item)
     if item then
-        local zb = require 'map.equip.common.zb'
-        local tab = zb:inherit(item)
-        local text = ''
-        for k, v in pairs(tab) do
-            text = text .. v.tip .. '\n'
-        end
+        -- local zb = require 'map.equip.common.zb'
+        -- local tab = zb:inherit(item)
+        -- local text = ''
+        -- for k, v in pairs(tab) do
+        --     text = text .. v.tip .. '\n'
+        -- end
         gDz.FrameSetText(frame.title, GetItemName(item))
-        gDz.FrameSetText(frame.showText2, text)
-        gDz.FrameSetText(frame.showText4, gIt.getDataString(item, ITEM_DATA.UBERTIP))
+        gDz.FrameSetText(frame.showText2, gSlk.getItemString(item,"TIP"))
+        gDz.FrameSetText(frame.showText4, gSlk.getItemString(item,"UBERTIP") )
         gDz.FrameShow(frame.showBack, true)
     end
 end
