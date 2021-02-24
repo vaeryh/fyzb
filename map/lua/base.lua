@@ -9,7 +9,7 @@ base = {}
 base.release = not pcall(require, 'lua.currentpath')
 
 --版本号
-base.version = '4.18'
+base.version = '4.20'
 
 --打开控制台
 if not base.release then
