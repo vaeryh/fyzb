@@ -1,12 +1,70 @@
-输入路径：W:/OneDrive/测试版地图/杨杭-只能看不能修改/123.w3x
-输出路径：W:/OneDrive/测试版地图/杨杭-只能看不能修改/123
+输入路径：W:/OneDrive/测试版地图/杨杭-只能看不能修改/fyzb/FYZB.w3x
+输出路径：W:/OneDrive/测试版地图/杨杭-只能看不能修改/fyzb
 输入格式：Mpq
 输出模式：lni
-结果：0 个错误，1 条警告
-用时：3.713 秒
+结果：2 个错误，5 条警告
+用时：1.634 秒
 ==========================
-警告 (1)
+严重错误 (2)
 ==========================
+还有39个文件没有读取 - 这些文件被丢弃了,请包含完整(listfile)
+读取(522/561)个文件
+
+==========================
+警告 (5)
+==========================
+插件[资源保护]执行失败 - .\backend\plugin.lua:12: bad argument #1 to 'load' (function expected, got nil)
+stack traceback:
+	[C]: in function 'load'
+	.\backend\plugin.lua:12: in function <.\backend\plugin.lua:10>
+	[C]: in function 'xpcall'
+	.\backend\plugin.lua:10: in upvalue 'load_plugins'
+	.\backend\plugin.lua:37: in function 'backend.plugin'
+	.\backend\convert.lua:119: in function 'backend.convert'
+	.\backend\cli\lni.lua:4: in function 'backend.cli.lni'
+	.\backend\init.lua:12: in main chunk
+	[C]: in function 'require'
+	...只能看不能修改\fyzb\tools\w3x2lni\script\main.lua:2: in main chunk
+	[C]: in ?
+插件[模型加密]执行失败 - .\backend\plugin.lua:12: bad argument #1 to 'load' (function expected, got nil)
+stack traceback:
+	[C]: in function 'load'
+	.\backend\plugin.lua:12: in function <.\backend\plugin.lua:10>
+	[C]: in function 'xpcall'
+	.\backend\plugin.lua:10: in upvalue 'load_plugins'
+	.\backend\plugin.lua:37: in function 'backend.plugin'
+	.\backend\convert.lua:119: in function 'backend.convert'
+	.\backend\cli\lni.lua:4: in function 'backend.cli.lni'
+	.\backend\init.lua:12: in main chunk
+	[C]: in function 'require'
+	...只能看不能修改\fyzb\tools\w3x2lni\script\main.lua:2: in main chunk
+	[C]: in ?
+插件[本地脚本]执行失败 - .\backend\plugin.lua:12: bad argument #1 to 'load' (function expected, got nil)
+stack traceback:
+	[C]: in function 'load'
+	.\backend\plugin.lua:12: in function <.\backend\plugin.lua:10>
+	[C]: in function 'xpcall'
+	.\backend\plugin.lua:10: in upvalue 'load_plugins'
+	.\backend\plugin.lua:37: in function 'backend.plugin'
+	.\backend\convert.lua:119: in function 'backend.convert'
+	.\backend\cli\lni.lua:4: in function 'backend.cli.lni'
+	.\backend\init.lua:12: in main chunk
+	[C]: in function 'require'
+	...只能看不能修改\fyzb\tools\w3x2lni\script\main.lua:2: in main chunk
+	[C]: in ?
+插件[引用声明]执行失败 - .\backend\plugin.lua:12: bad argument #1 to 'load' (function expected, got nil)
+stack traceback:
+	[C]: in function 'load'
+	.\backend\plugin.lua:12: in function <.\backend\plugin.lua:10>
+	[C]: in function 'xpcall'
+	.\backend\plugin.lua:10: in upvalue 'load_plugins'
+	.\backend\plugin.lua:37: in function 'backend.plugin'
+	.\backend\convert.lua:119: in function 'backend.convert'
+	.\backend\cli\lni.lua:4: in function 'backend.cli.lni'
+	.\backend\init.lua:12: in main chunk
+	[C]: in function 'require'
+	...只能看不能修改\fyzb\tools\w3x2lni\script\main.lua:2: in main chunk
+	[C]: in ?
 没有转换触发器 - 请设置YDWE关联地图
 stack traceback:
 	[C]: in function 'error'
@@ -18,5 +76,7 @@ stack traceback:
 	.\core\slk/backend.lua:407: in method 'backend'
 	.\backend\convert.lua:140: in function 'backend.convert'
 	.\backend\cli\lni.lua:4: in function 'backend.cli.lni'
-	backend\init.lua:12: in main chunk
+	.\backend\init.lua:12: in main chunk
+	[C]: in function 'require'
+	...只能看不能修改\fyzb\tools\w3x2lni\script\main.lua:2: in main chunk
 	[C]: in ?

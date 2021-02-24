@@ -1,11 +1,31 @@
+[CustomSkin]
+InventoryFullSound=''
+[Errors]
+Absorbmana=没有足够的内力来吸收。
+Cooldown=内力尚未恢复。
+HPmanamaxed=气血值和内力值都已满。
+Inventoryfull= 
+Manamaxed=内力值已满。
+Nomana=内力值不够。
+UnitHPmaxed=气血值已满。
+UnitManaMaxed=内力值已满。
 [FrameDef]
-BONUS_ATTACK_SPEED=  - 6
-BONUS_DAMAGE= - 3
-BONUS_DEFENSE= - 1
-BONUS_DEFENSE_FIXED= - 2
-BONUS_HITPOINTS= - 5
-BONUS_HPREGEN=  - 8
-BONUS_MANA= - 4
-BONUS_MANAREGEN=  - 7
-COLON_ARMOR=防御：
+AGILITY=身法
+AGILITY_HILIGHT=|Cffffff00身法|R
+BONUS_ATTACK_SPEED= - 每点提升风相性*身法* 0.002%的出招速度
+BONUS_DAMAGE= - 每点提升火相性*主属性*0.02的外功
+BONUS_DEFENSE_FIXED= - 每点提升地相性*身法* 0.005的护甲
+BONUS_HITPOINTS= - 每点提升云相性*招式* 0.5的气血
+BONUS_HPREGEN= - 每点提升云相性*招式* 0.01每秒的气血恢复
+BONUS_MANA= - 每点提升雷相性*主属性*0.1的内力
+BONUS_MANAREGEN= - 每点增加魔法恢复速度
+CASTER_UPGRADE_TIP=增加魔法值，魔法恢复速度和生命值。
+COLON_AGILITY=身法：
 COLON_DAMAGE=外功：
+COLON_INTELLECT=心法：
+COLON_STRENGTH=招式：
+INTELLECT=心法
+INTELLECT_HILIGHT=|Cffffff00心法|R
+INTELLIGENCE=心法
+STRENGTH=招式
+STRENGTH_HILIGHT=|Cffffff00招式|R
