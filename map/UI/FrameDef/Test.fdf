@@ -1,0 +1,82 @@
+//******************************
+//*
+//* 风雨争霸-测试UI
+//*
+//******
+Frame "TEXT" "TestTextTemplate" {
+	Width 0.06,
+	Height 0.01,
+    DecorateFileNames,
+    FrameFont "MasterFont", 0.009, "",
+    FontJustificationH JUSTIFYLEFT,
+    FontJustificationV JUSTIFYMIDDLE,
+    FontFlags "FIXEDSIZE",
+    FontHighlightColor 1.0 1.0 1.0 1.0,
+    FontDisabledColor 0.5 0.5 0.5 1.0,
+	FontShadowColor 0.0 0.0 0.0 0.9,	
+    FontShadowOffset 0.001 -0.001,
+}
+
+Frame "FRAME" "TestFrame" {
+	//AAAAAAAAAAAA
+	Frame "TEXT" "TestTipsTextA0" INHERITS "TestTextTemplate" {
+		SetPoint TOPLEFT, "TestFrame", TOPLEFT, 0.0, 0.001,
+		Text "|c76000000测试模式|r",
+	}
+	Frame "TEXT" "TestTipsTextA1" INHERITS "TestTextTemplate" {
+		Width 0.15,
+		SetPoint TOPLEFT, "TestTipsTextA0", BOTTOMLEFT, 0.0, -0.005,
+	}
+	//一行
+	Frame "TEXT" "TestTipsTextA2" INHERITS "TestTextTemplate" {
+		Width 0.15,
+		SetPoint TOPLEFT, "TestTipsTextA1", BOTTOMLEFT, 0.0, -0.005,
+	}
+	//一行
+	Frame "TEXT" "TestTipsTextA3" INHERITS "TestTextTemplate" {
+		Width 0.15,
+		SetPoint TOPLEFT, "TestTipsTextA2", BOTTOMLEFT, 0.0, -0.005,
+	}
+	//一行
+	Frame "TEXT" "TestTipsTextA4" INHERITS "TestTextTemplate" {
+		Width 0.15,
+		SetPoint TOPLEFT, "TestTipsTextA3", BOTTOMLEFT, 0.0, -0.005,
+	}
+	//一行
+	Frame "TEXT" "TestTipsTextA5" INHERITS "TestTextTemplate" {
+		Width 0.15,
+		SetPoint TOPLEFT, "TestTipsTextA4", BOTTOMLEFT, 0.0, -0.005,
+	}
+	//一行
+	Frame "TEXT" "TestTipsTextA6" INHERITS "TestTextTemplate" {
+		Width 0.15,
+		SetPoint TOPLEFT, "TestTipsTextA5", BOTTOMLEFT, 0.0, -0.005,
+	}
+	//一行
+	Frame "TEXT" "TestTipsTextA7" INHERITS "TestTextTemplate" {
+		Width 0.15,
+		SetPoint TOPLEFT, "TestTipsTextA6", BOTTOMLEFT, 0.0, -0.005,
+	}
+	//一行
+	Frame "TEXT" "TestTipsTextA8" INHERITS "TestTextTemplate" {
+		Width 0.15,
+		SetPoint TOPLEFT, "TestTipsTextA7", BOTTOMLEFT, 0.0, -0.005,
+	}
+	//一行
+	Frame "TEXT" "TestTipsTextA9" INHERITS "TestTextTemplate" {
+		Width 0.15,
+		SetPoint TOPLEFT, "TestTipsTextA8", BOTTOMLEFT, 0.0, -0.005,
+	}
+	//一行
+	Frame "TEXT" "TestTipsTextA10" INHERITS "TestTextTemplate" {
+		Width 0.15,
+		SetPoint TOPLEFT, "TestTipsTextA9", BOTTOMLEFT, 0.0, -0.005,
+	}
+	//一行
+	Frame "TEXT" "TestTipsTextA11" INHERITS "TestTextTemplate" {
+		Width 0.15,
+		SetPoint TOPLEFT, "TestTipsTextA10", BOTTOMLEFT, 0.0, -0.005,
+	}
+	//BBBBBBBBBBBBBBBBBBBBBBB
+
+}

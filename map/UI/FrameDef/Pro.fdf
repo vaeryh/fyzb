@@ -1,0 +1,56 @@
+//******************************
+//*
+//* 风雨争霸-属性系统
+//*
+//******
+//Template
+Frame "BACKDROP" "ProBackdropTemplate" {
+	Width 0.6,
+	Height 0.1,
+	BackdropBlendAll,
+	BackdropBackground  "UI\Widgets\ToolTips\Human\human-tooltip-background.blp",
+	BackdropCornerFlags "UL|UR|BL|BR|T|L|B|R",
+	BackdropCornerSize  0.006,
+	BackdropBackgroundSize  0.016,
+	BackdropBackgroundInsets 0.003 0.003 0.003 0.003,
+	BackdropEdgeFile  "UI\Widgets\ToolTips\Human\human-tooltip-border.blp",
+}
+
+Frame "TEXT" "ProTextTemplate" {
+	Width 0.06,
+	Height 0.01,
+    //DecorateFileNames,
+    FrameFont "MasterFont", 0.1120, "",
+    FontJustificationH JUSTIFYCENTER,
+    FontJustificationV JUSTIFYMIDDLE,
+    FontFlags "FIXEDSIZE",
+    FontHighlightColor 1.0 1.0 1.0 1.0,
+    FontDisabledColor 0.5 0.5 0.5 1.0,
+	FontShadowColor 0.0 0.0 0.0 0.9,
+    FontShadowOffset 0.001 -0.001,
+}
+
+Frame "GLUETEXTBUTTON" "ProGlueTextButtonTemplate"
+{
+    Width 0.090,
+    Height 0.020,
+    //设置样式 悬停高亮  可获取鼠标焦点 HIGHLTGHTONFOCUS
+	ControlStyle "AUTOTRACK|HIGHLIGHTONMOUSEOVER",
+
+    //悬停鼠标高亮
+	ControlMouseOverHighlight "Demo_ButtonHig",
+	Frame "HIGHLIGHT" "Demo_ButtonHig" {
+        HighlightType "FILETEXTURE",
+        HighlightAlphaFile "war3mapImported\MainPanel_Button_Highlight.blp",
+        HighlightAlphaMode "ADD",
+    }
+}
+
+Frame "TEXT" "ProText"	INHERITS "ProTextTemplate"{
+	Width 0.03,
+	Height 0.01,
+	FrameFont "MasterFont", 0.2120, "",
+	FontJustificationH JUSTIFYLEFT,
+	FontJustificationV JUSTIFYTOP,
+	Text "|cffa5a5a5属性N",
+}

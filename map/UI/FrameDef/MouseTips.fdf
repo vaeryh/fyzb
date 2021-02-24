@@ -1,0 +1,104 @@
+//******************************
+//*
+//* 风云争霸-武器系统鼠标提示
+//*
+//******
+//Template
+Frame "BACKDROP" "MouseTipsBackdropTemplate" {
+BackdropBlendAll,
+BackdropBackground  "UI\Widgets\ToolTips\Human\human-tooltip-background.blp",
+BackdropCornerFlags "UL|UR|BL|BR|T|L|B|R",
+BackdropCornerSize  0.010,
+BackdropBackgroundSize  0.032,
+BackdropBackgroundInsets 0.004 0.004 0.004 0.004,
+BackdropEdgeFile  "UI\Widgets\ToolTips\Human\human-tooltip-border.blp",
+}
+
+Frame "TEXT" "MouseTipsTextTemplate" {
+Width 0.14,
+Height 0.01,
+    DecorateFileNames,
+    FrameFont "MasterFont", 0.012, "",
+    FontJustificationH JUSTIFYLEFT,
+    FontJustificationV JUSTIFYMIDDLE,
+    FontFlags "FIXEDSIZE",
+    FontHighlightColor 1.0 1.0 1.0 1.0,
+    FontDisabledColor 0.5 0.5 0.5 1.0,
+FontShadowColor 0.0 0.0 0.0 0.9,
+    FontShadowOffset 0.001 -0.001,
+}
+
+Frame "FRAME" "MouseTipsFrame"  {
+
+Frame "BACKDROP" "MouseTipsBackdrop" INHERITS "MouseTipsBackdropTemplate" {
+	Width 0.16,
+	Height 0.22,
+	SetPoint CENTER, "MouseTipsFrame", CENTER, 0.0, 0.0,
+	//A
+	Frame "TEXT" "MouseTipsTextB0" INHERITS "MouseTipsTextTemplate" {
+		SetPoint TOPLEFT, "MouseTipsBackdrop", TOPLEFT, 0.007, -0.02,
+		Text "|cFF0099FF风火枪|r",
+	}
+	//----1
+	Frame "TEXT" "MouseTipsTextAX" INHERITS "MouseTipsTextTemplate" {
+		SetPoint TOPLEFT, "MouseTipsTextB0", BOTTOMLEFT, 0.0, -0.005,
+		Text "==============================",
+	}
+	//B
+	Frame "TEXT" "MouseTipsTextB" INHERITS "MouseTipsTextTemplate" {
+		Width 0.06,
+		SetPoint TOPLEFT, "MouseTipsTextAX", BOTTOMLEFT, 0.0, -0.005,
+		Text "|cFF6699FF[装备属性]：|r",
+		//描述：白1
+		Frame "TEXT" "MouseTipsTextB1" INHERITS "MouseTipsTextTemplate" {
+			SetPoint TOPLEFT, "MouseTipsTextB", BOTTOMLEFT, 0.0, -0.005,
+			Text "攻击值+800-2400",
+		}
+		//描述：白2
+		Frame "TEXT" "MouseTipsTextB2" INHERITS "MouseTipsTextTemplate" {
+			SetPoint TOPLEFT, "MouseTipsTextB1", BOTTOMLEFT, 0.0, -0.005,
+			Text "攻击值+800-2400",
+		}
+		//描述：白3
+		Frame "TEXT" "MouseTipsTextB3" INHERITS "MouseTipsTextTemplate" {
+			SetPoint TOPLEFT, "MouseTipsTextB2", BOTTOMLEFT, 0.0, -0.005,
+			Text "攻击值+800-2400",
+		}
+		//描述：黄
+		Frame "TEXT" "MouseTipsTextB4" INHERITS "MouseTipsTextTemplate" {
+			SetPoint TOPLEFT, "MouseTipsTextB3", BOTTOMLEFT, 0.0, -0.005,
+			Text "攻击值+800-2400",
+		}
+		//描述：紫
+		Frame "TEXT" "MouseTipsTextB5" INHERITS "MouseTipsTextTemplate" {
+			SetPoint TOPLEFT, "MouseTipsTextB4", BOTTOMLEFT, 0.0, -0.005,
+			Text "攻击值+800-2400",
+		}
+		//描述：红
+		Frame "TEXT" "MouseTipsTextB6" INHERITS "MouseTipsTextTemplate" {
+			SetPoint TOPLEFT, "MouseTipsTextB5", BOTTOMLEFT, 0.0, -0.005,
+			Text "攻击值+800-2400",
+		}
+	}
+	//----2
+	Frame "TEXT" "MouseTipsTextBX" INHERITS "MouseTipsTextTemplate" {
+		SetPoint TOPLEFT, "MouseTipsTextB6", BOTTOMLEFT, 0.0, -0.005,
+		Text "==============================",
+	}
+	//C
+	Frame "TEXT" "MouseTipsTextC" INHERITS "MouseTipsTextTemplate" {
+		Width 0.06,
+		SetPoint TOPLEFT, "MouseTipsTextBX", BOTTOMLEFT, 0.0, -0.005,
+		Text "|cFF6699FF[装备描述]：|r",
+
+		Frame "TEXT" "MouseTipsTextC1" INHERITS "MouseTipsTextTemplate" {
+			Width 0.14,
+			Height 0.03,
+			SetPoint TOPLEFT, "MouseTipsTextC", BOTTOMLEFT, 0.0, -0.005,
+			Text "枪身有风选择英雄选择写先自行车三法师打发人温柔温柔全局变量",
+		}
+
+	}
+}
+
+}

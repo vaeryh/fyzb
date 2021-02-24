@@ -1,0 +1,92 @@
+// -- INCLUDE FILES ---------------------------------------------
+
+IncludeFile "UI\FrameDef\Templates.fdf",
+
+// 模拟原生物品栏 物品使用次数 文本
+Frame "TEXT" "BagChargesText" INHERITS "TextTemplate" {
+	Width 0.01,
+	Height 0.005,
+    FrameFont "EscMenuTextFont", 0.0060, "",
+    Text "999",
+}
+// 模拟原生物品栏 物品使用次数 背景
+Frame "BACKDROP" "BagChargesBackdrop" INHERITS "BackdropTemplate" {
+    Width 0.009,
+    Height 0.012,
+    BackdropBackground  "UI\Widgets\BattleNet\bnet-dialoguebox-background.blp",
+    BackdropCornerSize  0.003,
+    BackdropBackgroundSize  0.006,
+    BackdropBackgroundInsets 0.0005 0.0005 0.0005 0.0005,
+}
+// 模拟原生背包按钮 背景
+Frame "BACKDROP" "BagButtonBackdrop" {
+    Width 0.035,
+    Height 0.044,
+    BackdropBlendAll,
+    BackdropBackground  "UI\Widgets\ToolTips\Human\human-tooltip-background.blp",
+	BackdropCornerFlags "UL|UR|BL|BR|T|L|B|R",
+	BackdropCornerSize  0.000,
+	BackdropBackgroundSize  0.016,
+	BackdropBackgroundInsets 0.003 0.003 0.003 0.003,
+	BackdropEdgeFile  "UI\Widgets\ToolTips\Human\human-tooltip-border.blp",
+}
+
+// 模拟原生背包按钮 带有悬停高亮,按下,禁用
+Frame "BUTTON" "BagButton"{
+    Width 0.03,
+    Height 0.04,
+    //设置样式 悬停高亮  可获取鼠标焦点 HIGHLTGHTONFOCUS
+	ControlStyle "AUTOTRACK|HIGHLIGHTONMOUSEOVER",
+    //设置正常状态背景
+    ControlBackdrop "Demo_ButtonBack",
+    Frame "BACKDROP" "Demo_ButtonBack"
+    {
+        BackdropBackground  "ReplaceableTextures\CommandButtonsDisabled\DISBTNDust.blp",
+        BackdropBlendAll,
+    }
+    //设置按下状态下背景
+    ControlPushedBackdrop "Demo_ButtonPushedBack",
+    Frame "Backdrop" "Demo_ButtonPushedBack" {
+        BackdropBackground  "ReplaceableTextures\CommandButtons\BTNDustOfAppearance.blp",
+        BackdropBlendAll,
+    }
+    //悬停鼠标高亮
+	ControlMouseOverHighlight "Demo_ButtonHig",
+	Frame "HIGHLIGHT" "Demo_ButtonHig" {
+        HighlightType "FILETEXTURE",
+        HighlightAlphaFile "UI\Widgets\EscMenu\Human\quest-button-highlight.blp",
+        HighlightAlphaMode "ADD",
+    }
+}
+
+// 虚拟物品栏
+
+// 虚拟按钮背景
+Frame "BACKDROP" "BagXuNiBackdrop" {
+    Width 0.0313,
+    Height 0.0313,
+    BackdropBlendAll,
+}
+
+// 虚拟物品使用次数背景
+Frame "BACKDROP" "BagXuNiMinGridBackdrop" {
+    Width 0.0157,
+    Height 0.0157,
+    BackdropBlendAll,
+    BackdropBackground  "UI\Widgets\Console\Human\CommandButton\human-button-lvls-overlay.blp",
+}
+
+// 虚拟物品使用次数文本
+Frame "TEXT" "BagXuNiMinGridText" {
+	Width 0.02,
+	//Height 0.005,
+    DecorateFileNames,
+    FrameFont "EscMenuTextFont", 0.009, "",
+    FontJustificationH JUSTIFYCENTER,
+    FontJustificationV JUSTIFYBOTTOM,
+    FontFlags "FIXEDSIZE",
+    FontHighlightColor 1.0 1.0 1.0 1.0,
+    FontDisabledColor 0.5 0.5 0.5 1.0,
+	FontShadowColor 0.0 0.0 0.0 0.9,
+    FontShadowOffset 0.001 -0.001,
+}

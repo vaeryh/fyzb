@@ -1,0 +1,2 @@
+gDz = require 'library.BlizzardAPI'
+
