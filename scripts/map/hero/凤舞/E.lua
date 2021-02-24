@@ -46,7 +46,7 @@ gTrg.RegAnyUnitDamageEvent(function()
     local trgU, trgP = GetTriggerUnit(), GetTriggerPlayer()
     local source = GetEventDamageSource()
 
-    if IsEventAttackDamage() then -- 普攻
+    if gDam.isAttackDamage() then -- 普攻
         -- 伤害来源拥有技能
         if gAbi.isHave(source, mt.id) then
             mt.Actions(source, trgU)

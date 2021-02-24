@@ -271,9 +271,9 @@ function mt.RegUnitEnterUnitRange(unit, range, code)
 end
 
 -- 注册任意单位伤害事件
-local dam = require 'library.AnyUnitDamagedEvent'
+local dam = require 'types.damage'
 function mt.RegAnyUnitDamageEvent(code)
-    dam.SyStemRegistTrigger(mt.create(code))
+    dam.RegistSyStemTrigger(mt.create(code))
 end
 ----------------------------------------------------------------------------
 

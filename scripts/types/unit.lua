@@ -241,30 +241,30 @@ end
 -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 发布命令 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 -- 发布无目标命令
 function mt.issueOrder(unit, str)
-    IssueImmediateOrder(unit, str)
+    return IssueImmediateOrder(unit, str)
 end
 
 -- 发布命令到坐标
 function mt.issueOrderXY(unit, str, x, y)
-    IssuePointOrder(unit, str, x, y)
+    return IssuePointOrder(unit, str, x, y)
 end
 
 -- 发布命令到目标(单位、物品、破坏物)
 function mt.issueOrderTar(unit, str, tar)
-    IssueTargetOrder(unit, str, tar)
+    return IssueTargetOrder(unit, str, tar)
 end
 
 -- 发布中介无目标命令
 function mt.issueNeutralOrder(player, unit, str)
-    IssueNeutralImmediateOrder(player, unit, str)
+    return IssueNeutralImmediateOrder(player, unit, str)
 end
 -- 发布中介命令到坐标
 function mt.issueNeutralOrderXY(player, unit, str, x, y)
-    IssueNeutralPointOrder(player, unit, str, x, y)
+    return IssueNeutralPointOrder(player, unit, str, x, y)
 end
 -- 发布中介命令到目标(单位、物品、破坏物)
 function mt.issueNeutralOrderTar(player, unit, str, tar)
-    IssueNeutralTargetOrder(player, unit, str, tar)
+    return IssueNeutralTargetOrder(player, unit, str, tar)
 end
 
 -- 单位类型

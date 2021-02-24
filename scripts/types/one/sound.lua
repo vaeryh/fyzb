@@ -34,7 +34,9 @@ SOUND_VOLUMEGROUP = {
 -- 声音效果
 eax = {
     -- 魔法
-    magic = 'SpellsEAX'
+    magic = 'SpellsEAX',
+    -- 默认设置
+    DefaultEAXON = "DefaultEAXON"
 }
 
 -- //============================================================================
@@ -51,9 +53,10 @@ function mt.create(fileName, looping, is3D, stopwhenoutofrange, fadeInRate, fade
     stopwhenoutofrange = stopwhenoutofrange or false
     fadeInRate = fadeInRate or 10
     fadeOutRate = fadeOutRate or 10
-    eaxSetting = eaxSetting or ''
+    eaxSetting = eaxSetting or 'DefaultEAXON'
     return CreateSound(fileName, looping, is3D, stopwhenoutofrange, fadeInRate, fadeOutRate, eaxSetting)
 end
+
 -- native CreateSoundFilenameWithLabel takes string fileName, boolean looping, boolean is3D, boolean stopwhenoutofrange, integer fadeInRate, integer fadeOutRate, string SLKEntryName returns sound
 -- native CreateSoundFromLabel         takes string soundLabel, boolean looping, boolean is3D, boolean stopwhenoutofrange, integer fadeInRate, integer fadeOutRate returns sound
 -- native CreateMIDISound              takes string soundLabel, integer fadeInRate, integer fadeOutRate returns sound
@@ -64,17 +67,21 @@ end
 function mt.setParamsFromLabel(sound, lable)
     SetSoundParamsFromLabel(sound, lable)
 end
+
 -- native SetSoundDistanceCutoff       takes sound soundHandle, real cutoff returns nothing
+
 -- native SetSoundChannel              takes sound soundHandle, integer channel returns nothing
 -- 设置音效通道
 function mt.setChannel(sound, index)
     SetSoundChannel(sound, index)
 end
+
 -- native SetSoundVolume               takes sound soundHandle, integer volume returns nothing
 -- 设置音效音量(0-127)
 function mt.setVolume(sound, volume)
     SetSoundVolume(sound, volume)
 end
+
 -- native SetSoundPitch                takes sound soundHandle, real pitch returns nothing
 -- 设置音效速率(表示正常速率的倍数)
 function mt.setPitch(sound, pitch)
@@ -88,6 +95,7 @@ end
 -- native SetSoundDistances            takes sound soundHandle, real minDist, real maxDist returns nothing
 -- native SetSoundConeAngles           takes sound soundHandle, real inside, real outside, integer outsideVolume returns nothing
 -- native SetSoundConeOrientation      takes sound soundHandle, real x, real y, real z returns nothing
+
 -- native SetSoundPosition             takes sound soundHandle, real x, real y, real z returns nothing
 -- 设置播放位置为(0.00,0.00), Z轴高度为 0.00
 function mt.setPosition(sound, x, y, z)
@@ -95,13 +103,21 @@ function mt.setPosition(sound, x, y, z)
     SetSoundPosition(sound, x, y, z)
 end
 -- native SetSoundVelocity             takes sound soundHandle, real x, real y, real z returns nothing
+
 -- native AttachSoundToUnit            takes sound soundHandle, unit whichUnit returns nothing
+-- 捆绑3D声音到单位
+function mt.setAttachToUnit(sound, unit)
+    AttachSoundToUnit(sound, unit)
+end
 
 -- native StartSound                   takes sound soundHandle returns nothing
 -- 播放音效
 function mt.StartSound(sound)
-    StartSound(sound)
+    if sound then
+        StartSound(sound)
+    end
 end
+
 -- native StopSound                    takes sound soundHandle, boolean killWhenDone, boolean fadeOut returns nothing
 -- native KillSoundWhenDone            takes sound soundHandle returns nothing
 
@@ -154,12 +170,11 @@ end
 -- native RegisterStackedSound         takes sound soundHandle, boolean byPosition, real rectwidth, real rectheight returns nothing
 -- native UnregisterStackedSound       takes sound soundHandle, boolean byPosition, real rectwidth, real rectheight returns nothing
 
---=================================================================================================================================
+-- =================================================================================================================================
 
 -- 获取技能声音
 function mt.getAbi(abiid, soundType)
-return GetAbilitySoundById(gYh.switchId(abiid), soundType)
-
+    return GetAbilitySoundById(gYh.switchId(abiid), soundType)
 end
 
 -- 创建音效
@@ -173,6 +188,21 @@ function mt.new(fileName, dur)
     mt.setVolume(sound, 127)
     -- 设置音效速率
     mt.setPitch(sound, 1.0)
+end
+
+-- 播放声音单位
+function mt.PlaySoundOnUnit(fileName, volumePercent, unit)
+    local sound = mt.create(fileName)
+    mt.setAttachToUnit(sound, unit)
+    mt.setVolume(sound, volumePercent)
+    mt.StartSound(sound)
+end
+
+-- 播放用户界面声音
+function mt.PlaySoundUI(fileName, volumePercent)
+    local sound = mt.create(fileName)
+    mt.setVolume(sound, volumePercent)
+    mt.StartSound(sound)
 end
 
 return mt

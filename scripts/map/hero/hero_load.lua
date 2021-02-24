@@ -84,7 +84,6 @@ function mt.init()
     init_tab()
     environment()
     showHero()
-    print('hero')
 end
 
 

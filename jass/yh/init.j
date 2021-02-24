@@ -2,7 +2,7 @@
 #include "jass\yh\green\green.j"
 // hardware
 //#include "jass\yh\hardware\Time.j"
-#include "jass\yh\hardware\Mouse.j"
+//#include "jass\yh\hardware\Mouse.j"
 // #include "jass\hardware\keyboard.j"
 //外置库
 #include "jass\yh\import\BlizzardAPI.j"

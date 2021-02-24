@@ -1,3 +1,5 @@
+local japi = require 'jass.japi'
+
 local mt = {}
 
 -- 攻击类型
@@ -118,6 +120,27 @@ WEAPON_TYPE = {
     ROCK_HEAVY_BASH = WEAPON_TYPE_ROCK_HEAVY_BASH
 }
 
+
+-- ===============================================================================================
+
+-- 伤害事件数据
+EVENT_DAMAGE_DATA = {
+    -- 有效的
+    VAILD = 0,
+    -- 物理伤害
+    IS_PHYSICAL = 1,
+    -- 攻击伤害
+    IS_ATTACK = 2,
+    -- 远程伤害
+    IS_RANGED = 3,
+    -- 伤害类型
+    DAMAGE_TYPE = 4,
+    -- 武器类型
+    WEAPON_TYPE = 5,
+    -- 攻击类型
+    ATTACK_TYPE = 6
+}
+
 -- 单位伤害目标
 function mt.target(unit, enemy, harm, attack, ranged, attackType, damageType, weaponType)
     local attack = attack or false -- 默认不是攻击伤害
@@ -139,5 +162,103 @@ function mt.area(unit, delay, radius, x, y, harm, attack, ranged, attackType, da
     local weaponType = weaponType or WEAPON_TYPE.WHOKNOWS
     UnitDamagePoint(unit, delay, radius, x, y, harm, attack, ranged, attackType, damageType, weaponType)
 end
+
+-- 获取伤害事件数据
+-- native EXGetEventDamageData takes integer edd_type returns integer
+function mt.getDamageData(edd_type)
+    return japi.EXGetEventDamageData(edd_type)
+end
+
+-- 是否物理伤害
+function mt.isPhysicalDamage()
+    return 0 ~= mt.getDamageData(EVENT_DAMAGE_DATA.IS_PHYSICAL)
+end
+
+-- 是否攻击伤害
+function mt.isAttackDamage()
+    return 0 ~= mt.getDamageData(EVENT_DAMAGE_DATA.IS_ATTACK)
+end
+
+-- 是否远程伤害
+function mt.isRangedDamage()
+    return 0 ~= mt.getDamageData(EVENT_DAMAGE_DATA.IS_RANGED)
+end
+
+-- 是否伤害类型
+function mt.isDamageType(damageType)
+    return damageType == ConvertDamageType(mt.getDamageData(EVENT_DAMAGE_DATA.DAMAGE_TYPE))
+end
+
+-- 是否武器类型
+function mt.isWeaponType(weaponType)
+    return weaponType == ConvertWeaponType(mt.getDamageData(EVENT_DAMAGE_DATA.WEAPON_TYPE))
+end
+
+-- 是否攻击类型
+function mt.isAttackType(attackType)
+    return attackType == ConvertAttackType(mt.getDamageData(EVENT_DAMAGE_DATA.ATTACK_TYPE))
+end
+
+-- 设置伤害值
+-- native EXSetEventDamage takes real amount returns boolean
+function mt.setDamage(amount)
+    return japi.EXSetEventDamage(amount)
+end
+
+-- 任意单位伤害系统
+function mt.Init_A()
+    -- 注册数量
+    local Number = 0
+    -- 触发队列
+    local Queue = {}
+    -- 注册触发器
+    local yd_Trigger = nil
+
+    -- 过滤器
+    local function filter()
+        if GetUnitAbilityLevel(GetFilterUnit(), 'Aloc') <= 0 then
+            TriggerRegisterUnitEvent(yd_Trigger, GetFilterUnit(), EVENT_UNIT_DAMAGED)
+        end
+        return false
+    end
+
+    -- 伤害系统注册
+    function mt.RegistSyStemTrigger(trg)
+        if trg == nil then
+            return
+        end
+        -- 初始化
+        if Number == 0 then
+            yd_Trigger = CreateTrigger()
+            TriggerAddAction(yd_Trigger, function()
+                for i = 0, Number do
+                    -- 触发器存在，触发器可以运行，触发器条件成立
+                    if Queue[i] ~= nil and IsTriggerEnabled(Queue[i]) and TriggerEvaluate(Queue[i]) then
+                        TriggerExecute(Queue[i])
+                    end
+                end
+            end)
+            local t, r, g = CreateTrigger(), CreateRegion(), CreateGroup()
+            -- 把矩形添加进区域
+            RegionAddRect(r, GetWorldBounds())
+            -- 注册进入区域事件
+            TriggerRegisterEnterRegion(t, r, Condition(filter))
+            -- 选取矩形内单位
+            GroupEnumUnitsInRect(g, GetWorldBounds(), Condition(filter))
+
+            DestroyGroup(g)
+        end
+
+        Queue[Number] = trg
+        Number = Number + 1
+    end
+end
+
+-- 初始化
+function mt.Init()
+    mt.Init_A()
+end
+
+mt.Init()
 
 return mt

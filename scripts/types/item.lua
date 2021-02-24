@@ -59,19 +59,30 @@ function mt.create(id, x, y)
     return item
 end
 
+-- 创建物品到指定槽位
+function mt.createAddUnit(unit, id, solt)
+    UnitAddItemToSlotById(unit, gYh.switchId(id), solt)
+end
+
 -- 获取指定分类的随机物品(新版等级参考)
-function mt.getRandom(itemtype, lev)
-    return ChooseRandomItemEx(itemtype, lev)
+function mt.getRandom(lev)
+    return ChooseRandomItemEx(ITEM_TYPE.ANY, lev)
 end
 
 -- 删除物品
 function mt.remove(item)
     RemoveItem(item)
 end
+
 -- 丢弃物品
 function mt.drop(unit, item)
     UnitRemoveItem(unit, item)
 end
+-- 丢弃物品到指定坐标
+function mt.dropXY(unit, item, x, y)
+    return UnitDropItemPoint(unit, item, x, y)
+end
+
 -- 给与物品
 function mt.addUnit(unit, item)
     UnitAddItem(unit, item)
@@ -188,8 +199,8 @@ function mt.isMatchTypeId(item, id)
     end
 end
 -- 获取槽位号物品
-function mt.getUnitInSlot(unit, index)
-    local item = UnitItemInSlot(unit, index)
+function mt.getUnitInSlot(unit, solt)
+    local item = UnitItemInSlot(unit, solt)
     if item == 0 then
         return nil
     end
@@ -197,14 +208,14 @@ function mt.getUnitInSlot(unit, index)
 end
 -- 获取槽位号
 function mt.getHaveItemTypeCount(unit, itemId)
-    local index = 0
+    local solt = 0
     for i = 0, 5 do
         local indexItem = mt.getUnitInSlot(unit, i)
         if indexItem ~= nil and mt.isMatchTypeId(indexItem, itemId) then
-            index = index + 1
+            solt = solt + 1
         end
     end
-    return index
+    return solt
 end
 -- 单位持有物品类型
 function mt.isHave(unit, itemId)

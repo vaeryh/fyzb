@@ -28,7 +28,7 @@ function mt.Actions(hero, enemy)
     -- 动作
     local trg = GetTriggeringTrigger()
     gTrg.setClose(trg)
-    gU.setInvulnerable(hero, true)-- 设置无敌
+    gU.setInvulnerable(hero, true) -- 设置无敌
     -- 无敌特效
     local eff = gEff.addTarget("Abilities\\Spells\\Human\\DivineShield\\DivineShieldTarget.mdl", hero, "origin")
     --
@@ -45,7 +45,7 @@ end
 -- 触发+条件
 gTrg.RegAnyUnitDamageEvent(function()
     if gU.isEnemy(GetEventDamageSource(), GetTriggerPlayer()) then
-        if IsEventAttackDamage() then -- 普攻
+        if gDam.isAttackDamage() then -- 普攻
             -- 伤害来源拥有技能
             if gAbi.isHave(GetEventDamageSource(), mt.id) then
                 mt.Actions(GetEventDamageSource(), GetTriggerUnit())

@@ -26,6 +26,12 @@ mt.sound = {
     ['基地附近音乐'] = gg_snd_FezdYezf01,
     --治疗守卫音效
     HealingWard = "Units\\Orc\\HealingWard\\PlaceAncestralGuardian.wav",
+    -- 英雄丢弃物品音效
+    HeroDropItem1 = "Sound\\Interface\\HeroDropItem1.wav",
+    -- 英雄拾取物品音效
+    PickUpItem = "Sound\\Interface\\PickUpItem.wav",
+    -- 物品栏右键点击音效
+    MouseClick1 = "Sound\\Interface\\MouseClick1.wav",
 }
 
 return mt

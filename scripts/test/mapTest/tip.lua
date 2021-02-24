@@ -76,21 +76,18 @@ function mt:act_D()
 end
 
 function mt:act_F()
-    local str = {}
+    local mouse = require 'library.bags.mouse'
+    local op = require 'library.bags.operation'
     gDz.TriggerRegisterMouseMoveEvent(true, function()
-        if gDz.GetMouseFocus() ~= 0 then
-            str[1] = gDz.GetMouseFocus()
-            mt:act_E(3, 0, str)
-        end
-    end)
-    gDz.RegMouseItemBarAction("进入", function()
-        local p = gDz.GetTriggerUIEventPlayer()
-        str[2] = gP.getName(p) .. "进入" .. gDz.getItemBarSolt()
-    end)
-
-    gDz.RegMouseItemBarAction("离开", function()
-        local p = gDz.GetTriggerUIEventPlayer()
-        str[3] = gP.getName(p) .. "离开" .. gDz.getItemBarSolt()
+        local str = {}
+        str[1] = gDz.GetMouseFocus()
+        str[2] = mouse.pos
+        str[3] = tostring(mouse.solt)
+        str[4] = tostring(mouse.item)
+        str[5] = tostring(op.adsorb_item)
+        str[6] = tostring(op.adsorb_pos)
+        str[7] = tostring(op.adsorb_solt)
+        mt:act_E(3, 0, str)
     end)
 end
 

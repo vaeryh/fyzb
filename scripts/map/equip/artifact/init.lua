@@ -30,7 +30,7 @@ gTrg.RegAnyUnitDamageEvent(function()
     local source = GetEventDamageSource()
     local trgU, trgP = GetTriggerUnit(), GetTriggerPlayer()
     local n1 = GetEventDamage()
-    if IsEventAttackDamage() == true and not gU.isAlly(source, trgP) then -- 普攻
+    if gDam.isAttackDamage() == true and not gU.isAlly(source, trgP) then -- 普攻
         if UnitHasItemOfTypeBJ(source, 'sq01') == true then
             WqHarm_Weapon_1_Actions() -- 北望
         end
@@ -73,13 +73,13 @@ gTrg.RegAnyUnitDamageEvent(function()
     if LoadInteger(Wq_Hash, GetHandleId(trgU), 5) ~= 0 then -- 龙舌断魂弓:断魂
         local oldDamage = GetEventDamage()
         local newharm = oldDamage * (1 + LoadInteger(Wq_Hash, GetHandleId(trgU), 5) * 0.05)
-        SetEventDamage(newharm) -- 实际生效，只是漂浮文字还是之前的
+        gDam.setDamage(newharm) -- 实际生效，只是漂浮文字还是之前的
         gP.disTimedText(GetLocalPlayer(), 10, "断魂额外伤害：" + R2S(GetEventDamage() / oldDamage - 1))
     end
 
     if LoadReal(Wq_Hash, GetHandleId(trgU), 99) ~= 0 then -- 血饮狂刀：血饮
         local oldDamage = GetEventDamage()
-        SetEventDamage(GetEventDamage() * (1 + LoadReal(Wq_Hash, GetHandleId(trgU), 99))) -- 实际生效，只是漂浮文字还是之前的
+        gDam.setDamage(GetEventDamage() * (1 + LoadReal(Wq_Hash, GetHandleId(trgU), 99))) -- 实际生效，只是漂浮文字还是之前的
         gP.disTimedText(Player(0), 10, "血饮额外承伤：" + R2S(GetEventDamage() / oldDamage - 1))
     end
 

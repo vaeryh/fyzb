@@ -57,6 +57,10 @@ function mt.selectHero()
         gYh.MoveAndCamera(thisU, -3807, -9189)
         -- 英雄初始化
         hero_Pro.Init_B(thisU)
+        gIt.createAddUnit(thisU, gIt.getRandom(GetRandomInt(1,5)), 0)
+        gIt.createAddUnit(thisU, gIt.getRandom(GetRandomInt(1,5)), 1)
+        gIt.createAddUnit(thisU, gIt.getRandom(GetRandomInt(1,5)), 2)
+        gIt.createAddUnit(thisU, gIt.getRandom(GetRandomInt(1,5)), 3)
         -- 注册英雄复活
         mt.ReHero(thisU)
         --

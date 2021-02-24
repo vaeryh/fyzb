@@ -20,7 +20,7 @@ function Weapon_2A_Actions()
     local source = GetEventDamageSource()
     local harm = GetEventDamage()
     if gAbi.isHave(trgU, 'BS02') then -- 处于挑战状态
-        SetEventDamage(GetEventDamage() * 1.3) -- 实际生效，只是漂浮文字还是之前的
+        gDam.setDamage(GetEventDamage() * 1.3) -- 实际生效，只是漂浮文字还是之前的
         gP.disTimedText(trgP, 10, "龙威挑战额外伤害：" .. R2S(GetEventDamage() / harm - 1))
     end
 end
@@ -31,7 +31,7 @@ function Weapon_2B_Actions()
     local harm = GetEventDamage()
     local degree = gU.getFacing(source) - gU.getFacing(trgU)
     if gAbi.isHave(source, 'BS02') then -- 处于挑战状态
-        SetEventDamage(GetEventDamage() * 0.7) -- 实际生效，只是漂浮文字还是之前的
+        gDam.setDamage(GetEventDamage() * 0.7) -- 实际生效，只是漂浮文字还是之前的
         gP.disTimedText(trgP, 10, "龙威挑战降低伤害：" + R2S(GetEventDamage() / harm - 1))
         gP.disTimedText(trgP, 10, R2S(degree))
 
@@ -63,7 +63,7 @@ function Weapon_6_Actions()
     local trgU, trgP = GetTriggerUnit(), GetTriggerPlayer()
     local source = GetEventDamageSource()
     if GetRandomReal(1, 100) <= 30 then
-        gDam.target(source, trgU, GetEventDamage() )
+        gDam.target(source, trgU, GetEventDamage())
         local harm = LoadInteger(Wq_Hash, GetHandleId(trgU), 6)
         gTag.newUnit("|cffffffff" .. "怒蛟连射：" .. harm, 0.021, trgU, 1.30, 100, 90)
     end
@@ -81,7 +81,7 @@ function Weapon_8_Actions()
     local trgU, trgP = GetTriggerUnit(), GetTriggerPlayer()
     local source = GetEventDamageSource()
     local atkdr = gU.getState(trgU, UNIT_STATE.BASIC_DAMAGE) * 0.25
-    gP.disTimedText(Player(0),10, "吸取攻击力：" + I2S(atkdr))
+    gP.disTimedText(Player(0), 10, "吸取攻击力：" + I2S(atkdr))
     if Wq_Sq_Jian == 1 then
         atkdr = atkdr * 2
     end
@@ -115,14 +115,14 @@ function Weapon_9_Actions()
     if gU.isType(trgU, UNIT_TYPE_HERO) then
         life = life * 0.5
     end
-    gU.adjustState(source, UNIT_STATE.LIFE,life)
+    gU.adjustState(source, UNIT_STATE.LIFE, life)
     gTag.newUnit("|cffffffff" .. "血饮狂刀+" .. life, 0.021, source, 1.30, 100, 100)
     gDam.target(source, trgU, life)
 
     SaveReal(Wq_Hash, GetHandleId(source), 9, speed + 0.05) -- 攻速
     SaveReal(Wq_Hash, GetHandleId(source), 99, harm + 0.05) -- 承伤
-    gU.adjustState(source,UNIT_STATE.ATK_SPEED,0.05)
-    gP.disTimedText(Player(0),10, "额外攻速：" + R2S(speed))
+    gU.adjustState(source, UNIT_STATE.ATK_SPEED, 0.05)
+    gP.disTimedText(Player(0), 10, "额外攻速：" + R2S(speed))
 end
 -- 大邪王
 function Weapon_10_Actions()
@@ -132,8 +132,8 @@ function Weapon_10_Actions()
     local all = gH.getThree(source)
 
     SaveInteger(Wq_Hash, GetHandleId(trgU), 10, n + 1) -- 攻击次数
-    gP.disTimedText(Player(0),10, "攻击次数：" + I2S(n))
-    gP.disTimedText(Player(0),10, "全属性：" + I2S(all))
+    gP.disTimedText(Player(0), 10, "攻击次数：" + I2S(n))
+    gP.disTimedText(Player(0), 10, "全属性：" + I2S(all))
 
     if LoadInteger(Wq_Hash, GetHandleId(trgU), 10) >= 10 then
         for i = 1, 10 do
@@ -154,13 +154,13 @@ function Weapon_11_Actions()
         gU.setVertexColor(mj, 138, 43, 226, 255)
         GroupAddUnit(dwz, mj)
     end
-    gP.disTimedText(Player(0),10, "天命")
+    gP.disTimedText(Player(0), 10, "天命")
     if CountUnitsInGroup(dwz) >= 9 then
         while CountUnitsInGroup(dwz) == 0 do
             local mj = FirstOfGroup(dwz)
             gAbi.setDataReal(mj, 'SQ11', nil, ABILITY_DATA.DATA_A, all * 5)
             gU.issueOrder(mj, "creepthunderclap")
-            gU.issueOrderXY(mj, "detonate", gU.getXY(mj) )
+            gU.issueOrderXY(mj, "detonate", gU.getXY(mj))
             GroupRemoveUnit(dwz, mj)
         end
 
@@ -169,24 +169,24 @@ end
 -- 赤金磐龙甲
 function Weapon_14_Actions()
     if GetEventDamage() <= 3000 then
-        SetEventDamage(GetEventDamage() * 0.5)
-        gP.disTimedText(Player(0),10, "盘龙减伤：" + R2S(GetEventDamage()))
+        gDam.setDamage(GetEventDamage() * 0.5)
+        gP.disTimedText(Player(0), 10, "盘龙减伤：" + R2S(GetEventDamage()))
     else
-        SetEventDamage(GetEventDamage() - 3000)
-        gP.disTimedText(Player(0),10, "盘龙减伤：3000")
+        gDam.setDamage(GetEventDamage() - 3000)
+        gP.disTimedText(Player(0), 10, "盘龙减伤：3000")
     end
 end
 -- 天玄真神甲
 function Weapon_15_Actions()
     local harm = GetEventDamage()
-    SetEventDamage(GetEventDamage() * 0.7)
-    gP.disTimedText(Player(0),10, "天玄减伤：" + R2S(GetEventDamage() / harm - 1))
+    gDam.setDamage(GetEventDamage() * 0.7)
+    gP.disTimedText(Player(0), 10, "天玄减伤：" + R2S(GetEventDamage() / harm - 1))
 end
 -- 凶陌圣靴
 function Weapon_20_Actions()
     local harm = GetEventDamage()
     if LoadInteger(Wq_Hash, GetHandleId(trgU), 20) == 1 then
-        SetEventDamage(GetEventDamage() * 1.4)
+        gDam.setDamage(GetEventDamage() * 1.4)
     end
-    gP.disTimedText(Player(0),10, "大凶增伤：" + R2S(GetEventDamage() / harm - 1))
+    gP.disTimedText(Player(0), 10, "大凶增伤：" + R2S(GetEventDamage() / harm - 1))
 end

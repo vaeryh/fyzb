@@ -23,7 +23,7 @@ local function helper_reload(callback)
     end
 
     callback()
-
+    -- ****很重要，不能删除
     require = real_require
 end
 

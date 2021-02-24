@@ -58,3 +58,35 @@ Frame "BUTTON" "BagButton"{
         HighlightAlphaMode "ADD",
     }
 }
+
+// 虚拟物品栏
+
+// 虚拟按钮背景
+Frame "BACKDROP" "BagXuNiBackdrop" {
+    Width 0.0313,
+    Height 0.0313,
+    BackdropBlendAll,
+}
+
+// 虚拟物品使用次数背景
+Frame "BACKDROP" "BagXuNiMinGridBackdrop" {
+    Width 0.0157,
+    Height 0.0157,
+    BackdropBlendAll,
+    BackdropBackground  "UI\Widgets\Console\Human\CommandButton\human-button-lvls-overlay.blp",
+}
+
+// 虚拟物品使用次数文本
+Frame "TEXT" "BagXuNiMinGridText" {
+	Width 0.02,
+	//Height 0.005,
+    DecorateFileNames,
+    FrameFont "EscMenuTextFont", 0.009, "",
+    FontJustificationH JUSTIFYCENTER,
+    FontJustificationV JUSTIFYBOTTOM,
+    FontFlags "FIXEDSIZE",
+    FontHighlightColor 1.0 1.0 1.0 1.0,
+    FontDisabledColor 0.5 0.5 0.5 1.0,
+	FontShadowColor 0.0 0.0 0.0 0.9,
+    FontShadowOffset 0.001 -0.001,
+}

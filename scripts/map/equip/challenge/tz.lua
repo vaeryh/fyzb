@@ -59,12 +59,12 @@ function mt.Init_A()
         -- 随机对应等级的未知物品；位置：完整地图区域左下角
         local randomTypeId, lev = nil, GetUnitLevel(deathU)
         repeat
-            randomTypeId = gIt.getRandom(ITEM_TYPE.ANY, lev)
+            randomTypeId = gIt.getRandom(lev)
         until gSlk.getItemString(gYh.id2s(randomTypeId), "class") == class
         -- 创建物品
         local it = gIt.create(randomTypeId, gU.getXY(deathU))
         -- 赋予相应属性
-        
+
     end)
     -- 挑战单位离开区域
     for k, v in pairs(mt.rect) do

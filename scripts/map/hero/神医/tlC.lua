@@ -126,7 +126,7 @@ end
 function mt.TL_60_Actions(hero, enemy)
     if GetRandomReal(0, 100) <= 130 then
         gTag.newUnit("|cff0de4e4" .. "闪避-" .. GetEventDamage(), 0.023, hero, 1.50, 64, 100)
-        SetEventDamage(0)
+        gDam.setDamage(0)
     end
 end
 
@@ -176,7 +176,7 @@ end
 -- 血菩提81
 function mt.TL_81_Actions(hero, enemy)
     local harm = GetEventDamage() * 0.3
-    SetEventDamage(GetEventDamage() * 0.7)
+    gDam.setDamage(GetEventDamage() * 0.7)
     gTag.newUnit("|cffafbaec普攻伤害-" .. harm, 0.023, hero, 0.55, 50, -90)
 end
 
@@ -281,7 +281,7 @@ end
 gTrg.RegAnyUnitDamageEvent(function()
     if not gU.isAlly(GetEventDamageSource(), GetTriggerPlayer()) then
         local source, trgu = GetEventDamageSource(), GetTriggerUnit()
-        if IsEventAttackDamage() then -- 普攻
+        if gDam.isAttackDamage() then -- 普攻
             if gP.isUserPlayer(GetTriggerPlayer()) then
                 if gAbi.isHave(source, 'SyEb') or gU.isTypeId(source, 'Sy00') then
                     mt.TL2_Actions(trgu, source)

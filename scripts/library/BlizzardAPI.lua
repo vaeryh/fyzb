@@ -298,6 +298,7 @@ function mt.FrameGetMinimapButton(buttonId)
     return g.yh_frame1
 end
 -- native DzFrameGetUpperButtonBarButton takes integer buttonId returns integer
+
 -- native DzFrameGetTooltip takes nothing returns integer
 -- 原生 - 鼠标提示
 function mt.FrameGetTooltip()
@@ -389,22 +390,34 @@ end
 --     ExecuteFunc("yh_FrameSetScript")
 -- end
 
+local UI = {
+    Enter = {},
+    Leave = {}
+}
 -- native DzFrameSetScriptByCode takes integer frame, integer eventId, code funcHandle, boolean sync returns nothing
 -- 注册Frame UI事件回调(2-进入、3-离开)
 function mt.TriggerRegisterUIEvent(frame, eventid, code)
-    if eventid == 2 then -- 鼠标进入
+    -- 鼠标进入
+    if eventid == 2 then
         if g.yh_Enter == 0 then
             g.yh_Enter = gTrg.create()
         end
-        TriggerAddAction(g.yh_Enter, code)
-    elseif eventid == 3 then -- 鼠标离开
+        TriggerAddAction(g.yh_Enter, function()
+            UI.Enter[gDz.GetTriggerUIEventFrame()]()
+        end)
+        UI.Enter[frame] = code
+    end
+    -- 鼠标离开
+    if eventid == 3 then
+        UI.Leave[frame] = code
         if g.yh_Leave == 0 then
             g.yh_Leave = gTrg.create()
         end
-        TriggerAddAction(g.yh_Leave, code)
-    else
-        log.info(eventid .. "注册无效")
+        TriggerAddAction(g.yh_Leave, function()
+            UI.Leave[gDz.GetTriggerUIEventFrame()]()
+        end)
     end
+    --
     g.yh_frame1 = frame
     g.yh_integer1 = eventid
     ExecuteFunc("yh_FrameSetScriptByCode")
@@ -434,12 +447,14 @@ end
 -- native DzSimpleFrameFindByName takes string name, integer id returns integer
 -- native DzSimpleFontStringFindByName takes string name, integer id returns integer
 -- native DzSimpleTextureFindByName takes string name, integer id returns integer
+
 -- native DzGetGameUI takes nothing returns integer
 -- 原生 - 游戏UI 一般用作创建自定义UI的父节点
 function mt.GetGameUI(name)
     ExecuteFunc("yh_GetGameUI")
     return g.yh_frame1
 end
+
 -- native DzClickFrame takes integer frame returns nothing
 -- native DzSetCustomFovFix takes real value returns nothing
 -- native DzEnableWideScreen takes boolean enable returns nothing
@@ -604,24 +619,6 @@ function mt.FrameGetName(frame)
     g.yh_frame1 = frame
     ExecuteFunc("yh_FrameGetName")
     return g.yh_string1
-end
-
-------------------------------------自定义-----------------------
-
--- 获取鼠标 物品栏 玩家序号
-function mt.getItemBarSolt()
-    return g.Mouse_ItemBarSolt
-end
-
--- 注册鼠标 进入、离开 物品触发
-function mt.RegMouseItemBarAction(state, code)
-    if state == '进入' then
-        TriggerAddAction(g.Mouse_ItemBarEnter, code)
-    elseif state == '离开' then
-        TriggerAddAction(g.Mouse_ItemBarLeave, code)
-    else
-        log.warn("鼠标进入离开事件注册错误", state)
-    end
 end
 
 return mt

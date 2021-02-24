@@ -19,8 +19,8 @@ mt.tip = [[
 
 -- 动作
 function mt.Actions(hero, enemy)
-    local Qlev,str = gAbi.getLevel(hero, mt.id),gH.getStr(hero)
-    local harm = gU.getState(hero, UNIT_STATE.BASIC_DAMAGE)+str/2
+    local Qlev, str = gAbi.getLevel(hero, mt.id), gH.getStr(hero)
+    local harm = gU.getState(hero, UNIT_STATE.BASIC_DAMAGE) + str / 2
     local range = gU.getState(hero, UNIT_STATE.ATK_RANGE) + Qlev * 50
     gAbi.setDataReal(hero, mt.id, nil, ABILITY_DATA.DATA_B, harm) -- 伤害
     gAbi.setDataReal(hero, mt.id, nil, ABILITY_DATA.DATA_C, range) -- 全范围
@@ -30,7 +30,7 @@ end
 -- 触发+条件
 gTrg.RegAnyUnitDamageEvent(function()
     if gU.isEnemy(GetEventDamageSource(), GetTriggerPlayer()) then
-        if IsEventAttackDamage() then -- 普攻
+        if gDam.isAttackDamage() then -- 普攻
             -- 伤害来源拥有技能
             if gAbi.isHave(GetEventDamageSource(), mt.id) then
                 mt.Actions(GetEventDamageSource(), GetTriggerUnit())

@@ -19,7 +19,7 @@ function mt.setPro(item, proTab, color)
     local text = string.format(proTab[4], random)
     itTab[proTab[1]] = {
         color = color,
-        value = random,
+        value = tonumber(text) or random,
         tip = proTab[5] .. proTab[1] .. text
     }
 end

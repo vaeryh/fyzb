@@ -9,6 +9,7 @@ local proInitValue = {
     ["外功"] = 0,
     ["内功"] = 0,
     ["护甲"] = 0,
+    ["魔抗"] = 0,
     ["气血"] = 1000,
     ["内力"] = 100,
     ["气血恢复"] = 1.0,
@@ -121,7 +122,6 @@ function mt.takeEffect_Action(hero, proName, value)
     elseif proName == "地相性" then -- 地相性：提升地相性*身法* 0.005的防御和伤害减免；
         heroT["减伤率"] = heroT["减伤率"] + agi * value * 0.005
         gUnitdata.adjustPro("护甲值", hero, agi * value * 0.005)
-        -- 未做
     elseif proName == "雷相性" then -- 雷相性：提升雷相性*主属性*0.02的内功和雷相性*主属性*0.1的内力；
         heroT["内功"] = heroT["内功"] + value * main * 0.2
         gUnitdata.adjustPro("魔法值", hero, value * main * 0.1)
