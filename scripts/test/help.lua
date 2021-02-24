@@ -6,9 +6,9 @@ local function helper_reload(callback)
         -- if name:sub(1, 5) == 'jass.' then
         --     return real_require(name, ...)
         -- end
-        -- if name:sub(1, 6) == 'types.' then
-        --     return real_require(name, ...)
-        -- end
+        if name:sub(1, 6) == 'types.' then
+            return real_require(name, ...)
+        end
         -- if name:sub(1, 6) == 'scope.' then
         --     return real_require(name, ...)
         -- end
