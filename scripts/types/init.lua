@@ -1,0 +1,22 @@
+gTrg = require 'types.trigger'
+gP = require 'types.player'
+gU = require 'types.unit'
+gH = require 'types.hero'
+gIt = require 'types.item'
+gAbi = require 'types.ability'
+gT = require 'types.timer'
+gDam = require 'types.damage'
+gGroup = require 'types.group'
+gEff = require 'types.effect'
+-- 不常用
+gRect = require 'types.one.rect'
+gCamera = require 'types.one.camera'
+gFog = require 'types.one.fogmodifier'
+gSound = require 'types.one.sound'
+gDia = require 'types.one.dialog'
+gGame = require 'types.one.game'
+gTag = require 'types.one.texttag'
+gDmb = require 'types.one.board'
+
+-- 语法糖类
+require 'types.oop.init'
