@@ -89,6 +89,19 @@ function mt:setText(text)
     return self
 end
 
+-- 设置贴图路径
+function mt:setTexture(texture, flag)
+    dz.FrameSetTexture(self.handle, texture, flag)
+    return self
+end
+
+-- 移动所有锚点到指定frame
+function mt:setAllPoints(relativeFrame)
+    dz.FrameSetAllPoints(self.handle, relativeFrame)
+    return self
+end
+
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 未知 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 -- 设置鼠标高亮
 function mt:setMouseHighlight()
     local tooltip = mt:createByTag("BACKDROP", nil, self.handle)

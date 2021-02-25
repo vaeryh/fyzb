@@ -563,12 +563,14 @@ function mt.CreateFrameByTagName(frameType, name, parent, template)
     return g.yh_frame1
 end
 -- native DzFrameSetVertexColor takes integer frame, integer color returns nothing
+
 -- native DzOriginalUIAutoResetPoint takes boolean enable returns nothing
 -- 自动复位UI初始位置
 function mt.OriginalUIAutoResetPoint(enable)
     g.yh_boolean1 = enable
     ExecuteFunc("yh_OriginalUIAutoResetPoint")
 end
+
 -- native DzFrameSetPriority takes integer frame, integer priority returns nothing
 -- 设置优先级 [NEW]
 function mt.FrameSetPriority(frame, priority)
@@ -576,6 +578,7 @@ function mt.FrameSetPriority(frame, priority)
     g.yh_integer1 = priority
     ExecuteFunc("yh_FrameSetPriority")
 end
+
 -- native DzFrameSetParent takes integer frame, integer parent returns nothing
 -- 设置父窗口 [NEW]
 function mt.FrameSetParent(frame, parent)
@@ -583,6 +586,7 @@ function mt.FrameSetParent(frame, parent)
     g.yh_integer1 = parent
     ExecuteFunc("yh_FrameSetParent")
 end
+
 -- native DzFrameGetHeight takes integer frame returns real
 -- 获取 ${frame} 的高度
 function mt.FrameGetHeight(frame)
@@ -590,6 +594,7 @@ function mt.FrameGetHeight(frame)
     ExecuteFunc("yh_FrameGetHeight")
     return g.yh_real1
 end
+
 -- native DzFrameSetFont takes integer frame, string fileName, real height, integer flag returns nothing
 -- 设置 ${frame} 的字体为 ${font}, 大小 ${height}, flag ${flag}
 function mt.FrameSetFont(frame, fileName, height, flag)
@@ -599,6 +604,7 @@ function mt.FrameSetFont(frame, fileName, height, flag)
     g.yh_integer1 = flag
     ExecuteFunc("yh_FrameSetFont")
 end
+
 -- native DzFrameGetParent takes integer frame returns integer
 -- 获取父窗口 [NEW]
 function mt.FrameGetParent(frame)
@@ -606,6 +612,7 @@ function mt.FrameGetParent(frame)
     ExecuteFunc("yh_FrameGetParent")
     return g.yh_frame2
 end
+
 -- native DzFrameSetTextAlignment takes integer frame, integer align returns nothing
 -- 设置 ${frame} 的对齐方式为 ${align}
 function mt.FrameSetTextAlignment(frame, align)
@@ -613,6 +620,7 @@ function mt.FrameSetTextAlignment(frame, align)
     g.yh_integer1 = align
     ExecuteFunc("yh_FrameSetTextAlignment")
 end
+
 -- native DzFrameGetName takes integer frame returns string
 -- 获取 Frame 的 名称 [NEW]
 function mt.FrameGetName(frame)

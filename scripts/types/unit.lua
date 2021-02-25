@@ -380,4 +380,30 @@ function mt.setAllUnitTypeSlots(u, unittype)
     SetAllUnitTypeSlots(6)
 end
 
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 选择单位 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+-- 选择单位(添加 or 减少)(所有玩家 or 指定玩家)
+function mt.select(unit, bol, player)
+    if player == GetLocalPlayer() then
+        SelectUnit(unit, bol)
+    else
+        SelectUnit(unit, bol)
+    end
+end
+
+-- 清除所有选定单位(所有玩家 or 指定玩家)
+function mt.clearSelection(player)
+    if player == GetLocalPlayer() then
+        ClearSelection()
+    else
+        ClearSelection()
+    end
+end
+
+-- 选择单一单位(所有玩家 or 指定玩家)
+function mt.selectSingle(unit, player)
+    mt.clearSelection(player)
+    mt.select(unit, true, player)
+end
+
 return mt
