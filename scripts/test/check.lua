@@ -8,13 +8,16 @@ local mt = {}
 
 gTrg.RegAnyPlayerUnitEvent(EVENT_PLAYER_UNIT.SELECTED, function()
     local unit = GetTriggerUnit()
-    local path = mapg.sound.MouseClick1
-    --gSound.PlaySoundUI(mapg.sound.HeroDropItem1, 127)
-    -- local sound = gSound.create(path, false, true, true, 10, 10, "SpellsEAX")
-    -- gSound.setPosition(sound, gU.getXY(unit))
-    -- gSound.StartSound(sound)
-end)
 
+end)
+oUI:createByTag("GLUETEXTBUTTON", nil, "ProButton_Add")
+oUI:setAbsolute(4, 0.1, 0.5)
+
+oUI:createByTag("GLUETEXTBUTTON", nil, "ProButton_Sub")
+oUI:setAbsolute(4, 0.1, 0.45)
+
+oUI:createByTag("GLUETEXTBUTTON", nil, "ProButton_proText")
+oUI:setAbsolute(4, 0.1, 0.40)
 -- local frame = gDz.CreateFrameByTagName("BUTTON", nil, nil, "BagButton")
 -- gDz.FrameSetAbsolutePoint(frame, 0, 0.2, 0.4)
 -- -- local back = gDz.CreateFrameByTagName("BACKDROP")

@@ -3,6 +3,8 @@
 //* 风雨争霸-属性系统
 //*
 //******
+IncludeFile "UI\FrameDef\Templates.fdf",
+
 //Template
 Frame "BACKDROP" "ProBackdropTemplate" {
 	Width 0.6,
@@ -53,4 +55,135 @@ Frame "TEXT" "ProText"	INHERITS "ProTextTemplate"{
 	FontJustificationH JUSTIFYLEFT,
 	FontJustificationV JUSTIFYTOP,
 	Text "|cffa5a5a5属性N",
+}
+
+//创建按钮 增加属性
+Frame "GLUETEXTBUTTON" "ProButton_Add"{
+    Width 0.03,
+    Height 0.04,
+    //设置样式:AUTOTRACK自动跟踪、HIGHLIGHTONFOCUS高亮聚焦、HIGHLIGHTONMOUSEOVER鼠标上方突出显示
+	ControlStyle "AUTOTRACK|HIGHLIGHTONFOCUS|HIGHLIGHTONMOUSEOVER",
+    //设置正常状态背景
+    ControlBackdrop "ButtonBack",
+    Frame "BACKDROP" "ButtonBack"
+    {
+        BackdropBackground  "UI\Widgets\Glues\ThumbsUp-Up.blp",
+        BackdropBlendAll,
+    }
+    //设置按下的背景
+    ControlPushedBackdrop "ButtonPushedBack",
+    Frame "Backdrop" "ButtonPushedBack" {
+        BackdropBackground  "UI\Widgets\Glues\ThumbsUp-Down.blp",
+        BackdropBlendAll,
+    }
+    //设置按下禁用的背景
+    ControlDisabledPushedBackdrop "ButtonDisabledPushedBack",
+    Frame "Backdrop" "ButtonDisabledPushedBack" {
+        BackdropBackground  "UI\Widgets\Glues\ThumbsUp-Disabled.blp",
+        BackdropBlendAll,
+    }
+    //设置被选中后的高亮控件
+    ControlFocusHighlight "ButtonFocusHighlight",
+    Frame "HIGHLIGHT" "ButtonFocusHighlight" {
+		HighlightType "FILETEXTURE",
+        HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Button-KeyboardHighlight.blp",
+        HighlightAlphaMode "ADD",
+    }
+    //悬停鼠标高亮
+	ControlMouseOverHighlight "ButtonHighlight",
+	Frame "HIGHLIGHT" "ButtonHighlight" {
+        HighlightType "FILETEXTURE",
+        HighlightAlphaFile "UI\Widgets\EscMenu\Human\quest-button-highlight.blp",
+        HighlightAlphaMode "ADD",
+    }
+}
+
+//创建按钮 减少属性
+Frame "GLUETEXTBUTTON" "ProButton_Sub"{
+    Width 0.03,
+    Height 0.04,
+    //设置样式:AUTOTRACK自动跟踪、HIGHLIGHTONFOCUS高亮聚焦、HIGHLIGHTONMOUSEOVER鼠标上方突出显示
+	ControlStyle "AUTOTRACK|HIGHLIGHTONFOCUS|HIGHLIGHTONMOUSEOVER",
+    //设置正常状态背景
+    ControlBackdrop "ButtonBack_Sub",
+    Frame "BACKDROP" "ButtonBack_Sub"
+    {
+        BackdropBackground  "UI\Widgets\Glues\ThumbsDown-Up.blp",
+        BackdropBlendAll,
+    }
+    //设置按下的背景
+    ControlPushedBackdrop "ButtonPushedBack_Sub",
+    Frame "Backdrop" "ButtonPushedBack_Sub" {
+        BackdropBackground  "UI\Widgets\Glues\ThumbsDown-Down.blp",
+        BackdropBlendAll,
+    }
+    //设置按下禁用的背景
+    ControlDisabledPushedBackdrop "ButtonDisabledPushedBack_Sub",
+    Frame "Backdrop" "ButtonDisabledPushedBack_Sub" {
+        BackdropBackground  "UI\Widgets\Glues\ThumbsDown-Disabled.blp",
+        BackdropBlendAll,
+    }
+    //设置被选中后的高亮控件
+    ControlFocusHighlight "ButtonFocusHighlight_Sub",
+    Frame "HIGHLIGHT" "ButtonFocusHighlight_Sub" {
+		HighlightType "FILETEXTURE",
+    	HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Button-KeyboardHighlight.blp",
+    	HighlightAlphaMode "ADD",
+    }
+    //悬停鼠标高亮
+	ControlMouseOverHighlight "ButtonHighlight_Sub",
+	Frame "HIGHLIGHT" "ButtonHighlight_Sub" {
+        HighlightType "FILETEXTURE",
+        HighlightAlphaFile "UI\Widgets\EscMenu\Human\quest-button-highlight.blp",
+        HighlightAlphaMode "ADD",
+    }
+}
+
+//创建按钮 属性显示
+Frame "GLUETEXTBUTTON" "ProButton_proText"{
+    Width 0.07,
+    Height 0.02,
+    //设置样式:AUTOTRACK自动跟踪、HIGHLIGHTONFOCUS高亮聚焦、HIGHLIGHTONMOUSEOVER鼠标上方突出显示
+	ControlStyle "AUTOTRACK|HIGHLIGHTONFOCUS|HIGHLIGHTONMOUSEOVER",
+    //设置正常状态背景
+    // ControlBackdrop "ButtonBack_proText",
+    // Frame "BACKDROP" "ButtonBack_proText"
+    // {
+    //     BackdropBackground  "UI\Widgets\Glues\ThumbsDown-Up.blp",
+    //     BackdropBlendAll,
+    // }
+    //设置按下的背景
+    // ControlPushedBackdrop "ButtonPushedBack_proText",
+    // Frame "Backdrop" "ButtonPushedBack_proText" {
+    //     BackdropBackground  "UI\Widgets\Glues\ThumbsDown-Down.blp",
+    //     BackdropBlendAll,
+    // }
+    //设置按下禁用的背景
+    // ControlDisabledPushedBackdrop "ButtonDisabledPushedBack_proText",
+    // Frame "Backdrop" "ButtonDisabledPushedBack_proText" {
+    //     BackdropBackground  "UI\Widgets\Glues\ThumbsDown-Disabled.blp",
+    //     BackdropBlendAll,
+    // }
+    //设置被选中后的高亮控件
+    ControlFocusHighlight "ButtonFocusHighlight_proText",
+    Frame "HIGHLIGHT" "ButtonFocusHighlight_proText" {
+		HighlightType "FILETEXTURE",
+    	HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Button-KeyboardHighlight.blp",
+    	HighlightAlphaMode "ADD",
+    }
+    //悬停鼠标高亮
+	ControlMouseOverHighlight "ButtonHighlight_proText",
+	Frame "HIGHLIGHT" "ButtonHighlight_proText" {
+        HighlightType "FILETEXTURE",
+        HighlightAlphaFile "UI\Widgets\EscMenu\Human\quest-button-highlight.blp",
+        HighlightAlphaMode "ADD",
+    }
+	//按钮文本
+	ButtonText "ButtonText_proText",
+    Frame "TEXT" "ButtonText_proText" INHERITS "TextTemplate" {
+        Width 0.04,
+    	Height 0.01,
+		Text "KEY_PLAY_GAME",
+    }
+
 }

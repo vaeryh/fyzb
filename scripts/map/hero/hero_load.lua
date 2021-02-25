@@ -39,7 +39,7 @@ end
 -- 展示英雄
 local function showHero()
     local tab = {}
-    local minx, maxy = -2000, -11000
+    local minx, maxy = -3000, -10300
     for i, id in ipairs(mt.hero_Id) do
         local x, y = 0, 0
         if i <= 3 then

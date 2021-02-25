@@ -100,7 +100,33 @@ function mt:setAllPoints(relativeFrame)
     dz.FrameSetAllPoints(self.handle, relativeFrame)
     return self
 end
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 选择单位 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+-- 选择单位(添加 or 减少)(所有玩家 or 指定玩家)
+function mt.select(unit, bol, player)
+    if player == GetLocalPlayer() then
+        SelectUnit(unit, bol)
+    else
+        SelectUnit(unit, bol)
+    end
+end
+
+-- 清除所有选定单位(所有玩家 or 指定玩家)
+function mt.clearSelection(player)
+    if player == GetLocalPlayer() then
+        ClearSelection()
+    else
+        ClearSelection()
+    end
+end
+
+-- 选择单一单位(所有玩家 or 指定玩家)
+function mt.selectSingle(unit, bol, player)
+    mt.clearSelection(player)
+    mt.select(unit, bol, player)
+end
+
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 未知 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 -- 设置鼠标高亮
 function mt:setMouseHighlight()
     local tooltip = mt:createByTag("BACKDROP", nil, self.handle)

@@ -236,7 +236,7 @@ end
 
 -- 初始化
 function mt.Init()
-    mt.Init_A() -- Frame初始化
+    --mt.Init_A() -- Frame初始化
 end
 
 mt.Init()

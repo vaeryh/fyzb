@@ -7,11 +7,12 @@ mt.listFrame = {}
 
 -- 重载
 function mt:reload()
-    for k, v in ipairs(self.listFrame) do
-        self.FrameShow(v)
-        self.DestroyFrame(v)
+    for k, v in ipairs(mt.listFrame) do
+        --mt.FrameShow(v, false)
+        --mt.FrameSetEnable(v, false)
+        mt.DestroyFrame(v)
     end
-    log.debug("Frame", #self.listFrame)
+    log.debug("Frame", #mt.listFrame)
 end
 ---------------------------------------------------------------------------------------------------
 -- hardware
@@ -330,6 +331,7 @@ function mt.CreateFrame(name)
 end
 
 -- native DzCreateSimpleFrame takes string frame, integer parent, integer id returns integer
+
 -- native DzDestroyFrame takes integer frame returns nothing
 -- 删除farme
 function mt.DestroyFrame(frame)

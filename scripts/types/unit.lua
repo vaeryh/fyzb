@@ -238,7 +238,9 @@ end
 function mt.getOwner(unit)
     return GetOwningPlayer(unit)
 end
+
 -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 发布命令 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 -- 发布无目标命令
 function mt.issueOrder(unit, str)
     return IssueImmediateOrder(unit, str)
@@ -329,7 +331,9 @@ UNIT_TYPE = {
 function mt.isType(u, unittype)
     return IsUnitType(u, unittype)
 end
+
 -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 市场操作 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 -- 添加物品 到 指定市场 (只影响"出售物品"技能的单位)
 function mt.addItemToStock(u, unittype)
     AddItemToStock('texp', GetTriggerUnit(), 0, 1)
@@ -379,5 +383,33 @@ end
 function mt.setAllUnitTypeSlots(u, unittype)
     SetAllUnitTypeSlots(6)
 end
+
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 选择单位 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+-- 选择单位(添加 or 减少)(所有玩家 or 指定玩家)
+function mt.select(unit, bol, player)
+    if player == GetLocalPlayer() then
+        SelectUnit(unit, bol)
+    else
+        SelectUnit(unit, bol)
+    end
+end
+
+-- 清除所有选定单位(所有玩家 or 指定玩家)
+function mt.clearSelection(player)
+    if player == GetLocalPlayer() then
+        ClearSelection()
+    else
+        ClearSelection()
+    end
+end
+
+-- 刷新选择1个单位(所有玩家 or 指定玩家)
+function mt.selectSingle(unit, player)
+    mt.clearSelection(player)
+    mt.select(unit, true, player)
+end
+
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 未知 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 return mt
