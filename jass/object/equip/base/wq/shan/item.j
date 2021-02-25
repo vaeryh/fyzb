@@ -1,0 +1,168 @@
+<? xG_item_luaObj={}
+local slk = require 'slk'
+obj=slk.item.ratc:new('ZS01') 
+	obj.abilList=''
+	obj.Name='|cFFFFFFD0折|r|cFFFFFFC8扇|r|cFFFFFFC0☆|r'
+	obj.Description='一阶武器\n佩戴者等级要求1+\n佩戴者要求擅长扇'
+	obj.Tip='购买折扇'
+	obj.Ubertip='常见的一杆普通折扇，其貌不扬，但很实用，用于练习用枪的基本技巧！'
+	obj.Art='war3mapImported\\BTNWQ-S-1.blp'
+	obj.Level='1'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS02') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33精|r|cFFFFFF33铁|r|cFFFFFF33扇|r|cFFFFFF33★|r'
+	obj.Description='二阶武器\n佩戴者等级要求10+\n佩戴者要求擅长扇'
+	obj.Tip='购买精铁扇'
+	obj.Ubertip='此扇以精铁为骨，坚不可摧，攻击格挡间转换自如！'
+	obj.Art='war3mapImported\\BTNWQ-S-2.blp'
+	obj.Level='2'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS03') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33逍|r|cFFFFFF33遥|r|cFFFFFF33扇|r|cFFFFFF33★|r|cFFFFFF33☆|r'
+	obj.Description='三阶武器\n佩戴者等级要求20+\n佩戴者要求擅长扇'
+	obj.Tip='购买逍遥扇'
+	obj.Ubertip='逍遥公子常用的纸扇，佩之更添几分潇洒之气，伤敌于谈笑之间 ！'
+	obj.Art='war3mapImported\\BTNWQ-S-3.blp'
+	obj.Level='3'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS04') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33玉|r|cFFFFFF33骨|r|cFFFFFF33扇|r|cFFFFFF33★|r|cFFFFAA66★|r'
+	obj.Description='四阶武器\n佩戴者等级要求30+\n佩戴者要求擅长扇'
+	obj.Tip='购买玉骨扇'
+	obj.Ubertip='以上好翡翠石为扇骨精制而成，散发寒气，可助使用者斩妖除魔 ！'
+	obj.Art='war3mapImported\\BTNWQ-S-4.blp'
+	obj.Level='4'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS05') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33山|r|cFFFFAA66水|r|cFFFF5599扇|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF00CC☆|r'
+	obj.Description='五阶武器\n佩戴者等级要求40+\n佩戴者要求擅长扇'
+	obj.Tip='购买山水扇'
+	obj.Ubertip='扇骨以上好的古木所制，扇面凝有山川流水，攻击时飘逸若水，花香四溢！'
+	obj.Art='war3mapImported\\BTNWQ-S-5.blp'
+	obj.Level='5'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS06') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC阴|r|cFFFF00CC阳|r|cFFFF00CC扇|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF00CC★|r'
+	obj.Description='六阶武器\n佩戴者等级要求50+\n佩戴者要求擅长扇'
+	obj.Tip='购买阴阳扇'
+	obj.Ubertip='扇面绘有阴阳卦象图，晓理天机，沟通阴阳，可震慑诸魔！'
+	obj.Art='war3mapImported\\BTNWQ-S-6.blp'
+	obj.Level='6'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS07') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC玄|r|cFFFF00CC玉|r|cFFFF00CC扇|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF0066★|r|cFFFF0000☆|r'
+	obj.Description='七阶武器\n佩戴者等级要求60+\n佩戴者要求擅长扇'
+	obj.Tip='购买玄玉扇'
+	obj.Ubertip='寒玉玄铁制成的扇骨，势大力沉，舞动发出呼啸之声，如天神降临，乃人间极品'
+	obj.Art='war3mapImported\\BTNWQ-S-7.1.blp'
+	obj.Level='7'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS08') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC流|r|cFFFF00CC云|r|cFFFF00CC蔽|r|cFFFF00CC日|r|cFFFF00CC扇|r|cFFFF0066★|r|cFFFF0000★|r|cFFFF0000★|r|cFFFF0000☆|r'
+	obj.Description='七阶武器\n佩戴者等级要求60+\n佩戴者要求擅长扇'
+	obj.Tip='购买流云蔽日扇'
+	obj.Ubertip='此扇闭合似天上闲云，攻击时灵巧若行云流水，打开时流云扩散，修为高深之人用之可遮天蔽日！'
+	obj.Art='war3mapImported\\BTNWQ-S-7.2.blp'
+	obj.Level='7'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS09') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC熠|r|cFFFF00CC焰|r|cFFFF00CC通|r|cFFFF00CC灵|r|cFFFF00CC扇|r|cFFFF0066★|r|cFFFF0000★|r|cFFFF0000★|r|cFFFF0000☆|r'
+	obj.Description='七阶武器\n佩戴者等级要求60+\n佩戴者要求擅长扇'
+	obj.Tip='购买熠焰通灵扇'
+	obj.Ubertip='拥有鲜艳的火焰光芒，孕育于岩浆之中，汲天地之魂而生成的灵物，为天生之兵！'
+	obj.Art='war3mapImported\\BTNWQ-S-7.3.blp'
+	obj.Level='7'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS10') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC红|r|cFFFF00CC云|r|cFFFF00CC火|r|cFFFF00CC霞|r|cFFFF00CC扇|r|cFFFF0066★|r|cFFFF0000★|r|cFFFF0000★|r|cFFFF0000★|r'
+	obj.Description='八阶武器\n佩戴者等级要求70+\n佩戴者要求擅长扇'
+	obj.Tip='购买红云火霞扇'
+	obj.Ubertip='云母招霞用的扇子，打开时见流光溢彩，挥舞处一片烈焰霞光，眼花缭乱之中便可伤敌！'
+	obj.Art='war3mapImported\\BTNWQ-S-8.1.blp'
+	obj.Level='8'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS11') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC凤|r|cFFFF00CC羽|r|cFFFF00CC乾|r|cFFFF00CC坤|r|cFFFF00CC扇|r|cFFFF0066★|r|cFFFF0000★|r|cFFFF0000★|r|cFFFF0000★|r'
+	obj.Description='八阶武器\n佩戴者等级要求70+\n佩戴者要求擅长扇'
+	obj.Tip='购买凤羽乾坤扇'
+	obj.Ubertip='扇面正为乾，反为坤，翻转之间便可搅动乾坤，法术高深者运用此扇斩杀妖魔可事半功倍！'
+	obj.Art='war3mapImported\\BTNWQ-S-8.2.blp'
+	obj.Level='8'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS12') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC芭|r|cFFFF00CC蕉|r|cFFFF00CC扇|r|cFFFF4C66★|r|cFFFF9900★|r|cFFFF4C00★|r|cFFFF0000★|r|cFFFF0000☆|r'
+	obj.Description='九阶武器\n佩戴者等级要求80+\n佩戴者要求擅长扇'
+	obj.Tip='购买芭蕉扇'
+	obj.Ubertip='传说铁扇公主所持宝物，可驱除所有炎热，亦可灭一切火焰，舞动之际狂风大作，飞沙走石，有御敌奇效。'
+	obj.Art='war3mapImported\\BTNWQ-S-9.1.blp'
+	obj.Level='9'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS13') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC离|r|cFFFF00CC火|r|cFFFF00CC七|r|cFFFF4C66翎|r|cFFFF9900扇|r|cFFFF4C00★|r|cFFFF0000★|r|cFFFF0000★|r|cFFFF0000★|r|cFFFF0000☆|r'
+	obj.Description='九阶武器\n佩戴者等级要求80+\n佩戴者要求擅长扇'
+	obj.Tip='购买离火七翎扇'
+	obj.Ubertip='择七种神鸟颈羽，集天下灵气，采五轮离火之丝，经三味真火炼制而成的至宝！'
+	obj.Art='war3mapImported\\BTNWQ-S-9.2.blp'
+	obj.Level='9'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS14') 
+	obj.abilList=''
+	obj.Name='|cFFFF0000五|r|cFF99801A彩|r|cFF33FF33神|r|cFF1AFF99焰|r|cFF00FFFF扇|r|cFF80FF80★|r|cFFFFFF00★|r|cFFCC9980★|r|cFF9933FF★|r|cFFCC1AB2★|r'
+	obj.Description='神阶武器\n佩戴者等级要求90+\n佩戴者要求擅长扇'
+	obj.Tip='购买五彩神焰扇'
+	obj.Ubertip='扇面有五彩的神焰燃动，挥舞间便可驱之杀敌，天上地下，红光艳艳，魔遇魔焚，佛遇佛杀！'
+	obj.Art='war3mapImported\\BTNWQ-S-10.1.blp'
+	obj.Level='10'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('ZS15') 
+	obj.abilList=''
+	obj.Name='|cFFFF0000赤|r|cFF99801A霄|r|cFF33FF33烈|r|cFF1AFF99焰|r|cFF00FFFF扇|r|cFF80FF80★|r|cFFFFFF00★|r|cFFCC9980★|r|cFF9933FF★|r|cFFCC1AB2★|r'
+	obj.Description='十阶武器\n佩戴者等级要求90+\n佩戴者要求擅长扇'
+	obj.Tip='购买赤霄烈焰扇'
+	obj.Ubertip='神物赤霄，火之精髓凝成，得之者得天下，上古传承的神器，神力无边！'
+	obj.Art='war3mapImported\\BTNWQ-S-10.2.blp'
+	obj.Level='10'
+	obj.class='扇'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+?>

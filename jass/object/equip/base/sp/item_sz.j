@@ -1,0 +1,113 @@
+<? xG_item_luaObj={}
+local slk = require 'slk'
+obj=slk.item.ratc:new('SZ01') 
+	obj.abilList=''
+	obj.Name='|cFFFFFFD0草|r|cFFFFFFC8镯|r|cFFFFFFC0☆|r'
+	obj.Description='一阶饰品+\n佩戴者等级要求1+\n最多只能佩戴一件手镯'
+	obj.Tip='购买草镯'
+	obj.Ubertip='由植物编制的手镯，青草环扣，绿意融融，容易损坏。'
+	obj.Art='war3mapImported\\BTNSZ1.blp'
+	obj.Level='1'
+	obj.class='手镯'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('SZ02') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33紫|r|cFFFFFF33竹|r|cFFFFFF33镯|r|cFFFFFF33★|r'
+	obj.Description='二阶饰品+\n佩戴者等级要求10+\n最多只能佩戴一件手镯'
+	obj.Tip='购买紫竹镯'
+	obj.Ubertip='由特殊的紫竹制作而成的镯子，虽然简陋，但只传有缘人。'
+	obj.Art='war3mapImported\\BTNSZ2.blp'
+	obj.Level='2'
+	obj.class='手镯'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('SZ03') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33百|r|cFFFFFF33裂|r|cFFFFFF33镯|r|cFFFFFF33★|r|cFFFFFF33☆|r'
+	obj.Description='三阶饰品+\n佩戴者等级要求20+\n最多只能佩戴一件手镯'
+	obj.Tip='购买百裂镯'
+	obj.Ubertip='镯身之有百道裂痕，但不知为何，却是坚固异常，很难损坏。'
+	obj.Art='war3mapImported\\BTNSZ3.blp'
+	obj.Level='3'
+	obj.class='手镯'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('SZ04') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33如|r|cFFFFFF33意|r|cFFFFFF33镯|r|cFFFFFF33★|r|cFFFFAA66★|r'
+	obj.Description='四阶饰品+\n佩戴者等级要求30+\n最多只能佩戴一件手镯'
+	obj.Tip='购买如意镯'
+	obj.Ubertip='玉色如意造型，古朴典雅，似乎是贵族之物，可做传家之宝。'
+	obj.Art='war3mapImported\\BTNSZ4.blp'
+	obj.Level='4'
+	obj.class='手镯'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('SZ05') 
+	obj.abilList=''
+	obj.Name='|cFFFFFF33龙|r|cFFFF8080鳞|r|cFFFF00CC手|r|cFFFF00CC镯|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF00CC☆|r'
+	obj.Description='五阶饰品+\n佩戴者等级要求40+\n最多只能佩戴一件手镯'
+	obj.Tip='购买龙鳞手镯'
+	obj.Ubertip='使用精钢合以龙鳞制作的手镯，坚硬的龙鳞菱角突出，可做武器使用。'
+	obj.Art='war3mapImported\\BTNSZ5.blp'
+	obj.Level='5'
+	obj.class='手镯'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('SZ06') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC摄|r|cFFFF00CC魂|r|cFFFF00CC镯|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF00CC★|r'
+	obj.Description='六阶饰品+\n佩戴者等级要求50+\n最多只能佩戴一件手镯'
+	obj.Tip='购买摄魂镯'
+	obj.Ubertip='来自阴间的物品，怨气集结，有很强的吞噬能力，散发出幽暗的紫光，诡异至极，非正气者不可使用。'
+	obj.Art='war3mapImported\\BTNSZ6.blp'
+	obj.Level='6'
+	obj.class='手镯'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('SZ07') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC玲|r|cFFFF00CC珑|r|cFFFF00CC镯|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF0066★|r|cFFFF0000☆|r'
+	obj.Description='七阶饰品+\n佩戴者等级要求60+\n最多只能佩戴一件手镯'
+	obj.Tip='购买玲珑镯'
+	obj.Ubertip='七彩玲珑所造，汇集海之灵气，对佩带者有极强的保护作用。'
+	obj.Art='war3mapImported\\BTNSZ7.blp'
+	obj.Level='7'
+	obj.class='手镯'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('SZ08') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC天|r|cFFFF00CC影|r|cFFFF00CC镯|r|cFFFF00CC★|r|cFFFF00CC★|r|cFFFF0066★|r|cFFFF0000★|r'
+	obj.Description='八阶饰品+\n佩戴者等级要求70+\n最多只能佩戴一件手镯'
+	obj.Tip='购买天影镯'
+	obj.Ubertip='采用九宫制成的戒圈，据说此物曾经吸收了大量灵气，宝石上散发出晶莹之光，灵力异常，力量强大。'
+	obj.Art='war3mapImported\\BTNSZ8.blp'
+	obj.Level='8'
+	obj.class='手镯'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('SZ09') 
+	obj.abilList=''
+	obj.Name='|cFFFF00CC八|r|cFFFF00CC珍|r|cFFFF00CC★|r|cFFFF4C66★|r|cFFFF9900★|r|cFFFF4C00★|r|cFFFF0000☆|r'
+	obj.Description='九阶饰品+\n佩戴者等级要求80+\n最多只能佩戴一件手镯'
+	obj.Tip='购买八珍'
+	obj.Ubertip='用八珍石制造的戒指，传说中乃天神遗留在人间的物品，仙气环绕，甚是珍贵。'
+	obj.Art='war3mapImported\\BTNSZ9.blp'
+	obj.Level='9'
+	obj.class='手镯'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+obj=slk.item.ratc:new('SZ10') 
+	obj.abilList=''
+	obj.Name='|cFFFF0000神|r|cFF99801A祭|r|cFF33FF33★|r|cFF1AFF99★|r|cFF00FFFF★|r|cFF80FF80★|r|cFFFFFF00★|r'
+	obj.Description='神阶饰品+\n佩戴者等级要求90+\n最多只能佩戴一件手镯'
+	obj.Tip='购买神祭'
+	obj.Ubertip='上古神物，生于天地混沌之时，祭神所用，和凡人一样有呼吸血脉，威力随其喜怒哀乐而变。'
+	obj.Art='war3mapImported\\BTNSZ10.blp'
+	obj.Level='10'
+	obj.class='手镯'
+	obj.stockRegen='5'
+table.insert(xG_item_luaObj,obj)
+?>
