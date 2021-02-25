@@ -35,7 +35,7 @@ function mt.Init_A()
             E = dr_tab['固定减伤']
             -- A*(1+B)*(1+C)*(1-D)-E
             harm = A * (1 + B) * (1 + C) * (1 - D) - E
-            printF(A, B, C, D, E, harm)
+            --printF(A, B, C, D, E, harm)
         else
             if hero_tab['会心率'] >= GetRandomReal(1, 100) then
                 -- 会心伤害A2=A1*会心加成

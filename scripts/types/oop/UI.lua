@@ -83,6 +83,12 @@ function mt:getEnable()
     return dz.FrameGetEnable(self.handle)
 end
 
+-- 设置文本
+function mt:getEnable(text)
+    dz.FrameSetText(self.handle, text)
+    return self
+end
+
 -- 设置鼠标高亮
 function mt:setMouseHighlight()
     local tooltip = mt:createByTag("BACKDROP", nil, self.handle)

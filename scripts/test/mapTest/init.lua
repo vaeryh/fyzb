@@ -2,3 +2,4 @@
 require 'test.mapTest.stake'
 require 'test.mapTest.tip'
 require 'test.mapTest.common'
+require 'test.mapTest.button'
