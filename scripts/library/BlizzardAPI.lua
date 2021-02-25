@@ -316,7 +316,7 @@ end
 -- Frame显示隐藏
 function mt.FrameShow(frame, bol)
     g.yh_frame1 = frame
-    g.yh_boolean1 = bol
+    g.yh_boolean1 = bol or false
     ExecuteFunc("yh_FrameShow")
 end
 
