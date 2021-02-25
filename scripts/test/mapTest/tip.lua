@@ -97,7 +97,7 @@ function mt:init()
     mt:act_B()
     mt:act_C()
     mt:act_D()
-    mt:act_F()
+    --mt:act_F()
 end
 
 mt:init()

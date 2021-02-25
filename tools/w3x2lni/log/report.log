@@ -1,11 +1,11 @@
-输入路径：W:/OneDrive/测试版地图/杨杭-只能看不能修改/fyzb
-输出路径：W:/OneDrive/测试版地图/杨杭-只能看不能修改/fyzb/FYZB.w3x
-输入格式：Lni
-输出模式：obj
-结果：0 个错误，4 条警告
-用时：1.426 秒
+输入路径：W:/OneDrive/测试版地图/杨杭-只能看不能修改/fyzb/FYZB.w3x
+输出路径：W:/OneDrive/测试版地图/杨杭-只能看不能修改/fyzb
+输入格式：Mpq
+输出模式：lni
+结果：0 个错误，5 条警告
+用时：1.043 秒
 ==========================
-警告 (4)
+警告 (5)
 ==========================
 插件[资源保护]执行失败 - .\backend\plugin.lua:12: bad argument #1 to 'load' (function expected, got nil)
 stack traceback:
@@ -15,7 +15,7 @@ stack traceback:
 	.\backend\plugin.lua:10: in upvalue 'load_plugins'
 	.\backend\plugin.lua:37: in function 'backend.plugin'
 	.\backend\convert.lua:119: in function 'backend.convert'
-	.\backend\cli\obj.lua:4: in function 'backend.cli.obj'
+	.\backend\cli\lni.lua:4: in function 'backend.cli.lni'
 	.\backend\init.lua:12: in main chunk
 	[C]: in function 'require'
 	...只能看不能修改\fyzb\tools\w3x2lni\script\main.lua:2: in main chunk
@@ -28,7 +28,7 @@ stack traceback:
 	.\backend\plugin.lua:10: in upvalue 'load_plugins'
 	.\backend\plugin.lua:37: in function 'backend.plugin'
 	.\backend\convert.lua:119: in function 'backend.convert'
-	.\backend\cli\obj.lua:4: in function 'backend.cli.obj'
+	.\backend\cli\lni.lua:4: in function 'backend.cli.lni'
 	.\backend\init.lua:12: in main chunk
 	[C]: in function 'require'
 	...只能看不能修改\fyzb\tools\w3x2lni\script\main.lua:2: in main chunk
@@ -41,7 +41,7 @@ stack traceback:
 	.\backend\plugin.lua:10: in upvalue 'load_plugins'
 	.\backend\plugin.lua:37: in function 'backend.plugin'
 	.\backend\convert.lua:119: in function 'backend.convert'
-	.\backend\cli\obj.lua:4: in function 'backend.cli.obj'
+	.\backend\cli\lni.lua:4: in function 'backend.cli.lni'
 	.\backend\init.lua:12: in main chunk
 	[C]: in function 'require'
 	...只能看不能修改\fyzb\tools\w3x2lni\script\main.lua:2: in main chunk
@@ -54,15 +54,23 @@ stack traceback:
 	.\backend\plugin.lua:10: in upvalue 'load_plugins'
 	.\backend\plugin.lua:37: in function 'backend.plugin'
 	.\backend\convert.lua:119: in function 'backend.convert'
-	.\backend\cli\obj.lua:4: in function 'backend.cli.obj'
+	.\backend\cli\lni.lua:4: in function 'backend.cli.lni'
 	.\backend\init.lua:12: in main chunk
 	[C]: in function 'require'
 	...只能看不能修改\fyzb\tools\w3x2lni\script\main.lua:2: in main chunk
 	[C]: in ?
-
-==========================
-保存到wts中的文本 (1)
-==========================
-w3i里的文本长度超过1023字符 - 文本保存在wts中会导致加载速度变慢: 
-“金鳞岂是池中物，一遇风云变化龙”。龙游浅水，虎落平阳，人也不可能始终顺风顺水，总有陷入人生困境之时。陷入人生困境如何自救？如何突破？如何在风云际会，机遇来临之时，一朝化龙，龙啸九天？如果对此一筹莫展，不妨试试以下四大自救之道。...
--------------------------
+没有转换触发器 - 请设置YDWE关联地图
+stack traceback:
+	[C]: in function 'error'
+	.\core\slk/frontend_trg.lua:86: in method 'frontend_trg'
+	.\core\slk/frontend_wtg.lua:236: in method 'frontend_wtg'
+	.\core\slk/backend.lua:65: in function <.\core\slk/backend.lua:64>
+	[C]: in function 'xpcall'
+	.\core\slk/backend.lua:64: in upvalue 'convert_wtg'
+	.\core\slk/backend.lua:407: in method 'backend'
+	.\backend\convert.lua:140: in function 'backend.convert'
+	.\backend\cli\lni.lua:4: in function 'backend.cli.lni'
+	.\backend\init.lua:12: in main chunk
+	[C]: in function 'require'
+	...只能看不能修改\fyzb\tools\w3x2lni\script\main.lua:2: in main chunk
+	[C]: in ?

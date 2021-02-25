@@ -13,70 +13,62 @@ Frame "TEXT" "TestTextTemplate" {
     FontFlags "FIXEDSIZE",
     FontHighlightColor 1.0 1.0 1.0 1.0,
     FontDisabledColor 0.5 0.5 0.5 1.0,
-	FontShadowColor 0.0 0.0 0.0 0.9,	
+	FontShadowColor 0.0 0.0 0.0 0.9,
     FontShadowOffset 0.001 -0.001,
 }
 
+Frame "BACKDROP" "StandardBorderedButtonBackdropTemplate" {
+    BackdropTileBackground,
+    BackdropBackground  "UI\Widgets\Glues\GlueScreen-Button1-BackdropBackground.blp",
+    BackdropCornerFlags "UL|UR|BL|BR|T|L|B|R",
+    BackdropCornerSize  0.016,
+    BackdropBackgroundSize  0.032,
+    BackdropBackgroundInsets 0.004 0.004 0.004 0.004,
+    BackdropEdgeFile  "UI\Widgets\Glues\GlueScreen-Button1-BorderedBackdropBorder.blp",
+}
+
+//弹出菜单
+Frame "POPUPMENU" "CampaignPopupMenuTemplate" {
+    Width 0.111875,
+    Height 0.01875,
+    PopupButtonInset 0.015,
+
+
+    ControlBackdrop "CampaignPopupMenuBackdropTemplate",
+    Frame "BACKDROP" "CampaignPopupMenuBackdropTemplate" INHERITS "StandardCampaignButtonBackdropTemplate" {
+    }
+
+    ControlDisabledBackdrop "CampaignPopupMenuDisabledBackdropTemplate",
+    Frame "BACKDROP" "CampaignPopupMenuDisabledBackdropTemplate" INHERITS "StandardCampaignButtonDisabledBackdropTemplate" {
+    }
+
+    PopupTitleFrame "CampaignPopupMenuTitle",
+    Frame "TEXTBUTTON" "CampaignPopupMenuTitle" INHERITS WITHCHILDREN "CampaignPopupMenuTitleTemplate" {
+    }
+
+    PopupArrowFrame "CampaignPopupMenuArrow",
+    Frame "BUTTON" "CampaignPopupMenuArrow" INHERITS WITHCHILDREN "CampaignPopupMenuArrowTemplate" {
+    }
+
+    PopupMenuFrame "CampaignPopupMenuMenu",
+    Frame "MENU" "CampaignPopupMenuMenu" INHERITS WITHCHILDREN "CampaignPopupMenuMenuTemplate" {
+    }
+}
+//菜单
+Frame "MENU" "StandardPopupMenuMenuTemplate" {
+    Height 0.06,
+    DecorateFileNames,
+    FrameFont "MasterFont",0.011,"",
+    MenuTextHighlightColor 0.99 0.827 0.0705 1.0,
+    MenuItemHeight 0.014,
+    MenuBorder 0.009,
+
+    ControlBackdrop "StandardPopupMenuMenuBackdropTemplate",
+    Frame "BACKDROP" "StandardPopupMenuMenuBackdropTemplate" INHERITS "StandardBorderedButtonBackdropTemplate" {
+    }
+}
+
 Frame "FRAME" "TestFrame" {
-	//AAAAAAAAAAAA
-	Frame "TEXT" "TestTipsTextA0" INHERITS "TestTextTemplate" {
-		SetPoint TOPLEFT, "TestFrame", TOPLEFT, 0.0, 0.001,
-		Text "|c76000000测试模式|r",
-	}
-	Frame "TEXT" "TestTipsTextA1" INHERITS "TestTextTemplate" {
-		Width 0.15,
-		SetPoint TOPLEFT, "TestTipsTextA0", BOTTOMLEFT, 0.0, -0.005,
-	}
-	//一行
-	Frame "TEXT" "TestTipsTextA2" INHERITS "TestTextTemplate" {
-		Width 0.15,
-		SetPoint TOPLEFT, "TestTipsTextA1", BOTTOMLEFT, 0.0, -0.005,
-	}
-	//一行
-	Frame "TEXT" "TestTipsTextA3" INHERITS "TestTextTemplate" {
-		Width 0.15,
-		SetPoint TOPLEFT, "TestTipsTextA2", BOTTOMLEFT, 0.0, -0.005,
-	}
-	//一行
-	Frame "TEXT" "TestTipsTextA4" INHERITS "TestTextTemplate" {
-		Width 0.15,
-		SetPoint TOPLEFT, "TestTipsTextA3", BOTTOMLEFT, 0.0, -0.005,
-	}
-	//一行
-	Frame "TEXT" "TestTipsTextA5" INHERITS "TestTextTemplate" {
-		Width 0.15,
-		SetPoint TOPLEFT, "TestTipsTextA4", BOTTOMLEFT, 0.0, -0.005,
-	}
-	//一行
-	Frame "TEXT" "TestTipsTextA6" INHERITS "TestTextTemplate" {
-		Width 0.15,
-		SetPoint TOPLEFT, "TestTipsTextA5", BOTTOMLEFT, 0.0, -0.005,
-	}
-	//一行
-	Frame "TEXT" "TestTipsTextA7" INHERITS "TestTextTemplate" {
-		Width 0.15,
-		SetPoint TOPLEFT, "TestTipsTextA6", BOTTOMLEFT, 0.0, -0.005,
-	}
-	//一行
-	Frame "TEXT" "TestTipsTextA8" INHERITS "TestTextTemplate" {
-		Width 0.15,
-		SetPoint TOPLEFT, "TestTipsTextA7", BOTTOMLEFT, 0.0, -0.005,
-	}
-	//一行
-	Frame "TEXT" "TestTipsTextA9" INHERITS "TestTextTemplate" {
-		Width 0.15,
-		SetPoint TOPLEFT, "TestTipsTextA8", BOTTOMLEFT, 0.0, -0.005,
-	}
-	//一行
-	Frame "TEXT" "TestTipsTextA10" INHERITS "TestTextTemplate" {
-		Width 0.15,
-		SetPoint TOPLEFT, "TestTipsTextA9", BOTTOMLEFT, 0.0, -0.005,
-	}
-	//一行
-	Frame "TEXT" "TestTipsTextA11" INHERITS "TestTextTemplate" {
-		Width 0.15,
-		SetPoint TOPLEFT, "TestTipsTextA10", BOTTOMLEFT, 0.0, -0.005,
-	}
-	//BBBBBBBBBBBBBBBBBBBBBBB
+
 
 }

@@ -15,7 +15,7 @@ function mt.Init_B()
     gTrg.RegAnyPlayerChatEvent(GetEventPlayerChatString(), true, function()
         local enterString = GetEventPlayerChatString()
         local trgP = GetTriggerPlayer()
-        if string.upper(enterString) == "开启全屏" then
+        if string.upper(enterString) == "开启全图" then
             gFog.setBlackShadow(false)
             gFog.setWarDenseFog(false)
         end

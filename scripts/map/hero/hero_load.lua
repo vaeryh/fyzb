@@ -12,7 +12,7 @@ mt.hero_Tab = {}
 mt.hero_Id = {}
 
 -- 选择英雄矩形
-mt.rect_choose = map.rect['选择英雄矩形']
+mt.rect_choose = map.rect.FirstHeroSelection
 
 -- 选择英雄音乐
 mt.sound_choose = map.sound['选择英雄音乐']
@@ -39,7 +39,7 @@ end
 -- 展示英雄
 local function showHero()
     local tab = {}
-    local minx, maxy = gRect.getMinX(mt.rect_choose) + 100, gRect.getMaxY(mt.rect_choose) - 100
+    local minx, maxy = -2000, -11000
     for i, id in ipairs(mt.hero_Id) do
         local x, y = 0, 0
         if i <= 3 then
@@ -50,7 +50,7 @@ local function showHero()
         local u = gU.create(Player(15), id, x, y, 270)
         table.insert(tab, u)
     end
-    removeUnSelected(tab)
+    --removeUnSelected(tab)
 end
 
 -- 获取英雄表信息
@@ -85,6 +85,5 @@ function mt.init()
     environment()
     showHero()
 end
-
 
 return mt

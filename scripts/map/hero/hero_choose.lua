@@ -49,12 +49,12 @@ function mt.selectHero()
         SetUnitOwner(thisU, thisP, true) -- 改变单位所属为触发玩家
         Hero[thisP] = thisU
         -- 启用- 新建可见度修正器，盟友共享视野，不覆盖单位视野
-        gFog.start(gFog.createFog(thisP, mt.rect_home))
+        --gFog.start(gFog.createFog(thisP, mt.rect_home))
         -- 设置玩家可用地图区域=默认可用地图区域
-        gCamera.setCameraBounds(gRect.getAbleArea, thisP)
+        --gCamera.setCameraBounds(gRect.getAbleArea, thisP)
         -- 传送
         -- gYh.MoveAndCamera(thisU, gRect.getCenter(mt.rect_hg))
-        gYh.MoveAndCamera(thisU, -3807, -9189)
+        --gYh.MoveAndCamera(thisU, -3807, -9189)
         -- 英雄初始化
         hero_Pro.Init_B(thisU)
         gIt.createAddUnit(thisU, gIt.getRandom(GetRandomInt(1,5)), 0)
