@@ -524,7 +524,7 @@ public function Init takes nothing returns nothing
 	set lopA = 1
 	loop
 	exitwhen lopA > 13
-		set yh_FrameEvent[lopA] = CreateTrigger()
+		set yh_FrameEvent[lopA] = null
 		call DisplayTimedTextToPlayer(Player(0), 0, 0, 20, "lopA")
 		set lopA = lopA + 1
 	endloop
