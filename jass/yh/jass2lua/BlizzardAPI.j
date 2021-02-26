@@ -1,4 +1,4 @@
-scope yh
+scope yh initializer Init
 
 globals
 	trigger yh_trigger = null
@@ -25,8 +25,7 @@ globals
 	boolean yh_boolean3 = false
 	player yh_player = null
 	unit yh_unit = null
-	trigger yh_Enter = null//进入
-	trigger yh_Leave = null//离开
+	trigger array yh_FrameEvent //UI回调事件
 endglobals
 //-------------------------------------------------------------------------------------------------
 //hardware
@@ -97,6 +96,10 @@ public function TriggerRegisterKeyEventByCode takes nothing returns nothing
 endfunction
 //     native DzTriggerRegisterMouseWheelEvent takes trigger trig, boolean sync, string func returns nothing
 //     native DzTriggerRegisterMouseWheelEventByCode takes trigger trig, boolean sync, code funcHandle returns nothing
+// 注册鼠标滚轮触发
+public function TriggerRegisterMouseWheelEvent takes nothing returns nothing
+	call DzTriggerRegisterMouseWheelEvent(yh_trigger, yh_boolean1, null)
+endfunction
 //     native DzTriggerRegisterMouseMoveEvent takes trigger trig, boolean sync, string func returns nothing
 //任意玩家移动鼠标
 public function TriggerRegisterMouseMoveEvent takes nothing returns nothing
@@ -113,7 +116,10 @@ public function GetTriggerKey takes nothing returns nothing
 	set yh_integer1 = DzGetTriggerKey()
 endfunction
 //     native DzGetWheelDelta takes nothing returns integer
-
+// 获取滚轮delta
+public function GetWheelDelta takes nothing returns nothing
+	set yh_integer1 = DzGetWheelDelta()
+endfunction
 //     native DzIsKeyDown takes integer iKey returns boolean
 // 判断按键是否按下
 public function IsKeyDown takes nothing returns nothing
@@ -288,23 +294,87 @@ endfunction
 
 //------------------------------------------------------------------------
 //     native DzFrameSetScriptByCode takes integer frame, integer eventId, code funcHandle, boolean sync returns nothing
-//离开
-private function Leave_Actions takes nothing returns nothing
-	call TriggerExecute(yh_Leave)
+// FrameEvent_None=0,frameevent,0,无
+// FrameEvent_Evenr_Pressed=0,frameevent,1,鼠标点击
+private function FrameEvent_Evenr_Pressed takes nothing returns nothing
+	call TriggerExecute(yh_FrameEvent[1])
 endfunction
-//进入
-private function Enter_Actions takes nothing returns nothing
-	call TriggerExecute(yh_Enter)
+// FrameEvent_Mouse_Enter=0,frameevent,2,鼠标进入
+private function FrameEvent_Mouse_Enter takes nothing returns nothing
+	call TriggerExecute(yh_FrameEvent[2])
+endfunction
+// FrameEvent_Mouse_Leave=0,frameevent,3,鼠标离开
+private function FrameEvent_Mouse_Leave takes nothing returns nothing
+	call TriggerExecute(yh_FrameEvent[3])
+endfunction
+// FrameEvent_Mouse_Up=0,frameevent,4,鼠标释放
+private function FrameEvent_Mouse_Up takes nothing returns nothing
+	call TriggerExecute(yh_FrameEvent[4])
+endfunction
+// FrameEvent_Mouse_Down=0,frameevent,5,鼠标按下
+private function FrameEvent_Mouse_Down takes nothing returns nothing
+	call TriggerExecute(yh_FrameEvent[5])
+endfunction
+// FrameEvent_Mouse_Wheel=0,frameevent,6,鼠标轮滚
+private function FrameEvent_Mouse_Wheel takes nothing returns nothing
+	call TriggerExecute(yh_FrameEvent[6])
+endfunction
+// FrameEvent_Checkbox_Checked=0,frameevent,7,复选框被选中
+private function FrameEvent_Checkbox_Checked takes nothing returns nothing
+	call TriggerExecute(yh_FrameEvent[7])
+endfunction
+// FrameEvent_Checkbox_Unchecked=0,frameevent,8,复选框取消选中
+private function FrameEvent_Checkbox_Unchecked takes nothing returns nothing
+	call TriggerExecute(yh_FrameEvent[8])
+endfunction
+// FrameEvent_Editbox_Text_Changed=0,frameevent,9,捕获输入框文字变化
+private function FrameEvent_Editbox_Text_Changed takes nothing returns nothing
+	call TriggerExecute(yh_FrameEvent[9])
+endfunction
+// FrameEvent_Popupmenu_Item_Change_Start=0,frameevent,10,弹出菜单开始
+private function FrameEvent_Popupmenu_Item_Change_Start takes nothing returns nothing
+	call TriggerExecute(yh_FrameEvent[10])
+endfunction
+// FrameEvent_Popupmenu_Item_Changed_Start=0,frameevent,11,弹出菜单结束
+private function FrameEvent_Popupmenu_Item_Changed_Start takes nothing returns nothing
+	call TriggerExecute(yh_FrameEvent[11])
+endfunction
+// FrameEvent_Mouse_Doubleclick=0,frameevent,12,鼠标双击
+private function FrameEvent_Mouse_Doubleclick takes nothing returns nothing
+	call TriggerExecute(yh_FrameEvent[12])
+endfunction
+// FrameEvent_Sprite_Anim_Update=0,frameevent,13,精灵动画更新
+private function FrameEvent_Sprite_Anim_Update takes nothing returns nothing
+	call TriggerExecute(yh_FrameEvent[13])
 endfunction
 //注册Frame UI事件回调
 public function FrameSetScriptByCode takes nothing returns nothing
-	if yh_integer1 == 2 then		// 鼠标进入
-		call DzFrameSetScriptByCode(yh_frame1, 2, function Enter_Actions, false)
-	elseif yh_integer1 == 2 then	// 鼠标进入
-		call DzFrameSetScriptByCode(yh_frame1, 2, function Enter_Actions, false)
-	elseif yh_integer1 == 3 then	// 鼠标离开
-		call DzFrameSetScriptByCode(yh_frame1, 3, function Leave_Actions, false)
-
+	if yh_integer1 == 1 then
+		call DzFrameSetScriptByCode(yh_frame1, 1, function FrameEvent_Evenr_Pressed, false)
+	elseif yh_integer1 == 2 then
+		call DzFrameSetScriptByCode(yh_frame1, 2, function FrameEvent_Mouse_Enter, false)
+	elseif yh_integer1 == 3 then
+		call DzFrameSetScriptByCode(yh_frame1, 3, function FrameEvent_Mouse_Leave, false)
+	elseif yh_integer1 == 4 then
+		call DzFrameSetScriptByCode(yh_frame1, 4, function FrameEvent_Mouse_Up, false)
+	elseif yh_integer1 == 5 then
+		call DzFrameSetScriptByCode(yh_frame1, 5, function FrameEvent_Mouse_Down, false)
+	elseif yh_integer1 == 6 then
+		call DzFrameSetScriptByCode(yh_frame1, 6, function FrameEvent_Mouse_Wheel, false)
+	elseif yh_integer1 == 7 then
+		call DzFrameSetScriptByCode(yh_frame1, 7, function FrameEvent_Checkbox_Checked, false)
+	elseif yh_integer1 == 8 then
+		call DzFrameSetScriptByCode(yh_frame1, 8, function FrameEvent_Checkbox_Unchecked, false)
+	elseif yh_integer1 == 9 then
+		call DzFrameSetScriptByCode(yh_frame1, 9, function FrameEvent_Editbox_Text_Changed, false)
+	elseif yh_integer1 == 10 then
+		call DzFrameSetScriptByCode(yh_frame1, 10, function FrameEvent_Popupmenu_Item_Change_Start, false)
+	elseif yh_integer1 == 11 then
+		call DzFrameSetScriptByCode(yh_frame1, 11, function FrameEvent_Popupmenu_Item_Changed_Start, false)
+	elseif yh_integer1 == 12 then
+		call DzFrameSetScriptByCode(yh_frame1, 12, function FrameEvent_Mouse_Doubleclick, false)
+	elseif yh_integer1 == 13 then
+		call DzFrameSetScriptByCode(yh_frame1, 13, function FrameEvent_Sprite_Anim_Update, false)
 	endif
 endfunction
 //------------------------------------------------------------------------
@@ -445,6 +515,18 @@ endfunction
 //获取 Frame 的 名称 [NEW]
 public function FrameGetName takes nothing returns nothing
 	set yh_string1 = DzFrameGetName(yh_frame1)
+endfunction
+
+// 初始化
+public function Init takes nothing returns nothing
+	local integer lopA = 0
+	//数组初始化
+	set lopA = 1
+	loop
+	exitwhen lopA > 13
+		set yh_FrameEvent[lopA] = null
+		set lopA = lopA + 1
+	endloop
 endfunction
 
 endscope
