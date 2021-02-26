@@ -181,6 +181,8 @@ Frame "GLUETEXTBUTTON" "ProButton_proText"{
 	//按钮文本
 	ButtonText "ButtonText_proText",
     Frame "TEXT" "ButtonText_proText" INHERITS "TextTemplate" {
+        FontJustificationH JUSTIFYLEFT,
+        FontJustificationV JUSTIFYMIDDLE,
         Width 0.04,
     	Height 0.01,
 		Text "KEY_PLAY_GAME",

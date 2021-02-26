@@ -8,9 +8,10 @@ mt.listFrame = {}
 -- 重载
 function mt:reload()
     for k, v in ipairs(mt.listFrame) do
-        --mt.FrameShow(v, false)
-        --mt.FrameSetEnable(v, false)
+        mt.FrameShow(v, false)
+        -- mt.FrameSetEnable(v, false)
         mt.DestroyFrame(v)
+        mt.listFrame[k] = nil
     end
     log.debug("Frame", #mt.listFrame)
 end
@@ -72,6 +73,7 @@ function mt.GetMouseYRelative()
     ExecuteFunc("yh_GetMouseYRelative")
     return g.yh_integer1
 end
+
 -- native DzSetMousePos takes integer x, integer y returns nothing
 -- 设置鼠标的坐标
 function mt.SetMousePos(x, y)
@@ -81,8 +83,7 @@ function mt.SetMousePos(x, y)
 end
 
 -- native DzTriggerRegisterMouseEvent takes trigger trig, integer btn, integer status, boolean sync, string func returns nothing
--- 注册鼠标事件  1.鼠标左键 2.鼠标右键; 1.点击 0.释放
--- code类型是数字与函数无法交互
+-- 注册鼠标事件  1.鼠标左键 2.鼠标右键; 1.点击 0.释放-- code类型是数字与函数无法交互
 function mt.TriggerRegisterMouseEvent(btn, status, sync, func)
     g.yh_trigger = trg.create(func)
     g.yh_integer1 = btn
@@ -91,18 +92,7 @@ function mt.TriggerRegisterMouseEvent(btn, status, sync, func)
     g.yh_string1 = nil
     ExecuteFunc("yh_TriggerRegisterMouseEvent")
 end
-
 -- native DzTriggerRegisterMouseEventByCode takes trigger trig, integer btn, integer status, boolean sync, code funcHandle returns nothing
--- 注册鼠标事件  code类型是数字与函数无法交互
--- function mt.TriggerRegisterMouseEventByCode(trig, btn, status, sync, funcHandle)
---     log.debug('注册鼠标事件', btn)
---     g.yh_trigger = trig
---     g.yh_integer1 = btn
---     g.yh_integer2 = status
---     g.yh_boolean1 = sync
---     g.yh_code = funcHandle
---     ExecuteFunc("yh_TriggerRegisterMouseEventByCode")
--- end
 
 local key = {"90Z", '88X', '67C', '86V', '9Tab', '113F2', '114F3', '115F4', '116F5', '117F6'}
 -- native DzTriggerRegisterKeyEvent takes trigger trig, integer key, integer status, boolean sync, string func returns nothing
@@ -116,19 +106,16 @@ function mt.TriggerRegisterKeyEvent(key, status, sync, func)
     ExecuteFunc("yh_TriggerRegisterKeyEvent")
     return g.yh_trigger
 end
-
 -- native DzTriggerRegisterKeyEventByCode takes trigger trig, integer key, integer status, boolean sync, code funcHandle returns nothing
--- 注册键盘key事件
--- function mt.TriggerRegisterKeyEventByCode(trig, key, status, sync, funcHandle)
---     log.debug('注册key：', key)
---     g.yh_trigger = trig
---     g.yh_integer1 = key
---     g.yh_integer2 = status
---     g.yh_boolean1 = sync
---     g.yh_code = funcHandle
---     ExecuteFunc("yh_TriggerRegisterKeyEventByCode")
--- end
+
 -- native DzTriggerRegisterMouseWheelEvent takes trigger trig, boolean sync, string func returns nothing
+-- 注册鼠标滚轮触发
+function mt.TriggerRegisterMouseWheelEvent(sync, func)
+    g.yh_trigger = trg.create(func)
+    g.yh_boolean1 = sync
+    g.yh_string1 = nil
+    ExecuteFunc("yh_TriggerRegisterMouseWheelEvent")
+end
 -- native DzTriggerRegisterMouseWheelEventByCode takes trigger trig, boolean sync, code funcHandle returns nothing
 
 -- native DzTriggerRegisterMouseMoveEvent takes trigger trig, boolean sync, string func returns nothing
@@ -139,23 +126,21 @@ function mt.TriggerRegisterMouseMoveEvent(sync, func)
     g.yh_string1 = nil
     ExecuteFunc("yh_TriggerRegisterMouseMoveEvent")
 end
-
 -- native DzTriggerRegisterMouseMoveEventByCode takes trigger trig, boolean sync, code funcHandle returns nothing
--- 任意玩家移动鼠标
--- function mt.TriggerRegisterMouseMoveEventByCode(trig, sync, funcHandle)
---     log.debug('注册鼠标移动事件')
---     g.yh_trigger = trig
---     g.yh_boolean1 = sync
---     g.yh_code = funcHandle
---     ExecuteFunc("yh_TriggerRegisterMouseMoveEventByCode")
--- end
+
 -- native DzGetTriggerKey takes nothing returns integer
 -- 事件响应 - 获取触发的按键
 function mt.GetTriggerKey()
     ExecuteFunc("yh_GetTriggerKey")
     return g.yh_integer1
 end
+
 -- native DzGetWheelDelta takes nothing returns integer
+-- 获取滚轮delta
+function mt.GetWheelDelta()
+    ExecuteFunc("yh_GetWheelDelta")
+    return g.yh_integer1
+end
 
 -- native DzIsKeyDown takes integer iKey returns boolean
 -- 判断按键是否按下 1.鼠标左键 2.鼠标右键 3.其他网上搜
@@ -178,24 +163,28 @@ function mt.GetWindowWidth()
     ExecuteFunc("yh_GetWindowWidth")
     return g.yh_integer1
 end
+
 -- native DzGetWindowHeight takes nothing returns integer
 -- 获取魔兽窗口高度
 function mt.GetWindowHeight()
     ExecuteFunc("yh_GetWindowHeight")
     return g.yh_integer1
 end
+
 -- native DzGetWindowX takes nothing returns integer
 -- 获取魔兽窗口X坐标
 function mt.GetWindowX()
     ExecuteFunc("yh_GetWindowX")
     return g.yh_integer1
 end
+
 -- native DzGetWindowY takes nothing returns integer
 -- 获取魔兽窗口Y坐标
 function mt.GetWindowY()
     ExecuteFunc("yh_GetWindowY")
     return g.yh_integer1
 end
+
 -- native DzTriggerRegisterWindowResizeEvent takes trigger trig, boolean sync, string func returns nothing
 -- native DzTriggerRegisterWindowResizeEventByCode takes trigger trig, boolean sync, code funcHandle returns nothing
 -- native DzIsWindowActive takes nothing returns boolean
@@ -208,6 +197,7 @@ end
 -- native DzSetUnitTexture takes unit whichUnit, string path, integer texId returns nothing
 -- native DzSetMemory takes integer address, real value returns nothing
 -- native DzSetUnitID takes unit whichUnit, integer id returns nothing
+
 -- native DzSetUnitModel takes unit whichUnit, string path returns nothing
 -- 设置单位模型
 function mt.SetUnitModel(u, path)
@@ -215,11 +205,13 @@ function mt.SetUnitModel(u, path)
     g.yh_string1 = path
     ExecuteFunc("yh_SetUnitModel")
 end
+
 -- native DzSetWar3MapMap takes string map returns nothing
 -- native DzGetLocale takes nothing returns string
 -- native DzGetUnitNeededXP takes unit whichUnit, integer level returns integer
 ---------------------------------------------------------------------------------------------------
 -- --sync
+
 -- native DzTriggerRegisterSyncData takes trigger trig, string prefix, boolean server returns nothing
 -- 注册数据同步 标签为 ${prefix} 的数据被同步 | 来自平台:${server}
 function mt.SyncData(trig, data, server)
@@ -228,6 +220,7 @@ function mt.SyncData(trig, data, server)
     g.yh_boolean1 = server
     ExecuteFunc("yh_SyncData")
 end
+
 -- native DzSyncData takes string prefix, string data returns nothing
 -- 同步游戏数据 同步 标签：${prefix}  发送数据：${data}
 function mt.SyncData(prefix, data)
@@ -235,12 +228,14 @@ function mt.SyncData(prefix, data)
     g.yh_string2 = data
     ExecuteFunc("yh_SyncData")
 end
+
 -- native DzGetTriggerSyncData takes nothing returns string
 -- 事件响应 - 获取同步的数据
 function mt.GetTriggerSyncData()
     ExecuteFunc("yh_GetTriggerSyncData")
     return g.yh_string1
 end
+
 -- native DzGetTriggerSyncPlayer takes nothing returns player
 -- 事件响应 - 获取同步玩家
 function mt.GetTriggerSyncPlayer()
@@ -252,12 +247,14 @@ end
 -- native DzFrameHideInterface takes nothing returns nothing
 -- native DzFrameEditBlackBorders takes real upperHeight, real bottomHeight returns nothing
 -- native DzFrameGetPortrait takes nothing returns integer
+
 -- native DzFrameGetMinimap takes nothing returns integer
 -- 获取小地图frame
 function mt.FrameGetMinimap()
     ExecuteFunc("yh_FrameGetMinimap")
     return g.yh_frame1
 end
+
 -- native DzFrameGetCommandBarButton takes integer row, integer column returns integer
 -- 原生 - 技能按钮
 function mt.FrameGetCommandBarButton(row, col)
@@ -266,24 +263,28 @@ function mt.FrameGetCommandBarButton(row, col)
     ExecuteFunc("yh_FrameGetCommandBarButton")
     return g.yh_frame1
 end
+
 -- native DzFrameGetHeroBarButton takes integer buttonId returns integer
 -- 原生 - 英雄按钮
 function mt.FrameGetHeroBarButton()
     ExecuteFunc("yh_FrameGetHeroBarButton")
     return g.yh_frame1
 end
+
 -- native DzFrameGetHeroHPBar takes integer buttonId returns integer
 -- 原生 - 英雄血条
 function mt.FrameGetHeroHPBar()
     ExecuteFunc("yh_FrameGetHeroHPBar")
     return g.yh_frame1
 end
+
 -- native DzFrameGetHeroManaBar takes integer buttonId returns integer
 -- 原生 - 英雄蓝条
 function mt.FrameGetHeroManaBar()
     ExecuteFunc("yh_FrameGetHeroManaBar")
     return g.yh_frame1
 end
+
 -- native DzFrameGetItemBarButton takes integer buttonId returns integer
 -- 获取物品栏按钮
 function mt.FrameGetItemBarButton(buttonId)
@@ -291,6 +292,7 @@ function mt.FrameGetItemBarButton(buttonId)
     ExecuteFunc("yh_FrameGetItemBarButton")
     return g.yh_frame1
 end
+
 -- native DzFrameGetMinimapButton takes integer buttonId returns integer
 -- 获取小地图按钮
 function mt.FrameGetMinimapButton(buttonId)
@@ -298,6 +300,7 @@ function mt.FrameGetMinimapButton(buttonId)
     ExecuteFunc("yh_FrameGetMinimapButton")
     return g.yh_frame1
 end
+
 -- native DzFrameGetUpperButtonBarButton takes integer buttonId returns integer
 
 -- native DzFrameGetTooltip takes nothing returns integer
@@ -306,6 +309,7 @@ function mt.FrameGetTooltip()
     ExecuteFunc("yh_FrameGetTooltip")
     return g.yh_frame1
 end
+
 -- native DzFrameGetChatMessage takes nothing returns integer
 -- native DzFrameGetUnitMessage takes nothing returns integer
 -- native DzFrameGetTopMessage takes nothing returns integer
@@ -374,6 +378,7 @@ function mt.FrameClearAllPoints(frame)
     g.yh_frame1 = frame
     ExecuteFunc("yh_FrameClearAllPoints")
 end
+
 -- native DzFrameSetEnable takes integer name, boolean enable returns nothing
 -- Frame设置按钮是否启用
 function mt.FrameSetEnable(frame, bol)
@@ -383,41 +388,27 @@ function mt.FrameSetEnable(frame, bol)
 end
 
 -- native DzFrameSetScript takes integer frame, integer eventId, string func, boolean sync returns nothing
--- 注册Frame UI事件回调
--- function mt.FrameSetScript(frame, eventid, func, bol)
---     g.yh_frame1 = frame
---     g.yh_integer1 = eventid
---     g.yh_string1 = func
---     g.yh_boolean1 = bol
---     ExecuteFunc("yh_FrameSetScript")
--- end
 
-local UI = {
-    Enter = {},
-    Leave = {}
-}
+local FrameAction = {}
 -- native DzFrameSetScriptByCode takes integer frame, integer eventId, code funcHandle, boolean sync returns nothing
--- 注册Frame UI事件回调(2-进入、3-离开)
+-- 注册Frame UI事件回调(1-鼠标点击、2-鼠标进入、3-鼠标离开、4-鼠标释放、5-鼠标按下(似乎无效)、6-鼠标轮滚、7-复选框被选中、8-复选框取消选中、9-捕获输入框文字变化、10-弹出菜单开始、11-弹出菜单结束、12-鼠标双击、13-精灵动画更新)
 function mt.TriggerRegisterUIEvent(frame, eventid, code)
-    -- 鼠标进入
-    if eventid == 2 then
-        if g.yh_Enter == 0 then
-            g.yh_Enter = gTrg.create()
+    if eventid >= 1 and eventid <= 13 then
+        -- 为了可以重载触发器才这样设计的
+        if g.yh_FrameEvent[eventid] == 0 or not g.yh_FrameEvent[eventid] then
+            g.yh_FrameEvent[eventid] = trg.create()
+            print('注册trg',g.yh_FrameEvent[eventid])
         end
-        TriggerAddAction(g.yh_Enter, function()
-            UI.Enter[gDz.GetTriggerUIEventFrame()]()
+        print(g.yh_FrameEvent[eventid])
+        -- 添加动作
+        TriggerAddAction(g.yh_FrameEvent[eventid], function()
+            FrameAction[eventid][gDz.GetTriggerUIEventFrame()]()
         end)
-        UI.Enter[frame] = code
-    end
-    -- 鼠标离开
-    if eventid == 3 then
-        UI.Leave[frame] = code
-        if g.yh_Leave == 0 then
-            g.yh_Leave = gTrg.create()
+        -- 保存frame对应的动作
+        if FrameAction[eventid] == nil then
+            FrameAction[eventid] = {}
         end
-        TriggerAddAction(g.yh_Leave, function()
-            UI.Leave[gDz.GetTriggerUIEventFrame()]()
-        end)
+        FrameAction[eventid][frame] = code
     end
     --
     g.yh_frame1 = frame

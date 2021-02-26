@@ -60,38 +60,44 @@ function mt.Init_A()
     -- 单位名称
     mt.unit_name = oUI:createByTag("TEXT", mt.mainBack, nil)
     oUI:setRelative(3, mt.unit_art, 5, 0.005, 0.0):setSize(0.05, 0.01):setText('单位名称')
+    -- 增加按钮
+    mt.but_up = oUI:createByTag("GLUETEXTBUTTON", mt.mainBack, "ProButton_Add")
+    oUI:setRelative(3, mt.unit_name, 5, 0.006, 0.0):setSize(0.015, 0.010)
+    -- 减少按钮
+    mt.but_do = oUI:createByTag("GLUETEXTBUTTON", mt.mainBack, "ProButton_Sub")
+    oUI:setRelative(3, mt.but_up, 5, 0.006, 0.0):setSize(0.015, 0.010)
+    -- 滚轮变化值
+    mt.wheel = oUI:createByTag("TEXT", mt.mainBack, nil)
+    oUI:setRelative(3, mt.but_do, 5, 0.006, 0.0):setSize(0.05, 0.01):setText('滚轮变化值')
+
     mt.pro_text = {} -- 属性名称
-    mt.but_up, mt.but_do = {}, {} -- 按钮 按钮背景
     --
     for i = 1, 31 do
-        -- 增加按钮
-        mt.but_up[i] = oUI:createByTag("GLUETEXTBUTTON", mt.mainBack, "ProButton_Add")
-        oUI:setSize(0.015, 0.010)
-        -- 减少按钮
-        mt.but_do[i] = oUI:createByTag("GLUETEXTBUTTON", mt.mainBack, "ProButton_Sub")
-        oUI:setRelative(3, mt.but_up[i], 4, 0.006, 0.0):setSize(0.015, 0.010)
         -- 属性名称
         mt.pro_text[i] = oUI:createByTag("GLUETEXTBUTTON", mt.mainBack, "ProButton_proText")
-        oUI:setRelative(3, mt.but_do[i], 5, 0.006, 0.0):setSize(0.07, 0.01):setText("生命恢复：|cff34f703+1.0")
+        oUI:setSize(0.07, 0.01):setText("生命恢复：|cff34f703+1.0")
     end
     for i = 1, 31 - 1 do
         if i == 1 then
-            gDz.FrameSetPoint(mt.but_up[1], 0, mt.unit_art, 6, 0.003, -0.01)
+            gDz.FrameSetPoint(mt.pro_text[1], 0, mt.unit_art, 6, 0.003, -0.01)
         end
-        if i % 3 == 0 then
-            gDz.FrameSetPoint(mt.but_up[i + 1], 1, mt.but_up[i - 2], 7, 0.0, -0.01)
+        if i % 4 == 0 then
+            gDz.FrameSetPoint(mt.pro_text[i + 1], 1, mt.pro_text[i - 3], 7, 0.0, -0.01)
         else
-            gDz.FrameSetPoint(mt.but_up[i + 1], 3, mt.pro_text[i], 5, 0.0, 0.0)
+            gDz.FrameSetPoint(mt.pro_text[i + 1], 3, mt.pro_text[i], 5, 0.003, 0.0)
         end
     end
+
 end
 --
 function mt.Init_B()
-    mt.selectUnit, mt.selectUnitT = {}, {}
+    mt.select_unit, mt.select_index, mt.select_vlaue = {}, {}, {}
     -- 当前选定单位
     gTrg.RegUserPlayerUnitEvent(EVENT_PLAYER_UNIT.SELECTED, function()
         local player, unit = GetTriggerPlayer(), GetTriggerUnit()
-        mt[player] = {unit, mt.getProTable(unit)}
+        -- 玩家选择单位
+        mt.select_unit[player] = unit
+        --
         if player == GetLocalPlayer() then
             gDz.FrameSetText(mt.unit_name, GetUnitName(unit))
             gDz.FrameSetTexture(mt.unit_art, gSlk.getUnitString(unit, "Art"))
@@ -105,33 +111,48 @@ end
 
 -- 增加数值
 function mt.Init_C()
+    local v = 0
     gDz.TriggerRegisterMouseEvent(1, 1, true, function()
         local frame, p = gDz.GetMouseFocus(), gDz.GetTriggerKeyPlayer()
-        if frame == 0 then
+        if frame == 0 or not Hero[p] then
             return
         end
-        local trg = mt[p]
-        if mt.but_up[frame] then
-            trg[2]:adjustPro(mt.but, frame, 1)
-            gU.selectSingle(trg[1], true, p)
+        --
+        if mt.but_up == frame then
+            v = v + 1
+            gDz.FrameSetText(mt.wheel, v)
+            gU.selectSingle(mt.select_unit[p], p)
         end
-
-        if mt.but_do[frame] then
-            trg[2]:adjustPro(mt.but_do, frame, -1)
-            gU.selectSingle(trg[1], true, p)
+        --
+        if mt.but_do == frame then
+            v = v - 1
+            gDz.FrameSetText(mt.wheel, v)
+            gU.selectSingle(mt.select_unit[p], p)
         end
     end)
+    -- 鼠标滑轮
+    local index = {}
+    for i, v in ipairs(mt.pro_text) do
+        index[v] = i
+        gDz.TriggerRegisterUIEvent(v, 6, function()
+            local frame, p = gDz.GetTriggerUIEventFrame(), gDz.GetTriggerUIEventPlayer()
+            -- 玩家序号
+            mt.select_index[p] = index[frame]
+            if gDz.GetWheelDelta() > 0 then
+                mt.select_vlaue[p] = 1
+            else
+                mt.select_vlaue[p] = -1
+            end
+            mt.adjustPro(p)
+        end)
+    end
 end
 
 -- 调整某属性值
-function mt:adjustPro(frameT, frame, vlaue)
-    local index = 0
-    for i, v in ipairs(frameT) do
-        if v == frame then
-            printF(self[i][1], vlaue)
-            self[i][2] = self[i][2] + vlaue
-        end
-    end
+function mt.adjustPro(p)
+    local unit, index, vlaue = mt.select_unit[p], mt.select_index[p], mt.select_vlaue[p]
+    mt[unit][index][2] = mt[unit][index][2] + vlaue
+    gU.selectSingle(mt.select_unit[p], p)
 end
 
 function mt.Init()
