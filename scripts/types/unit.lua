@@ -114,18 +114,14 @@ end
 
 -- 设置单位状态
 function mt.setState(u, unitState, delta)
-    if delta < 0 then
-        return log.error('单位生命值低于0,会导致直接死亡')
+    if delta > 0 then
+        japi.SetUnitState(u, unitState, delta)
     end
-    japi.SetUnitState(u, unitState, delta)
 end
 
 -- 调整单位状态
 function mt.adjustState(u, unitState, delta)
     local newstate = mt.getState(u, unitState) + delta
-    if newstate < 0 then
-        log.warn('单位状态负值', tostring(unitState), mt.getState(u, unitState), delta)
-    end
     mt.setState(u, unitState, newstate)
 end
 
@@ -330,54 +326,61 @@ function mt.isType(u, unittype)
     return IsUnitType(u, unittype)
 end
 -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 市场操作 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 -- 添加物品 到 指定市场 (只影响"出售物品"技能的单位)
-function mt.addItemToStock(u, unittype)
-    AddItemToStock('texp', GetTriggerUnit(), 0, 1)
+function mt.addItemToStock(unit, itemId, currentStock, stockMax)
+    AddItemToStock(unit, itemId, currentStock, stockMax)
 end
 -- 添加物品 到 所有市场 (只影响"出售物品"技能的单位)
-function mt.addItemToAllStock(u, unittype)
-    AddItemToAllStock('texp', 0, 1)
-end
--- 删除物品 到 指定市场 (只影响"出售物品"技能的单位)
-function mt.removeItemFromStock(u, unittype)
-    RemoveItemFromStock('texp', GetTriggerUnit())
-end
--- 删除物品 到 所有市场 (只影响"出售物品"技能的单位)
-function mt.removeItemFromAllStock(u, unittype)
-    RemoveItemFromAllStock('texp')
-end
--- 限制出售物品种类数量 到 指定市场 (只影响"出售物品"技能的单位)
-function mt.setItemTypeSlots(u, unittype)
-    SetItemTypeSlots(GetTriggerUnit(), 6)
-end
--- 限制出售物品种类数量 到 所有市场 (只影响"出售物品"技能的单位)
-function mt.setAllItemTypeSlots(u, unittype)
-    SetAllItemTypeSlots(6)
+function mt.addItemToAllStock(itemId, currentStock, stockMax)
+    AddItemToAllStock(itemId, currentStock, stockMax)
 end
 
--- 添加物品 到 指定市场 (只影响"出售单位"技能的单位)
-function mt.addUnitToStock(u, unittype)
-    AddUnitToStock('hfoo', GetTriggerUnit(), 0, 1)
+-- 删除物品 到 指定市场 (只影响"出售物品"技能的单位)
+function mt.removeItemFromStock(unit, itemId)
+    RemoveItemFromStock(unit, itemId)
 end
--- 添加物品 到 所有市场 (只影响"出售单位"技能的单位)
-function mt.addUnitToAllStock(u, unittype)
-    AddUnitToAllStock('hfoo', 0, 1)
+-- 删除物品 到 所有市场 (只影响"出售物品"技能的单位)
+function mt.removeItemFromAllStock(itemId)
+    RemoveItemFromAllStock(itemId)
 end
--- 删除物品 到 指定市场 (只影响"出售单位"技能的单位)
-function mt.removeUnitFromStock(u, unittype)
-    RemoveUnitFromStock('hfoo', GetTriggerUnit())
+
+-- 限制出售物品种类数量 到 指定市场 (只影响"出售物品"技能的单位)
+function mt.setItemTypeSlots(unit, slots)
+    SetItemTypeSlots(unit, slots)
 end
--- 删除物品 到 所有市场 (只影响"出售单位"技能的单位)
-function mt.removeUnitFromAllStock(u, unittype)
-    RemoveUnitFromAllStock('hfoo')
+-- 限制出售物品种类数量 到 所有市场 (只影响"出售物品"技能的单位)
+function mt.setAllItemTypeSlots(slots)
+    SetAllItemTypeSlots(slots)
 end
+
+----------------------------------------------------
+
+-- 添加单位 到 指定市场 (只影响"出售单位"技能的单位)
+function mt.addUnitToStock(unit, unitId,currentStock, stockMax)
+    AddUnitToStock(unit, unitId,currentStock, stockMax)
+end
+-- 添加单位 到 所有市场 (只影响"出售单位"技能的单位)
+function mt.addUnitToAllStock(unitId,currentStock, stockMax)
+    AddUnitToAllStock(unitId,currentStock, stockMax)
+end
+
+-- 删除单位 到 指定市场 (只影响"出售单位"技能的单位)
+function mt.removeUnitFromStock(unit, unitId)
+    RemoveUnitFromStock(unit, unitId)
+end
+-- 删除单位 到 所有市场 (只影响"出售单位"技能的单位)
+function mt.removeUnitFromAllStock(unitId)
+    RemoveUnitFromAllStock(unitId)
+end
+
 -- 限制出售单位种类数量 到 指定市场 (只影响"出售单位"技能的单位)
-function mt.setUnitTypeSlots(u, unittype)
-    SetUnitTypeSlots(GetTriggerUnit(), 6)
+function mt.setUnitTypeSlots(unit, slots)
+    SetUnitTypeSlots(unit, slots)
 end
 -- 限制出售单位种类数量 到 所有市场 (只影响"出售单位"技能的单位)
-function mt.setAllUnitTypeSlots(u, unittype)
-    SetAllUnitTypeSlots(6)
+function mt.setAllUnitTypeSlots(slots)
+    SetAllUnitTypeSlots(slots)
 end
 
 -- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 选择单位 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
