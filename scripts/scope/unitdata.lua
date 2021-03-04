@@ -208,19 +208,29 @@ function mt.TimerRegen(proName, unit, value)
         tab.manaRegn = tab.manaRegn + value
     end
     --
-    if not Regen[unit] then
-        Regen[unit] = unit
-        gT.loop(0.50, function()
-            if gU.is_alive(unit) then
-                gU.adjustState(unit, UNIT_STATE.LIFE, tab.lifeRegn)
-                gU.adjustState(unit, UNIT_STATE.MANA, tab.manaRegn)
-                local x, y = gYh.getPolarUnit(unit, 100, 0)
-                local str1 = "|cff51e40d" .. string.format("%+.2f", tab.lifeRegn)
-                local str2 = "|cff0d22e4" .. string.format("%+.2f", tab.manaRegn)
-                gTag.newXY(str1 .. str2, 0.020, x, y, 0.50, 20, 90)
-            end
-        end)
-    end
+    -- if not Regen[unit] then
+    --     Regen[unit] = unit
+    --     gT.loop(0.50, function()
+    --         if gU.is_alive(unit) then
+    --             gU.adjustState(unit, UNIT_STATE.LIFE, tab.lifeRegn)
+    --             gU.adjustState(unit, UNIT_STATE.MANA, tab.manaRegn)
+    --             local x, y = gYh.getPolarUnit(unit, 100, 0)
+    --             local str1 = "|cff51e40d" .. string.format("%+.2f", tab.lifeRegn)
+    --             local str2 = "|cff0d22e4" .. string.format("%+.2f", tab.manaRegn)
+    --             gTag.newXY(str1 .. str2, 0.020, x, y, 0.50, 20, 90)
+    --         end
+    --     end)
+    -- end
+    gT.attachLoop('unitdata', unit, 0.5, function()
+        if gU.is_alive(unit) then
+            gU.adjustState(unit, UNIT_STATE.LIFE, tab.lifeRegn)
+            gU.adjustState(unit, UNIT_STATE.MANA, tab.manaRegn)
+            local x, y = gYh.getPolarUnit(unit, 100, 0)
+            local str1 = "|cff51e40d" .. string.format("%+.2f", tab.lifeRegn)
+            local str2 = "|cff0d22e4" .. string.format("%+.2f", tab.manaRegn)
+            gTag.newXY(str1 .. str2, 0.020, x, y, 0.50, 20, 90)
+        end
+    end)
 end
 
 -- 自定义调整各种常用属性

@@ -114,18 +114,14 @@ end
 
 -- 设置单位状态
 function mt.setState(u, unitState, delta)
-    if delta < 0 then
-        return log.error('单位生命值低于0,会导致直接死亡')
+    if delta > 0 then
+        japi.SetUnitState(u, unitState, delta)
     end
-    japi.SetUnitState(u, unitState, delta)
 end
 
 -- 调整单位状态
 function mt.adjustState(u, unitState, delta)
     local newstate = mt.getState(u, unitState) + delta
-    if newstate < 0 then
-        log.warn('单位状态负值', tostring(unitState), mt.getState(u, unitState), delta)
-    end
     mt.setState(u, unitState, newstate)
 end
 

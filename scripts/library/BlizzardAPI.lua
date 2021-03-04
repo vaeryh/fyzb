@@ -13,6 +13,10 @@ function mt:reload()
         mt.DestroyFrame(v)
         mt.listFrame[k] = nil
     end
+    --  重置farmer事件触发器
+    for i = 1, 13 do
+        g.yh_FrameEvent[i] = nil
+    end
     log.debug("Frame", #mt.listFrame)
 end
 ---------------------------------------------------------------------------------------------------
@@ -395,20 +399,39 @@ local FrameAction = {}
 function mt.TriggerRegisterUIEvent(frame, eventid, code)
     if eventid >= 1 and eventid <= 13 then
         -- 为了可以重载触发器才这样设计的
+        -- print(1, g.yh_FrameEvent[eventid])
         if g.yh_FrameEvent[eventid] == 0 or not g.yh_FrameEvent[eventid] then
-            g.yh_FrameEvent[eventid] = trg.create()
-            print('注册trg',g.yh_FrameEvent[eventid])
+            local trg = trg.create()
+            g.yh_FrameEvent[eventid] = trg
+            -- 注册触发器与ID
+            if FrameAction[trg] == nil then
+                FrameAction[trg] = eventid
+            end
+            --print(2, g.yh_FrameEvent[eventid])
+            -- 添加动作
+            TriggerAddAction(g.yh_FrameEvent[eventid], function()
+                local index,frame = FrameAction[GetTriggeringTrigger()],gDz.GetTriggerUIEventFrame()
+                --print(4, index, FrameAction[index][gDz.GetTriggerUIEventFrame()], gDz.GetTriggerUIEventFrame())
+                for k, v in pairs(FrameAction[index][frame]) do
+                   v()
+                end
+            end)
         end
-        print(g.yh_FrameEvent[eventid])
-        -- 添加动作
-        TriggerAddAction(g.yh_FrameEvent[eventid], function()
-            FrameAction[eventid][gDz.GetTriggerUIEventFrame()]()
-        end)
-        -- 保存frame对应的动作
+        --print(3, g.yh_FrameEvent[eventid])
+        -- 保存eventid对应的frame
         if FrameAction[eventid] == nil then
             FrameAction[eventid] = {}
         end
-        FrameAction[eventid][frame] = code
+        -- 保存frame对应的code
+        if FrameAction[eventid][frame] == nil then
+            FrameAction[eventid][frame] = {}
+        end
+        -- 动作不要重复
+        if FrameAction[eventid][frame][code] == nil then
+            FrameAction[eventid][frame][code] = code
+        else
+            return
+        end
     end
     --
     g.yh_frame1 = frame

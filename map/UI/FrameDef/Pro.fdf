@@ -140,11 +140,12 @@ Frame "GLUETEXTBUTTON" "ProButton_Sub"{
 }
 
 //创建按钮 属性显示
-Frame "GLUETEXTBUTTON" "ProButton_proText"{
+Frame "TEXTBUTTON" "ProButton_proText"{
     Width 0.07,
     Height 0.02,
     //设置样式:AUTOTRACK自动跟踪、HIGHLIGHTONFOCUS高亮聚焦、HIGHLIGHTONMOUSEOVER鼠标上方突出显示
-	ControlStyle "AUTOTRACK|HIGHLIGHTONFOCUS|HIGHLIGHTONMOUSEOVER",
+	//ControlStyle "AUTOTRACK|HIGHLIGHTONFOCUS|HIGHLIGHTONMOUSEOVER",
+    ControlStyle "AUTOTRACK|HIGHLIGHTONMOUSEOVER",
     //设置正常状态背景
     // ControlBackdrop "ButtonBack_proText",
     // Frame "BACKDROP" "ButtonBack_proText"
@@ -165,12 +166,12 @@ Frame "GLUETEXTBUTTON" "ProButton_proText"{
     //     BackdropBlendAll,
     // }
     //设置被选中后的高亮控件
-    ControlFocusHighlight "ButtonFocusHighlight_proText",
-    Frame "HIGHLIGHT" "ButtonFocusHighlight_proText" {
-		HighlightType "FILETEXTURE",
-    	HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Button-KeyboardHighlight.blp",
-    	HighlightAlphaMode "ADD",
-    }
+    // ControlFocusHighlight "ButtonFocusHighlight_proText",
+    // Frame "HIGHLIGHT" "ButtonFocusHighlight_proText" {
+	// 	HighlightType "FILETEXTURE",
+    // 	HighlightAlphaFile "UI\Widgets\Glues\GlueScreen-Button-KeyboardHighlight.blp",
+    // 	HighlightAlphaMode "ADD",
+    // }
     //悬停鼠标高亮
 	ControlMouseOverHighlight "ButtonHighlight_proText",
 	Frame "HIGHLIGHT" "ButtonHighlight_proText" {

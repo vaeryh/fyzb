@@ -133,8 +133,6 @@ function mt:reload()
         mt.listTrigger[k] = nil
         self.remove(v)
     end
-    g.yh_Enter = nil
-    g.yh_Leave = nil
     log.debug("trg", #self.listTrigger)
 end
 -- 创建触发器

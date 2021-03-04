@@ -80,6 +80,24 @@ function mt.loop(timeout, code)
     return timer
 end
 
+-- 绑定型计时器的表
+local attachLoop_tab = {}
+-- 绑定型计时器
+function mt.attachLoop(range, object, timeout, code)
+    -- 绑定范围生成一张表
+    if not attachLoop_tab[range] then
+        attachLoop_tab[range] = {}
+    end
+    -- 同一范围同一物体动作只能有1个
+    if not attachLoop_tab[range][object] then
+        attachLoop_tab[range][object] = code
+        
+        local timer = mt.create()
+        TimerStart(timer, timeout, true, code)
+        return timer
+    end
+end
+
 -- 设置计时器窗口状态：显示 or 隐藏 ps:不可在地图初始化显示
 function mt.setDisplay(dialog, state)
     TimerDialogDisplay(dialog, state)

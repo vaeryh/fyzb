@@ -72,6 +72,16 @@ function mt.getHeroProTable(hero)
     return mt[hero]
 end
 
+-- 保存相性表
+local xx_T = {}
+-- 减去之前加上的，再加上目前最新的
+function mt.Sub_Add(name, hero, newValue)
+    local oldValue = xx_T[name]
+    gUnitdata.adjustPro(name, hero, oldValue or 0)
+    gUnitdata.adjustPro(name, hero, newValue)
+    xx_T[name] = -newValue
+    print(oldValue, newValue)
+end
 -- 属性生效
 function mt.takeEffect_Action(hero, proName, value)
     local heroT = mt.getHeroProTable(hero)
@@ -100,29 +110,36 @@ function mt.takeEffect_Action(hero, proName, value)
         gUnitdata.adjustPro("魔法值再生", hero, value)
     end
     -- 英雄属性
+    local str, agi, int, main = gH.getStr(hero), gH.getAgi(hero), gH.getInt(hero), gH.getMain(hero)
     if proName == "招式" then
         gUnitdata.adjustPro("力量", hero, value)
     elseif proName == "身法" then
         gUnitdata.adjustPro("敏捷", hero, value)
+        mt.Sub_Add("攻击速度", hero, heroT["风相性"] * agi * 0.2)
+        mt.Sub_Add("移动速度", hero, heroT["风相性"] * agi * 0.5)
     elseif proName == "心法" then
         gUnitdata.adjustPro("智力", hero, value)
     elseif proName == "全属性" then
         gUnitdata.adjustPro("全属性", hero, value)
     end
     -- 相性
-    local str, agi, int, main = gH.getStr(hero), gH.getAgi(hero), gH.getInt(hero), gH.getMain(hero)
     if proName == "风相性" then -- 风相性：提升风相性*身法* 0.2%的出招速度，风相性*身法* 0.5的移动速度。
-        gUnitdata.adjustPro("攻击速度", hero, value * agi * 0.2)
-        gUnitdata.adjustPro("移动速度", hero, value * agi * 0.5)
+        heroT["风相性"] = heroT["风相性"] + value
+        mt.Sub_Add("攻击速度", hero, heroT["风相性"] * agi * 0.2)
+        mt.Sub_Add("移动速度", hero, heroT["风相性"] * agi * 0.5)
     elseif proName == "云相性" then -- 云相性：提升云相性*招式* 0.5的气血和云相性*招式* 0.01 /秒的气血恢复；
+        heroT["云相性"] = heroT["云相性"] + value
         gUnitdata.adjustPro("生命值", hero, value * str * 0.5)
         gUnitdata.adjustPro("生命值再生", hero, value * str * 0.01)
     elseif proName == "火相性" then -- 火相性：提升火相性*主属性*0.02的外功；
+        heroT["火相性"] = heroT["火相性"] + value
         gUnitdata.adjustPro("攻击值", hero, value * main * 0.02)
     elseif proName == "地相性" then -- 地相性：提升地相性*身法* 0.005的防御和伤害减免；
+        heroT["地相性"] = heroT["地相性"] + value
         heroT["减伤率"] = heroT["减伤率"] + agi * value * 0.005
         gUnitdata.adjustPro("护甲值", hero, agi * value * 0.005)
     elseif proName == "雷相性" then -- 雷相性：提升雷相性*主属性*0.02的内功和雷相性*主属性*0.1的内力；
+        heroT["雷相性"] = heroT["雷相性"] + value
         heroT["内功"] = heroT["内功"] + value * main * 0.2
         gUnitdata.adjustPro("魔法值", hero, value * main * 0.1)
     end
@@ -236,7 +253,7 @@ end
 
 -- 初始化
 function mt.Init()
-    --mt.Init_A() -- Frame初始化
+    -- mt.Init_A() -- Frame初始化
 end
 
 mt.Init()
