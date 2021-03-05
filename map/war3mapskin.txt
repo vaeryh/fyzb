@@ -4,7 +4,6 @@ InventoryFullSound=''
 Absorbmana=没有足够的内力来吸收。
 Cooldown=内力尚未恢复。
 HPmanamaxed=气血值和内力值都已满。
-Inventoryfull=
 Manamaxed=内力值已满。
 Nomana=内力值不够。
 UnitHPmaxed=气血值已满。
