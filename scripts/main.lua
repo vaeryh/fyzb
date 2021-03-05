@@ -27,7 +27,7 @@ require 'map.init'
 --     require 'map.hero.init'
 
 -- end
-
+--背包分支
 -- main()
 -- local japi = require 'jass.japi'
 -- for k, v in pairs(japi) do

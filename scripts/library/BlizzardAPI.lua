@@ -8,7 +8,7 @@ mt.listFrame = {}
 -- 重载
 function mt:reload()
     for k, v in ipairs(self.listFrame) do
-        self.FrameShow(v)
+        self.FrameShow(v, false)
         self.DestroyFrame(v)
     end
     log.debug("Frame", #self.listFrame)

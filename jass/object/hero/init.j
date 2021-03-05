@@ -8,19 +8,19 @@
 #include "jass\object\hero\dl\buff.j"
 //凤舞
 #include "jass\object\hero\fw\unit.j"
-#include "jass\object\hero\fw\item.j"
+//#include "jass\object\hero\fw\item.j"
 #include "jass\object\hero\fw\abi.j"
-#include "jass\object\hero\fw\buff.j"
+//#include "jass\object\hero\fw\buff.j"
 //聂风
-#include "jass\object\hero\nf\unit.j"
-#include "jass\object\hero\nf\item.j"
-#include "jass\object\hero\nf\abi.j"
-#include "jass\object\hero\nf\buff.j"
+#include "jass\object\hero\Nf\unit.j"
+//#include "jass\object\hero\Nf\item.j"
+#include "jass\object\hero\Nf\abi.j"
+#include "jass\object\hero\Nf\buff.j"
 //秦霜
 #include "jass\object\hero\qs\unit.j"
-#include "jass\object\hero\qs\item.j"
+// #include "jass\object\hero\qs\item.j"
 #include "jass\object\hero\qs\abi.j"
-#include "jass\object\hero\qs\buff.j"
+// #include "jass\object\hero\qs\buff.j"
 //神医
 #include "jass\object\hero\sy\unit.j"
 #include "jass\object\hero\sy\item.j"

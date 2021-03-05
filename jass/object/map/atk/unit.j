@@ -7,7 +7,7 @@ endglobals
 private function xG_ability_lua takes nothing returns nothing
 	<? xG_unit_luaObj ={}
 	local slk = require 'slk'
-	obj = slk.unit.hfoo:new('gc01') 
+	obj = slk.unit.hfoo:new('gc01')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第1波'
@@ -22,7 +22,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='300'
 	obj.regenHP ='1'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc02') 
+	obj = slk.unit.hfoo:new('gc02')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第2波'
@@ -37,7 +37,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='400'
 	obj.regenHP ='3'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc03') 
+	obj = slk.unit.hfoo:new('gc03')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第3波'
@@ -52,7 +52,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='500'
 	obj.regenHP ='5'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc04') 
+	obj = slk.unit.hfoo:new('gc04')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第4波'
@@ -67,7 +67,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='600'
 	obj.regenHP ='25'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc05') 
+	obj = slk.unit.hfoo:new('gc05')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第5波'
@@ -82,7 +82,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='700'
 	obj.regenHP ='30'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc06') 
+	obj = slk.unit.hfoo:new('gc06')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第6波'
@@ -97,7 +97,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='800'
 	obj.regenHP ='35'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc07') 
+	obj = slk.unit.hfoo:new('gc07')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第7波'
@@ -112,7 +112,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='900'
 	obj.regenHP ='40'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc08') 
+	obj = slk.unit.hfoo:new('gc08')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第8波'
@@ -127,7 +127,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='1000'
 	obj.regenHP ='45'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc09') 
+	obj = slk.unit.hfoo:new('gc09')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第9波'
@@ -142,7 +142,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='1100'
 	obj.regenHP ='50'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc10') 
+	obj = slk.unit.hfoo:new('gc10')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第10波'
@@ -157,7 +157,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='1200'
 	obj.regenHP ='55'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc11') 
+	obj = slk.unit.hfoo:new('gc11')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第11波'
@@ -172,7 +172,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='1300'
 	obj.regenHP ='60'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc12') 
+	obj = slk.unit.hfoo:new('gc12')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第12波'
@@ -187,7 +187,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='1400'
 	obj.regenHP ='65'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc13') 
+	obj = slk.unit.hfoo:new('gc13')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第13波'
@@ -202,7 +202,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='1500'
 	obj.regenHP ='70'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc14') 
+	obj = slk.unit.hfoo:new('gc14')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第14波'
@@ -217,7 +217,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='1600'
 	obj.regenHP ='75'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc15') 
+	obj = slk.unit.hfoo:new('gc15')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第15波'
@@ -232,7 +232,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='1700'
 	obj.regenHP ='80'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc16') 
+	obj = slk.unit.hfoo:new('gc16')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第16波'
@@ -247,7 +247,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='1800'
 	obj.regenHP ='85'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc17') 
+	obj = slk.unit.hfoo:new('gc17')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第17波'
@@ -262,7 +262,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='1900'
 	obj.regenHP ='90'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc18') 
+	obj = slk.unit.hfoo:new('gc18')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第18波'
@@ -277,7 +277,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='2000'
 	obj.regenHP ='95'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc19') 
+	obj = slk.unit.hfoo:new('gc19')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第19波'
@@ -292,7 +292,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='2100'
 	obj.regenHP ='100'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc20') 
+	obj = slk.unit.hfoo:new('gc20')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第20波'
@@ -307,7 +307,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='2200'
 	obj.regenHP ='105'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc21') 
+	obj = slk.unit.hfoo:new('gc21')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第21波'
@@ -322,7 +322,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='2300'
 	obj.regenHP ='110'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc22') 
+	obj = slk.unit.hfoo:new('gc22')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第22波'
@@ -337,7 +337,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='2400'
 	obj.regenHP ='115'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc23') 
+	obj = slk.unit.hfoo:new('gc23')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第23波'
@@ -352,7 +352,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='2500'
 	obj.regenHP ='120'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc24') 
+	obj = slk.unit.hfoo:new('gc24')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第24波'
@@ -367,7 +367,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='2600'
 	obj.regenHP ='125'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc25') 
+	obj = slk.unit.hfoo:new('gc25')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第25波'
@@ -382,7 +382,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='2700'
 	obj.regenHP ='130'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc26') 
+	obj = slk.unit.hfoo:new('gc26')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第26波'
@@ -397,7 +397,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='2800'
 	obj.regenHP ='135'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc27') 
+	obj = slk.unit.hfoo:new('gc27')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第27波'
@@ -412,7 +412,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='2900'
 	obj.regenHP ='140'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc28') 
+	obj = slk.unit.hfoo:new('gc28')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第28波'
@@ -427,7 +427,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='3000'
 	obj.regenHP ='145'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc29') 
+	obj = slk.unit.hfoo:new('gc29')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第29波'
@@ -442,7 +442,7 @@ private function xG_ability_lua takes nothing returns nothing
 	obj.HP ='3100'
 	obj.regenHP ='150'
 	table.insert(xG_unit_luaObj, obj)
-	obj = slk.unit.hfoo:new('gc30') 
+	obj = slk.unit.hfoo:new('gc30')
 	obj.upgrades =''
 	obj.Name ='攻城怪'
 	obj.EditorSuffix ='第30波'
