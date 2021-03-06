@@ -124,6 +124,7 @@ function mt.Init_E(item)
         for k, v in pairs(tab) do
             text = text .. v.tip .. '\n'
         end
+
         gDz.FrameSetText(frame.title, GetItemName(item))
         gDz.FrameSetText(frame.showText2, text)
         gDz.FrameSetText(frame.showText4, gIt.getDataString(item, ITEM_DATA.UBERTIP))

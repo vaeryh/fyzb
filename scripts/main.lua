@@ -1,12 +1,12 @@
 -- 调用
--- local std_require = require
--- function require(...)
---     if package.loaded[...] == nil then
---         print(..., 'load success!!')
---     end
---     local bol = std_require(...)
---     return bol
--- end
+local std_require = require
+function require(...)
+    if package.loaded[...] == nil then
+        print(..., 'load success!!')
+    end
+    local bol = std_require(...)
+    return bol
+end
 -----------------------------------------------------------------------------------------
 -- types类型库
 require 'types.init'
