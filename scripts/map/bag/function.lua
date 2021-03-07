@@ -1,4 +1,4 @@
-local op = require 'library.bags.operation'
+local op = require 'map.bag.operation'
 
 local mt = {}
 

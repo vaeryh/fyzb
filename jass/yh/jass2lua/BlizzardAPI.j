@@ -525,7 +525,7 @@ public function Init takes nothing returns nothing
 	loop
 	exitwhen lopA > 13
 		set yh_FrameEvent[lopA] = null
-		call DisplayTimedTextToPlayer(Player(0), 0, 0, 20, I2S(lopA))
+		//call DisplayTimedTextToPlayer(Player(0), 0, 0, 20, I2S(lopA))
 		set lopA = lopA + 1
 	endloop
 endfunction

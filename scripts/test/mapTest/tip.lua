@@ -76,8 +76,8 @@ function mt:act_D()
 end
 
 function mt:act_F()
-    local mouse = require 'library.bags.mouse'
-    local op = require 'library.bags.operation'
+    local mouse = require 'map.bag.mouse'
+    local op = require 'map.bag.operation'
     gDz.TriggerRegisterMouseMoveEvent(true, function()
         local str = {}
         str[1] = gDz.GetMouseFocus()

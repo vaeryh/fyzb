@@ -1,5 +1,5 @@
-local frame = require 'library.bags.frame'
-local mouse = require 'library.bags.mouse'
+local frame = require 'map.bag.frame'
+local mouse = require 'map.bag.mouse'
 
 local mt = {}
 

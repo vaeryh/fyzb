@@ -9,12 +9,15 @@ local mt = {}
 gTrg.RegAnyPlayerUnitEvent(EVENT_PLAYER_UNIT.SELECTED, function()
     local unit = GetTriggerUnit()
     local path = mapg.sound.MouseClick1
-    --gSound.PlaySoundUI(mapg.sound.HeroDropItem1, 127)
+    -- gSound.PlaySoundUI(mapg.sound.HeroDropItem1, 127)
     -- local sound = gSound.create(path, false, true, true, 10, 10, "SpellsEAX")
     -- gSound.setPosition(sound, gU.getXY(unit))
     -- gSound.StartSound(sound)
 end)
 
+
+-- oUI:setTexture("UI\\Widgets\\ToolTips\\Human\\human-tooltip-background.blp")
+-- oUI:setRelative(8, mt.mainBack, 6, 0.0, 0.0)
 -- local frame = gDz.CreateFrameByTagName("BUTTON", nil, nil, "BagButton")
 -- gDz.FrameSetAbsolutePoint(frame, 0, 0.2, 0.4)
 -- -- local back = gDz.CreateFrameByTagName("BACKDROP")

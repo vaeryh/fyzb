@@ -38,6 +38,12 @@ mt.absolute = {
 -- 'TEXT'
 -- 'BUTTON' 'TEXTBUTTON' 'GLUETEXTBUTTON'
 
+-- 设置当前handle
+function mt:setHandle(handle)
+    self.handle = handle
+    return self
+end
+
 -- 创建UI tag
 function mt:createByTag(frameType, parent, template)
     self.handle = dz.CreateFrameByTagName(frameType, nil, parent, template)
@@ -83,6 +89,25 @@ function mt:getEnable()
     return dz.FrameGetEnable(self.handle)
 end
 
+-- 设置文本
+function mt:setText(text)
+    dz.FrameSetText(self.handle, text)
+    return self
+end
+
+-- 设置贴图路径
+function mt:setTexture(texture, flag)
+    dz.FrameSetTexture(self.handle, texture, flag)
+    return self
+end
+
+-- 移动所有锚点到指定frame
+function mt:setAllPoints(relativeFrame)
+    dz.FrameSetAllPoints(self.handle, relativeFrame)
+    return self
+end
+
+-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> +* 未知 *+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 -- 设置鼠标高亮
 function mt:setMouseHighlight()
     local tooltip = mt:createByTag("BACKDROP", nil, self.handle)

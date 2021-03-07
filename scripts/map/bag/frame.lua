@@ -4,41 +4,29 @@ local mt = {}
 function mt.Init_B()
     -- 物品提示背景
     mt.showBack = oUI:createByTag("BACKDROP", nil, "BackdropTemplate")
-    gDz.FrameSetPoint(mt.showBack, 8, mt.mainBack, 6, 0.0, 0.0)
-    oUI:setSize(0.18, 0.166)
-    oUI:setShow(false)
+    oUI:setRelative(8, mt.mainBack, 6, 0.0, 0.0):setSize(0.18, 0.166):setShow(false)
     -- 物品提示标题
     mt.title = oUI:createByTag("TEXT", mt.showBack, "ProTextTemplate")
-    gDz.FrameSetSize(mt.title, 0.14, 0.01)
-    gDz.FrameSetText(mt.title, "|cff31e40d物品属性")
-    gDz.FrameSetPoint(mt.title, 1, mt.showBack, 1, 0.00, -0.01)
+    oUI:setSize(0.140, 0.01):setRelative(1, mt.showBack, 1, 0.000, -0.01):setText("|cff31e40d物品属性")
     -- 物品提示第一行
     mt.showText1 = oUI:createByTag("TEXT", mt.showBack, "ProText")
-    gDz.FrameSetSize(mt.showText1, 0.09, 0.01)
-    gDz.FrameSetText(mt.showText1, "|cff1cdad0属性：|r")
-    gDz.FrameSetPoint(mt.showText1, 0, mt.showBack, 0, 0.01, -0.02)
+    oUI:setSize(0.090, 0.01):setRelative(0, mt.showBack, 0, 0.010, -0.02):setText("|cff1cdad0属性：|r")
     -- 物品提示第二行
     mt.showText2 = oUI:createByTag("TEXT", mt.showBack, "ProText")
-    gDz.FrameSetSize(mt.showText2, 0.14, 0.06)
-    gDz.FrameSetText(mt.showText2, "防御+10")
-    gDz.FrameSetPoint(mt.showText2, 0, mt.showText1, 6, 0.01, -0.01)
+    oUI:setSize(0.140, 0.06):setRelative(0, mt.showText1, 6, 0.010, -0.01):setText("防御+10")
     -- 物品提示第三行
     mt.showText3 = oUI:createByTag("TEXT", mt.showBack, "ProText")
-    gDz.FrameSetSize(mt.showText3, 0.09, 0.01)
-    gDz.FrameSetText(mt.showText3, "|cff1cdad0描述：|r")
-    gDz.FrameSetPoint(mt.showText3, 0, mt.showText2, 6, -0.01, -0.01)
+    oUI:setSize(0.090, 0.01):setRelative(0, mt.showText2, 6, -0.01, -0.01):setText("|cff1cdad0描述：|r")
     -- 物品提示第四行
     mt.showText4 = oUI:createByTag("TEXT", mt.showBack, "ProText")
-    gDz.FrameSetSize(mt.showText4, 0.155, 0.08)
-    gDz.FrameSetText(mt.showText4, "防御+10")
-    gDz.FrameSetPoint(mt.showText4, 0, mt.showText3, 6, 0.01, -0.01)
+    oUI:setSize(0.155, 0.08):setRelative(0, mt.showText3, 6, 0.010, -0.01):setText("防御+10")
 end
 
 -- 背包格子UI
 function mt.Init_A()
     -- 背包背景
     mt.mainBack = oUI:createByTag("BACKDROP", nil, "BackdropTemplate")
-    oUI:setAbsolute(0, 0.614, 0.45):setSize(0.186, 0.29):setShow(false)
+    oUI:setSize(0.186, 0.29):setAbsolute(0, 0.614, 0.45):setShow(false)
 
     mt.but, mt.but_back = {}, {} -- 按钮 按钮背景
     mt.charges_back, mt.charges_text = {}, {} -- 使用次数背景 使用次数
@@ -76,12 +64,12 @@ function mt.Init_C()
 
     for i = 0, 5 do
         -- 虚拟按钮
-        mt.xnBut[i] = gDz.CreateFrameByTagName("BUTTON", nil, mt.mainBack)
-        gDz.FrameSetSize(mt.xnBut[i], 0.0313, 0.0313)
+        mt.xnBut[i] = oUI:createByTag("BUTTON", mt.mainBack, nil)
+        oUI:setSize(0.0313, 0.0313)
         -- 虚拟按钮背景
         mt.xnBut_back[i] = oUI:createByTag("BACKDROP", mt.xnBut[i], "BagXuNiBackdrop")
-        gDz.FrameSetTexture(mt.xnBut_back[i],'ReplaceableTextures\\CommandButtons\\BTNRingGreen.blp',0)
         oUI:setRelative(4, mt.xnBut[i], 4, 0.0, 0.0)
+        oUI:setTexture('ReplaceableTextures\\CommandButtons\\BTNRingGreen.blp')
         -- 虚拟物品使用次数背景
         mt.xnBut_charges_back[i] = oUI:createByTag("BACKDROP", mt.xnBut_back[i], "BagXuNiMinGridBackdrop")
         oUI:setRelative(8, mt.xnBut_back[i], 8, 0.0, 0.0)

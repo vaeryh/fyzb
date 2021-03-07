@@ -12,9 +12,9 @@ Frame "BACKDROP" "BackdropTemplate" {
     BackdropBlendAll,
     BackdropBackground  "UI\Widgets\ToolTips\Human\human-tooltip-background.blp",
 	BackdropCornerFlags "UL|UR|BL|BR|T|L|B|R",
-	BackdropCornerSize  0.000,
-	BackdropBackgroundSize  0.016,
-	BackdropBackgroundInsets 0.003 0.003 0.003 0.003,
+	BackdropCornerSize  0.006,
+    BackdropBackgroundSize  0.012,
+    BackdropBackgroundInsets 0.001 0.001 0.001 0.001,
 	BackdropEdgeFile  "UI\Widgets\ToolTips\Human\human-tooltip-border.blp",
 }
 

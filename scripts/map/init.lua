@@ -18,6 +18,8 @@ local function map_main()
     require 'map.hero.init'
     --载入装备
     require 'map.equip.init'
+    -- 背包系统
+    require 'map.bag.init'
 end
 
 map_main()
